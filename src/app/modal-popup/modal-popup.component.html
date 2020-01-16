@@ -1,0 +1,10 @@
+<form (ngSubmit)="Submited(Form)" class="modal-popup form-control" #Form = "ngForm">
+  <div class="btn close">X</div>
+  <h2 class="modal-header card-header-pills ">Зарегистрируйтесь</h2>
+  <div class="input-wrap">
+    <input type="email" class="input-group-text modal-input" name="email" [(ngModel)]="postUser.email">
+    <input type="password" class="input-group-text modal-input" name="password" [(ngModel)]="postUser.password">
+  </div>
+  <button type="submit" class="btn btn-success">Pарегистрироваться</button>
+
+</form>

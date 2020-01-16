@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>Login</h3>
+  <div class="spacer">
+    <label>Email</label>
+    <input class="input-group-text input-group" type="text" placeholder="Email" [(ngModel)]="email">
+  </div>
+  <div class="spacer">
+    <label>Password</label>
+    <input class="input-group-text input-group" type="password" placeholder="password" [(ngModel)]="password"/>
+  </div>
+  <div class="spacer">
+    <button class="btn btn-success"  type="submit" (click)="Login()">Login</button>
+  </div>
+</div>
