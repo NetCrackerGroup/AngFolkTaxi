@@ -22,7 +22,8 @@ export class AuthService {
       .subscribe((resp: any) => {
         console.log(resp);
         this.router.navigate(['profile']);
-        localStorage.setItem('auth_token', resp.token);
+        console.log(resp.token.tokenAsString);
+        localStorage.setItem('auth_token', resp.token.tokenAsString);
 
       });
   }
@@ -32,6 +33,7 @@ export class AuthService {
   }
 
   public get logIn(): boolean {
-    return (localStorage.getItem('token') !== null);
+    console.log(localStorage.getItem('auth_token'));
+    return (localStorage.getItem('auth_token') !== null);
   }
 }
