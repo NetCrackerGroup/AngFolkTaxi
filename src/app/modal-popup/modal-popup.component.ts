@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EmailValidator, NgForm} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-modal-popup',
@@ -25,7 +25,11 @@ export class ModalPopupComponent implements OnInit {
   }
 
   Submited(form: NgForm) {
-    this.http.post(this.url + '/sign-up', this.postUser)
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + btoa(`client:password`)});
+    const options = { headers };
+    console.log('asdasd');
+    this.http.post(this.url + '/users/sign-up', this.postUser, options)
       .subscribe((resp: any) => {
         console.log(resp);
       });
