@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {EmailValidator, NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -11,20 +11,26 @@ export class ModalPopupComponent implements OnInit {
 
   private postUser = {
     email: undefined,
-    password: undefined
-  };
+    password: undefined,
+    phoneNumber: undefined,
+    cityId: undefined,
+    name: undefined
+    };
+  form: NgForm;
 
 
+  constructor(private http: HttpClient, form: NgForm ) {
+    this.form = form;
+  }
 
-  constructor(private http: HttpClient, ) { }
-  display: true;
   url = 'http://localhost:1337';
-
+  visibility = false;
 
   ngOnInit() {
   }
 
   Submited(form: NgForm) {
+    console.log(form.value);
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(`client:password`)});
     const options = { headers };
@@ -33,5 +39,13 @@ export class ModalPopupComponent implements OnInit {
       .subscribe((resp: any) => {
         console.log(resp);
       });
+  }
+
+  OpenPopup() {
+    this.visibility = true;
+  }
+
+  toggle() {
+    this.visibility = false;
   }
 }

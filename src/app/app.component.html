@@ -8,8 +8,11 @@
         <li><a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li>
       </ul>
     </div>
+    <button class="btn btn-success" (click)="this.modalPopupComponent.OpenPopup()">Зарегестрироваться</button>
+    <app-modal-popup></app-modal-popup>
   </nav>
-  <app-modal-popup></app-modal-popup>
+
+
   <router-outlet></router-outlet>
 
 </div>

@@ -1,18 +1,9 @@
+.invisibled{display: block;}
 .modal-popup {
-  display: block;
-  position: absolute;
-  right: 0;
-  height: 0;
-  width: 50%;
-  height: 50%;
-  transform:translate(-50%, 50%);
-  background-color: transparent;
-  z-index: 100;
-  border: aqua 2px solid;
-  border-radius: 9px;
-  text-align: center;
+  display: none;
 
 }
+input, button {outline:none;}
 .input-wrap {
 
   padding: 50px;
@@ -23,7 +14,7 @@
 }
 .modal-header {
   text-align: center;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 .modal-input {
   display: block;
