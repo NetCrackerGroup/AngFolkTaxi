@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {AuthService} from './auth.service';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
+import {HttpClientService} from './http-client.service';
 
 
 
@@ -16,9 +17,17 @@ export class AppComponent {
 
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
+  private httpCli: HttpClientService;
 
-  constructor(authService: AuthService) {
+  constructor(authService: AuthService, httpCli: HttpClientService) {
     this.authService = authService;
+    this.httpCli = httpCli;
 
+  }
+
+  getUs() {
+    this.httpCli.authGet('http://localhost:1337/users/helloUser').subscribe((resp: any) => {
+      console.log(resp);
+    });
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClientService} from '../http-client.service';
 
 @Component({
   selector: 'app-modal-popup',
@@ -18,9 +19,9 @@ export class ModalPopupComponent implements OnInit {
     };
   form: NgForm;
 
-
-  constructor(private http: HttpClient, form: NgForm ) {
+  constructor(private http: HttpClient, form: NgForm, private myHttpClient: HttpClientService) {
     this.form = form;
+    this.myHttpClient = myHttpClient;
   }
 
   url = 'http://localhost:1337';
@@ -30,15 +31,18 @@ export class ModalPopupComponent implements OnInit {
   }
 
   Submited(form: NgForm) {
-    console.log(form.value);
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(`client:password`)});
-    const options = { headers };
-    console.log('asdasd');
-    this.http.post(this.url + '/users/sign-up', this.postUser, options)
-      .subscribe((resp: any) => {
-        console.log(resp);
-      });
+    this.myHttpClient.post(this.url + '/users/sign-up', this.postUser).subscribe((resp: any) => {
+      console.log(resp);
+    });
+    // console.log(form.value);
+    // const headers = new HttpHeaders({
+    //   Authorization: 'Basic ' + btoa(`client:password`)});
+    // const options = { headers };
+    // console.log('asdasd');
+    // this.http.post(this.url + '/users/sign-up', this.postUser, options)
+    //   .subscribe((resp: any) => {
+    //     console.log(resp);
+    //   });
   }
 
   OpenPopup() {
