@@ -35,6 +35,7 @@ export class AuthService {
         this.router.navigate(['profile']);
         localStorage.setItem('auth_token', resp.access_token);
 
+
       });
   }
 

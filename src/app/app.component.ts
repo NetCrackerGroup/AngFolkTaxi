@@ -14,7 +14,7 @@ import {HttpClientService} from './http-client.service';
 export class AppComponent {
   title = 'AngFolkTaxi';
   authService: AuthService;
-
+  url = 'http://localhost:1337';
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
   private httpCli: HttpClientService;
@@ -26,8 +26,20 @@ export class AppComponent {
   }
 
   getUs() {
-    this.httpCli.authGet('http://localhost:1337/users/helloUser').subscribe((resp: any) => {
-      console.log(resp);
+    this.httpCli.authGet(`${this.url}/users/helloUser`).subscribe((resp: any) => {
+      console.log(resp.hello);
+    });
+  }
+
+  getAdmin() {
+    this.httpCli.authGet(`${this.url}/users/Admin`).subscribe((resp: any) => {
+      console.log(resp.hello);
+    });
+  }
+
+  getUser() {
+      this.httpCli.authGet(`${this.url}/users/User`).subscribe((resp: any) => {
+        console.log(resp.hello);
     });
   }
 }

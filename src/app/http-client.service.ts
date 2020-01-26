@@ -10,7 +10,6 @@ export class HttpClientService {
 
   }
 
-
   get(url) {
 
     const headers = new HttpHeaders({
@@ -33,7 +32,7 @@ export class HttpClientService {
   }
   authGet(url) {
     const headers = new HttpHeaders({
-      Authorization: 'bearer 75581633-2998-469c-a12c-56128f08f326'
+      Authorization: 'bearer ' + localStorage.getItem('auth_token')
     });
 
     return this.http.get(url, {
