@@ -1,21 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }   from '@angular/common/http';
+import { InjectionToken } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+ 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import {Routes, RouterModule} from '@angular/router';
+
+import { AddGroupComponent } from "./app-group/addgroup.component";
+import { AppCreateComponent } from './app-create/app-create.component';
+import { FormsModule } from '@angular/forms';
+import { GroupsService } from "./services/groups.service";
+import { GroupViewComponent } from './group-view/group-view.component';
+import { GroupsComponent } from './groups/groups.component'
+
+export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
+
+const appRoutes: Routes =[
+    { path: 'create-group', component: AppCreateComponent},
+    { path: 'groups/:id' , component : GroupViewComponent},
+    { path: 'groups' , component : GroupsComponent}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddGroupComponent,
+    AppCreateComponent,
+    GroupViewComponent,
+    GroupsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NgbModule
+    FormsModule,
+    NgbModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [GroupsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

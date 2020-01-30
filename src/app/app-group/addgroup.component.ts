@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-group',
-    templateUrl: './group.component.html',
-    styleUrls: ['./group.component.css']
+    templateUrl: './addgroup.component.html',
+    styleUrls: ['./addgroup.component.css']
 })
-export class GroupComponent implements OnInit {
+export class AddGroupComponent implements OnInit {
+    
     constructor() { }
 
     ngOnInit(): void { }
