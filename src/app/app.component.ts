@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {AuthService} from './auth.service';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {HttpClientService} from './http-client.service';
+import {LoginComponent} from './login/login.component';
 
 
 
@@ -17,12 +18,14 @@ export class AppComponent {
   url = 'http://localhost:1337';
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
+
+  @ViewChild(LoginComponent, {static: false})
+  private loginComponent: LoginComponent;
   private httpCli: HttpClientService;
 
   constructor(authService: AuthService, httpCli: HttpClientService) {
     this.authService = authService;
     this.httpCli = httpCli;
-
   }
 
   getUs() {
@@ -42,4 +45,6 @@ export class AppComponent {
         console.log(resp.hello);
     });
   }
+
+
 }

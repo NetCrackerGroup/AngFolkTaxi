@@ -24,9 +24,8 @@ import {ModalPopupComponent} from './modal-popup/modal-popup.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-
   ],
-  providers: [ModalPopupComponent, NgForm], // что это такое
+  providers: [ModalPopupComponent, LoginComponent, NgForm], // что это такое
   bootstrap: [AppComponent]
 })
 export class AppModule { }

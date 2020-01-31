@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class AuthService {
   login(username: string, password: string) {
     const headers = new HttpHeaders({
       // 'Access-Control-Request-Headers': '*',
-      Authorization: 'Basic ' + btoa(`client:password`),
+      Authorization: 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
 
       'Content-Type': 'application/x-www-form-urlencoded'
     });
