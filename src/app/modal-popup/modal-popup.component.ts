@@ -50,6 +50,10 @@ export class ModalPopupComponent implements OnInit {
     this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
     this.form = form;
     this.visibility = false;
+    /////////////////
+    ////////////////////////////////
+    ////////////////////////////////////////////
+    /////////////////////////////////////////////////////привести в нормальный вид
     const resp =  this.myHttpClient.authPost(this.url + '/users/sign-up', this.postUser);
     this.authServ.login(this.postUser.email, this.postUser.password);
 

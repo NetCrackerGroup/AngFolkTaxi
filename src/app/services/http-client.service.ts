@@ -13,46 +13,39 @@ export class HttpClientService {
 
   }
 
-  authPost(url, data, otherHeaders = {}): Observable< any >  {
-    const headers = new HttpHeaders({
-      // 'Access-Control-Request-Headers': '*',
-      ...otherHeaders
-    });
-    let response: Response;
-    this.http.post(url, data, {
-      headers
-    }).subscribe( (resp: any) => {
-      response = resp;
+  // authPost(url, data, otherHeaders = {}): Observable< any >  {
+  //   const headers = new HttpHeaders({
+  //     // 'Access-Control-Request-Headers': '*',
+  //     ...otherHeaders
+  //   });
+  //   let response: Response;
+  //   this.http.post(url, data, {
+  //     headers
+  //   }).subscribe( (resp: any) => {
+  //     response = resp;
+  //
+  //     return resp;
+  //   }, error => {
+  //     this.refreshToken(url, headers);
+  //     this.http.post(url, data, {
+  //       headers
+  //     }).subscribe( (resp2: any) => {
+  //       response = resp2;
+  //       return resp2;
+  //     });
+  //   });
+  // }
 
-      return resp;
-    }, error => {
-      this.refreshToken(url, headers);
-      this.http.post(url, data, {
-        headers
-      }).subscribe( (resp2: any) => {
-        response = resp2;
-        return resp2;
-      });
-    });
-  }
-
-  public  authGet(url, otherHeaders = {}): Observable<any> {
+  public  authGet(url, otherHeaders = {}) {
     const headers = new HttpHeaders({
       ...otherHeaders,
-      // Authorization: 'bearer ' + localStorage.getItem('auth_token')
+       Authorization: 'bearer ' + localStorage.getItem('auth_token')
     });
-    this.http.get(url, {
+    return this.http.get(url, {
       headers
-    }).subscribe(resp => {
-      return new Observable<any>(subscriber => {
-        subscriber.next(resp);
-      });
     });
-    return new Observable<any>(subscriber => {
-      subscriber.next('error');
-    });
-  }
 
+  }
 
   refreshToken(url, headers) {
     const refrBody = {

@@ -26,16 +26,12 @@ import {ParamInterceptor} from './param-interceptor';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ModalPopupComponent,
-    LoginComponent,
-    NgForm,
+  providers: [ModalPopupComponent, LoginComponent, NgForm,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ParamInterceptor,
       multi: true
-    }
-
-  ], // что это такое
+    }], // что это такое
   bootstrap: [AppComponent]
 })
 export class AppModule { }
