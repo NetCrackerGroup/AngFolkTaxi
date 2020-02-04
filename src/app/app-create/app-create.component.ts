@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupsService } from '../services/groups.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-create',
@@ -10,23 +11,35 @@ import { GroupsService } from '../services/groups.service'
 export class AppCreateComponent implements OnInit {
 
   name : String = "";
-  link : String = "";
+  typeGroup : String = "";
 
-  constructor( private groupsService : GroupsService) { }
+
+  constructor( private groupsService : GroupsService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   submit(){
     console.log("Submit form!")
-    this.groupsService.craeteGroup(this.name, this.link).subscribe(
-      res => {
-          console.log(res);
-      },
-      err => {
-        alert("Ошибка")
-      }
-    );
+    if ( this.name.trim().length == 0) {
+      alert("Заполните поле \"Название\" ");
+    }
+    else if (this.typeGroup.trim().length == 0)
+    {
+      alert("Выберите тип группы!");
+    }
+    else {
+      this.groupsService.craeteGroup(this.name, this.typeGroup).subscribe(
+        res => {
+            console.log(res);
+            this.router.navigate(['/groups' , res.groupId]);
+        },
+        err => {
+          alert('Ошибка!');
+        }
+      );
+    }
   }
 
   addgroup(event : any) {

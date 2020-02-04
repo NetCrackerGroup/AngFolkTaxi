@@ -1,3 +1,42 @@
 .name {
     font-style: italic;
 }
+
+img {
+    height: 1.5em;
+    margin-right: 0.75em;
+}
+
+.community {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30ch;
+    height: 300px;
+    margin : 0.5em;
+}
+
+.community .head {
+    background-color : aliceblue;
+    padding : 0.75em 0 0.75em 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 2px 5px 0 #837D6D;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+li {
+    list-style-type: none; /* Убираем маркеры */
+    padding: 4px;
+}
+
+ul {
+    height: 230px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 0px;
+  }

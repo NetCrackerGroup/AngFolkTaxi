@@ -10,12 +10,12 @@ export class GroupsService {
 
   constructor(private http : HttpClient) { }
 
-  addGroup( id : number ) {
+  getGroup( id : number ) {
     
     let url = `${environment.devUrl}/group/${id}`;
     console.log(url);
 
-    return this.http.get<IGroup>(url);
+    return this.http.get(url);
   }
 
   craeteGroup (namegroup : String, linkgroup  : String ) {
@@ -28,7 +28,7 @@ export class GroupsService {
     let newparams : HttpParams = new HttpParams().set('name', namegroup).set('link', linkgroup);
 //    const params = { name : namegroup, link : linkgroup};
     console.log(newparams);
-    return this.http.post(url, newparams);
+    return this.http.post<IGroup>(url, newparams);
   }
 
   getAllGroups () {

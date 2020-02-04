@@ -15,8 +15,18 @@
                 <input type="text" [(ngModel)]="name" name="NameGroup" class="form-control" id="NameGroup" placeholder="Название">
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput2">Ссылка :</label>
-                <input type="text" [(ngModel)]="link" name="LinkGroup" class="form-control" id="LinkGroup" placeholder="Ссылка">
+                  <label> Тип группы : </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="PublicGroup" [(ngModel)]="typeGroup" [value]="'public'">
+                    <label class="form-check-label" for="exampleRadios1">
+                      Открытая
+                    </label>
+                    <br/>
+                    <input class="form-check-input" type="radio" name="type" id="PrivateGroup" [(ngModel)]="typeGroup" [value]="'private    '">
+                    <label for="PrivateGroup" class="form-check-label">
+                        Закрытая
+                    </label>
+                  </div>
               </div>
               <button class="btn btn-success" (click)="submit($event)">Создать</button>
         </form>
