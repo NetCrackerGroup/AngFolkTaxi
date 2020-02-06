@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {catchError, filter, finalize, switchMap, take} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs-compat/observable/ErrorObservable';
@@ -14,6 +14,24 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+    if (req.url.includes('/oauth/token') || req.url.includes('/users/sign-up')) {
+      console.log('interseptor /oauth/token');
+      const paramReq = req.clone({
+        headers: req.headers.set(
+          'Authorization', 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
+        )
+      });
+    } else {
+      if (req.url.includes('localhost:1337')) {
+        console.log('interseptor http://localhost:1337');
+        const paramReq = req.clone({
+          headers: req.headers.set(
+            'Authorization', 'bearer ' + localStorage.getItem('auth_token')
+          )
+        });
+
+      }
+    }
     console.log('intercept');
     console.log(localStorage.getItem('refresh_token'));
     return next.handle(this.addTokenHeader(req))
@@ -50,6 +68,7 @@ export class ParamInterceptor implements HttpInterceptor {
     // tslint:disable-next-line:max-line-length
     console.log('addTokenHeader');
     console.log(`addTokenHeader ${localStorage.getItem('auth_token')}`);
+    // tslint:disable-next-line:max-line-length
     return this.isAuthenticatedRequest(req) ? req.clone({setHeaders: {Authorization: 'bearer ' + localStorage.getItem('auth_token')}}) : req;
   }
 

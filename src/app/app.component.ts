@@ -38,15 +38,14 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getAdmin() {
-    const a =  this.httpCli.authGet(`${this.url}/users/Admin`).subscribe((resp: any) => {
+   getAdmin() {
+    this.http.get(`${this.url}/users/Admin`).subscribe((resp: any) => {
       console.log(resp);
     });
-    console.log(a);
   }
 
   getUser() {
-    this.httpCli.authGet(`${this.url}/users/User`).subscribe((resp: any) => {
+    this.http.get(`${this.url}/users/User`).subscribe((resp: any) => {
       console.log(resp);
     });
   }

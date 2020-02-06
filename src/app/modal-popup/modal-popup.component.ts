@@ -45,27 +45,13 @@ export class ModalPopupComponent implements OnInit {
   }
 
   Submited(form: NgForm) {
-    console.log( this.loginComponent);
-    this.router.navigate(['login']);
-    this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
-    this.form = form;
-    this.visibility = false;
-    /////////////////
-    ////////////////////////////////
-    ////////////////////////////////////////////
-    /////////////////////////////////////////////////////привести в нормальный вид
-    const resp =  this.myHttpClient.authPost(this.url + '/users/sign-up', this.postUser);
-    this.authServ.login(this.postUser.email, this.postUser.password);
 
-    // console.log(form.value);
-    // const headers = new HttpHeaders({
-    //   Authorization: 'Basic ' + btoa(`client:password`)});
-    // const options = { headers };
-    // console.log('asdasd');
-    // this.http.post(this.url + '/users/sign-up', this.postUser, options)
-    //   .subscribe((resp: any) => {
-    //     console.log(resp);
-    //   });
+    this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
+      console.log('dsfsdf');
+      this.authServ.login(this.postUser.email, this.postUser.password);
+      this.visibility = false;
+    });
+
   }
   doThis() {
     console.log('doThis');
