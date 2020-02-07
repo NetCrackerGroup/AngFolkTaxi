@@ -4,18 +4,18 @@
       <ul class="nav">
         <li><a class="nav-link" routerLink="/" routerLinkActive="active">Home</a></li>
         <li><a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="authService.logIn">Profile</a></li>
-        <li><a class="nav-link"  style="float:right" routerLink="/login" routerLinkActive="active" *ngIf="!authService.logIn">Login</a></li>
         <li><a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li>
       </ul>
     </div>
     <button class="btn btn-success" (click)="this.modalPopupComponent.OpenPopup()">Зарегестрироваться</button>
+    <button class="btn btn-success" (click)="this.loginComponent.OpenPopup()">Залогиниться</button>
     <button class="btn btn-success" (click)="getUs()">Проверить Общий доступ</button>
     <button class="btn btn-success" (click)="getUser()">Проверить юзера</button>
     <button class="btn btn-success" (click)="getAdmin()">Проверить админв</button>
-    <button class="btn btn-success" (click)="Refresh()">Refresh</button>
   </nav>
   <router-outlet></router-outlet>
   <app-modal-popup></app-modal-popup>
+  <app-login></app-login>
 
 </div>
 

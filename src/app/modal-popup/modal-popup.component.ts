@@ -55,7 +55,6 @@ export class ModalPopupComponent implements OnInit {
   }
   doThis() {
     console.log('doThis');
-    this.router.navigate(['login']);
 
     this.visibility = false;
 

@@ -29,7 +29,6 @@ export class ParamInterceptor implements HttpInterceptor {
             'Authorization', 'bearer ' + localStorage.getItem('auth_token')
           )
         });
-
       }
     }
     console.log('intercept');

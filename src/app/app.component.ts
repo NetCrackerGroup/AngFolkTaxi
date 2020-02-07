@@ -6,6 +6,7 @@ import {TempSetrService} from './tempServices/temp-setr.service';
 import {RouterOutlet} from '@angular/router';
 import {async} from '@angular/core/testing';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {LoginComponent} from './login/login.component';
 
 
 @Component({
@@ -21,11 +22,18 @@ export class AppComponent implements OnInit {
 
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
+
+  @ViewChild(LoginComponent, {static: false})
+  private loginComponent: LoginComponent;
+
   private httpCli: HttpClientService;
   private tempSetrService: TempSetrService;
   private http: HttpClient;
 
-  constructor(authService: AuthService, httpCli: HttpClientService, tempSetrService: TempSetrService, http: HttpClient) {
+  constructor(authService: AuthService, httpCli: HttpClientService,
+              tempSetrService: TempSetrService, http: HttpClient,
+              loginComponent: LoginComponent) {
+    this.loginComponent = loginComponent;
     this.authService = authService;
     this.httpCli = httpCli;
     this.tempSetrService = tempSetrService;
@@ -51,22 +59,5 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
 
-  }
-
-
-  Refresh() {
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    const body = new HttpParams()
-      .set('refresh_token', `${localStorage.getItem('refresh_token')}`)
-      .set('grant_type', 'refresh_token');
-    const options = { headers };
-    console.log('Refresh');
-    this.http.post(`${this.url}/oauth/token`, body, options).subscribe((res) => {
-      console.log('Refresh end');
-      console.log(res);
-    });
   }
 }
