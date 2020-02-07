@@ -57,7 +57,6 @@ export class ModalPopupComponent implements OnInit {
     console.log('doThis');
 
     this.visibility = false;
-
     this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
   }
 
