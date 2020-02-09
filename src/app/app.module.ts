@@ -1,21 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { InjectionToken } from '@angular/core';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NavigationComponent } from './main-page/navigation/navigation.component';
-import { CityMapComponent } from './main-page/city-map/city-map.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { CityMapComponent } from './city-map/city-map.component';
+import {Routes, RouterModule} from '@angular/router';
+import { AddGroupComponent } from './app-group/addgroup.component';
+import { AppCreateComponent } from './app-create/app-create.component';
+import { FormsModule } from '@angular/forms';
+import { GroupsService } from './services/groups.service';
+import { GroupViewComponent } from './group-view/group-view.component';
+import { GroupsComponent } from './groups/groups.component';
 import { RouteComponent } from './route/route.component';
-import {HttpClientModule} from '@angular/common/http';
-import {Router, Routes} from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: MainPageComponent
-  }
+export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
+
+const appRoutes: Routes =[
+    { path: 'create-group', component: AppCreateComponent},
+    { path: 'groups/:id' , component : GroupViewComponent},
+    { path: 'groups' , component : GroupsComponent},
+    { path: '' , component : CityMapComponent}
 ];
 
 @NgModule({
@@ -23,16 +29,20 @@ const appRoutes: Routes = [
     AppComponent,
     NavigationComponent,
     CityMapComponent,
-    RouteComponent,
-    MainPageComponent
+    AddGroupComponent,
+    AppCreateComponent,
+    GroupViewComponent,
+    GroupsComponent,
+    RouteComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [GroupsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Route} from '../_models/model/route';
-import {MainApiService} from '../_services/main-api/main-api.service';
+import {IRoute} from '../entities/iroute';
+import {RoutesService} from '../services/routes.service';
 
 @Component({
   selector: 'app-route',
@@ -10,14 +10,14 @@ import {MainApiService} from '../_services/main-api/main-api.service';
 })
 export class RouteComponent implements OnInit {
 
-  routes: Route[] = [];
+  routes: IRoute[] = [];
 
-  constructor(private apiService: MainApiService) { }
+  constructor(private apiService: RoutesService) { }
 
   ngOnInit() {
   }
 
-  public getDriverRoutes(id: number) {
+  /*public getDriverRoutes(id: number) {
     this.apiService.getDriverRoutes(id).subscribe(
       res => {
         this.routes = res;
@@ -26,6 +26,7 @@ export class RouteComponent implements OnInit {
         alert('Error');
       }
     );
-  }
 
+  }
+*/
 }

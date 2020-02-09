@@ -1,4 +1,4 @@
-export interface Route {
+export interface IRoute {
   routeId: number;
   routeBegin: string;
   routeEnd: string;

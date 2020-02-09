@@ -10,7 +10,7 @@
     <ul class="navbar-nav mr-auto">
       <!-- add if reg to all -->
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/notes">Поиск маршрута</a>  <!-- should be linked to route search component -->
+        <a class="nav-link" >Поиск маршрута</a>  <!-- should be linked to route search component -->
       </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
@@ -18,7 +18,8 @@
             Мои маршруты
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
+            <a *ngFor="let route of listDriverRoutes" class="dropdown-item" href="#">{{route.routeEnd}}</a>
+            <a class="dropdown-item" routerLink="create-route"> Создать маршрут </a>
           </div>
         </div>
       </li>
@@ -28,9 +29,8 @@
             Мои группы
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
+            <a class="dropdown-item" routerLink="create-group"> Создать группу </a>
           </div>
         </div>
       </li>
@@ -38,7 +38,6 @@
   </div>
 
   <div class="navbar-rigth">
-    <!-- should be linked to registration component -->
     <a *ngIf="!isReg()" class="nav-link" routerLink="/reg"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
     <a *ngIf="isReg()" class="nav-link" routerLink="/accview"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
   </div>

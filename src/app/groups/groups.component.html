@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="card" *ngFor="let group of listgroups">
+        <div class="card-body">
+            <h6 class="card-title">{{group.groupName}} </h6>
+            <a [routerLink]="['/groups' , group.groupId]" class="card-link">Просмотр</a>
+        </div>
+    </div>
+</div>

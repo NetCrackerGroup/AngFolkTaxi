@@ -1,0 +1,13 @@
+<p>Название группы : <span class="name"> {{group.groupName}} </span> </p>
+<p>Ссылка : <a class="link" [href]=" 'http://' + group.cityLink"> {{group.cityLink}} </a> </p>
+
+<div class="community">
+    <div class="head">
+        <img src="assets/images/community.png" alt="fsd"> Участники 
+    </div>
+    <ul>
+        <li *ngFor="let user of group.users">
+            <a routerLink="">{{user.fio}}</a>
+        </li>
+    </ul>
+</div>
