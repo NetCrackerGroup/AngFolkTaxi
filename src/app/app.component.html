@@ -4,6 +4,7 @@
       <ul class="nav">
         <li><a class="nav-link" routerLink="/" routerLinkActive="active">Home</a></li>
         <li><a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="authService.logIn">Profile</a></li>
+        <li><a class="nav-link" routerLink="/route" routerLinkActive="active" >Маршруты</a></li>
         <li><a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li>
       </ul>
     </div>
@@ -13,9 +14,15 @@
     <button class="btn btn-success" (click)="getUser()">Проверить юзера</button>
     <button class="btn btn-success" (click)="getAdmin()">Проверить админв</button>
   </nav>
+
   <router-outlet></router-outlet>
   <app-modal-popup></app-modal-popup>
   <app-login></app-login>
+
+<!--  <agm-map [latitude]="lat" [longitude]="lng">-->
+<!--    <angular-yandex-placemark [geometry]="[55.751952, 37.600739]"></angular-yandex-placemark>-->
+<!--  </agm-map>-->
+
 
 </div>
 

@@ -1,0 +1,34 @@
+.box {
+  height: 20vh;
+  width: 100%;
+  background-color: red;
+  margin-top: 80px;
+}
+.btn-wrapper {
+  text-align: center;
+  margin-left: auto;
+}
+.container {
+  text-align: center;
+}
+.route-btn {
+  margin-top: 80px;
+}
+
+.blockInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.blockInput input {
+  height: 40px;
+  width: 200px;
+}
+.blockInput label {
+  margin-right: 8px;
+}
+
+angular-yandex-map {
+  width: 1000px;
+  height: 500px;
+}

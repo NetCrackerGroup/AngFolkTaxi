@@ -4,8 +4,7 @@ import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {HttpClientService} from './services/http-client.service';
 import {TempSetrService} from './tempServices/temp-setr.service';
 import {RouterOutlet} from '@angular/router';
-import {async} from '@angular/core/testing';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 
 
@@ -16,9 +15,23 @@ import {LoginComponent} from './login/login.component';
   providers: [RouterOutlet]
 })
 export class AppComponent implements OnInit {
+
+  constructor(authService: AuthService, httpCli: HttpClientService,
+              tempSetrService: TempSetrService, http: HttpClient,
+              loginComponent: LoginComponent) {
+    this.loginComponent = loginComponent;
+    this.authService = authService;
+    this.httpCli = httpCli;
+    this.tempSetrService = tempSetrService;
+    this.http = http;
+  }
   title = 'AngFolkTaxi';
   authService: AuthService;
   url = 'http://localhost:1337';
+
+
+  private lat = 51.678418;
+  private lng = 7.809007;
 
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
@@ -30,20 +43,12 @@ export class AppComponent implements OnInit {
   private tempSetrService: TempSetrService;
   private http: HttpClient;
 
-  constructor(authService: AuthService, httpCli: HttpClientService,
-              tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent) {
-    this.loginComponent = loginComponent;
-    this.authService = authService;
-    this.httpCli = httpCli;
-    this.tempSetrService = tempSetrService;
-    this.http = http;
-  }
 
-  getUs() {
+   getUs() {
     this.httpCli.authGet(`${this.url}/users/helloUser`).subscribe((resp: any) => {
       console.log(resp);
     });
+    // const user = this.http.get(`${this.url}/users/helloUser`).toPromise();
   }
 
    getAdmin() {
@@ -60,4 +65,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+
 }

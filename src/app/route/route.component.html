@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="blockInput col-3">
+      <label for="beginInput">Откуда</label>
+      <input class="input-group-text" id="beginInput" type="text" [(ngModel)]="postUser.routeBegin">
+    </div>
+    <div class="blockInput col-3">
+      <label for="endInput">Куда</label>
+      <input class="input-group-text" id="endInput" type="text" [(ngModel)]="postUser.routeEnd" >
+    </div>
+    <div class="blockInput col-3">
+      <label for="priceInput">Цена</label>
+      <input class="input-group-text" id="priceInput" type="text" [(ngModel)]="postUser.price">
+    </div>
+    <div class="blockInput col-3">
+      <select class="form-control">
+        <option value="1">Воронеж</option>
+        <option value="2">Ещё один Воронеж</option>
+        <option value="3">Москва</option>
+        <option value="4">Опять Воронеж</option>
+        <option value="5">Наконец Воронеж</option>
+      </select>
+    </div>
+      <angular-yandex-map [center]="[55.74, 37.58]" [zoom]="10" (yaclick)="SomeClick($event)">
+        <angular-yandex-multiroute [referencePoints]="[[55.751952, 37.600739], 'Красные ворота, Москва']"></angular-yandex-multiroute>
+        <angular-yandex-placemark [geometry]="[55.751952, 37.600739]"></angular-yandex-placemark>
+        <angular-yandex-control
+          [type]="'RoutePanel'"
+        [parameters]="parameters"
+        ></angular-yandex-control>
+      </angular-yandex-map>
+    <div class="col-12">
+      <button type="button" (click)="createNewRoute()" class="btn btn-success route-btn">создать маршрут</button>
+    </div>
+  </div>
+</div>
