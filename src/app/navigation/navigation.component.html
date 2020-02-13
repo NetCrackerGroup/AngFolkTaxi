@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <span class="text-warning"> FolkTaxi</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <!-- add if reg to all -->
+      <li class="nav-item active">
+        <a class="nav-link" >Поиск маршрута</a>  <!-- should be linked to route search component -->
+      </li>
+      <li class="nav-item active">
+        <div *ngIf="isReg()" class="dropdown">
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+            Мои маршруты
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngFor="let route of listDriverRoutes" class="dropdown-item" href="#">{{route.routeEnd}}</a>
+            <a class="dropdown-item" routerLink="create-route"> Создать маршрут </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <div *ngIf="isReg()" class="dropdown">
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+            Мои группы
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
+            <a class="dropdown-item" routerLink="create-group"> Создать группу </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navbar-rigth">
+    <a *ngIf="!isReg()" class="nav-link" routerLink="/reg"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
+    <a *ngIf="isReg()" class="nav-link" routerLink="/accview"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
+  </div>
+</nav>

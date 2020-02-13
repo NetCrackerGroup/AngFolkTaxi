@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { GroupsService } from '../services/groups.service'
+import { GroupsService } from '../services/groups.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,27 +10,23 @@ import { Router } from '@angular/router';
 })
 export class AppCreateComponent implements OnInit {
 
-  name : String = "";
-  typeGroup : String = "";
+  name: string = '';
+  typeGroup: string = '';
 
-
-  constructor( private groupsService : GroupsService,
-              private router: Router) { }
+  constructor( private groupsService: GroupsService,
+               private router: Router) { }
 
   ngOnInit() {
   }
 
-  submit(){
-    console.log("Submit form!")
-    if ( this.name.trim().length == 0) {
-      alert("Заполните поле \"Название\" ");
-    }
-    else if (this.typeGroup.trim().length == 0)
-    {
-      alert("Выберите тип группы!");
-    }
-    else {
-      this.groupsService.craeteGroup(this.name, this.typeGroup).subscribe(
+  submit() {
+    console.log('Submit form!');
+    if ( this.name.trim().length === 0) {
+      alert('Заполните поле "Название" ');
+    } else if (this.typeGroup.trim().length === 0) {
+      alert('Выберите тип группы!');
+    } else {
+      this.groupsService.createGroup(this.name, this.typeGroup).subscribe(
         res => {
             console.log(res);
             this.router.navigate(['/groups' , res.groupId]);
@@ -42,10 +38,10 @@ export class AppCreateComponent implements OnInit {
     }
   }
 
-  addgroup(event : any) {
-    let form : FormGroup = event as FormGroup
-    console.log("Submit Form")
-    form.disable()
+  addgroup(event: any) {
+    const form: FormGroup = event as FormGroup;
+    console.log('Submit Form');
+    form.disable();
   }
 
 }

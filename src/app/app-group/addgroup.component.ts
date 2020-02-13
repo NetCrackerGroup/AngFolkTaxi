@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./addgroup.component.css']
 })
 export class AddGroupComponent implements OnInit {
-    
+
     constructor() { }
 
     ngOnInit(): void { }
