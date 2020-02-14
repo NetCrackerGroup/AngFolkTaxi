@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupsService } from '../services/groups.service';
 import { Router } from '@angular/router';
@@ -9,26 +9,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./app-create.component.css']
 })
 export class AppCreateComponent implements OnInit {
+  name : String = "";
+  typeGroup : String = "";
+  @Output() close = new EventEmitter<boolean>();
+  @Input() modal : any;
 
-  name: string = '';
-  typeGroup: string = '';
-
-  constructor( private groupsService: GroupsService,
-               private router: Router) { }
+  constructor( private groupsService : GroupsService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
-  submit() {
-    console.log('Submit form!');
-    if ( this.name.trim().length === 0) {
-      alert('Заполните поле "Название" ');
-    } else if (this.typeGroup.trim().length === 0) {
-      alert('Выберите тип группы!');
-    } else {
-      this.groupsService.createGroup(this.name, this.typeGroup).subscribe(
+
+  submit(){
+    console.log("Submit form!")
+    if ( this.name.trim().length == 0) {
+      alert("Заполните поле \"Название\" ");
+    }
+    else if (this.typeGroup.trim().length == 0)
+    {
+      alert("Выберите тип группы!");
+    }
+    else {
+      this.groupsService.createGroup(this.name.toString(), this.typeGroup.toString()).subscribe(
         res => {
             console.log(res);
+            this.modal.close("close");
             this.router.navigate(['/groups' , res.groupId]);
         },
         err => {

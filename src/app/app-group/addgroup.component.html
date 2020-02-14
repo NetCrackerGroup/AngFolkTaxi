@@ -1,2 +1,15 @@
-<a class="btn" routerLink="/create-group">Добавить группу</a>
-<a class="btn" routerLink="/groups"> Группы </a>
+
+<ng-template #content let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Добавление группы</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-app-create [modal]="modal" ></app-app-create>
+    </div>
+</ng-template>
+
+<button class="btn" (click)="open(content)">Добавить группу</button>
+<a routerLink="/groups" class="btn"> Группы </a>
