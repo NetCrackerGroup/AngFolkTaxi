@@ -18,7 +18,7 @@ export class GroupsService {
     return this.http.get(url);
   }
 
-  craeteGroup (namegroup : String, linkgroup  : String ) {
+  craeteGroup (namegroup : string, linkgroup  : string ) {
 
     let headers = new Headers({'Content-Type': 'application/json'});
  

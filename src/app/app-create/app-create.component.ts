@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupsService } from '../services/groups.service'
 import { Router } from '@angular/router';
@@ -12,7 +12,8 @@ export class AppCreateComponent implements OnInit {
 
   name : String = "";
   typeGroup : String = "";
-
+  @Output() close = new EventEmitter<boolean>();
+  @Input() modal : any;
 
   constructor( private groupsService : GroupsService,
               private router: Router) { }
@@ -30,9 +31,10 @@ export class AppCreateComponent implements OnInit {
       alert("Выберите тип группы!");
     }
     else {
-      this.groupsService.craeteGroup(this.name, this.typeGroup).subscribe(
+      this.groupsService.craeteGroup(this.name.toString(), this.typeGroup.toString()).subscribe(
         res => {
             console.log(res);
+            this.modal.close("close");
             this.router.navigate(['/groups' , res.groupId]);
         },
         err => {
