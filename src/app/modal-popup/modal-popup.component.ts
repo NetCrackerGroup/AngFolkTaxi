@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {HttpClientService} from '../services/http-client.service';
 import {Router} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
 import {AuthService} from '../services/auth.service';
@@ -28,13 +27,11 @@ export class ModalPopupComponent implements OnInit {
 
   constructor(private http: HttpClient,
               form: NgForm,
-              private myHttpClient: HttpClientService,
               private router: Router,
               private loginComponent: LoginComponent,
               private authServ: AuthService,
               private tempSetrService: TempSetrService) {
     this.form = form;
-    this.myHttpClient = myHttpClient;
 
   }
 

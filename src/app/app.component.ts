@@ -1,11 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
-import {HttpClientService} from './services/http-client.service';
 import {TempSetrService} from './tempServices/temp-setr.service';
 import {RouterOutlet} from '@angular/router';
-import {async} from '@angular/core/testing';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 
 
@@ -26,22 +24,20 @@ export class AppComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false})
   private loginComponent: LoginComponent;
 
-  private httpCli: HttpClientService;
   private tempSetrService: TempSetrService;
   private http: HttpClient;
 
-  constructor(authService: AuthService, httpCli: HttpClientService,
+  constructor(authService: AuthService,
               tempSetrService: TempSetrService, http: HttpClient,
               loginComponent: LoginComponent) {
     this.loginComponent = loginComponent;
     this.authService = authService;
-    this.httpCli = httpCli;
     this.tempSetrService = tempSetrService;
     this.http = http;
   }
 
   getUs() {
-    this.httpCli.authGet(`${this.url}/users/helloUser`).subscribe((resp: any) => {
+    this.http.get(`${this.url}/users/helloUser`).subscribe((resp: any) => {
       console.log(resp);
     });
   }

@@ -29,7 +29,7 @@ export class AuthService {
     this.http.post(this.url + '/oauth/token', body, options)
       .subscribe((resp: any) => {
         console.log(resp);
-        this.router.navigate(['profile']);
+        this.router.navigate(['']);
         localStorage.setItem('auth_token', resp.access_token);
         localStorage.setItem('refresh_token', resp.refresh_token);
       }, error1 => {
