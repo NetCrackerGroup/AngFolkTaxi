@@ -1,0 +1,44 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Введите свои данные для регистрации</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="email">Введите email</label>
+          <input type="text" #nameText class="form-control" name="email" id="email" placeholder="email input" [(ngModel)]="postUser.email">
+        </div>
+        <div class="form-group">
+          <label for="password">Введите пароль</label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="password input" [(ngModel)]="postUser.password">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">phoneNumber label</label>
+          <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="phoneNumber input" [(ngModel)]="postUser.phoneNumber">
+        </div>
+        <div class="form-group">
+          <label for="exampleSelect1">Выберите город</label>
+          <select class="form-control" name="cityId" id="exampleSelect1" [(ngModel)]="postUser.cityId">
+            <option value="1">Воронеж</option>
+            <option value="2">Ещё один Воронеж</option>
+            <option value="3">Москва</option>
+            <option value="4">Опять Воронеж</option>
+            <option value="5">Наконец Воронеж</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Введите имя</label>
+          <input type="text" class="form-control" name="name" id="name" placeholder="name input" [(ngModel)]="postUser.name">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+        <button type="button" class="btn btn-success" (click)="doThis()">Do</button>
+      </div>
+    </div><!-- /.модальное окно-Содержание -->
+  </div><!-- /.модальное окно-диалог -->
+</form><!-- /.модальное окно -->

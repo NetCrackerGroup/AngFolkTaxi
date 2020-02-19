@@ -1,9 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
 import { InjectionToken } from '@angular/core';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
+import { NgForm} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ModalPopupComponent} from './modal-popup/modal-popup.component';
+import {ParamInterceptor} from './param-interceptor';
+
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -38,16 +44,25 @@ import { GroupsComponent } from './groups/groups.component';
     AppCreateComponent,
     GroupViewComponent,
     GroupsComponent,
-    RouteComponent
+    RouteComponent,
+    LoginComponent,
+    ModalPopupComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [GroupsService],
+  providers: [ModalPopupComponent, LoginComponent, NgForm, GroupsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ParamInterceptor,
+      multi: true
+    }], // что это такое
   bootstrap: [AppComponent]
 })
 export class AppModule { }

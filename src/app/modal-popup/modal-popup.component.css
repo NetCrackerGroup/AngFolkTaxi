@@ -1,0 +1,25 @@
+.invisibled{display: block;}
+.modal-popup {
+  display: none;
+
+}
+input, button {outline:none;}
+.input-wrap {
+
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+}
+.modal-header {
+  text-align: center;
+  font-family: Roboto, sans-serif;
+}
+.modal-input {
+  display: block;
+  margin-top: 30px;
+  text-align: center;
+  width: 90%;
+}
+
