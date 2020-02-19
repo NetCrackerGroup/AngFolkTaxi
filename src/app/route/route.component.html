@@ -21,14 +21,13 @@
         <option value="5">Наконец Воронеж</option>
       </select>
     </div>
-      <angular-yandex-map [center]="[55.74, 37.58]" [zoom]="10" (yaclick)="SomeClick($event)">
-        <angular-yandex-multiroute [referencePoints]="[[55.751952, 37.600739], 'Красные ворота, Москва']"></angular-yandex-multiroute>
-        <angular-yandex-placemark [geometry]="[55.751952, 37.600739]"></angular-yandex-placemark>
-        <angular-yandex-control
-          [type]="'RoutePanel'"
-        [parameters]="parameters"
-        ></angular-yandex-control>
-      </angular-yandex-map>
+    <angular-yandex-map [center]="[58.600739, 36.600739]" [zoom]="10" (yaclick)="SomeClick($event)" #component>
+    <angular-yandex-placemark [geometry]="item" *ngFor="let item of coords"></angular-yandex-placemark>
+<!--      <angular-yandex-control-->
+<!--        [type]="'RoutePanel'"-->
+<!--        [parameters]="parameters"-->
+<!--      ></angular-yandex-control>-->
+    </angular-yandex-map>
     <div class="col-12">
       <button type="button" (click)="createNewRoute()" class="btn btn-success route-btn">создать маршрут</button>
     </div>
