@@ -16,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
+    { path: 'find-root' , component: FindRootComponent},
     { path: '' , component : CityMapComponent}
 ];
 
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
+import { FindRootComponent } from './find-root/find-root.component';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { GroupsComponent } from './groups/groups.component';
     AppCreateComponent,
     GroupViewComponent,
     GroupsComponent,
-    RouteComponent
+    RouteComponent,
+    FindRootComponent
   ],
   imports: [
     BrowserModule,

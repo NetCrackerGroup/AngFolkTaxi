@@ -15,4 +15,10 @@ export class RoutesService {
   getDriverRoutes(mail: string): Observable<IRoute[]> {
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routesByEmail/${mail}`);
   }
+/*
+  getClosestRoute(adress: string): Observable<IRoute[]> {
+    return this.http.get<IRoute[]>(`${this.urlForRoutes}/`);
+  }
+
+ */
 }
