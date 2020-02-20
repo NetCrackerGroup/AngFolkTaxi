@@ -19,21 +19,21 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     if (this.isReg()) {
       // Нужно переделать под конкретный id пользователя
-      this.groupService.getUserGroups('alex@alex.com').subscribe(
+      this.groupService.getUserGroups('oskar2016@gmail.com').subscribe(
         res => {
           this.listGroups = res;
         },
         err => {
-          alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
         }
       );
 
-      this.routeService.getDriverRoutes('alex@alex.com').subscribe(
+      this.routeService.getDriverRoutes('oskar2016@gmail.com').subscribe(
         res => {
           this.listDriverRoutes = res;
         },
         err => {
-          alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
         }
       );
     }

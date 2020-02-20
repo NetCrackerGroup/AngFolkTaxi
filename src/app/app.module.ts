@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InjectionToken } from '@angular/core';
 import { AppComponent } from './app.component';
 
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
@@ -38,7 +39,7 @@ import { GroupsComponent } from './groups/groups.component';
     AppCreateComponent,
     GroupViewComponent,
     GroupsComponent,
-    RouteComponent
+    RouteComponent,
   ],
   imports: [
     BrowserModule,

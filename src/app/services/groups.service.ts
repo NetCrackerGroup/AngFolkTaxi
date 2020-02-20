@@ -11,6 +11,7 @@ export class GroupsService {
   constructor(private http: HttpClient) { }
 
   getGroup( id: number ) {
+    
 
     const url = `${environment.devUrl}/group/${id}`;
     console.log(url);
@@ -21,10 +22,7 @@ export class GroupsService {
   createGroup(namegroup: string, linkgroup: string ) {
 
     const headers = new Headers({'Content-Type': 'application/json'});
-
-
     const url = `${environment.devUrl}/group/`;
-
 
     const newparams: HttpParams = new HttpParams().set('name', namegroup).set('link', linkgroup);
 //    const params = { name : namegroup, link : linkgroup};
