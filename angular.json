@@ -96,9 +96,6 @@
               "src/assets",
               "src/assets/images"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
             "scripts": []
           }
         },
