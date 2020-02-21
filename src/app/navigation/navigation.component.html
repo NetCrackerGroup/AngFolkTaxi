@@ -30,7 +30,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
-            <a class="dropdown-item" routerLink="create-group"> Создать группу </a>
+            <app-group></app-group>
           </div>
         </div>
       </li>

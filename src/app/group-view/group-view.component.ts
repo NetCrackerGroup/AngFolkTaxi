@@ -28,8 +28,7 @@ export class GroupViewComponent implements OnInit {
                 private route: ActivatedRoute,
                 private userService : UserService ) { 
 
-                  this.subscription = route.params.subscribe(params=>{
-                      groupsService.getGroup(params['id']).subscribe(
+                  this.subscription = groupsService.getGroup(route.snapshot.params['id']).subscribe(
                       res => {
                         console.log(` Length - ${res["users"].length}`);
                         console.log(res["groupId"]);
@@ -51,14 +50,14 @@ export class GroupViewComponent implements OnInit {
                           );
                         });
                         console.log(this.group);
+                        console.log
                         //this.group.groupId 
                       },
                       err => {
                         alert("Группа не найдена!")
                       }
                     );
-                });
-              }
+                }
   ngOnInit() {
   }
 }

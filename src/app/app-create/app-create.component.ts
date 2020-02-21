@@ -34,8 +34,8 @@ export class AppCreateComponent implements OnInit {
       this.groupsService.createGroup(this.name.toString(), this.typeGroup.toString()).subscribe(
         res => {
             console.log(res);
-            this.modal.close("close");
             this.router.navigate(['/groups' , res.groupId]);
+            this.modal.close("close");
         },
         err => {
           alert('Ошибка!');
