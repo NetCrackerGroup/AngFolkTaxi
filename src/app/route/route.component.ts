@@ -1,6 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
+import {log} from 'util';
+import {ifTrue} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-route',
@@ -8,17 +10,27 @@ import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map
   styleUrls: ['./route.component.css']
 })
 export class RouteComponent implements OnInit, OnChanges {
-  @ViewChild('component', {static: false})
-  private yandexMapComponent: YandexMapComponent;
-
   private coords = [];
   private startPoint;
   private endPoint;
   url = 'http://localhost:1337';
   private postUser = {
-    routeBegin: 58.600739,
-    routeEnd: 38.600739,
+    routeBegin: undefined,
+    routeEnd: undefined,
     price: undefined,
+    schedule: undefined,
+    time: undefined,
+    countOfPlaces: undefined,
+    selectedDays: undefined
+  };
+  private selectedDays = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false
   };
   // public parameters = {
   //   options: {
@@ -49,6 +61,10 @@ export class RouteComponent implements OnInit, OnChanges {
       console.log('не всё');
       return;
     }
+    this.postUser.selectedDays = Object.values(this.selectedDays);
+    for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
+      this.postUser.selectedDays[i] ? this.postUser.selectedDays[i] = 1 : this.postUser.selectedDays[i] = 0;
+    }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
 
@@ -69,29 +85,6 @@ export class RouteComponent implements OnInit, OnChanges {
       }
     }
     this.coords.push(event.event.get('coords'));
-
-    // const ymaps = event.ymaps;
-    // ymaps.geocode([58.600739, 38.600739])
-    //   .then((res) => {
-    //     console.log(
-    //       res.geoObjects
-    //       .get(0).getAddressLine()
-    //     );
-    //   });
-
-    // const headers = new HttpHeaders({
-    //   'Access-Control-Allow-Origin': '*',
-    //   'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-    //   geocode: 'Moscow',
-    //   apikey: '658f67a2-fd77-42e9-b99e-2bd48c4ccad4'
-    //
-    // });
-    // const com = await this.http.get('https://geocode-maps.yandex.ru/1.x?geocode=Moscow&apikey=658f67a2-fd77-42e9-b99e-2bd48c4ccad4');
-    // com.subscribe((res: Response) => {
-    //   JSON.parse(res.ymaps)
-    //   console.log();
-    // })
-
   }
 
   async createPoint(event) {
@@ -128,6 +121,9 @@ export class RouteComponent implements OnInit, OnChanges {
       });
     });
      return Point;
+  }
+  dayClick(event) {
+    this.selectedDays[event.target.id] = !this.selectedDays[event.target.id];
   }
 
 

@@ -1,19 +1,17 @@
-<div class="container">
+<div class="container router-component">
   <div class="row">
+    <angular-yandex-map [center]="[58.600739, 36.600739]" [zoom]="10" (yaclick)="SomeClick($event)" #component>
+<!--      <angular-yandex-control-->
+<!--        [type]="'RoutePanel'"-->
+<!--        [parameters]="parameters"-->
+<!--      ></angular-yandex-control>-->
+    </angular-yandex-map>
     <div class="blockInput col-3">
-      <label for="beginInput">Откуда</label>
-      <input class="input-group-text" id="beginInput" type="text" [(ngModel)]="postUser.routeBegin">
+        <label class="route-center" for="priceInput">Цена</label>
+        <input class="route-center form-control " id="priceInput" type="text" [(ngModel)]="postUser.price">
     </div>
     <div class="blockInput col-3">
-      <label for="endInput">Куда</label>
-      <input class="input-group-text" id="endInput" type="text" [(ngModel)]="postUser.routeEnd" >
-    </div>
-    <div class="blockInput col-3">
-      <label for="priceInput">Цена</label>
-      <input class="input-group-text" id="priceInput" type="text" [(ngModel)]="postUser.price">
-    </div>
-    <div class="blockInput col-3">
-      <select class="form-control">
+      <select class="form-control route-center">
         <option value="1">Воронеж</option>
         <option value="2">Ещё один Воронеж</option>
         <option value="3">Москва</option>
@@ -21,15 +19,26 @@
         <option value="5">Наконец Воронеж</option>
       </select>
     </div>
-    <angular-yandex-map [center]="[58.600739, 36.600739]" [zoom]="10" (yaclick)="SomeClick($event)" #component>
-    <angular-yandex-placemark [geometry]="item" *ngFor="let item of coords"></angular-yandex-placemark>
-<!--      <angular-yandex-control-->
-<!--        [type]="'RoutePanel'"-->
-<!--        [parameters]="parameters"-->
-<!--      ></angular-yandex-control>-->
-    </angular-yandex-map>
-    <div class="col-12">
-      <button type="button" (click)="createNewRoute()" class="btn btn-success route-btn">создать маршрут</button>
+    <div class="blockInput col-3">
+        <label class="route-center" for="inputMDEx1">Время</label>
+        <input type="time" class="route-center form-control" id="inputMDEx1" [(ngModel)]="postUser.time">
+    </div>
+    <div class="blockInput col-3">
+      <label class="route-center" for="countOfPlaces">Места</label>
+      <input type="text" class="route-center form-control" id="countOfPlaces" [(ngModel)]="postUser.countOfPlaces">
     </div>
   </div>
+  <div class="week-component">
+      <div class="week-day-item" id="1" [className]="selectedDays[1] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Понедельник</div>
+      <div class="week-day-item" id="2" [className]="selectedDays[2] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Вторник</div>
+      <div class="week-day-item" id="3" [className]="selectedDays[3] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Среда</div>
+      <div class="week-day-item" id="4" [className]="selectedDays[4] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Четверг</div>
+      <div class="week-day-item" id="5" [className]="selectedDays[5] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Пятница</div>
+      <div class="week-day-item" id="6" [className]="selectedDays[6] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Суббота</div>
+      <div class="week-day-item" id="7" [className]="selectedDays[7] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Воскресенье</div>
+  </div>
+  <div class="col-12">
+    <button type="button route-center" (click)="createNewRoute()" class="btn btn-success route-btn">создать маршрут</button>
+  </div>
+
 </div>

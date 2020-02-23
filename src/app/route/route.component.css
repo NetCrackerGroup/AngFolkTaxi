@@ -12,7 +12,7 @@
   text-align: center;
 }
 .route-btn {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .blockInput {
@@ -29,10 +29,65 @@
 }
 
 angular-yandex-map {
-  width: 1000px;
-  height: 500px;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 100vw;
+  height: 70vh;
 }
 agm-map {
   width: 1000px;
   height: 500px;
+}
+.blockInput {
+  text-align: center;
+}
+.route-center {
+  margin: auto;
+}
+.week-component {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center
+}
+.week-day-item {
+  height: 5vh;
+  background-color: #ECEAE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #221E1D;
+  transition: 0.3s;
+  flex-basis: 13%;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
+
+}
+.week-day-item:hover {
+  cursor: pointer;
+  background-color: #E9633B;
+  color: #ECEAE0;
+}
+.week-day-item-selected {
+  background-color: #AC2832;
+  color: #ECEAE0;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  flex-basis: 13%;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
+}
+.week-day-item-selected:hover {
+  cursor: pointer;
+}
+.router-component {
+  padding-top: 20px;
+  padding-bottom: 80px;
 }
