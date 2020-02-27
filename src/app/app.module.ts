@@ -9,6 +9,8 @@ import { NgForm} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {ParamInterceptor} from './param-interceptor';
+import {RouteComponent} from './route/route.component';
+import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -55,14 +57,23 @@ import { GroupsComponent } from './groups/groups.component';
     FormsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
+      // c84cd246-c002-4cee-8ac2-9ad5c1539388 - мой
+      // 658f67a2-fd77-42e9-b99e-2bd48c4ccad4
+    // AgmCoreModule.forRoot()
+    /**
+     * forRoot & API_KEY are optional
+     * imports: [AngularYandexMapsModule]
+     */
   ],
   providers: [ModalPopupComponent, LoginComponent, NgForm, GroupsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ParamInterceptor,
       multi: true
-    }], // что это такое
+    }],
+  // что это такое
   bootstrap: [AppComponent]
 })
 export class AppModule { }
