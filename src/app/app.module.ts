@@ -9,7 +9,6 @@ import { NgForm} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {ParamInterceptor} from './param-interceptor';
-import {RouteComponent} from './route/route.component';
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 
 
@@ -24,7 +23,8 @@ const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
-    { path: '' , component : CityMapComponent}
+    { path: '' , component : CityMapComponent},
+    {path: 'addRoute', component: RouteComponent}
 ];
 
 import {Routes, RouterModule} from '@angular/router';

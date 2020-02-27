@@ -10,11 +10,11 @@
     <ul class="navbar-nav mr-auto">
       <!-- add if reg to all -->
       <li class="nav-item active">
-        <a class="nav-link" >Поиск маршрута</a>  <!-- should be linked to route search component -->
+        <a class="nav-link">Поиск маршрута</a>  <!-- should be linked to route search component -->
       </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -25,14 +25,17 @@
       </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои группы
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
-            <a class="dropdown-item" routerLink="create-group"> Создать группу </a>
+            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}} *ngIf="authService.logIn"</a>
+            <a class="dropdown-item" routerLink="create-group" *ngIf="authService.logIn"> Создать группу </a>
           </div>
         </div>
+      </li>
+      <li >
+        <a class="nav-link" routerLink="addRoute" *ngIf="authService.logIn">Создать маршрут</a>
       </li>
       <li >
         <a class="nav-link" href="#" (click)="this.modalPopupComponent.OpenPopup()">Зарегестрироваться</a>

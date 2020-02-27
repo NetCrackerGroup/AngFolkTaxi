@@ -8,12 +8,12 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddGroupComponent implements OnInit {
 
-    
+
     closeResult: string;
 
     constructor(private modalService: NgbModal) { }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
     }
 
 
@@ -24,8 +24,8 @@ export class AddGroupComponent implements OnInit {
           console.log(this.closeResult);
         }, (reason) => {
             console.log("close opne with btn");
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-          console.log(this.closeResult);
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            console.log(this.closeResult);
         });
       }
 

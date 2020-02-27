@@ -21,7 +21,7 @@ export class AppCreateComponent implements OnInit {
   }
 
 
-  submit(){
+  submit(event){
     console.log("Submit form!")
     if ( this.name.trim().length == 0) {
       alert("Заполните поле \"Название\" ");
