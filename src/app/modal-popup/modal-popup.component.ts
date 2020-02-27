@@ -16,7 +16,7 @@ import {TempSetrService} from '../tempServices/temp-setr.service';
 
 export class ModalPopupComponent implements OnInit {
 
-  private postUser = {
+  postUser = {
     email: undefined,
     password: undefined,
     phoneNumber: undefined,

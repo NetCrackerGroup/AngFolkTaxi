@@ -33,11 +33,11 @@ export class AppComponent implements OnInit {
   private lat = 51.678418;
   private lng = 7.809007;
 
-  @ViewChild(ModalPopupComponent, {static: false})
-  private modalPopupComponent: ModalPopupComponent;
+  @ViewChild(ModalPopupComponent)
+   modalPopupComponent: ModalPopupComponent;
 
-  @ViewChild(LoginComponent, {static: false})
-  private loginComponent: LoginComponent;
+  @ViewChild(LoginComponent)
+   loginComponent: LoginComponent;
 
   private httpCli: HttpClientService;
   private tempSetrService: TempSetrService;

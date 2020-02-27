@@ -1,8 +1,5 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
-import {log} from 'util';
-import {ifTrue} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-route',
@@ -14,16 +11,15 @@ export class RouteComponent implements OnInit, OnChanges {
   private startPoint;
   private endPoint;
   url = 'http://localhost:1337';
-  private postUser = {
+  postUser = {
     routeBegin: undefined,
     routeEnd: undefined,
     price: undefined,
-    schedule: undefined,
     time: undefined,
     countOfPlaces: undefined,
     selectedDays: undefined
   };
-  private selectedDays = {
+  selectedDays = {
     1: false,
     2: false,
     3: false,
@@ -67,8 +63,8 @@ export class RouteComponent implements OnInit, OnChanges {
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
-
-    this.http.post(this.url + '/routes/add', this.postUser).subscribe((resp) => {
+    console.log(this.postUser);
+    this.http.post(this.url + '/routes/add',  this.postUser).subscribe((resp) => {
       console.log(resp);
     });
   }
