@@ -21,7 +21,7 @@
     </div>
     <div class="blockInput col-3">
         <label class="route-center" for="inputMDEx1">Время</label>
-        <input type="time" class="route-center form-control" id="inputMDEx1" [(ngModel)]="postUser.time">
+        <input type="time" class="route-center form-control" id="inputMDEx1" [(ngModel)]="schedule.time">
     </div>
     <div class="blockInput col-3">
       <label class="route-center" for="countOfPlaces">Места</label>
@@ -29,13 +29,13 @@
     </div>
   </div>
   <div class="week-component">
-      <div class="week-day-item" id="1" [className]="selectedDays[1] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Понедельник</div>
-      <div class="week-day-item" id="2" [className]="selectedDays[2] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Вторник</div>
-      <div class="week-day-item" id="3" [className]="selectedDays[3] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Среда</div>
-      <div class="week-day-item" id="4" [className]="selectedDays[4] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Четверг</div>
-      <div class="week-day-item" id="5" [className]="selectedDays[5] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Пятница</div>
-      <div class="week-day-item" id="6" [className]="selectedDays[6] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Суббота</div>
-      <div class="week-day-item" id="7" [className]="selectedDays[7] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Воскресенье</div>
+      <div class="week-day-item" id="0" [className]="selectedDays[0] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Понедельник</div>
+      <div class="week-day-item" id="1" [className]="selectedDays[1] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Вторник</div>
+      <div class="week-day-item" id="2" [className]="selectedDays[2] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Среда</div>
+      <div class="week-day-item" id="3" [className]="selectedDays[3] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Четверг</div>
+      <div class="week-day-item" id="4" [className]="selectedDays[4] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Пятница</div>
+      <div class="week-day-item" id="5" [className]="selectedDays[5] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Суббота</div>
+      <div class="week-day-item" id="6" [className]="selectedDays[6] ? 'week-day-item-selected' : 'week-day-item'" (click)="dayClick($event)">Воскресенье</div>
   </div>
   <div class="col-12">
     <button type="button route-center" (click)="createNewRoute()" class="btn btn-success route-btn">создать маршрут</button>

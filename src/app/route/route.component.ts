@@ -1,5 +1,6 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-route',
@@ -15,19 +16,15 @@ export class RouteComponent implements OnInit, OnChanges {
     routeBegin: undefined,
     routeEnd: undefined,
     price: undefined,
+    countOfPlaces: undefined
+  };
+  schedule = {
     time: undefined,
-    countOfPlaces: undefined,
     selectedDays: undefined
   };
-  selectedDays = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false
-  };
+  selectedDays = [false, false, false, false, false, false, false];
+
+
   // public parameters = {
   //   options: {
   //     allowSwitch: false,
@@ -57,14 +54,17 @@ export class RouteComponent implements OnInit, OnChanges {
       console.log('не всё');
       return;
     }
-    this.postUser.selectedDays = Object.values(this.selectedDays);
+    const res = [];
     for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
-      this.postUser.selectedDays[i] ? this.postUser.selectedDays[i] = 1 : this.postUser.selectedDays[i] = 0;
+      this.selectedDays[i] ? res[i] = 1 : res[i] = 0;
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
-    console.log(this.postUser);
-    this.http.post(this.url + '/routes/add',  this.postUser).subscribe((resp) => {
+    this.schedule.selectedDays =  res;
+    const body = new HttpParams()
+      .set('postUser', JSON.stringify(this.postUser))
+      .set('selectedDays', JSON.stringify(this.schedule));
+    this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
       console.log(resp);
     });
   }
