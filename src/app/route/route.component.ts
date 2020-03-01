@@ -1,5 +1,6 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-route',
@@ -15,19 +16,16 @@ export class RouteComponent implements OnInit, OnChanges {
     routeBegin: undefined,
     routeEnd: undefined,
     price: undefined,
-    time: undefined,
     countOfPlaces: undefined,
+    startDate: Date
+  };
+  schedule = {
+    time: undefined,
     selectedDays: undefined
   };
-  selectedDays = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false
-  };
+  selectedDays = [false, false, false, false, false, false, false];
+  isSingleRoute = false;
+
   // public parameters = {
   //   options: {
   //     allowSwitch: false,
@@ -57,16 +55,30 @@ export class RouteComponent implements OnInit, OnChanges {
       console.log('не всё');
       return;
     }
-    this.postUser.selectedDays = Object.values(this.selectedDays);
+    const res = [];
     for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
-      this.postUser.selectedDays[i] ? this.postUser.selectedDays[i] = 1 : this.postUser.selectedDays[i] = 0;
+      this.selectedDays[i] ? res[i] = 1 : res[i] = 0;
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
-    console.log(this.postUser);
-    this.http.post(this.url + '/routes/add',  this.postUser).subscribe((resp) => {
-      console.log(resp);
-    });
+    this.schedule.selectedDays =  res;
+    console.log(this.postUser.startDate);
+    let body;
+
+    if (!this.isSingleRoute) {
+      body = new HttpParams()
+        .set('postUser', JSON.stringify(this.postUser))
+        .set('selectedDays', JSON.stringify(this.schedule));
+      this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
+        console.log(resp);
+      });
+    } else {
+      body = new HttpParams().set('postUser', JSON.stringify(this.postUser));
+      this.http.post(this.url + '/routes/addOne',  this.postUser).subscribe((resp) => {
+        console.log(resp);
+      });
+    }
+
   }
 
   async SomeClick(event) {
@@ -84,7 +96,7 @@ export class RouteComponent implements OnInit, OnChanges {
   }
 
   async createPoint(event) {
-     const Point =  new event.ymaps.Placemark(event.event.get('coords'), {
+    const Point =  new event.ymaps.Placemark(event.event.get('coords'), {
       iconCaption: await event.ymaps.geocode(event.event.get('coords')).then( (res) => {
         return res.geoObjects.get(0).getAddressLine();
       })
@@ -94,9 +106,9 @@ export class RouteComponent implements OnInit, OnChanges {
       draggable: true
     });
 
-     event.event.originalEvent.map.geoObjects.add(Point);
+    event.event.originalEvent.map.geoObjects.add(Point);
     // tslint:disable-next-line:no-unused-expression
-     Point.events.add('dragend', () => {
+    Point.events.add('dragend', () => {
 
       Point.properties.set('iconCaption', 'поиск...');
       event.ymaps.geocode(Point.geometry._coordinates).then( (res) => {
@@ -116,11 +128,17 @@ export class RouteComponent implements OnInit, OnChanges {
           });
       });
     });
-     return Point;
+    return Point;
   }
   dayClick(event) {
     this.selectedDays[event.target.id] = !this.selectedDays[event.target.id];
   }
 
+  notSingleRoute() {
+    this.isSingleRoute = false;
+  }
 
+  singleRoute() {
+    this.isSingleRoute = true;
+  }
 }
