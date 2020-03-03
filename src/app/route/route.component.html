@@ -1,6 +1,6 @@
 <div class="container router-component">
   <div class="row">
-    <angular-yandex-map [center]="[58.600739, 36.600739]" [zoom]="10" (yaclick)="SomeClick($event)" #component>
+    <angular-yandex-map [center]="[51.6767262253711, 39.20987496326876]" [zoom]="10" (yaclick)="SomeClick($event)" #component>
       <!--      <angular-yandex-control-->
       <!--        [type]="'RoutePanel'"-->
       <!--        [parameters]="parameters"-->
@@ -30,10 +30,10 @@
   </div>
   <div class="tabs ">
     <input id="tab1" type="radio" name="tabs" checked>
-    <label for="tab1" title="Вкладка 1"(click)="singleRoute()">Вкладка 1</label>
+    <label for="tab1" title="Вкладка 1"(click)="notSingleRoute()">Вкладка 1</label>
 
     <input id="tab2" type="radio" name="tabs">
-    <label for="tab2" title="Вкладка 2" (click)="notSingleRoute()">Вкладка 2</label>
+    <label for="tab2" title="Вкладка 2" (click)="singleRoute()">Вкладка 2</label>
 
 
     <section id="content-tab1">
@@ -54,16 +54,8 @@
     </section>
     <section id="content-tab2">
       <h4>Назначьте дату вашей поездки</h4>
-      <div class="blockInput col-3">
-
-      </div>
       <div class="blockInput col-12">
-
-
-
-
-        <label class="route-center" for="oneDayBlockTime">Время</label>
-        <input class="week-day-date" type="time" id="oneDayBlockTime" [(ngModel)]="postUser.startDate"/>
+        <input class="week-day-date" type="date" value="2012-04-10" [(ngModel)]="postUser.startDate"/>
       </div>
     </section>
 

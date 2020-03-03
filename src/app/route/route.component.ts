@@ -65,19 +65,18 @@ export class RouteComponent implements OnInit, OnChanges {
     console.log(this.postUser.startDate);
     let body;
 
-    if (!this.isSingleRoute) {
-      body = new HttpParams()
-        .set('postUser', JSON.stringify(this.postUser))
-        .set('selectedDays', JSON.stringify(this.schedule));
-      this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
-        console.log(resp);
-      });
-    } else {
-      body = new HttpParams().set('postUser', JSON.stringify(this.postUser));
-      this.http.post(this.url + '/routes/addOne',  this.postUser).subscribe((resp) => {
-        console.log(resp);
-      });
+    if (this.isSingleRoute) {
+      for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
+        this.schedule.selectedDays[i] = 0;
+      }
     }
+    console.log(this.schedule);
+    body = new HttpParams()
+      .set('postUser', JSON.stringify(this.postUser))
+      .set('selectedDays', JSON.stringify(this.schedule));
+    this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
+      console.log(resp);
+    });
 
   }
 
