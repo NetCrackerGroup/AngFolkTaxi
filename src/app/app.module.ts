@@ -47,7 +47,10 @@ import { FindRootComponent } from './find-root/find-root.component';
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
+<<<<<<< HEAD
     FindRootComponent,
+=======
+>>>>>>> a1a928022d3a7f1bd76994869f233e2c34e7f918
     LoginComponent,
     ModalPopupComponent
   ],
