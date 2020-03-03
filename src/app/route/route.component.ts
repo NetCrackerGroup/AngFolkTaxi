@@ -82,6 +82,7 @@ export class RouteComponent implements OnInit, OnChanges {
   }
 
   async SomeClick(event) {
+    console.log(event.event.get('coords'));
     // доделать задание координат при передвижении
     if (this.coords.length === 2) {
       return;

@@ -16,17 +16,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
 import { RouteComponent } from './route/route.component';
-
-export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
-
-const appRoutes: Routes = [
-    { path: 'create-group', component: AppCreateComponent},
-    { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
-    { path: '' , component : CityMapComponent},
-    {path: 'addRoute', component: RouteComponent}
-];
-
 import {Routes, RouterModule} from '@angular/router';
 
 import { AddGroupComponent } from './app-group/addgroup.component';
@@ -35,6 +24,19 @@ import { FormsModule } from '@angular/forms';
 import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
+import { ViewRouteComponent } from './view-route/view-route.component';
+
+export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
+
+const appRoutes: Routes = [
+    { path: 'create-group', component: AppCreateComponent},
+    { path: 'groups/:id' , component : GroupViewComponent},
+    { path: 'groups' , component : GroupsComponent},
+    { path: '' , component : CityMapComponent},
+    {path: 'addRoute', component: RouteComponent},
+    {path: 'viewRoute/:id', component: ViewRouteComponent}
+];
+
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { GroupsComponent } from './groups/groups.component';
     GroupsComponent,
     RouteComponent,
     LoginComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    ViewRouteComponent
   ],
   imports: [
     BrowserModule,

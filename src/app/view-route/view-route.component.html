@@ -1,0 +1,12 @@
+<p>view-route works!</p>
+<h3>Модель {{id}}</h3>
+<div class="container router-component">
+  <div class="row">
+    <angular-yandex-map [center]="[51.6767262253711, 39.20987496326876]" [zoom]="10" #component>
+            <angular-yandex-control
+              [type]="'RoutePanel'"
+              [parameters]="parameters"
+            ></angular-yandex-control>
+    </angular-yandex-map>
+  </div>
+</div>
