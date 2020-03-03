@@ -8,6 +8,9 @@
   text-align: center;
   margin-left: auto;
 }
+.tab-2-block {
+  margin: auto;
+}
 .container {
   text-align: center;
 }
@@ -65,6 +68,13 @@ agm-map {
   border: 1px solid #63AA9C;
   border-radius: 3px;
 
+}
+.tab-2-block-input {
+  background-color: #ECEAE0;
+  color: #221E1D;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
 }
 .week-day-date {
   height: 5vh;
