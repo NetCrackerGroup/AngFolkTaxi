@@ -1,0 +1,17 @@
+<div class="container">
+  <h3> Поиск маршрута </h3>
+  <form>
+    <div class="form-group">
+      <label>Введите адрес :</label>
+      <input type="text" [(ngModel)]="adress" name="NameGroup" class="form-control" id="Address" placeholder="Адрес">
+
+      <label>Введите расстояние, которое вы готовы пройти :</label>
+      <input type="number" [(ngModel)]="radius" name="NameGroup" class="form-control" id="Radius" placeholder="Расстояние">
+
+      <label>Введите время отправления :</label>
+      <input type="text" [(ngModel)]="depart" name="NameGroup" class="form-control" id="Departure" placeholder="Время отправления">
+
+    </div>
+    <!--a routerLink="show-routes"--><button class="btn btn-success" routerLink="show-routes" (click)="submit()">Поиск</button><!--/a-->
+  </form>
+</div>
