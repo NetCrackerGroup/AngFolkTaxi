@@ -20,7 +20,7 @@ export class RouteComponent implements OnInit, OnChanges {
     startDate: Date
   };
   schedule = {
-    time: undefined,
+    timeOfJourney: undefined,
     selectedDays: undefined
   };
   selectedDays = [false, false, false, false, false, false, false];
@@ -65,24 +65,25 @@ export class RouteComponent implements OnInit, OnChanges {
     console.log(this.postUser.startDate);
     let body;
 
-    if (!this.isSingleRoute) {
-      body = new HttpParams()
-        .set('postUser', JSON.stringify(this.postUser))
-        .set('selectedDays', JSON.stringify(this.schedule));
-      this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
-        console.log(resp);
-      });
-    } else {
-      body = new HttpParams().set('postUser', JSON.stringify(this.postUser));
-      this.http.post(this.url + '/routes/addOne',  this.postUser).subscribe((resp) => {
-        console.log(resp);
-      });
+    if (this.isSingleRoute) {
+      for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
+        this.schedule.selectedDays[i] = 0;
+      }
     }
+    console.log(this.schedule.selectedDays.join(''));
+    this.schedule.selectedDays = this.schedule.selectedDays.join('');
+    console.log(this.schedule);
+    body = new HttpParams()
+      .set('postUser', JSON.stringify(this.postUser))
+      .set('selectedDays', JSON.stringify(this.schedule));
+    console.log(body);
+    this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
+      console.log(resp);
+    });
 
   }
 
   async SomeClick(event) {
-    console.log(event.event.get('coords'));
     // доделать задание координат при передвижении
     if (this.coords.length === 2) {
       return;

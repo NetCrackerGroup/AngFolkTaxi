@@ -9,4 +9,28 @@
             ></angular-yandex-control>
     </angular-yandex-map>
   </div>
+  <div class="blockInput col-3">
+    <div class="information-block">
+      <div class="information-block__text">Водитель данного маршрута</div>
+      <a class="information-block__link" [routerLink] = []>{{this.driverName}}</a>
+    </div>
+  </div>
+  <div class="blockInput col-3">
+    <div class="information-block">
+      <div class="information-block__text">Цена поездки</div>
+      <div class="information-block__link" [routerLink] = []>{{this.price}}</div>
+    </div>
+  </div>
+  <div class="blockInput col-3">
+    <div class="information-block">
+      <div class="information-block__text">Количество мест</div>
+      <div class="information-block__link" [routerLink] = []>{{this.countOfPlaces}}</div>
+    </div>
+  </div>
+  <div class="blockInput col-3">
+    <div class="information-block">
+      <div class="information-block__text">Время отправления</div>
+      <div class="information-block__link" [routerLink] = []>{{this.timeOfDriving}}</div>
+    </div>
+  </div>
 </div>
