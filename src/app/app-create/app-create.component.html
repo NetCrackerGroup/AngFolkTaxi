@@ -9,6 +9,9 @@
 <body>
     <div>
         <form>
+            <div *ngIf="groupExists" class = "alert alert-danger">
+                <strong>Не удалось создать группу!</strong> Попробуйте другое имя.
+            </div>
             <div class="form-group" (submit)="addgroup($event)">
                 <label for="formGroupExampleInput">Название :</label>
                 <input type="text" [(ngModel)]="name" name="NameGroup" class="form-control" id="NameGroup" placeholder="Название">

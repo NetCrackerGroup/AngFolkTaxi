@@ -1,5 +1,16 @@
 <div class="container">
-    <div class="card" *ngFor="let group of listgroups">
+    <div class = "margin-top">
+        <ul [ngClass]="{'nav': true, 'nav-tabs': true}">
+            <a class="nav-item">
+                <button [ngClass]="{'nav-link': true, 'active': flag}" (click)="onClick($event)">Участие</button>
+            </a>
+            <a class="nav-item">
+                <button [ngClass]="{'nav-link': true, 'active': !flag}" (click)="onClick($event)">Управление  </button>
+            </a>
+        </ul>
+    </div>
+
+    <div class="card" *ngFor="let group of listgroups" ([ngModel])="listgroups">
         <div class="card-body">
             <h6 class="card-title">{{group.groupName}} </h6>
             <a [routerLink]="['/groups' , group.groupId]" class="card-link">Просмотр</a>

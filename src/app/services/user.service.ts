@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../entities/iuser';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,4 +18,18 @@ export class UserService {
 
     return this.http.get<IUser>(url);
   }
+
+  getGroups(administrator : boolean) : Observable<any>{
+
+    let url = `${environment.devUrl}/users/`
+    if ( administrator ) {
+      return 
+    }
+
+    else {
+
+    }
+
+  }
+
 }

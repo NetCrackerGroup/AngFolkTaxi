@@ -11,7 +11,6 @@ import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {ParamInterceptor} from './param-interceptor';
 
 
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
@@ -34,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
+import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.component';
 
 
 @NgModule({
@@ -47,7 +47,8 @@ import { GroupsComponent } from './groups/groups.component';
     GroupsComponent,
     RouteComponent,
     LoginComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    AppEntrygroupComponent
   ],
   imports: [
     BrowserModule,

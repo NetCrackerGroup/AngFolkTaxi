@@ -2,7 +2,7 @@ import { ITypeGroup } from './type_group';
 import { IUser } from './iuser';
 
 export interface IGroup {
-    groupId: string;
+    groupId: number;
     typeGroup: ITypeGroup;
     groupName: string;
     cityLink: string;
