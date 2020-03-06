@@ -49,7 +49,14 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
+<<<<<<< HEAD
     FindRouteComponent,
+=======
+<<<<<<< HEAD
+    FindRootComponent,
+=======
+>>>>>>> a1a928022d3a7f1bd76994869f233e2c34e7f918
+>>>>>>> master
     LoginComponent,
     ModalPopupComponent,
     RoutesListComponent

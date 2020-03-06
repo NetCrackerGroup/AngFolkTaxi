@@ -14,10 +14,19 @@ export class RoutesListComponent implements OnInit {
 
   private listRoutes: IRoute[] = null;
 
-  constructor(private routeService: RoutesService) { }
+  constructor(private routeService: RoutesService) {
+    routeService.getListRoutes().subscribe(
+      res => {
+          this.listRoutes =  = res;
+      },
+      err => {
+        alert("Не удалось загрузить маршруты!");
+      }
+    )
+  }
 
   ngOnInit() {
-    this.listRoutes = this.routeService.getListRoutes();
+  //  this.listRoutes = this.routeService.getListRoutes();
   }
 
 }
