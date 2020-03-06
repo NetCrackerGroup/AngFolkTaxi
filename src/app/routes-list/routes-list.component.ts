@@ -17,7 +17,7 @@ export class RoutesListComponent implements OnInit {
   constructor(private routeService: RoutesService) {
     routeService.getListRoutes().subscribe(
       res => {
-          this.listRoutes =  = res;
+          this.listRoutes = res;
       },
       err => {
         alert("Не удалось загрузить маршруты!");

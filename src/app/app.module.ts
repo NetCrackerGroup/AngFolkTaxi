@@ -35,7 +35,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
-import {FindRouteComponent} from './find-route/find-root.component';
+import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 
 
@@ -49,14 +49,7 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
-<<<<<<< HEAD
     FindRouteComponent,
-=======
-<<<<<<< HEAD
-    FindRootComponent,
-=======
->>>>>>> a1a928022d3a7f1bd76994869f233e2c34e7f918
->>>>>>> master
     LoginComponent,
     ModalPopupComponent,
     RoutesListComponent
