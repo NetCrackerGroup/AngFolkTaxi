@@ -11,6 +11,10 @@ import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map
   styleUrls: ['./route.component.css']
 })
 export class RouteComponent implements OnInit, OnChanges {
+
+  @ViewChild(YandexMapComponent, {static: false})
+  private mapComponent: YandexMapComponent;
+
   private coords = [];
   private startPoint;
   private endPoint;
@@ -32,8 +36,7 @@ export class RouteComponent implements OnInit, OnChanges {
   constructor(private http: HttpClient) {
     this.http = http;
   }
-  @ViewChild(YandexMapComponent, {static: false})
-  private mapComponent: YandexMapComponent;
+
 
   ngOnInit() {
 
