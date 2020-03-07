@@ -19,6 +19,7 @@ export class ParamInterceptor implements HttpInterceptor {
       const paramReq = req.clone({
         headers: req.headers.set(
           'Authorization', 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
+
         )
       });
     } else {

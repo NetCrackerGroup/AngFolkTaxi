@@ -25,6 +25,7 @@ import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
+import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
 
 export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 

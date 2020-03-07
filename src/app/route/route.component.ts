@@ -1,6 +1,9 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
+import {AngularYandexMapsModule} from 'angular8-yandex-maps';
+import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
+
 
 @Component({
   selector: 'app-route',
@@ -21,27 +24,16 @@ export class RouteComponent implements OnInit, OnChanges {
   };
   schedule = {
     timeOfJourney: undefined,
-    selectedDays: undefined
+    scheduleDay: undefined
   };
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
 
-  // public parameters = {
-  //   options: {
-  //     allowSwitch: false,
-  //     reverseGeocoding: true,
-  //     types: { masstransit: true, pedestrian: true, taxi: true }
-  //   },
-  //   state: {
-  //     type: 'masstransit',
-  //     fromEnabled: true,
-  //     from: '',
-  //     toEnabled: true
-  //   }
-  // };
   constructor(private http: HttpClient) {
     this.http = http;
   }
+  @ViewChild(YandexMapComponent, {static: false})
+  private mapComponent: YandexMapComponent;
 
   ngOnInit() {
 
@@ -61,17 +53,17 @@ export class RouteComponent implements OnInit, OnChanges {
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
-    this.schedule.selectedDays =  res;
+    this.schedule.scheduleDay =  res;
     console.log(this.postUser.startDate);
     let body;
 
     if (this.isSingleRoute) {
       for (let i = 0; i < Object.values(this.selectedDays).length; i++) {
-        this.schedule.selectedDays[i] = 0;
+        this.schedule.scheduleDay[i] = 0;
       }
     }
-    console.log(this.schedule.selectedDays.join(''));
-    this.schedule.selectedDays = this.schedule.selectedDays.join('');
+    console.log(this.schedule.scheduleDay.join(''));
+    this.schedule.scheduleDay = this.schedule.scheduleDay.join('');
     console.log(this.schedule);
     body = new HttpParams()
       .set('postUser', JSON.stringify(this.postUser))
@@ -85,16 +77,31 @@ export class RouteComponent implements OnInit, OnChanges {
 
   async SomeClick(event) {
     // доделать задание координат при передвижении
-    if (this.coords.length === 2) {
-      return;
-    } else {
-      if (this.coords.length === 1) {
-        this.endPoint = this.createPoint(event);
-      } else {
-        this.startPoint = this.createPoint(event);
-      }
-    }
-    this.coords.push(event.event.get('coords'));
+    // if (this.coords.length === 2) {
+    //   return;
+    // } else {
+    //   if (this.coords.length === 1) {
+    //     this.endPoint = this.createPoint(event);
+    //   } else {
+    //     this.startPoint = this.createPoint(event);
+    //   }
+    // }
+    // this.coords.push(event.event.get('coords'));
+    // tslint:disable-next-line:max-line-length
+   const route = new event.ymaps.multiRouter.MultiRoute({
+      // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
+      referencePoints: [
+        'Москва, метро Смоленская',
+        'Москва, метро Арбатская',
+        [55.734876, 37.59308], // улица Льва Толстого.
+      ]
+    }, {
+      // Автоматически устанавливать границы карты так,
+      // чтобы маршрут был виден целиком.
+      boundsAutoApply: true
+    });
+   console.log(route);
+   event.event.originalEvent.map.geoObjects.add(route);
   }
 
   async createPoint(event) {

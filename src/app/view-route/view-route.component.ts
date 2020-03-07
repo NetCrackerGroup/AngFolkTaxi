@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -9,7 +9,6 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./view-route.component.css']
 })
 export class ViewRouteComponent implements OnInit {
-
   id: number;
   url = 'http://localhost:1337';
   private http: HttpClient;
@@ -33,32 +32,38 @@ export class ViewRouteComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute, http: HttpClient) {
+    console.log('constr');
     this.http = http;
+
+
   }
 
   ngOnInit(): void {
+    console.log('ngOnInit');
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     )
       .subscribe(data => {
         this.id = +data;
+        console.log(this.id);
         this.http.get(`${this.url}/routes/${this.id}`).subscribe(res => {
-           // @ts-ignore
+          // @ts-ignore
           this.parameters.state.from = res.routeBegin;
           // @ts-ignore
           this.parameters.state.to = res.routeEnd;
-          console.log(res);
+          console.log('res form',  res);
           // @ts-ignore
           const date = new Date(res.startDate);
-          console.log(date.getHours());
+          console.log('date.getHours()', date.getHours());
           // @ts-ignore
           this.price = res.price;
           // @ts-ignore
           this.countOfPlaces = res.countOfPlaces;
         });
         this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
-          console.log(res);
+          console.log('res2', res);
         });
+
       });
 
   }
