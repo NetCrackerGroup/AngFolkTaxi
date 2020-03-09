@@ -1,11 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import { InjectionToken } from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
+import {InjectionToken, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import { NgForm} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {ParamInterceptor} from './param-interceptor';
@@ -13,19 +10,17 @@ import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NavigationComponent } from './navigation/navigation.component';
-import { CityMapComponent } from './city-map/city-map.component';
-import { RouteComponent } from './route/route.component';
-import {Routes, RouterModule} from '@angular/router';
+import {NavigationComponent} from './navigation/navigation.component';
+import {CityMapComponent} from './city-map/city-map.component';
+import {RouteComponent} from './route/route.component';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AddGroupComponent } from './app-group/addgroup.component';
-import { AppCreateComponent } from './app-create/app-create.component';
-import { FormsModule } from '@angular/forms';
-import { GroupsService } from './services/groups.service';
-import { GroupViewComponent } from './group-view/group-view.component';
-import { GroupsComponent } from './groups/groups.component';
-import { ViewRouteComponent } from './view-route/view-route.component';
-import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
+import {AddGroupComponent} from './app-group/addgroup.component';
+import {AppCreateComponent} from './app-create/app-create.component';
+import {GroupsService} from './services/groups.service';
+import {GroupViewComponent} from './group-view/group-view.component';
+import {GroupsComponent} from './groups/groups.component';
+import {ViewRouteComponent} from './view-route/view-route.component';
 
 export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 

@@ -12,8 +12,7 @@ import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map
 })
 export class RouteComponent implements OnInit, OnChanges {
 
-  @ViewChild(YandexMapComponent, {static: false})
-  private mapComponent: YandexMapComponent;
+
 
   private coords = [];
   private startPoint;
@@ -80,31 +79,31 @@ export class RouteComponent implements OnInit, OnChanges {
 
   async SomeClick(event) {
     // доделать задание координат при передвижении
-    // if (this.coords.length === 2) {
-    //   return;
-    // } else {
-    //   if (this.coords.length === 1) {
-    //     this.endPoint = this.createPoint(event);
-    //   } else {
-    //     this.startPoint = this.createPoint(event);
-    //   }
-    // }
-    // this.coords.push(event.event.get('coords'));
+        if (this.coords.length === 2) {
+          return;
+        } else {
+          if (this.coords.length === 1) {
+            this.endPoint = this.createPoint(event);
+          } else {
+            this.startPoint = this.createPoint(event);
+          }
+        }
+        this.coords.push(event.event.get('coords'));
     // tslint:disable-next-line:max-line-length
-   const route = new event.ymaps.multiRouter.MultiRoute({
-      // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
-      referencePoints: [
-        'Москва, метро Смоленская',
-        'Москва, метро Арбатская',
-        [55.734876, 37.59308], // улица Льва Толстого.
-      ]
-    }, {
-      // Автоматически устанавливать границы карты так,
-      // чтобы маршрут был виден целиком.
-      boundsAutoApply: true
-    });
-   console.log(route);
-   event.event.originalEvent.map.geoObjects.add(route);
+   // const route = new event.ymaps.multiRouter.MultiRoute({
+   //    // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
+   //    referencePoints: [
+   //      'Москва, метро Смоленская',
+   //      'Москва, метро Арбатская',
+   //      [55.734876, 37.59308], // улица Льва Толстого.
+   //    ]
+   //  }, {
+   //    // Автоматически устанавливать границы карты так,
+   //    // чтобы маршрут был виден целиком.
+   //    boundsAutoApply: true
+   //  });
+   // console.log(route);
+   // event.event.originalEvent.map.geoObjects.add(route);
   }
 
   async createPoint(event) {

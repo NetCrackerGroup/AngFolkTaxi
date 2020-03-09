@@ -1,14 +1,16 @@
-<p>view-route works!</p>
 <h3>Модель {{id}}</h3>
+
 <div class="container router-component">
   <div class="row">
-    <angular-yandex-map [center]="[51.6767262253711, 39.20987496326876]" [zoom]="10" #component>
-            <angular-yandex-control
-              [type]="'RoutePanel'"
-              [parameters]="parameters"
-            ></angular-yandex-control>
-    </angular-yandex-map>
+<!--    <angular-yandex-map [center]="[51.6767262253711, 39.20987496326876]" [zoom]="10" (yaclick)="Some($event)" #component>-->
+<!--      <angular-yandex-control-->
+<!--        [type]="'RoutePanel'"-->
+<!--        [parameters]="parameters"-->
+<!--      ></angular-yandex-control>-->
+<!--    </angular-yandex-map>-->
+    <div id="map"></div>
   </div>
+
   <div class="blockInput col-3">
     <div class="information-block">
       <div class="information-block__text">Водитель данного маршрута</div>
@@ -33,4 +35,25 @@
       <div class="information-block__link" [routerLink] = []>{{this.timeOfDriving}}</div>
     </div>
   </div>
+  <button class="btn btn-primary" (click)="JoinTheRoute()">Вступить в группу</button>
 </div>
+<div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
+  <div class="my-modal" [ngClass]="{mymodal2: visibility}" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Предупреждение</h5>
+        <button type="button" class="close"(click)="toggle()"  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-text">
+        <p>В маршруте нет мест</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"(click)="toggle()" class="btn btn-primary">Хорошо</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

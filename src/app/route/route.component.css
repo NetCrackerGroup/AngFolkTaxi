@@ -102,6 +102,7 @@ agm-map {
   cursor: pointer;
 }
 .router-component {
+  display: block;
   padding-top: 20px;
   padding-bottom: 80px;
 }
