@@ -1,0 +1,226 @@
+.box {
+  height: 20vh;
+  width: 100%;
+  background-color: red;
+  margin-top: 80px;
+}
+.btn-wrapper {
+  text-align: center;
+  margin-left: auto;
+}
+.container {
+  text-align: center;
+}
+.route-btn {
+  margin-top: 20px;
+}
+
+.blockInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.blockInput input {
+  height: 40px;
+  width: 200px;
+}
+.blockInput label {
+  margin-right: 8px;
+}
+
+angular-yandex-map {
+  margin: auto;
+  margin-bottom: 20px;
+  width: 100vw;
+  height: 70vh;
+}
+agm-map {
+  width: 1000px;
+  height: 500px;
+}
+.blockInput {
+  text-align: center;
+}
+.route-center {
+  margin: auto;
+}
+.week-component {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center
+}
+.week-day-item {
+  height: 5vh;
+  background-color: #ECEAE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #221E1D;
+  transition: 0.3s;
+  flex-basis: 13%;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
+
+}
+.week-day-date {
+  height: 5vh;
+  background-color: #ECEAE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #221E1D;
+  flex-basis: 13%;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
+  margin: auto;
+}
+.week-day-item:hover {
+  cursor: pointer;
+  background-color: #E9633B;
+  color: #ECEAE0;
+}
+
+.week-day-item-selected {
+  background-color: #AC2832;
+  color: #ECEAE0;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  flex-basis: 13%;
+  text-align: center;
+  border: 1px solid #63AA9C;
+  border-radius: 3px;
+}
+.week-day-item-selected:hover {
+  cursor: pointer;
+}
+.router-component {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+.block {
+  margin-bottom: 30px;
+}
+ /*Базовый контейнер табов*/
+.tabs {
+  min-width: 320px;
+  padding: 0px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+/* Стили секций с содержанием */
+.tabs>section {
+  display: none;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+.tabs>section>div {
+  margin: 0 0 5px;
+  line-height: 1.5;
+  color: #383838;
+  /* прикрутим анимацию */
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  height: 10vh;
+}
+/* Описываем анимацию свойства opacity */
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Прячем чекбоксы */
+.tabs>input {
+  display: none;
+  position: absolute;
+}
+/* Стили переключателей вкладок (табов) */
+.tabs>label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 10px 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #aaa;
+  width: 50%;
+  border: 0px solid #ddd;
+  border-width: 1px 1px 1px 1px;
+  background: #f1f1f1;
+  border-radius: 3px 3px 0 0;
+}
+/* Шрифт-иконки от Font Awesome в формате Unicode */
+.tabs>label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.tabs>label[for*="1"]:before {
+}
+.tabs>label[for*="2"]:before {
+}
+/* Изменения стиля переключателей вкладок при наведении */
+
+.tabs>label:hover {
+  color: #888;
+  cursor: pointer;
+}
+/* Стили для активной вкладки */
+.tabs>input:checked+label {
+  color: #555;
+  border-top: 1px solid #009933;
+  border-bottom: 1px solid #fff;
+  background: #fff;
+}
+/* Активация секций с помощью псевдокласса :checked */
+#tab1:checked~#content-tab1, #tab2:checked~#content-tab2, #tab3:checked~#content-tab3, #tab4:checked~#content-tab4 {
+  display: block;
+}
+/* Убираем текст с переключателей
+* и оставляем иконки на малых экранах
+*/
+
+@media screen and (max-width: 680px) {
+  .tabs>label {
+    font-size: 0;
+  }
+  .tabs>label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+/* Изменяем внутренние отступы
+*  переключателей для малых экранов
+*/
+@media screen and (max-width: 400px) {
+  .tabs>label {
+    padding: 15px;
+  }
+}
+/* Базовый контейнер табов */
+

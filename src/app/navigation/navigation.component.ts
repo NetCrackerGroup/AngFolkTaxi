@@ -22,14 +22,14 @@ export class NavigationComponent implements OnInit {
 
   private routeService: RoutesService;
   @ViewChild(ModalPopupComponent, {static: false})
-  private modalPopupComponent: ModalPopupComponent;
+   modalPopupComponent: ModalPopupComponent;
 
   @ViewChild(LoginComponent, {static: false})
-  private loginComponent: LoginComponent;
+   loginComponent: LoginComponent;
 
-  private tempSetrService: TempSetrService;
-  private http: HttpClient;
-  private authService: AuthService;
+   tempSetrService: TempSetrService;
+   http: HttpClient;
+   authService: AuthService;
 
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
@@ -51,7 +51,7 @@ export class NavigationComponent implements OnInit {
           this.listGroups = res;
         },
         err => {
-          alert(`Error , ${err}`);
+          // alert(`Error , ${err}`);
         }
       );
 
@@ -60,7 +60,7 @@ export class NavigationComponent implements OnInit {
           this.listDriverRoutes = res;
         },
         err => {
-           alert(`Error , ${err}`);
+           // alert(`Error , ${err}`);
         }
       );
     }
