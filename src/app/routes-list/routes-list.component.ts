@@ -14,6 +14,7 @@ export class RoutesListComponent implements OnInit {
 
   private listRoutes: IRoute[] = null;
 
+
   constructor(private routeService: RoutesService) {
     routeService.getListRoutes().subscribe(
       res => {
@@ -28,5 +29,7 @@ export class RoutesListComponent implements OnInit {
   ngOnInit() {
   //  this.listRoutes = this.routeService.getListRoutes();
   }
+
+
 
 }

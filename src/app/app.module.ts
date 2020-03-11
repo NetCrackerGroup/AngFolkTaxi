@@ -15,6 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
 import { RouteComponent } from './route/route.component';
+import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 
@@ -61,7 +62,8 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     FormsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
   ],
   providers: [ModalPopupComponent, LoginComponent, NgForm, GroupsService,
     {
