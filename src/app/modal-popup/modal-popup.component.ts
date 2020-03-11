@@ -15,7 +15,7 @@ import {TempSetrService} from '../tempServices/temp-setr.service';
 
 export class ModalPopupComponent implements OnInit {
 
-  private postUser = {
+  postUser = {
     email: undefined,
     password: undefined,
     phoneNumber: undefined,
@@ -54,6 +54,7 @@ export class ModalPopupComponent implements OnInit {
     console.log('doThis');
 
     this.visibility = false;
+
     this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
   }
 

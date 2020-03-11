@@ -1,0 +1,17 @@
+<div *ngIf="listRoutes.length > 0" class="list-group">
+  <h3>Найденные маршруты</h3>
+
+  <a *ngFor="let route of listRoutes" class="list-group-item" >
+    <h4 class="list-group-item-heading">{{route.routeBegin}}</h4>
+    <p class="list-group-item-text">Цена: {{route.price}}</p>
+  </a>
+</div>
+
+
+<div *ngIf="listRoutes == null">
+  <h3>Идёт поиск</h3>
+</div>
+
+<div *ngIf="listRoutes.length == 0">
+  <h3>Подходящие маршруты ненайдены</h3>
+</div>
