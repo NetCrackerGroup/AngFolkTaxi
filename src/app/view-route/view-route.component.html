@@ -1,59 +1,78 @@
-<h3>Модель {{id}}</h3>
+<div class="router-component">
+  <h1 class="cart-route-header">Карточка маршрута</h1>
+  <div id="map"></div>
+  <div class="container">
+    <h2 class="cart-route-header">Информация о маршруте</h2>
+    <div class="blockInput col-12">
+      <div class="information-block">
+        <div class="driver-info-wrap">
+          <div class="driver-info-wrap__img">
+            <div class="information-block__text block-text">Водитель данного маршрута</div>
+            <div class="img-wrap">
+              <a href=""><img src="" alt=""></a>
 
-<div class="container router-component">
-  <div class="row">
-<!--    <angular-yandex-map [center]="[51.6767262253711, 39.20987496326876]" [zoom]="10" (yaclick)="Some($event)" #component>-->
-<!--      <angular-yandex-control-->
-<!--        [type]="'RoutePanel'"-->
-<!--        [parameters]="parameters"-->
-<!--      ></angular-yandex-control>-->
-<!--    </angular-yandex-map>-->
-    <div id="map"></div>
+            </div>
+          </div>
+          <div class="driver-info-wrap__text">
+            <div class="driver-info-text block-text-driver">
+              Шкала доверия пользователя
+            </div>
+            <div class="driver-info-text">
+              <div class="container">
+                <div class="progressbar">
+                  <span style="width:0%" #element></span>
+                </div>
+              </div>
+            </div>
+            <div class="driver-info-text">
+              <div class="information-block__text block-text-driver">Рейтинг водителя:</div>
+              <div class="block-text-driver block-text-driver-2 driver-rating">{{this.driverRaring}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row block-input-wrap">
+      <div class="blockInput col-4">
+        <div class="information-block-2">
+          <div class="information-block__text block-text">Цена поездки</div>
+          <div class="information-block__link block-text-driver-2">{{this.price}}</div>
+        </div>
+      </div>
+      <div class="blockInput col-4">
+        <div class="information-block-2">
+          <div class="information-block__text block-text">Количество мест</div>
+          <div class="information-block__link block-text-driver-2" >{{this.countOfPlaces}}</div>
+        </div>
+      </div>
+      <div class="blockInput col-4">
+        <div class="information-block-2">
+          <div class="information-block__text block-text">Время отправления</div>
+          <div class="information-block__link block-text-driver-2">{{this.timeOfDriving}}</div>
+        </div>
+      </div>
+      <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в группу</button>
+    </div>
+    <div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
+      <div class="my-modal" [ngClass]="{mymodal2: visibility}" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Предупреждение</h5>
+            <button type="button" class="close"(click)="toggle()"  data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body modal-text">
+            <p>В маршруте нет мест</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button"(click)="toggle()" class="btn btn-primary">Хорошо</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="blockInput col-3">
-    <div class="information-block">
-      <div class="information-block__text">Водитель данного маршрута</div>
-      <a class="information-block__link" [routerLink] = []>{{this.driverName}}</a>
-    </div>
-  </div>
-  <div class="blockInput col-3">
-    <div class="information-block">
-      <div class="information-block__text">Цена поездки</div>
-      <div class="information-block__link" [routerLink] = []>{{this.price}}</div>
-    </div>
-  </div>
-  <div class="blockInput col-3">
-    <div class="information-block">
-      <div class="information-block__text">Количество мест</div>
-      <div class="information-block__link" [routerLink] = []>{{this.countOfPlaces}}</div>
-    </div>
-  </div>
-  <div class="blockInput col-3">
-    <div class="information-block">
-      <div class="information-block__text">Время отправления</div>
-      <div class="information-block__link" [routerLink] = []>{{this.timeOfDriving}}</div>
-    </div>
-  </div>
-  <button class="btn btn-primary" (click)="JoinTheRoute()">Вступить в группу</button>
-</div>
-<div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
-  <div class="my-modal" [ngClass]="{mymodal2: visibility}" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Предупреждение</h5>
-        <button type="button" class="close"(click)="toggle()"  data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body modal-text">
-        <p>В маршруте нет мест</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button"(click)="toggle()" class="btn btn-primary">Хорошо</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 

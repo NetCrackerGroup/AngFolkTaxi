@@ -17,6 +17,10 @@ export class ViewRouteComponent implements OnInit {
 
   @ViewChild('component', {static: false})
   nameParagraph: YandexMapComponent;
+
+  @ViewChild('element', {static: false})
+  private element: HTMLElement;
+
   id: number;
   url = 'http://localhost:1337';
   private http: HttpClient;
@@ -24,6 +28,7 @@ export class ViewRouteComponent implements OnInit {
   timeOfDriving;
   countOfPlaces;
   map: any;
+  driverRaring: number;
   price;
   public parameters = {
     options: {
@@ -51,21 +56,17 @@ export class ViewRouteComponent implements OnInit {
       switchMap(params => params.getAll('id'))
     ).subscribe(data => {
       this.id = +data;
-      this.http.get(`${this.url}/routes/${this.id}`).subscribe(res => {
-        // @ts-ignore
+      this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
+        routeEnd, startDate, price, driverRating, countOfPlaces, timeOfDriving}) => {
         this.parameters.state.from = res.routeBegin;
-        // @ts-ignore
         this.parameters.state.to = res.routeEnd;
-        console.log(res);
-        // @ts-ignore
-        const date = new Date(res.startDate);
-        console.log(date.getHours());
-        // @ts-ignore
         this.price = res.price;
-        // @ts-ignore
         this.countOfPlaces = res.countOfPlaces;
-        //
-        console.log('this.map1', this.map);
+        this.timeOfDriving = res.timeOfDriving;
+        this.driverRaring = res.driverRating;
+        // @ts-ignore
+        const htmlElement = this.element.nativeElement as HTMLElement;
+        htmlElement.style.width = ( `${res.driverRating * 20}%`).toString();
         if ( this.map == null) {
           ymaps.ready().then(() => {
             this.map = new ymaps.Map('map', {
@@ -74,10 +75,9 @@ export class ViewRouteComponent implements OnInit {
               controls: ['routePanelControl']
             });
             return this.map;
+            // tslint:disable-next-line:no-shadowed-variable
           }).then((res) => {
-            console.log('this.map2', this.map);
             const let2 =  this.map.controls.get('routePanelControl');
-            console.log(let2);
             let2.routePanel.state.set({
               // Адрес начальной точки.
               from: this.parameters.state.from,
@@ -86,9 +86,7 @@ export class ViewRouteComponent implements OnInit {
             });
           });
         } else {
-          console.log('this.map2', this.map);
           const let2 =  this.map.controls.get('routePanelControl');
-          console.log(let2);
           let2.routePanel.state.set({
             // Адрес начальной точки.
             from: this.parameters.state.from,
@@ -100,9 +98,12 @@ export class ViewRouteComponent implements OnInit {
       });
       this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
         console.log(res);
+        // @ts-ignore
+        this.timeOfDriving = res.timeOfJourney;
+
+        console.log(parseInt('5', 10).toString(2));
       });
     });
-    console.log('ngOnInit');
     // const route = new this.map.multiRouter.MultiRoute({
     //   // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
     //   referencePoints: [
