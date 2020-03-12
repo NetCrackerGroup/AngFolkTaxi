@@ -57,16 +57,18 @@ export class ViewRouteComponent implements OnInit {
     ).subscribe(data => {
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
-        routeEnd, startDate, price, driverRating, countOfPlaces, timeOfDriving}) => {
+        routeEnd, startDate, price, userRouteDto: {fio, driverRating}, countOfPlaces, timeOfDriving}) => {
+        console.log(res);
         this.parameters.state.from = res.routeBegin;
         this.parameters.state.to = res.routeEnd;
         this.price = res.price;
         this.countOfPlaces = res.countOfPlaces;
         this.timeOfDriving = res.timeOfDriving;
-        this.driverRaring = res.driverRating;
+        this.driverRaring = res.userRouteDto.driverRating;
+        this.driverName = res.userRouteDto.fio;
         // @ts-ignore
         const htmlElement = this.element.nativeElement as HTMLElement;
-        htmlElement.style.width = ( `${res.driverRating * 20}%`).toString();
+        htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
         if ( this.map == null) {
           ymaps.ready().then(() => {
             this.map = new ymaps.Map('map', {
@@ -94,59 +96,15 @@ export class ViewRouteComponent implements OnInit {
             to: this.parameters.state.to
           });
         }
+        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
+          console.log(res);
+          // @ts-ignore
+          this.timeOfDriving = res.timeOfJourney;
 
+        });
       });
-      this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
-        console.log(res);
-        // @ts-ignore
-        this.timeOfDriving = res.timeOfJourney;
 
-        console.log(parseInt('5', 10).toString(2));
-      });
     });
-    // const route = new this.map.multiRouter.MultiRoute({
-    //   // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
-    //   referencePoints: [
-    //     'Москва, метро Смоленская',
-    //     'Москва, метро Арбатская',
-    //     [55.734876, 37.59308], // улица Льва Толстого.
-    //   ]
-    // }, {
-    //   // Автоматически устанавливать границы карты так,
-    //   // чтобы маршрут был виден целиком.
-    //   boundsAutoApply: true
-    // });
-    // console.log('route', route);
-    // this.map.geoObjects.add(route);
-
-
-
-      // полуработающий
-      // this.route.paramMap.pipe(
-      //   switchMap(params => params.getAll('id'))
-      // )
-      //   .subscribe(data => {
-      //     this.id = +data;
-      //     this.http.get(`${this.url}/routes/${this.id}`).subscribe(res => {
-      //       // @ts-ignore
-      //       this.parameters.state.from = res.routeBegin;
-      //       // @ts-ignore
-      //       this.parameters.state.to = res.routeEnd;
-      //       console.log(res);
-      //       // @ts-ignore
-      //       const date = new Date(res.startDate);
-      //       console.log(date.getHours());
-      //       // @ts-ignore
-      //       this.price = res.price;
-      //       // @ts-ignore
-      //       this.countOfPlaces = res.countOfPlaces;
-      //       console.log();
-      //     });
-      //     this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
-      //       console.log(res);
-      //     });
-      //   });
-
     }
     Some(event) {
 
