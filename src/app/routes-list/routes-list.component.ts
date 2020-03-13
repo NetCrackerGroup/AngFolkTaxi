@@ -12,12 +12,13 @@ import {IRoute} from '../entities/iroute';
 })
 export class RoutesListComponent implements OnInit {
 
-  private listRoutes: IRoute[] = null;
+  listRoutes: IRoute[] = null;
+
 
   constructor(private routeService: RoutesService) {
     routeService.getListRoutes().subscribe(
       res => {
-          this.listRoutes =  = res;
+          this.listRoutes = res;
       },
       err => {
         alert("Не удалось загрузить маршруты!");
@@ -28,5 +29,7 @@ export class RoutesListComponent implements OnInit {
   ngOnInit() {
   //  this.listRoutes = this.routeService.getListRoutes();
   }
+
+
 
 }

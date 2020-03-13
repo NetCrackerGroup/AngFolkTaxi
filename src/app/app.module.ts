@@ -15,7 +15,6 @@ import {CityMapComponent} from './city-map/city-map.component';
 import {RouteComponent} from './route/route.component';
 import {RouterModule, Routes} from '@angular/router';
 
-import { FindRootComponent } from './find-root/find-root.component';
 import {AddGroupComponent} from './app-group/addgroup.component';
 import {AppCreateComponent} from './app-create/app-create.component';
 import {GroupsService} from './services/groups.service';
@@ -29,11 +28,17 @@ const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
-    { path: 'find-root' , component: FindRootComponent},
+    { path: 'find-route' , component: FindRouteComponent},
     { path: '' , component : CityMapComponent},
+    { path: 'find-route/show-routes' , component: RoutesListComponent},
     {path: 'addRoute', component: RouteComponent},
     {path: 'viewRoute/:id', component: ViewRouteComponent}
 ];
+
+
+import {FindRouteComponent} from './find-route/find-route.component';
+import { RoutesListComponent } from './routes-list/routes-list.component';
+
 
 @NgModule({
   declarations: [
@@ -45,9 +50,10 @@ const appRoutes: Routes = [
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
-    FindRootComponent,
+    FindRouteComponent,
     LoginComponent,
     ModalPopupComponent,
+    RoutesListComponent,
     ViewRouteComponent
   ],
   imports: [

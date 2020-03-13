@@ -1,6 +1,6 @@
 export interface IRoute {
   routeId: number;
-  routeBegin: string;
-  routeEnd: string;
+  routeBegin: number[];
+  routeEnd: number[];
   price: number;
 }

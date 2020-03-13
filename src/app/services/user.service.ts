@@ -17,4 +17,11 @@ export class UserService {
 
     return this.http.get<IUser>(url);
   }
+
+  getUserEmail() {
+    const url = `${environment.devUrl}/users/getUserEmail`;
+    console.log(`Email get request on ${url}`);
+
+    return this.http.get<IUser>(url);
+  }
 }
