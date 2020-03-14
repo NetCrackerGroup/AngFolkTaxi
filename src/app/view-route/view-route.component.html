@@ -1,6 +1,6 @@
 <div class="router-component">
   <h1 class="cart-route-header">Карточка маршрута</h1>
-  <div id="map"></div>
+  <app-yamap #component></app-yamap>
   <div class="container">
     <h2 class="cart-route-header">Информация о маршруте</h2>
     <div class="blockInput col-12">
@@ -10,7 +10,6 @@
             <div class="information-block__text block-text">Водитель данного маршрута</div>
             <div class="img-wrap">
               <a href=""><img src="" alt=""></a>
-
             </div>
             <div class="information-block__text block-text-driver-name">{{this.driverName}}</div>
           </div>
@@ -52,8 +51,13 @@
           <div class="information-block__link block-text-driver-2">{{this.timeOfDriving}}</div>
         </div>
       </div>
-      <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в группу</button>
     </div>
+    <h3>Расписание маршут</h3>
+    <ul class="menu-top">
+      <li class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
+    </ul>
+    <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в группу</button>
+
     <div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
       <div class="my-modal" [ngClass]="{mymodal2: visibility}" role="document">
         <div class="modal-content">
@@ -75,5 +79,3 @@
   </div>
 
 </div>
-
-

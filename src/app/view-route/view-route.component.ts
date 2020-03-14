@@ -1,26 +1,28 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
 import {YandexMultirouteComponent} from 'angular8-yandex-maps/lib/components/yandex-multiroute-component/yandex-multiroute.component';
 import {group} from '@angular/animations';
+import {IRoute} from '../entities/iroute';
+import {YamapComponent} from '../yamap/yamap.component';
 declare var ymaps: any;
 
 @Component({
   selector: 'app-view-route',
   templateUrl: './view-route.component.html',
-  styleUrls: ['./view-route.component.css']
+  styleUrls: ['./view-route.component.css'],
+  providers: [YamapComponent]
 })
 
 export class ViewRouteComponent implements OnInit {
 
   @ViewChild('component', {static: false})
-  nameParagraph: YandexMapComponent;
+  component: YamapComponent;
 
   @ViewChild('element', {static: false})
   private element: HTMLElement;
-
   id: number;
   url = 'http://localhost:1337';
   private http: HttpClient;
@@ -44,9 +46,14 @@ export class ViewRouteComponent implements OnInit {
       to: '',
     }
   };
-  visibility = false;
+  public daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+  public userDays = [];
 
-  constructor(private route: ActivatedRoute, http: HttpClient) {
+  visibility = false;
+  public fromEnabled;
+  public toEnabled;
+  constructor(private route: ActivatedRoute, http: HttpClient,
+              private router: Router) {
     this.http = http;
 
   }
@@ -55,85 +62,69 @@ export class ViewRouteComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     ).subscribe(data => {
+      console.log(data);
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
         routeEnd, startDate, price, userRouteDto: {fio, driverRating}, countOfPlaces, timeOfDriving}) => {
         console.log(res);
-        this.parameters.state.from = res.routeBegin;
-        this.parameters.state.to = res.routeEnd;
+
         this.price = res.price;
         this.countOfPlaces = res.countOfPlaces;
         this.timeOfDriving = res.timeOfDriving;
         this.driverRaring = res.userRouteDto.driverRating;
         this.driverName = res.userRouteDto.fio;
+        this.fromEnabled = res.routeBegin;
+        this.toEnabled = res.routeEnd;
+        this.component.create(res.routeBegin, res.routeEnd);
         // @ts-ignore
         const htmlElement = this.element.nativeElement as HTMLElement;
         htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
-        if ( this.map == null) {
-          ymaps.ready().then(() => {
-            this.map = new ymaps.Map('map', {
-              center: [50.450100, 30.523400],
-              zoom: 12,
-              controls: ['routePanelControl']
-            });
-            return this.map;
-            // tslint:disable-next-line:no-shadowed-variable
-          }).then((res) => {
-            const let2 =  this.map.controls.get('routePanelControl');
-            let2.routePanel.state.set({
-              // Адрес начальной точки.
-              from: this.parameters.state.from,
-              // Адрес конечной точки.
-              to: this.parameters.state.to
-            });
-          });
-        } else {
-          const let2 =  this.map.controls.get('routePanelControl');
-          let2.routePanel.state.set({
-            // Адрес начальной точки.
-            from: this.parameters.state.from,
-            // Адрес конечной точки.
-            to: this.parameters.state.to
-          });
-        }
-        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res => {
-          console.log(res);
-          // @ts-ignore
-          this.timeOfDriving = res.timeOfJourney;
 
+        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
+          console.log(res2);
+          // @ts-ignore
+          this.timeOfDriving = res2.timeOfJourney;
+          // @ts-ignore
+          let scheduleString = (+res2.scheduleDay).toString(2);
+          console.log(scheduleString);
+          if (scheduleString.length !== 7) {
+            let resString = '';
+            for (let i = 0; i < 7 - scheduleString.length; i++) {
+              resString += '0';
+            }
+            scheduleString = resString + scheduleString;
+          }
+          console.log('scheduleString', scheduleString);
+          for (let i = 0; i < scheduleString.length; i++) {
+            if (+scheduleString[i] === 1) {
+              this.userDays.push(this.daysOfWeek[i]);
+            }
+          }
+          console.log('this.userDays ' + this.userDays);
         });
       });
 
     });
     }
-    Some(event) {
-
-      const route = new event.ymaps.multiRouter.MultiRoute({
-        // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
-        referencePoints: [
-          this.parameters.state.from,
-          this.parameters.state.to // улица Льва Толстого.
-        ]
-      }, {
-        // Автоматически устанавливать границы карты так,
-        // чтобы маршрут был виден целиком.
-        boundsAutoApply: true
-      });
-      console.log(route);
-      event.event.originalEvent.map.geoObjects.add(route);
-    }
-
 
     JoinTheRoute() {
-      if (this.countOfPlaces === 0) {
-        this.visibility = !this.visibility;
-      } else {
-        const body = new HttpParams()
-          .set('id', String(this.id));
-        this.http.post(`${this.url}/routes/join`, body).subscribe(res => {
-          this.countOfPlaces = this.countOfPlaces - 1;
-        });
-      }
+      this.router.navigate(['myRoute', this.id]);
+      // if (this.countOfPlaces === 0) {
+      //   this.visibility = !this.visibility;
+      // } else {
+      //   const body = new HttpParams()
+      //     .set('id', String(this.id));
+      //   this.http.post(`${this.url}/routes/join`, body).subscribe(res => {
+      //     this.countOfPlaces = this.countOfPlaces - 1;
+      //     // tslint:disable-next-line:prefer-const
+      //     let route: IRoute;
+      //     route.price = this.price;
+      //     route.routeBegin = this.parameters.state.from;
+      //     route.routeEnd = this.parameters.state.to;
+      //     route.routeId = this.id;
+      //     this.router.navigate(['myRoute', this.id]);
+      //   });
+      // }
     }
     toggle() {
       this.visibility = !this.visibility;

@@ -44,19 +44,26 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('navigationOnInit');
+    // this.change2.subscribe((tempUser) => {
+    //   this.visibility = true;
+    //   this.email = tempUser.email;
+    //   this.password = tempUser.password;
+    // });
     if (this.isReg()) {
       // Нужно переделать под конкретный id пользователя
-      this.groupService.getUserGroups('alex@alex.com').subscribe(
-        res => {
-          this.listGroups = res;
-        },
-        err => {
-          // alert(`Error , ${err}`);
-        }
-      );
+      // this.groupService.getUserGroups('alex@alex.com').subscribe(
+      //   res => {
+      //     this.listGroups = res;
+      //   },
+      //   err => {
+      //     // alert(`Error , ${err}`);
+      //   }
+      // );
 
-      this.routeService.getDriverRoutes('alex@alex.com').subscribe(
+      this.routeService.getDriverRoutes().subscribe(
         res => {
+          console.log(res);
           this.listDriverRoutes = res;
         },
         err => {
@@ -66,24 +73,6 @@ export class NavigationComponent implements OnInit {
     }
 
   }
-  getUs() {
-    this.http.get(`${this.url}/users/helloUser`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
-  getAdmin() {
-    this.http.get(`${this.url}/users/Admin`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
-  getUser() {
-    this.http.get(`${this.url}/users/User`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
   isReg(): boolean {
     return true;
   }

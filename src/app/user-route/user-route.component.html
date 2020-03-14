@@ -1,0 +1,64 @@
+<div class="container route">
+  <h1 class="route-header">Мой роут</h1>
+  <div class="row">
+    <div class="col-7">
+      <app-yamap [fromEnabled] = fromEnabled [toEnabled] = toEnabled #component></app-yamap>
+    </div>
+    <div class="col-5">
+    <h2>Здесь должен быть чат</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2 class="cart-route-header">Информация о маршруте</h2>
+  <div class="blockInput col-12">
+    <div class="information-block">
+      <div class="driver-info-wrap">
+        <div class="driver-info-wrap__img">
+          <div class="information-block__text block-text">Водитель данного маршрута</div>
+          <div class="img-wrap">
+            <a href=""><img src="" alt=""></a>
+
+          </div>
+          <div class="information-block__text block-text-driver-name">{{this.driverName}}</div>
+        </div>
+        <div class="driver-info-wrap__text">
+          <div class="driver-info-text block-text-driver">
+            Шкала доверия пользователя
+          </div>
+          <div class="driver-info-text">
+            <div class="container">
+              <div class="progressbar">
+                <span style="width:0%" #element></span>
+              </div>
+            </div>
+          </div>
+          <div class="driver-info-text">
+            <div class="information-block__text block-text-driver">Рейтинг водителя:</div>
+            <div class="block-text-driver block-text-driver-2 driver-rating">{{this.driverRaring}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row block-input-wrap">
+    <div class="blockInput col-4">
+      <div class="information-block-2">
+        <div class="information-block__text block-text">Цена поездки</div>
+        <div class="information-block__link block-text-driver-2">{{this.price}}</div>
+      </div>
+    </div>
+    <div class="blockInput col-4">
+      <div class="information-block-2">
+        <div class="information-block__text block-text">Количество мест</div>
+        <div class="information-block__link block-text-driver-2" >{{this.countOfPlaces}}</div>
+      </div>
+    </div>
+    <div class="blockInput col-4">
+      <div class="information-block-2">
+        <div class="information-block__text block-text">Время отправления</div>
+        <div class="information-block__link block-text-driver-2">{{this.timeOfDriving}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,8 @@ import {GroupsService} from './services/groups.service';
 import {GroupViewComponent} from './group-view/group-view.component';
 import {GroupsComponent} from './groups/groups.component';
 import {ViewRouteComponent} from './view-route/view-route.component';
+import { UserRouteComponent } from './user-route/user-route.component';
+import { YamapComponent } from './yamap/yamap.component';
 
 export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 
@@ -28,9 +30,10 @@ const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
-    { path: '' , component : CityMapComponent},
+    { path: 'start' , component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
-    {path: 'viewRoute/:id', component: ViewRouteComponent}
+  {path: 'viewRoute/:id', component: ViewRouteComponent},
+  {path: 'myRoute/:id', component: UserRouteComponent}
 ];
 
 
@@ -47,7 +50,9 @@ const appRoutes: Routes = [
     RouteComponent,
     LoginComponent,
     ModalPopupComponent,
-    ViewRouteComponent
+    ViewRouteComponent,
+    UserRouteComponent,
+    YamapComponent
   ],
   imports: [
     BrowserModule,
