@@ -23,6 +23,8 @@ export class UserRouteComponent implements OnInit, OnChanges {
 
   fromEnabled = 1;
   toEnabled = 1;
+  dateOfJourney;
+  users ;
   map: any;
    id;
    price;
@@ -30,6 +32,9 @@ export class UserRouteComponent implements OnInit, OnChanges {
    timeOfDriving;
    driverRaring;
    driverName;
+
+  public daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+  public userDays = [];
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -49,14 +54,36 @@ export class UserRouteComponent implements OnInit, OnChanges {
         this.fromEnabled = res.routeBegin;
         this.toEnabled = res.routeEnd;
         this.component.create(this.fromEnabled, this.toEnabled);
-        // @ts-ignore
-        // const htmlElement = this.element.nativeElement as HTMLElement;
-        // htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
         this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
           console.log(res2);
           // @ts-ignore
           this.timeOfDriving = res2.timeOfJourney;
+          // @ts-ignore
+          let scheduleString = (+res2.scheduleDay).toString(2);
+          this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
+          console.log(scheduleString);
+          this.userDays = [];
+          if (scheduleString.length !== 7) {
+            let resString = '';
+            for (let i = 0; i < 7 - scheduleString.length; i++) {
+              resString += '0';
+            }
+            scheduleString = resString + scheduleString;
+          }
+          console.log('scheduleString', scheduleString);
+          for (let i = 0; i < scheduleString.length; i++) {
+            if (+scheduleString[i] === 1) {
+              this.userDays.push(this.daysOfWeek[i]);
+            }
+          }
 
+        });
+        this.http.get(`${this.url}/routes/users/${this.id}`).subscribe( (responce: {userId, fio, email, phoneNumber}) => {
+          this.users = Array.of(responce)[0];
+          // for (let i = 0; i <  Array.of(responce).length ; i++) {
+          //   this.users[i] =  Array.of(responce)[i].email;
+          // }
+          console.log('this.users', this.users);
         });
       });
     });

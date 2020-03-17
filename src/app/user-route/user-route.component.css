@@ -79,9 +79,8 @@
 }
 .information-block-2:hover {
   text-align: center;
-  border: #63AA9C solid 4px;
-  border-radius: 17px;
-  padding-top: 10px;
+  border: #63AA9C solid 2px;
+  border-radius: 20px;
 
 }
 .join-button {
@@ -151,5 +150,29 @@
     inset 0 -2px 6px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
+}
+
+
+/*списки*/
+ul.menu-top > li {
+  display: inline;	/* Располагаем элементы по горизонтали */
+  list-style: none;	/* Убираем маркеры списка */
+  padding: 5px;		/* Поля вокруг текста */
+  background-color: #fffff0;
+  margin-right: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+  border: #63AA9C solid 2px;
+  border-radius: 7px;
+  transition: 0.5s;
+
+}
+.menu-top {
+  margin: auto;
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
 }
 

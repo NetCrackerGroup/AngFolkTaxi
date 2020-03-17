@@ -65,9 +65,8 @@
 }
 .information-block-2:hover {
   text-align: center;
-  border: #63AA9C solid 4px;
-  border-radius: 17px;
-  padding-top: 10px;
+  border: #63AA9C solid 2px;
+  border-radius: 20px;
 
 }
 .join-button {

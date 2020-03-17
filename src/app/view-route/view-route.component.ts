@@ -32,6 +32,9 @@ export class ViewRouteComponent implements OnInit {
   map: any;
   driverRaring: number;
   price;
+  modalText = 'В маршруте нет мест';
+  dateOfJourney;
+  public isManyDays = false;
   public parameters = {
     options: {
       allowSwitch: false,
@@ -79,7 +82,7 @@ export class ViewRouteComponent implements OnInit {
         // @ts-ignore
         const htmlElement = this.element.nativeElement as HTMLElement;
         htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
-
+        this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
         this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
           console.log(res2);
           // @ts-ignore
@@ -87,20 +90,27 @@ export class ViewRouteComponent implements OnInit {
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);
           console.log(scheduleString);
-          if (scheduleString.length !== 7) {
-            let resString = '';
-            for (let i = 0; i < 7 - scheduleString.length; i++) {
-              resString += '0';
+          if (+scheduleString !== 0) {
+            this.userDays = [];
+            if (scheduleString.length !== 7) {
+              let resString = '';
+              for (let i = 0; i < 7 - scheduleString.length; i++) {
+                resString += '0';
+              }
+              scheduleString = resString + scheduleString;
             }
-            scheduleString = resString + scheduleString;
-          }
-          console.log('scheduleString', scheduleString);
-          for (let i = 0; i < scheduleString.length; i++) {
-            if (+scheduleString[i] === 1) {
-              this.userDays.push(this.daysOfWeek[i]);
+            console.log('scheduleString', scheduleString);
+            for (let i = 0; i < scheduleString.length; i++) {
+              if (+scheduleString[i] === 1) {
+                this.userDays.push(this.daysOfWeek[i]);
+              }
             }
+            console.log('this.userDays ' + this.userDays);
+            this.isManyDays = true;
+          } else {
+            this.isManyDays = false;
           }
-          console.log('this.userDays ' + this.userDays);
+
         });
       });
 
@@ -108,23 +118,22 @@ export class ViewRouteComponent implements OnInit {
     }
 
     JoinTheRoute() {
-      this.router.navigate(['myRoute', this.id]);
-      // if (this.countOfPlaces === 0) {
-      //   this.visibility = !this.visibility;
-      // } else {
-      //   const body = new HttpParams()
-      //     .set('id', String(this.id));
-      //   this.http.post(`${this.url}/routes/join`, body).subscribe(res => {
-      //     this.countOfPlaces = this.countOfPlaces - 1;
-      //     // tslint:disable-next-line:prefer-const
-      //     let route: IRoute;
-      //     route.price = this.price;
-      //     route.routeBegin = this.parameters.state.from;
-      //     route.routeEnd = this.parameters.state.to;
-      //     route.routeId = this.id;
-      //     this.router.navigate(['myRoute', this.id]);
-      //   });
-      // }
+      if (this.countOfPlaces === 0) {
+        this.modalText = 'В маршруте нет мест';
+        this.visibility = !this.visibility;
+      } else {
+        const body = new HttpParams()
+          .set('id', String(this.id));
+        this.http.post(`${this.url}/routes/join`, body).subscribe(res => {
+          if (res) {
+            this.countOfPlaces = this.countOfPlaces - 1;
+            this.router.navigate(['myRoute', this.id]);
+          } else {
+            this.modalText = 'ВЫ уже состоите в этом маршруте';
+            this.toggle();
+          }
+        });
+      }
     }
     toggle() {
       this.visibility = !this.visibility;

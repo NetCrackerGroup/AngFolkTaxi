@@ -18,7 +18,7 @@
             Мои маршруты
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let route of listDriverRoutes; let i = index" [id]="route" class="dropdown-item" href="#">Маршрут {{ i + 1}}</a>
+            <a *ngFor="let route of listDriverRoutes; let i = index" [id]="route" class="dropdown-item" [routerLink]="['myRoute', route]" href="#">Маршрут {{ i + 1}}</a>
             <a class="dropdown-item" routerLink="addRoute"> Создать маршрут </a>
           </div>
         </div>

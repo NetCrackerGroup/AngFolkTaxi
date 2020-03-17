@@ -33,29 +33,36 @@
       </div>
     </div>
     <div class="row block-input-wrap">
-      <div class="blockInput col-4">
+      <div class="blockInput col-3">
         <div class="information-block-2">
           <div class="information-block__text block-text">Цена поездки</div>
           <div class="information-block__link block-text-driver-2">{{this.price}}</div>
         </div>
       </div>
-      <div class="blockInput col-4">
+      <div class="blockInput col-3">
         <div class="information-block-2">
           <div class="information-block__text block-text">Количество мест</div>
           <div class="information-block__link block-text-driver-2" >{{this.countOfPlaces}}</div>
         </div>
       </div>
-      <div class="blockInput col-4">
+      <div class="blockInput col-3">
         <div class="information-block-2">
           <div class="information-block__text block-text">Время отправления</div>
-          <div class="information-block__link block-text-driver-2">{{this.timeOfDriving}}</div>
+          <div class="information-block__link block-text-driver-2">{{this.timeOfDriving}} </div>
+        </div>
+      </div>
+      <div class="blockInput col-3">
+        <div class="information-block-2">
+          <div class="information-block__text block-text">Дата отправления</div>
+          <div class="information-block__link block-text-driver-2">{{this.dateOfJourney}}</div>
         </div>
       </div>
     </div>
-    <h3>Расписание маршут</h3>
-    <ul class="menu-top">
-      <li class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
+    <h3>Расписание маршута:</h3>
+    <ul  *ngIf="isManyDays" class="menu-top">
+      <li  class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
     </ul>
+    <h3 *ngIf="!isManyDays">Маршрут назначен на один день в заданное время</h3>
     <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в группу</button>
 
     <div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
@@ -68,7 +75,7 @@
             </button>
           </div>
           <div class="modal-body modal-text">
-            <p>В маршруте нет мест</p>
+            <p>{{this.modalText}}</p>
           </div>
           <div class="modal-footer">
             <button type="button"(click)="toggle()" class="btn btn-primary">Хорошо</button>
