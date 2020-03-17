@@ -68,7 +68,6 @@ export class ParamInterceptor implements HttpInterceptor {
 
   private addTokenHeader(req: HttpRequest<any>): HttpRequest<any> {
     // tslint:disable-next-line:max-line-length
-    console.log('addTokenHeader');
     console.log(`addTokenHeader ${localStorage.getItem('auth_token')}`);
     // tslint:disable-next-line:max-line-length
     return this.isAuthenticatedRequest(req) ? req.clone({setHeaders: {Authorization: 'bearer ' + localStorage.getItem('auth_token')}}) : req;
@@ -84,10 +83,13 @@ export class ParamInterceptor implements HttpInterceptor {
 
   private logout(error: any): Observable<any> {
     console.log('logout');
+    return this.throwError(error);
+  }
+  private logoutRefresh(error: any): Observable<any> {
+    console.log('logoutRefresh');
     this.authService.logout();
     return this.throwError(error);
   }
-
   // @ts-ignore
   private throwError(error: any): Observable<ErrorObservable> {
     console.log('throwError');

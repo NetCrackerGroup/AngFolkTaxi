@@ -1,3 +1,17 @@
+#map {
+  margin: auto;
+  height: 50vh;
+  width: 90vw;
+  margin-bottom: 40px;
+}
+.route-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.route {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 .router-component {
   padding-top: 40px;
   padding-bottom: 60px;
@@ -87,12 +101,6 @@
   height: 20vh;
   width: 20vh;
 }
-#map {
-  margin: auto;
-  height: 50vh;
-  width: 90vw;
-  margin-bottom: 40px;
-}
 .showPopup {
   display: none;
 }
@@ -119,6 +127,7 @@
   font-size: 25px;
 }
 
+
 /*////*/
 .progressbar {
   height: 20px;
@@ -143,6 +152,7 @@
   overflow: hidden;
 }
 
+
 /*списки*/
 ul.menu-top > li {
   display: inline;	/* Располагаем элементы по горизонтали */
@@ -165,3 +175,4 @@ h3 {
   text-align: center;
   margin-bottom: 10px;
 }
+

@@ -12,7 +12,7 @@ export class RoutesService {
 
   constructor(private http: HttpClient) { }
 
-  getDriverRoutes(mail: string): Observable<IRoute[]> {
-    return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routesByEmail/${mail}`);
+  getDriverRoutes(): Observable<IRoute[]> {
+    return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routes`);
   }
 }

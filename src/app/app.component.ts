@@ -36,23 +36,6 @@ export class AppComponent implements OnInit {
     this.http = http;
   }
 
-  getUs() {
-    this.http.get(`${this.url}/users/helloUser`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
-   getAdmin() {
-    this.http.get(`${this.url}/users/Admin`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
-  getUser() {
-    this.http.get(`${this.url}/users/User`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
   ngOnInit(): void {
 
   }
