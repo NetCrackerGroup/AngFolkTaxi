@@ -80,10 +80,6 @@ export class UserRouteComponent implements OnInit, OnChanges {
         });
         this.http.get(`${this.url}/routes/users/${this.id}`).subscribe( (responce: {userId, fio, email, phoneNumber}) => {
           this.users = Array.of(responce)[0];
-          // for (let i = 0; i <  Array.of(responce).length ; i++) {
-          //   this.users[i] =  Array.of(responce)[i].email;
-          // }
-          console.log('this.users', this.users);
         });
       });
     });

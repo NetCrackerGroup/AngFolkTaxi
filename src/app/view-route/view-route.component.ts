@@ -65,12 +65,9 @@ export class ViewRouteComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     ).subscribe(data => {
-      console.log(data);
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
         routeEnd, startDate, price, userRouteDto: {fio, driverRating}, countOfPlaces, timeOfDriving}) => {
-        console.log(res);
-
         this.price = res.price;
         this.countOfPlaces = res.countOfPlaces;
         this.timeOfDriving = res.timeOfDriving;
@@ -84,12 +81,10 @@ export class ViewRouteComponent implements OnInit {
         htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
         this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
         this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
-          console.log(res2);
           // @ts-ignore
           this.timeOfDriving = res2.timeOfJourney;
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);
-          console.log(scheduleString);
           if (+scheduleString !== 0) {
             this.userDays = [];
             if (scheduleString.length !== 7) {
@@ -99,13 +94,11 @@ export class ViewRouteComponent implements OnInit {
               }
               scheduleString = resString + scheduleString;
             }
-            console.log('scheduleString', scheduleString);
             for (let i = 0; i < scheduleString.length; i++) {
               if (+scheduleString[i] === 1) {
                 this.userDays.push(this.daysOfWeek[i]);
               }
             }
-            console.log('this.userDays ' + this.userDays);
             this.isManyDays = true;
           } else {
             this.isManyDays = false;
