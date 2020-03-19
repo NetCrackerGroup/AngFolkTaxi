@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Message} from "./model/message";
 import {Chat} from "./model/chat";
 import {ApiService} from "../shared/api.service";
 import {GroupsService} from "../services/groups.service";
