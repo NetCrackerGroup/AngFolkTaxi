@@ -29,6 +29,7 @@ export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environme
 const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
+<<<<<<< HEAD
     { path: 'groups' , component : GroupsComponent},
     { path: 'start' , component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
@@ -36,6 +37,24 @@ const appRoutes: Routes = [
   {path: 'myRoute/:id', component: UserRouteComponent}
 ];
 
+=======
+    { path: 'groups' , component : AppPublicGroupComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'user/groups', component : AppUserGroupsComponent }
+];
+
+import {Routes, RouterModule} from '@angular/router';
+
+import { AddGroupComponent } from './app-group/addgroup.component';
+import { AppCreateComponent } from './app-create/app-create.component';
+import { FormsModule } from '@angular/forms';
+import { GroupsService } from './services/groups.service';
+import { GroupViewComponent } from './group-view/group-view.component';
+import { GroupsComponent } from './groups/groups.component';
+import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.component';
+import { AppUserGroupsComponent } from './app-user-groups/app-user-groups.component';
+import { AppPublicGroupComponent } from './app-public-group/app-public-group.component';
+>>>>>>> addSecurity2.0
 
 
 @NgModule({
@@ -50,9 +69,15 @@ const appRoutes: Routes = [
     RouteComponent,
     LoginComponent,
     ModalPopupComponent,
+<<<<<<< HEAD
     ViewRouteComponent,
     UserRouteComponent,
     YamapComponent
+=======
+    AppEntrygroupComponent,
+    AppUserGroupsComponent,
+    AppPublicGroupComponent
+>>>>>>> addSecurity2.0
   ],
   imports: [
     BrowserModule,

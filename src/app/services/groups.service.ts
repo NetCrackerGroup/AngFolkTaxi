@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IGroup } from '../entities/igroup';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class GroupsService {
   constructor(private http: HttpClient) { }
 
   getGroup( id: number ) {
+    
 
     const url = `${environment.devUrl}/group/${id}`;
     console.log(url);
@@ -18,18 +20,25 @@ export class GroupsService {
     return this.http.get(url);
   }
 
-  createGroup(namegroup: string, linkgroup: string ) {
+  checkUserInGroup( groupId : number ) {
+    
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const url = `${environment.devUrl}/group/useringroup`;
+
+    const params: HttpParams = new HttpParams().set('group_id', groupId.toString());
+    console.log(params);
+
+    return this.http.post(url, params);
+  }
+
+  createGroup  (namegroup: string, linkgroup: string ) : Observable<any> {
 
     const headers = new Headers({'Content-Type': 'application/json'});
-
-
     const url = `${environment.devUrl}/group/`;
 
-
-    const newparams: HttpParams = new HttpParams().set('name', namegroup).set('link', linkgroup);
-//    const params = { name : namegroup, link : linkgroup};
-    console.log(newparams);
-    return this.http.post<IGroup>(url, newparams);
+    const params: HttpParams = new HttpParams().set('name', namegroup).set('link', linkgroup);
+    console.log(params);
+    return this.http.post(url, params);
   }
 
   getAllGroups() {
@@ -43,4 +52,14 @@ export class GroupsService {
 
     return this.http.get<IGroup[]>(url);
   }
+
+  act(groupId, action : string) {
+    const url = `${environment.devUrl}/group/act`;
+
+    const params: HttpParams = new HttpParams().set('groupId', groupId).set('essence', action);
+    console.log(params);
+
+    return this.http.post(url, params);
+  }
+
 }

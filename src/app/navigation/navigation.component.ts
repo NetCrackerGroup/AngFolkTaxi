@@ -31,6 +31,8 @@ export class NavigationComponent implements OnInit {
    http: HttpClient;
    authService: AuthService;
 
+  userCheck : Boolean;
+
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
               tempSetrService: TempSetrService, http: HttpClient,
@@ -68,13 +70,15 @@ export class NavigationComponent implements OnInit {
         },
         err => {
            // alert(`Error , ${err}`);
+           alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
         }
       );
     }
 
   }
   isReg(): boolean {
-    return true;
+    return this.authService.logIn;
   }
 
 }
