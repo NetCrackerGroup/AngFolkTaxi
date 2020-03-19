@@ -25,12 +25,15 @@
         </div>
 
       </li>
+      <li class="nav-item">
+        <a routerLink="/groups" class="nav-link">Группы</a>
+      </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
           <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
             Мои группы
-          </button>
-          <div *ngIf="isReg()" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          </button> 
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
             <app-group></app-group>
           </div>

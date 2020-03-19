@@ -21,8 +21,9 @@ export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environme
 const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
-    { path: '' , component : CityMapComponent}
+    { path: 'groups' , component : AppPublicGroupComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'user/groups', component : AppUserGroupsComponent }
 ];
 
 import {Routes, RouterModule} from '@angular/router';
@@ -34,6 +35,8 @@ import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
 import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.component';
+import { AppUserGroupsComponent } from './app-user-groups/app-user-groups.component';
+import { AppPublicGroupComponent } from './app-public-group/app-public-group.component';
 
 
 @NgModule({
@@ -48,7 +51,9 @@ import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.componen
     RouteComponent,
     LoginComponent,
     ModalPopupComponent,
-    AppEntrygroupComponent
+    AppEntrygroupComponent,
+    AppUserGroupsComponent,
+    AppPublicGroupComponent
   ],
   imports: [
     BrowserModule,

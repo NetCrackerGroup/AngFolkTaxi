@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { IGroup } from '../entities/igroup';
 import { GroupsService } from '../services/groups.service';
@@ -11,33 +11,13 @@ import { GroupsService } from '../services/groups.service';
 
 export class GroupsComponent implements OnInit {
 
-  flag : boolean;
-  listgroups: IGroup[];
+  @Input() listgroups: IGroup[];
+
 
   constructor(private  groupService: GroupsService) { }
 
   ngOnInit() {
-    this.flag = true;
-    this.loadgroups(this.flag);
   }
 
-  onClick(event : any) {
-    this.flag = !this.flag;
-    this.loadgroups(this.flag);
-    event.disable();
-  }
-  // Mood - 
-  private loadgroups(mood : boolean) {
-    if(mood) {
-      this.groupService.getAllGroups().subscribe(
-        res => {
-          this.listgroups = res;
-        },
-        err => {
-          console.log(`Error , ${err}`);
-        }
-      );
-    }
-  }
 
 }

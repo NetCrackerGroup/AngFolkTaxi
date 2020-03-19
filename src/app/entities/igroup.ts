@@ -5,7 +5,7 @@ export interface IGroup {
     groupId: number;
     typeGroup: ITypeGroup;
     groupName: string;
-    cityLink: string;
+    groupLink: string;
     users: IUser[];
 }
 

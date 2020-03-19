@@ -24,12 +24,10 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                  <button clipboard supported="supported" text="textToCopy" class="btn btn-dark" type="button" >Не жадничай</button>
+                  <button  class="btn btn-dark" type="button" (click)="copyGroupLink(linkedgroup)" id="btn">Не жадничай</button>
                 </div>
-                <input type="text" ng-model="textToCopy" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" [value]="group.cityLink">
-              </div>
-        </div>
-        <p>
-        </p>
+                    <input type="text" class="form-control" [value]="group.groupLink" #linkedgroup>
+                </div>
+            </div>
     </div>
 </div>

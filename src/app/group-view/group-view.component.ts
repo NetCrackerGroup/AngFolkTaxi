@@ -26,7 +26,7 @@ export class GroupViewComponent implements OnInit {
   group : IGroup = {
     groupId : 0,
     groupName : "",
-    cityLink : "",
+    groupLink : "",
     typeGroup : { typeId : 0, nameType : ""},
     users : []
   };
@@ -49,8 +49,7 @@ export class GroupViewComponent implements OnInit {
       );
   }
   
-  handleResponse(res) {
-    
+  handleResponse(res) {  
     if( res["group"]!= null ) {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);
@@ -58,6 +57,7 @@ export class GroupViewComponent implements OnInit {
     this.checkUserInGroup();
   }
 
+  
   actgroup ( event : any ) {
     if (event.target.name == "connect") {
       console.log("connect");
@@ -105,6 +105,12 @@ export class GroupViewComponent implements OnInit {
     );
   }
 
+  copyGroupLink(linkGroup){
+    linkGroup.select();
+    document.execCommand("copy");
+    linkGroup.setSelectionRange(0, 0);
+  }
+
   loadUsers(usersId) {
     let count = 0;
     usersId.forEach(element => {
@@ -126,7 +132,7 @@ export class GroupViewComponent implements OnInit {
     console.log(res["groupId"]);
     this.group.groupId = res["groupId"];
     this.group.groupName = res["groupName"];
-    this.group.cityLink = `${environment.devUrl}/entrypoint/${res["cityLink"]}`;
+    this.group.groupLink = `${environment.devUrl}/entrypoint/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
     let count = 0;
     this.loadUsers(res["users"]);
