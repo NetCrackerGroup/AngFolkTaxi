@@ -19,9 +19,9 @@ export class ParamInterceptor implements HttpInterceptor {
       const paramReq = req.clone({
         headers: req.headers.set(
           'Authorization', 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
-
         )
       });
+      return next.handle(req);
     } else {
       if (req.url.includes('localhost:1337')) {
         console.log('interseptor http://localhost:1337');
@@ -67,9 +67,9 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   private addTokenHeader(req: HttpRequest<any>): HttpRequest<any> {
-    // tslint:disable-next-line:max-line-length
+// tslint:disable-next-line:max-line-length
     console.log(`addTokenHeader ${localStorage.getItem('auth_token')}`);
-    // tslint:disable-next-line:max-line-length
+// tslint:disable-next-line:max-line-length
     return this.isAuthenticatedRequest(req) ? req.clone({setHeaders: {Authorization: 'bearer ' + localStorage.getItem('auth_token')}}) : req;
   }
 
@@ -90,7 +90,7 @@ export class ParamInterceptor implements HttpInterceptor {
     this.authService.logout();
     return this.throwError(error);
   }
-  // @ts-ignore
+// @ts-ignore
   private throwError(error: any): Observable<ErrorObservable> {
     console.log('throwError');
     return Observable.throw(error);
@@ -120,9 +120,13 @@ export class ParamInterceptor implements HttpInterceptor {
         case 401:
           return this.handle401(req, next, error);
         default:
-          return this.throwError(error);
+          return
+
+          this.throwError(error);
       }
     } else {
       return this.throwError(error);
     }
-}}
+  }}
+
+
