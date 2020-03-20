@@ -8,6 +8,7 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -27,20 +28,22 @@ export class NavigationComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false})
    loginComponent: LoginComponent;
 
-   tempSetrService: TempSetrService;
-   http: HttpClient;
-   authService: AuthService;
+  tempSetrService: TempSetrService;
+  http: HttpClient;
+  authService: AuthService;
+  userService: UserService;
 
+  private userEmail: string = null;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent) {
+              loginComponent: LoginComponent, userService: UserService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
-
+    this.userService = userService;
   }
 
   ngOnInit() {
@@ -74,7 +77,19 @@ export class NavigationComponent implements OnInit {
 
   }
   isReg(): boolean {
-    return true;
+   /* this.http.get(`${this.url}/users/getUserEmail`).subscribe(
+      res => {
+        if (res != null) {
+          this.userEmail = res.toString();
+        }
+      },
+      err => {
+        alert(`Error , ${err}`);
+      }
+    );
+    return this.userEmail != null;
+    */
+   return false;
   }
 
 }

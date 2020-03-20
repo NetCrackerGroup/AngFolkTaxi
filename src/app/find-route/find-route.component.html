@@ -1,0 +1,43 @@
+<div class="container">
+  <h3> Поиск маршрута </h3>
+  <form>
+    <div class="form-group">
+      <div class="container">
+        <angular-yandex-map [center]="[51.67037342492434, 39.213419502278526]" [zoom]="10" (yaclick)="SomeClick($event)" >
+        </angular-yandex-map>
+      </div>
+
+      <label>Введите расстояние, которое вы готовы пройти</label>
+      <div class="row">
+        <div class="col">
+          <label>к началу маршрута:</label>
+          <input type="number" [(ngModel)]="stRadius" name="NameGroup" class="form-control" id="stRadius" placeholder="Расстояние">
+        </div>
+
+        <div class="col">
+          <label>после конца маршрута:</label>
+          <input type="number" [(ngModel)]="enRadius" name="NameGroup" class="form-control" id="enRadius" placeholder="Расстояние">
+        </div>
+
+        <div class="col">
+          <label>Введите дату поездки:</label>
+          <input type="string" [(ngModel)]="dep" name="NameGroup" class="form-control" id="dep" placeholder="Дата">
+        </div>
+
+        <!--div class="col" id="content-tab2">
+          <label>Назначьте дату вашей поездки</label>
+          <div class="blockInput col-16">
+            <input class="week-day-date" type="date" value="2020-03-18" [(ngModel)] = "dateDepart"/>
+          </div>
+        </div-->
+      </div>
+
+
+
+    </div>
+
+
+
+    <button class="btn btn-success" routerLink="show-routes" (click)="submit()">Поиск</button>
+  </form>
+</div>
