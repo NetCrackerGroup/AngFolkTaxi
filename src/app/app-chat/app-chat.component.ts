@@ -36,6 +36,7 @@ export class AppChatComponent implements OnInit {
 
   groupId:string;
   private subscription: Subscription;
+  private interval;
 
   constructor(private apiService: ApiService,private route: ActivatedRoute) {
     //this.getAllMessagesPage(this.chatId);
@@ -51,32 +52,30 @@ export class AppChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.chatId);
-   // this.chatId = this.GroupViewComponent.chatId
-
-     /*this.subscription = this.route.params.subscribe(params=>{
-    this.apiService.getChat(params['chatId']).subscribe(
-        res => {
-          console.log(res["chatId"]);
-          this.chatId =  res["chatId"];
-          console.log(this.model.chatId);
-          console.log(this.chatId);
-
-          this.getAllMessagesPage(params['chatId']);
-
-        },
-        // console.log(this.chat)},
-        err => {
-          alert("Чат не найден")
-        })})*/
+    
     this.getAllMessagesPage(this.chatId);
   }
 
   ngOnChanges(){
     console.log(this.chatId);
     this.getAllMessagesPage(this.chatId);
+     const newThis = this;
+    if(newThis.chatId!=null)
+      
+      setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
+        newThis.messages= data['content'];
+        newThis.pages = new Array(data['totalPages'])
+        console.log(newThis.messages);
+      })}, 3000,newThis.chatId);
 
   }
+  ngOnDestroy(){
+    if(this.interval){
+      clearInterval(this.interval);
+    }
+  }
+
+  
   public getAllMessages(ChatId: number ) {
 
     this.apiService.getAllMessages(ChatId).subscribe(
