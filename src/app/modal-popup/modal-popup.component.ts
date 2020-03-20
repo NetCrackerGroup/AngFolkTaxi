@@ -44,20 +44,11 @@ export class ModalPopupComponent implements OnInit {
   Submited(form: NgForm) {
 
     this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
-      console.log('dsfsdf');
       this.authServ.login(this.postUser.email, this.postUser.password);
       this.visibility = false;
     });
 
   }
-  doThis() {
-    console.log('doThis');
-
-    this.visibility = false;
-
-    this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
-  }
-
 
 
   OpenPopup() {

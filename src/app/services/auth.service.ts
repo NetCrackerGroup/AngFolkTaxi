@@ -32,6 +32,7 @@ export class AuthService {
         this.router.navigate(['']);
         localStorage.setItem('auth_token', resp.access_token);
         localStorage.setItem('refresh_token', resp.refresh_token);
+        this.router.navigate(['start']);
       }, error1 => {
         console.log(error1);
       });

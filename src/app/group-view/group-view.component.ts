@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import{ViewChild} from "@angular/core";
 
 import { GroupsService } from "../services/groups.service";
 import { IGroup } from '../entities/igroup';
 import { IUser } from '../entities/iuser'
 import { UserService } from '../services/user.service';
+import {ApiService} from "../shared/api.service";
+import{AppChatComponent} from "../app-chat/app-chat.component";
 
 @Component({
   selector: 'app-group-view',
   templateUrl: './group-view.component.html',
-  styleUrls: ['./group-view.component.css']
+  styleUrls: ['./group-view.component.css'],
+
 })
 export class GroupViewComponent implements OnInit {
 
@@ -21,12 +25,23 @@ export class GroupViewComponent implements OnInit {
     typeGroup : { typeId : 0, nameType : ""},
     users : []
   };
+  chatId:number;
 
   private subscription: Subscription;
+
+
+
+  getgroupId():number{
+    return   parseInt(this.group.groupId)}
+
+  getChatId():number{
+    return this.chatId
+  }
   
   constructor(private groupsService : GroupsService, 
                 private route: ActivatedRoute,
-                private userService : UserService ) { 
+                private userService : UserService ,
+                 private apiService:ApiService) {
 
                   this.subscription = route.params.subscribe(params=>{
                       groupsService.getGroup(params['id']).subscribe(
@@ -37,6 +52,17 @@ export class GroupViewComponent implements OnInit {
                         this.group.groupName = res["groupName"];
                         this.group.cityLink = res["cityLink"];
                         this.group.typeGroup = res["typeGroup"];
+                        //this.chatId =res["groupId"];
+                        apiService.getChatByGroup(res["groupId"]).subscribe(
+                          res => {
+                            this.chatId = res["chatId"];
+                          },
+                          err => {
+                            alert("An error has occured;")
+                          }
+                        );;
+
+
                         let count = 0;
                         res["users"].forEach(element => {
                           console.log(element);
@@ -60,5 +86,39 @@ export class GroupViewComponent implements OnInit {
                 });
               }
   ngOnInit() {
+    this.subscription = this.route.params.subscribe(params=> {
+      this.groupsService.getGroup(params['id']).subscribe(
+        res => {
+
+          this.apiService.getChatByGroup(res["groupId"]).subscribe(
+            res => {
+              this.chatId = res["chatId"];
+              console.log(this.chatId);
+            },
+            err => {
+              alert("An error has occured;")
+            }
+          );
+        ;}
+
+
+        )
+  }
+    )
+  }
+
+
+
+
+
+  public getChatbyGroup() {
+    this.apiService.getChatByGroup(this.group.groupId).subscribe(
+      res => {
+        this.chatId = res.chatId;
+      },
+      err => {
+        alert("An error has occured;")
+      }
+    );
   }
 }
