@@ -2,8 +2,9 @@
   <h3>Найденные маршруты</h3>
 
   <a *ngFor="let route of listRoutes" class="list-group-item" >
-    <h4 class="list-group-item-heading">{{route.routeBegin}}</h4>
+    <h4 class="list-group-item-heading">{{route.userRouteDto.fio}}</h4>
     <p class="list-group-item-text">Цена: {{route.price}}</p>
+    <button type="button" class="btn btn-success" routerLink="show-routes" (click)="submit()">Подробнее</button>
   </a>
 </div>
 

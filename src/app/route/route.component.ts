@@ -89,21 +89,6 @@ export class RouteComponent implements OnInit, OnChanges {
           }
         }
         this.coords.push(event.event.get('coords'));
-    // tslint:disable-next-line:max-line-length
-   // const route = new event.ymaps.multiRouter.MultiRoute({
-   //    // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
-   //    referencePoints: [
-   //      'Москва, метро Смоленская',
-   //      'Москва, метро Арбатская',
-   //      [55.734876, 37.59308], // улица Льва Толстого.
-   //    ]
-   //  }, {
-   //    // Автоматически устанавливать границы карты так,
-   //    // чтобы маршрут был виден целиком.
-   //    boundsAutoApply: true
-   //  });
-   // console.log(route);
-   // event.event.originalEvent.map.geoObjects.add(route);
   }
 
   async createPoint(event) {

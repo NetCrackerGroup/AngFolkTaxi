@@ -11,6 +11,8 @@ export class RoutesService {
   private urlForRoutes = `${environment.devUrl}`;
 
   private listRoutes: Observable<IRoute[]> = null;
+  private listDrivers: Observable<String[]> = null;
+
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +20,9 @@ export class RoutesService {
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routesByEmail/${mail}`);
   }
 
-  getClosestRoutes(adress: string, radius: number, departure: string): void {
-    this.listRoutes = this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/closestRoutes/${adress}/${radius}/${departure}`);
+  getClosestRoutes(startPoint: string, endPoint: string, stRadius: number, enRadius: number, departure: string): void {
+    this.listRoutes = this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/closestRoutes/
+      ${startPoint}/${endPoint}/${stRadius}/${enRadius}/${departure}`);
   }
 
 /*
