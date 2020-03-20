@@ -14,13 +14,15 @@ import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 export class FindRouteComponent implements OnInit, OnChanges{
 
   adress = '';
-  radius = 0;
-  depart = '';
+  stRadius = 200;
+  enRadius = 200;
+  dateDepart : Date = new Date('2020-03-18');
+  //dateDepart = element(by.binding('dateDepart | date: "yyyy-MM-dd"'));
+  dep = '';
 
   private coords = [];
-  private startPoint;
-  private endPoint;
-
+  private startPoint = null;
+  private endPoint = null;
   private listRoutes: IRoute[] = null;
 
   constructor(private  routeService: RoutesService) { }
@@ -33,14 +35,15 @@ export class FindRouteComponent implements OnInit, OnChanges{
   }
 
   submit() {
-    if (this.adress.trim().length === 0) {
-      alert('Заполните поле "Адрес" ');
-    } else if (this.depart.trim().length === 0) {
-      alert('Заполните поле "Время отправления" ');
-    } else if (this.radius === 0) {
+    if (this.stRadius === 0 || this.enRadius === 0) {
       alert('Заполните поле "Расстояние" ');
+    } else if (this.startPoint === null || this.endPoint === null){
+      alert('Выберите точки отправления и прибытия" ');
     } else {
-      this.routeService.getClosestRoutes(this.adress, this.radius, this.depart);
+    //  this.dep = this.dateDepart.toLocaleString().split(",")[0];
+
+      this.routeService.getClosestRoutes(this.startPoint.__zone_symbol__value.geometry._coordinates,
+        this.endPoint.__zone_symbol__value.geometry._coordinates, this.stRadius, this.enRadius, this.dep);
     }
   }
 
@@ -93,5 +96,6 @@ export class FindRouteComponent implements OnInit, OnChanges{
     });
      return Point;
   }
+
 
 }
