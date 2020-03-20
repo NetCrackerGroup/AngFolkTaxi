@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ViewRouteComponent} from '../view-route/view-route.component';
 import {HttpClient} from '@angular/common/http';
 import {YamapComponent} from '../yamap/yamap.component';
+import {ApiService} from "../shared/api.service";
 declare var ymaps: any;
 
 @Component({
@@ -14,7 +15,16 @@ declare var ymaps: any;
 })
 export class UserRouteComponent implements OnInit, OnChanges {
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private apiService:ApiService) {
+    this.apiService.getChatByRoute(this.id).subscribe(
+      res => {
+        this.chatId = res["chatId"];
+      },
+      err => {
+        alert("An error has occured;")
+      }
+    );;
+  }
 
   @ViewChild('component', {static: false})
   component: YamapComponent;
@@ -35,6 +45,7 @@ export class UserRouteComponent implements OnInit, OnChanges {
 
   public daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
   public userDays = [];
+  chatId:number;
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -83,6 +94,16 @@ export class UserRouteComponent implements OnInit, OnChanges {
         });
       });
     });
+    this.apiService.getChatByRoute(this.id).subscribe(
+      res => {
+        this.chatId = res["chatId"];
+      },
+      err => {
+        alert("An error has occured;")
+      }
+    );;
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {

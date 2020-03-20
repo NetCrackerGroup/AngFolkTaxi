@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import{ViewChild} from "@angular/core";
 
 import { GroupsService } from "../services/groups.service";
 import { IGroup } from '../entities/igroup';
@@ -11,11 +12,14 @@ import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
+import {ApiService} from "../shared/api.service";
+import{AppChatComponent} from "../app-chat/app-chat.component";
 
 @Component({
   selector: 'app-group-view',
   templateUrl: './group-view.component.html',
-  styleUrls: ['./group-view.component.css']
+  styleUrls: ['./group-view.component.css'],
+
 })
 export class GroupViewComponent implements OnInit {
 
@@ -30,14 +34,20 @@ export class GroupViewComponent implements OnInit {
     typeGroup : { typeId : 0, nameType : ""},
     users : []
   };
+  chatId:number;
 
   private subscription: Subscription;
+
+  getChatId():number{
+    return this.chatId
+  }
   
   constructor(private groupsService : GroupsService, 
                 private route: ActivatedRoute,
                 private userService : UserService,
                 private  authService : AuthService,
-                private router : Router ) { 
+                private router : Router,
+                private apiService:ApiService ) { 
 
     this.subscription = groupsService.getGroup(route.snapshot.params['id']).subscribe(
         res => {
@@ -49,6 +59,7 @@ export class GroupViewComponent implements OnInit {
       );
   }
   
+
   handleResponse(res) {  
     if( res["group"]!= null ) {
       this.group.users = [];
@@ -70,6 +81,7 @@ export class GroupViewComponent implements OnInit {
         }
       );
     }
+    
     else if ( event.target.name == "leave") {
       console.log("leave");
       this.groupsService.act(this.group.groupId, "leave").subscribe(
@@ -135,9 +147,53 @@ export class GroupViewComponent implements OnInit {
     this.group.groupLink = `${environment.devUrl}/entrypoint/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
     let count = 0;
+    this. apiService.getChatByGroup(res["groupId"]).subscribe(
+      res => {
+        this.chatId = res["chatId"];
+      },
+      err => {
+        alert("An error has occured;")
+      }
+    );
     this.loadUsers(res["users"]);
     if ( this.loginCheck ) {
       this.checkUserInGroup();
     }
+
+    this.subscription = this.route.params.subscribe(params=> {
+      this.groupsService.getGroup(params['id']).subscribe(
+        res => {
+
+          this.apiService.getChatByGroup(res["groupId"]).subscribe(
+            res => {
+              this.chatId = res["chatId"];
+              console.log(this.chatId);
+            },
+            err => {
+              alert("An error has occured;")
+            }
+          );
+        ;
+      }
+
+
+        )
+  }
+    )
+  }
+
+
+
+
+
+  public getChatbyGroup() {
+    this.apiService.getChatByGroup(this.group.groupId.toString()).subscribe(
+      res => {
+        this.chatId = res.chatId;
+      },
+      err => {
+        alert("An error has occured;")
+      }
+    );
   }
 }

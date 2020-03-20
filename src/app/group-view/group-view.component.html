@@ -30,4 +30,23 @@
                 </div>
             </div>
     </div>
+
 </div>
+<div>
+
+    <ul>
+        <li *ngFor="let user of group.users">
+            <a routerLink="">{{user.fio}}</a>
+        </li>
+    </ul>
+  <ul>
+    <li class="nav-item active">
+      <a  class="nav-link" [routerLink]="['/Chats' , this.chatId]"> Chats</a>
+    </li>
+  </ul>
+  <app-app-chat [chatId] = "chatId">
+  </app-app-chat>
+  <a>{{this.chatId}}</a>
+
+</div>
+
