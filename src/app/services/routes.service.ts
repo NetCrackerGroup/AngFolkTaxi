@@ -17,6 +17,7 @@ export class RoutesService {
   constructor(private http: HttpClient) { }
 
   getDriverRoutes(): Observable<IRoute[]> {
+    console.log('getDriverRoutes()');
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routes`);
   }
 
