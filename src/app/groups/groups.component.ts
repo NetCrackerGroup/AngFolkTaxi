@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { IGroup } from '../entities/igroup';
 import { GroupsService } from '../services/groups.service';
@@ -11,19 +11,13 @@ import { GroupsService } from '../services/groups.service';
 
 export class GroupsComponent implements OnInit {
 
-  listgroups: IGroup[];
+  @Input() listgroups: IGroup[];
+
 
   constructor(private  groupService: GroupsService) { }
 
   ngOnInit() {
-      this.groupService.getAllGroups().subscribe(
-        res => {
-          this.listgroups = res;
-        },
-        err => {
-          alert(`Error , ${err}`);
-        }
-      );
   }
+
 
 }

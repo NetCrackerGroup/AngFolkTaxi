@@ -13,7 +13,8 @@
         <a class="nav-link" routerLink="find-route" >Поиск маршрута</a>  <!-- should be linked to route search component -->
       </li>
       <li class="nav-item active">
-        <div class="dropdown">
+
+        <div *ngIf="isReg()" class="dropdown">
           <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
           </button>
@@ -22,6 +23,10 @@
             <a class="dropdown-item" routerLink="addRoute"> Создать маршрут </a>
           </div>
         </div>
+
+      </li>
+      <li class="nav-item">
+        <a routerLink="groups" class="nav-link">Группы</a>
       </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
@@ -29,8 +34,8 @@
             Мои группы
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}} *ngIf="authService.logIn"</a>
-            <a class="dropdown-item" routerLink="create-group" *ngIf="authService.logIn"> Создать группу </a>
+            <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
+            <app-group></app-group>
           </div>
         </div>
       </li>
