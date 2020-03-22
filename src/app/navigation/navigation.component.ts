@@ -89,7 +89,7 @@ export class NavigationComponent implements OnInit {
     );
     return this.userEmail != null;
     */
-   return false;
+   return true;
   }
 
 }

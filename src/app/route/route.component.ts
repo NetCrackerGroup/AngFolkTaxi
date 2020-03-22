@@ -22,12 +22,12 @@ export class RouteComponent implements OnInit, OnChanges {
     routeBegin: undefined,
     routeEnd: undefined,
     price: undefined,
-    countOfPlaces: undefined,
-    startDate: Date
+    countOfPlaces: undefined
   };
   schedule = {
     timeOfJourney: undefined,
-    scheduleDay: undefined
+    scheduleDay: undefined,
+    startDate: Date
   };
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
@@ -56,7 +56,7 @@ export class RouteComponent implements OnInit, OnChanges {
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
     this.schedule.scheduleDay =  res;
-    console.log(this.postUser.startDate);
+    console.log(this.schedule.startDate);
     let body;
 
     if (this.isSingleRoute) {
