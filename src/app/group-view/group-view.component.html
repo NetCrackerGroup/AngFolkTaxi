@@ -1,10 +1,39 @@
-<p>Название группы : <span class="name"> {{group.groupName}} </span> </p>
-<p>Ссылка : <a class="link" [href]=" 'http://' + group.cityLink"> {{group.cityLink}} </a> </p>
+<div class="container">
+    <div class="card">
 
-<div class="community">
-    <div class="head">
-        <img src="assets/images/community.png" alt="fsd"> Участники 
+        <div class="card-header">
+            <h5 class="card-title"> <span class="name"> {{group.groupName}} </span></h5>
+          </div>
+
+        <div *ngIf="loginCheck">
+            <button *ngIf="!entryGroup" name="connect" class="btn btn-outline-success btn-lg btn-block" (click)="actgroup($event)">Вступить</button>
+            <button *ngIf="entryGroup" name="leave" class="btn btn-outline-success btn-lg btn-block" (click)="actgroup($event)">Покинуть</button>
+        </div>
+        <div class="card-body">
+
+            <div class="community">
+                <div class="head">
+                    <img src="assets/images/community.png" alt="fsd"> Участники 
+                </div>
+                <ul>
+                    <li *ngFor="let user of group.users">
+                        <a routerLink="">{{user.fio}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <button  class="btn btn-dark" type="button" (click)="copyGroupLink(linkedgroup)" id="btn">Не жадничай</button>
+                </div>
+                    <input type="text" class="form-control" [value]="group.groupLink" #linkedgroup>
+                </div>
+            </div>
     </div>
+
+</div>
+<div>
+
     <ul>
         <li *ngFor="let user of group.users">
             <a routerLink="">{{user.fio}}</a>
@@ -20,7 +49,4 @@
   <a>{{this.chatId}}</a>
 
 </div>
-
-
-
 

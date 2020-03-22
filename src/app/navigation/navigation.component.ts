@@ -33,6 +33,9 @@ export class NavigationComponent implements OnInit {
   authService: AuthService;
   userService: UserService;
 
+
+  userCheck : Boolean;
+
   private userEmail: string = null;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
@@ -71,25 +74,15 @@ export class NavigationComponent implements OnInit {
         },
         err => {
            // alert(`Error , ${err}`);
+           alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
         }
       );
     }
 
   }
   isReg(): boolean {
-   /* this.http.get(`${this.url}/users/getUserEmail`).subscribe(
-      res => {
-        if (res != null) {
-          this.userEmail = res.toString();
-        }
-      },
-      err => {
-        alert(`Error , ${err}`);
-      }
-    );
-    return this.userEmail != null;
-    */
-   return false;
+    return this.authService.logIn;
   }
 
 }

@@ -31,15 +31,18 @@ const appRoutes: Routes = [
   },
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
     { path: 'find-route' , component: FindRouteComponent},
     { path: '' , component : CityMapComponent},
     { path: 'find-route/show-routes' , component: RoutesListComponent},
     {path: 'start', component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
     {path: 'viewRoute/:id', component: ViewRouteComponent},
-    {path: 'myRoute/:id', component: UserRouteComponent}
+    {path: 'myRoute/:id', component: UserRouteComponent},
+    { path: 'groups' , component : AppPublicGroupComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'user/groups', component : AppUserGroupsComponent }
 ];
+
 
 import {Routes, RouterModule} from '@angular/router';
 
@@ -49,13 +52,14 @@ import { FormsModule } from '@angular/forms';
 import { GroupsService } from './services/groups.service';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { GroupsComponent } from './groups/groups.component';
+import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.component';
+import { AppUserGroupsComponent } from './app-user-groups/app-user-groups.component';
+import { AppPublicGroupComponent } from './app-public-group/app-public-group.component';
 import {AppChatComponent} from "./app-chat/app-chat.component";
 import {ViewRouteComponent} from "./view-route/view-route.component";
 
 import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +77,10 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     RoutesListComponent,
     ViewRouteComponent,
     UserRouteComponent,
-    YamapComponent
+    YamapComponent,
+    AppEntrygroupComponent,
+    AppUserGroupsComponent,
+    AppPublicGroupComponent
   ],
   imports: [
     BrowserModule,

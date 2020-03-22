@@ -9,6 +9,9 @@
 <body>
     <div>
         <form>
+            <div *ngIf="groupExists" class = "alert alert-danger">
+                <strong>Не удалось создать группу!</strong> Попробуйте другое имя.
+            </div>
             <div class="form-group" (submit)="addgroup($event)">
                 <label for="formGroupExampleInput">Название :</label>
                 <input type="text" [(ngModel)]="name" id="formGroupExampleInput" name="NameGroup" class="form-control" id="NameGroup" placeholder="Название">
@@ -17,7 +20,7 @@
                   <label> Тип группы : </label>
                 <div class="form-check">
                     <input class="form-check-input" id="exampleRadios1" type="radio" name="type" id="PublicGroup" [(ngModel)]="typeGroup" [value]="'public'">
-                    <label class="form-check-label" for="exampleRadios1">
+                    <label class="form-check-label" for="PublicGroup">
                       Открытая
                     </label>
                     <br/>

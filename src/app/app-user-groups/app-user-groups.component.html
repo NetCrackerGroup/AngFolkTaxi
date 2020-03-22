@@ -1,0 +1,13 @@
+<div class="container">
+    <div class = "margin-top">
+        <ul [ngClass]="{'nav': true, 'nav-tabs': true}">
+            <a class="nav-item">
+                <button [ngClass]="{'nav-link': true, 'active': flag}" (click)="onClick($event)">Участие</button>
+            </a>
+            <a class="nav-item">
+                <button [ngClass]="{'nav-link': true, 'active': !flag}" (click)="onClick($event)">Управление  </button>
+            </a>
+        </ul>
+    </div>
+    <app-groups [listgroups]="listgroups"></app-groups>
+</div>

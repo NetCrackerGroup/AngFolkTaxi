@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngFolkTaxi"
+    }
+  },
+  "defaultProject": "AngFolkTaxi",
+  "cli": {
+    "analytics": "f17658be-cf98-4274-bcd3-451ba917d936"
+  }
 }
