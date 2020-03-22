@@ -40,4 +40,10 @@ export class UserService {
 
   }
 
+  getUserEmail() {
+    const url = `${environment.devUrl}/users/getUserEmail`;
+    console.log(`Email get request on ${url}`);
+
+    return this.http.get<IUser>(url);
+  }
 }

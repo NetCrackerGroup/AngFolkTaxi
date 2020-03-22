@@ -10,9 +10,27 @@ import {environment} from '../../environments/environment';
 export class RoutesService {
   private urlForRoutes = `${environment.devUrl}`;
 
+  private listRoutes: Observable<IRoute[]> = null;
+  private listDrivers: Observable<String[]> = null;
+
+
   constructor(private http: HttpClient) { }
 
   getDriverRoutes(): Observable<IRoute[]> {
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routes`);
+  }
+
+  getClosestRoutes(startPoint: string, endPoint: string, stRadius: number, enRadius: number, departure: string): void {
+    this.listRoutes = this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/closestRoutes/
+      ${startPoint}/${endPoint}/${stRadius}/${enRadius}/${departure}`);
+  }
+
+/*
+  setListRoutes(newListRoutes: IRoute[]): void {
+    this.listRoutes = newListRoutes;
+  } */
+
+  getListRoutes(): Observable<IRoute[]> {
+    return this.listRoutes;
   }
 }

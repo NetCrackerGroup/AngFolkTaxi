@@ -32,6 +32,9 @@ const appRoutes: Routes = [
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
+    { path: 'find-route' , component: FindRouteComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'find-route/show-routes' , component: RoutesListComponent},
     {path: 'start', component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
     {path: 'viewRoute/:id', component: ViewRouteComponent},
@@ -56,6 +59,8 @@ import { AppPublicGroupComponent } from './app-public-group/app-public-group.com
 import {AppChatComponent} from "./app-chat/app-chat.component";
 import {ViewRouteComponent} from "./view-route/view-route.component";
 
+import {FindRouteComponent} from './find-route/find-route.component';
+import { RoutesListComponent } from './routes-list/routes-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,9 +71,11 @@ import {ViewRouteComponent} from "./view-route/view-route.component";
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
+    FindRouteComponent,
     LoginComponent,
     AppChatComponent,
     ModalPopupComponent,
+    RoutesListComponent,
     ViewRouteComponent,
     UserRouteComponent,
     YamapComponent,
