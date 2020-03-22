@@ -31,7 +31,6 @@ const appRoutes: Routes = [
   },
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
     { path: 'find-route' , component: FindRouteComponent},
     { path: '' , component : CityMapComponent},
     { path: 'find-route/show-routes' , component: RoutesListComponent},

@@ -16,6 +16,7 @@ export class AppPublicGroupComponent implements OnInit {
   ngOnInit() {
     this.groupService.getAllGroups().subscribe(
       res => {
+        console.log("response in method : getAllGroups");
         this.listgroups = res;
       },
       err => {

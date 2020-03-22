@@ -44,6 +44,8 @@ export class GroupsService {
   getAllGroups() {
     const url = `${environment.devUrl}/group`;
 
+    console.log(`Get request ${url}`);
+
     return this.http.get<IGroup[]>(url);
   }
 
