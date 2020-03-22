@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
-import {ApiService} from "../shared/api.service";
-import{AppChatComponent} from "../app-chat/app-chat.component";
+import { ApiService } from "../shared/api.service";
+import{ AppChatComponent } from "../app-chat/app-chat.component";
 
 @Component({
   selector: 'app-group-view',
@@ -36,7 +36,10 @@ export class GroupViewComponent implements OnInit {
   };
   chatId:number;
 
+  id: number;
   private subscription: Subscription;
+  private subscriptionChat : Subscription;
+  private routeSubscription: Subscription;
 
   getChatId():number{
     return this.chatId
@@ -48,16 +51,22 @@ export class GroupViewComponent implements OnInit {
                 private  authService : AuthService,
                 private router : Router,
                 private apiService:ApiService ) { 
+    this.routeSubscription = route.params.subscribe(params=> 
+      { 
+        this.id=params['id'];
+        groupsService.getGroup(this.id).subscribe(
+          res => {
 
-    this.subscription = groupsService.getGroup(route.snapshot.params['id']).subscribe(
-        res => {
-          this.loadgroup(res);
-        },
-        err => {
-          alert("Группа не найдена!")
-        }
-      );
+            this.loadgroup(res);
+          },
+          err => {
+            alert("Группа не найдена!");
+          }
+        );
+    });
   }
+
+  
   
 
   handleResponse(res) {  
@@ -100,6 +109,7 @@ export class GroupViewComponent implements OnInit {
     if ( this.loginCheck ) {
       this.checkUserInGroup();
     }
+    console.log(` ID : ${this.id} `);
   }
 
   repost(){
@@ -144,7 +154,7 @@ export class GroupViewComponent implements OnInit {
     console.log(res["groupId"]);
     this.group.groupId = res["groupId"];
     this.group.groupName = res["groupName"];
-    this.group.groupLink = `${environment.devUrl}/entrypoint/${res["cityLink"]}`;
+    this.group.groupLink = `${environment.devUrlFront}/entrypoint/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
     let count = 0;
     this. apiService.getChatByGroup(res["groupId"]).subscribe(
@@ -160,7 +170,7 @@ export class GroupViewComponent implements OnInit {
       this.checkUserInGroup();
     }
 
-    this.subscription = this.route.params.subscribe(params=> {
+    this.subscriptionChat = this.route.params.subscribe(params=> {
       this.groupsService.getGroup(params['id']).subscribe(
         res => {
 
@@ -181,10 +191,6 @@ export class GroupViewComponent implements OnInit {
   }
     )
   }
-
-
-
-
 
   public getChatbyGroup() {
     this.apiService.getChatByGroup(this.group.groupId.toString()).subscribe(

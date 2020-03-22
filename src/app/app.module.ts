@@ -13,8 +13,6 @@ import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import {ParamInterceptor} from './param-interceptor';
 
 
-
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
@@ -31,19 +29,20 @@ const appRoutes: Routes = [
   },
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
     {path: 'start', component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
     {path: 'viewRoute/:id', component: ViewRouteComponent},
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : CityMapComponent},
-    { path: 'user/groups', component : AppUserGroupsComponent }
+    { path: 'user/groups', component : AppUserGroupsComponent },
+    { path: 'inviteUser/:link', component : InviteUserToGroupComponent }
 ];
 
 
 import {Routes, RouterModule} from '@angular/router';
 
+import { InviteUserToGroupComponent } from  './invite-user-to-group/invite-user-to-group.component';
 import { AddGroupComponent } from './app-group/addgroup.component';
 import { AppCreateComponent } from './app-create/app-create.component';
 import { FormsModule } from '@angular/forms';
