@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import{ViewChild} from "@angular/core";
@@ -7,6 +8,9 @@ import { GroupsService } from "../services/groups.service";
 import { IGroup } from '../entities/igroup';
 import { IUser } from '../entities/iuser'
 import { UserService } from '../services/user.service';
+
+import { AccViewComponent } from '../acc-view/acc-view.component';
+
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -14,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
 import { ApiService } from "../shared/api.service";
 import{ AppChatComponent } from "../app-chat/app-chat.component";
+
 
 @Component({
   selector: 'app-group-view',
@@ -23,9 +28,13 @@ import{ AppChatComponent } from "../app-chat/app-chat.component";
 })
 export class GroupViewComponent implements OnInit {
 
+
+  @ViewChild(AccViewComponent, {static: false})
+   private accViewComponent: AccViewComponent;
+
   loginCheck : boolean;
   entryGroup : boolean;
-  
+
 
   group : IGroup = {
     groupId : 0,
@@ -38,6 +47,7 @@ export class GroupViewComponent implements OnInit {
 
   id: number;
   private subscription: Subscription;
+
   private subscriptionChat : Subscription;
   private routeSubscription: Subscription;
 
@@ -50,7 +60,8 @@ export class GroupViewComponent implements OnInit {
                 private userService : UserService,
                 private  authService : AuthService,
                 private router : Router,
-                private apiService:ApiService ) { 
+                private apiService:ApiService,
+                private userService : UserService) { 
     this.routeSubscription = route.params.subscribe(params=> 
       { 
         this.id=params['id'];
@@ -103,6 +114,7 @@ export class GroupViewComponent implements OnInit {
       )
     }
   }
+
 
   ngOnInit() {
     this.loginCheck = this.authService.logIn;
@@ -202,4 +214,6 @@ export class GroupViewComponent implements OnInit {
       }
     );
   }
+
 }
+

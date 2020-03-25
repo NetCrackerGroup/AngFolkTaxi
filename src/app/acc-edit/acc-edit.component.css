@@ -1,0 +1,114 @@
+.star {
+  font-size: 1.5rem;
+  color: #b0c4de;
+}
+img {
+    height: 250px;
+    width: 250px;
+    position: center;
+    border-radius: 50px;
+    margin-right: 100px;
+}
+.filled {
+  color: #1e90ff;
+}
+.bad {
+  color: #deb0b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.userName li {
+  list-style-type: none; /* Убираем маркеры */
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  height: 2em;
+  border-radius: 5px;
+}
+
+.userName li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+
+.userName li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.userName li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+.userCity li {
+  list-style-type: none; /* Убираем маркеры */
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  height: 2em;
+  border-radius: 5px;
+}
+
+.userCity li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+
+.userCity li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.userCity li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+.userPhoneNumber li {
+  list-style-type: none; /* Убираем маркеры */
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  height: 2em;
+  border-radius: 5px;
+}
+
+.userPhoneNumber li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+
+.userPhoneNumber li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.userPhoneNumber li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+.userInfo li {
+  list-style-type: none; /* Убираем маркеры */
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  height: 2em;
+  border-radius: 5px;
+}
+
+.userInfo li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+
+.userInfo li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.userInfo li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+

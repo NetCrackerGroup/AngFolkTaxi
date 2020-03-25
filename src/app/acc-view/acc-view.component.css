@@ -1,0 +1,18 @@
+.star {
+  font-size: 1.5rem;
+  color: #b0c4de;
+}
+
+img {
+    height: 250px;
+    width: 250px;
+    position: center;
+    border-radius: 50px;
+    margin-right: 100px;
+}
+
+.invisibled{display: block;}
+
+.acc-view {
+  display: none;
+}

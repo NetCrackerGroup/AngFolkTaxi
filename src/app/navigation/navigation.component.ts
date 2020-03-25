@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { UserService } from '../services/user.service';
 import {GroupsService} from '../services/groups.service';
 import {IGroup} from '../entities/igroup';
 import {IRoute} from '../entities/iroute';
@@ -21,12 +22,19 @@ export class NavigationComponent implements OnInit {
   listDriverRoutes: IRoute[] = null;
   url = 'http://localhost:1337';
 
+  logged = false;
+
   private routeService: RoutesService;
   @ViewChild(ModalPopupComponent, {static: false})
    modalPopupComponent: ModalPopupComponent;
 
   @ViewChild(LoginComponent, {static: false})
    loginComponent: LoginComponent;
+
+
+
+
+  constructor(private userService : UserService, private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
   tempSetrService: TempSetrService;
   http: HttpClient;
@@ -39,6 +47,7 @@ export class NavigationComponent implements OnInit {
   private userEmail: string = null;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
+
               tempSetrService: TempSetrService, http: HttpClient,
               loginComponent: LoginComponent, userService: UserService) {
     this.loginComponent = loginComponent;
@@ -48,6 +57,7 @@ export class NavigationComponent implements OnInit {
     this.routeService = routeService;
     this.userService = userService;
   }
+
 
   ngOnInit() {
     console.log('navigationOnInit');
@@ -78,11 +88,13 @@ export class NavigationComponent implements OnInit {
           console.log(`Error , ${err}`);
         }
       );
-    }
+    }*/
 
   }
+
   isReg(): boolean {
     return this.authService.logIn;
+
   }
 
 }

@@ -1,0 +1,26 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Изменить ваш телефонный номер</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="newPhoneNumber">Введите новый телефонный номер</label>
+          <input type="text" ngModel maxlength="20" class="form-control" name="newPhoneNumber" id="newPhoneNumber"
+                 (input)="onInput($event.target.value)" (keydown.emit.backspace)="onKeydown($event)" [(ngModel)]="newPhoneNumber"
+
+          >
+          <label> Количество доступных символов: {{this.numLock}} </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <button type="button" class="btn btn-success" (click) = "toggle()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</form>
