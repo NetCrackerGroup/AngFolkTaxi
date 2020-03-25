@@ -80,8 +80,10 @@ export class ViewRouteComponent implements OnInit {
         const htmlElement = this.element.nativeElement as HTMLElement;
         htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
         this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
-        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
+        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2: {timeOfJourney, scheduleDay, startDate}) => {
           // @ts-ignore
+          const date = new Date(res2.startDate);
+          this.dateOfJourney = new Date(res2.startDate).toLocaleDateString();
           this.timeOfDriving = res2.timeOfJourney;
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);

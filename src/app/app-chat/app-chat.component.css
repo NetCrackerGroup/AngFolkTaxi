@@ -1,1 +1,6 @@
+.hovered-class {
 
+}
+.hovered-class:hover {
+  cursor: pointer;
+}

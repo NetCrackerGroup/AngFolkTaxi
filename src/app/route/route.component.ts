@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class RouteComponent implements OnInit, OnChanges {
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.http = http;
   }
 
@@ -73,6 +74,7 @@ export class RouteComponent implements OnInit, OnChanges {
     console.log(body);
     this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
       console.log(resp);
+      this.router.navigate(['']);
     });
 
   }
