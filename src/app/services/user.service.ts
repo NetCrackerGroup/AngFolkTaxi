@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../entities/iuser';
+
 import { IUserAcc } from '../entities/iuseracc';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import { Observable } from 'rxjs';
+import { IGroup } from '../entities/igroup';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +16,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  name: string = "";
-  //private fioSource = new BehaviorSubject<string>(name);
-  //fio = this.fioSource.asObservable();
+
+  getUserGroups(){
+    const url = `${environment.devUrl}/users/groups`;
+    console.log(`Get request on ${url}`);
+
+    return this.http.get<IGroup[]>(url);
+  }
 
   getUserById(userId: number) {
     const url = `${environment.devUrl}/users/${userId}`;
@@ -22,6 +30,7 @@ export class UserService {
 
     return this.http.get<IUser>(url);
   }
+
 
   getUserByIdForAcc(userId: number) {
     const url = `${environment.devUrl}/users/user/${userId}`;
@@ -123,3 +132,25 @@ export class UserService {
   }
 
 }
+
+  getGroups(administrator : boolean) : Observable<any>{
+
+    let url = `${environment.devUrl}/users/`
+    if ( administrator ) {
+      return 
+    }
+
+    else {
+
+    }
+
+  }
+
+  getUserEmail() {
+    const url = `${environment.devUrl}/users/getUserEmail`;
+    console.log(`Email get request on ${url}`);
+
+    return this.http.get<IUser>(url);
+  }
+}
+

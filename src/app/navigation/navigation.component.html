@@ -10,27 +10,32 @@
     <ul class="navbar-nav mr-auto">
       <!-- add if reg to all -->
       <li class="nav-item active">
-        <a class="nav-link" >Поиск маршрута</a>  <!-- should be linked to route search component -->
+        <a class="nav-link" routerLink="find-route" >Поиск маршрута</a>  <!-- should be linked to route search component -->
       </li>
       <li class="nav-item active">
+        
         <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let route of listDriverRoutes" class="dropdown-item" href="#">{{route.routeEnd}}</a>
-            <a class="dropdown-item" routerLink="create-route"> Создать маршрут </a>
+            <a *ngFor="let route of listDriverRoutes; let i = index" [id]="route" class="dropdown-item" [routerLink]="['myRoute', route]" href="#">Маршрут {{ i + 1}}</a>
+            <a class="dropdown-item" routerLink="addRoute"> Создать маршрут </a>
           </div>
         </div>
+
+      </li>
+      <li class="nav-item">
+        <a routerLink="groups" class="nav-link">Группы</a>
       </li>
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" >
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои группы
-          </button>
+          </button> 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
-            <a class="dropdown-item" routerLink="create-group"> Создать группу </a>
+            <app-group></app-group>
           </div>
         </div>
       </li>

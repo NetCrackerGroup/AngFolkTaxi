@@ -9,6 +9,7 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -25,72 +26,75 @@ export class NavigationComponent implements OnInit {
 
   private routeService: RoutesService;
   @ViewChild(ModalPopupComponent, {static: false})
-  private modalPopupComponent: ModalPopupComponent;
+   modalPopupComponent: ModalPopupComponent;
 
   @ViewChild(LoginComponent, {static: false})
-  private loginComponent: LoginComponent;
+   loginComponent: LoginComponent;
 
 
-  private tempSetrService: TempSetrService;
-  private http: HttpClient;
-  private authService: AuthService;
 
 
   constructor(private userService : UserService, private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
+
+  tempSetrService: TempSetrService;
+  http: HttpClient;
+  authService: AuthService;
+  userService: UserService;
+
+
+  userCheck : Boolean;
+
+  private userEmail: string = null;
+
+  constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
+
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent) {
+              loginComponent: LoginComponent, userService: UserService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
-
+    this.userService = userService;
   }
 
 
-  ngOnInit() {/*
+  ngOnInit() {
+    console.log('navigationOnInit');
+    // this.change2.subscribe((tempUser) => {
+    //   this.visibility = true;
+    //   this.email = tempUser.email;
+    //   this.password = tempUser.password;
+    // });
     if (this.isReg()) {
       // Нужно переделать под конкретный id пользователя
-      this.groupService.getUserGroups('alex@alex.com').subscribe(
-        res => {
-          this.listGroups = res;
-        },
-        err => {
-          alert(`Error , ${err}`);
-        }
-      );
+      // this.groupService.getUserGroups('alex@alex.com').subscribe(
+      //   res => {
+      //     this.listGroups = res;
+      //   },
+      //   err => {
+      //     // alert(`Error , ${err}`);
+      //   }
+      // );
 
-      this.routeService.getDriverRoutes('alex@alex.com').subscribe(
+      this.routeService.getDriverRoutes().subscribe(
         res => {
+          console.log(res);
           this.listDriverRoutes = res;
         },
         err => {
+           // alert(`Error , ${err}`);
            alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
         }
       );
     }*/
 
   }
-  getUs() {
-    this.http.get(`${this.url}/users/helloUser`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
 
-  getAdmin() {
-    this.http.get(`${this.url}/users/Admin`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
+  isReg(): boolean {
+    return this.authService.logIn;
 
-  getUser() {
-    this.http.get(`${this.url}/users/User`).subscribe((resp: any) => {
-      console.log(resp);
-    });
-  }
-
-  isReg() : boolean {
-    return true;
   }
 
 }

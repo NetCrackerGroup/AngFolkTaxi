@@ -1,5 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 
 import { InjectionToken } from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
@@ -13,23 +15,42 @@ import { AccEditComponent } from './acc-edit/acc-edit.component';
 import {ParamInterceptor} from './param-interceptor';
 
 
+
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';
 import { RouteComponent } from './route/route.component';
 import { RateAfterJourneyComponent } from './rate-after-journey/rate-after-journey.component';
+import {UserRouteComponent} from "./user-route/user-route.component";
+import {YamapComponent} from "./yamap/yamap.component";
+
 
 export const ENVIRONMENT = new InjectionToken<{ [key: string]: any }>('environment');
 
 const appRoutes: Routes = [
+  {
+    path: 'Chats/:chatId',
+    component: AppChatComponent
+  },
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'groups' , component : GroupsComponent},
-    { path: '' , component : CityMapComponent},
     { path: 'profile', component : AccEditComponent},
     { path: 'create-route', component : RouteComponent},
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
+    { path: 'find-route' , component: FindRouteComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'find-route/show-routes' , component: RoutesListComponent},
+    {path: 'start', component : CityMapComponent},
+    {path: 'addRoute', component: RouteComponent},
+    {path: 'viewRoute/:id', component: ViewRouteComponent},
+    {path: 'myRoute/:id', component: UserRouteComponent},
+    { path: 'groups' , component : AppPublicGroupComponent},
+    { path: '' , component : CityMapComponent},
+    { path: 'user/groups', component : AppUserGroupsComponent }
 ];
+
 
 import {Routes, RouterModule} from '@angular/router';
 
@@ -46,8 +67,15 @@ import { AccChangePhoneNumberComponent } from './acc-change-phone-number/acc-cha
 import { AccChangeCityComponent } from './acc-change-city/acc-change-city.component';
 import { AccChangeEmailComponent } from './acc-change-email/acc-change-email.component';
 import { ReportComponent } from './report/report.component';
+import { AppEntrygroupComponent } from './app-entrygroup/app-entrygroup.component';
+import { AppUserGroupsComponent } from './app-user-groups/app-user-groups.component';
+import { AppPublicGroupComponent } from './app-public-group/app-public-group.component';
+import {AppChatComponent} from "./app-chat/app-chat.component";
+import {ViewRouteComponent} from "./view-route/view-route.component";
 
 
+import {FindRouteComponent} from './find-route/find-route.component';
+import { RoutesListComponent } from './routes-list/routes-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +86,7 @@ import { ReportComponent } from './report/report.component';
     GroupViewComponent,
     GroupsComponent,
     RouteComponent,
+    FindRouteComponent,
     LoginComponent,
     ModalPopupComponent,
     AccEditComponent,
@@ -70,6 +99,15 @@ import { ReportComponent } from './report/report.component';
     RateAfterJourneyComponent,
     AccChangeEmailComponent,
     ReportComponent,
+    AppChatComponent,
+    ModalPopupComponent,
+    RoutesListComponent,
+    ViewRouteComponent,
+    UserRouteComponent,
+    YamapComponent,
+    AppEntrygroupComponent,
+    AppUserGroupsComponent,
+    AppPublicGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +117,7 @@ import { ReportComponent } from './report/report.component';
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
+    AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
   ],
   providers: [
     ModalPopupComponent,

@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app-create.component.css']
 })
 export class AppCreateComponent implements OnInit {
+  
+  groupExists : Boolean;
+  
   name : String = "";
   typeGroup : String = "";
   @Output() close = new EventEmitter<boolean>();
@@ -18,11 +21,13 @@ export class AppCreateComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    
+    this.groupExists = false;
 
   }
 
 
-  submit(){
+  submit(event){
     console.log("Submit form!")
     if ( this.name.trim().length == 0) {
       alert("Заполните поле \"Название\" ");
@@ -33,18 +38,23 @@ export class AppCreateComponent implements OnInit {
     }
     else {
       this.groupsService.createGroup(this.name.toString(), this.typeGroup.toString()).subscribe(
-        res => {
-            console.log(res);
-            this.modal.close("close");
-            this.router.navigate(['/groups' , res.groupId]);
+        (res) => {
+            if (res["group_id"] != null) {
+              console.log(res);
+              this.router.navigate([`/groups/${res["group_id"]}`]);
+              this.modal.close("close");
+            }
+            else {
+              this.groupExists = true;
+            }
         },
         err => {
-          alert('Ошибка!');
         }
       );
     }
   }
 
+  
   addgroup(event: any) {
     const form: FormGroup = event as FormGroup;
     console.log('Submit Form');

@@ -15,7 +15,7 @@ import {TempSetrService} from '../tempServices/temp-setr.service';
 
 export class ModalPopupComponent implements OnInit {
 
-  private postUser = {
+  postUser = {
     email: undefined,
     password: undefined,
     phoneNumber: undefined,
@@ -42,21 +42,13 @@ export class ModalPopupComponent implements OnInit {
   }
 
   Submited(form: NgForm) {
-
+    console.log(this.postUser);
     this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
-      console.log('dsfsdf');
       this.authServ.login(this.postUser.email, this.postUser.password);
       this.visibility = false;
     });
 
   }
-  doThis() {
-    console.log('doThis');
-
-    this.visibility = false;
-    this.tempSetrService.someEvent({email: this.postUser.email, password: this.postUser.password});
-  }
-
 
 
   OpenPopup() {

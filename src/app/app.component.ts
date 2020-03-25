@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     this.tempSetrService = tempSetrService;
     this.http = http;
   }
-
+/*
   getUs() {
     this.http.get(`${this.url}/users/helloUser`).subscribe((resp: any) => {
       console.log(resp);
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
     this.http.get(`${this.url}/users/User`).subscribe((resp: any) => {
       console.log(resp);
     });
-  }
+  }*/
   ngOnInit(): void {
 
   }

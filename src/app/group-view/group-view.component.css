@@ -38,6 +38,7 @@ ul {
     width: 0px;
   }
 
+
 .userFromGroup{
     color:blue;
 }
@@ -78,3 +79,9 @@ ul {
   height: 3em;
   border-radius: 4px 0 0 4px;
 }
+
+
+.card {
+    margin-top : 1em;
+}
+
