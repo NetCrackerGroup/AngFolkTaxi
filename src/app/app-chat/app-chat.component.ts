@@ -157,7 +157,6 @@ export class AppChatComponent implements OnInit {
 
 */
   MessageClick(event) {
-    console.log(this.messages);
     this.messages.forEach(mes => {
       if (+mes.messageId === +event.target.id && mes.user.fio  === 'Система') {
         //открывается попапс возможностью проголосовать
