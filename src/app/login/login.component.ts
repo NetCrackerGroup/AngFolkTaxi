@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {NgForm} from '@angular/forms';

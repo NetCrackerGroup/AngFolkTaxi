@@ -3,11 +3,12 @@
 
 <div class="community">
     <div class="head">
-        <img src="assets/images/community.png" alt="fsd"> Участники 
+        <img src="assets/images/community.png" alt="fsd"> Участники
     </div>
     <ul>
-        <li *ngFor="let user of group.users">
-            <a routerLink="">{{user.fio}}</a>
+        <li *ngFor="let user of group.users" (click)="this.accViewComponent.OpenPopup(user.userId)" >
+            <span class="badge" ><img src="assets/images/community.png" alt="fsd"></span> {{user.fio}}
         </li>
     </ul>
 </div>
+<app-acc-view></app-acc-view>

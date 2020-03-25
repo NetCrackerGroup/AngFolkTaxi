@@ -5,6 +5,7 @@ import {TempSetrService} from './tempServices/temp-setr.service';
 import {RouterOutlet} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
+import { AccViewComponent } from './acc-view/acc-view.component'
 
 
 @Component({
@@ -24,13 +25,18 @@ export class AppComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false})
   private loginComponent: LoginComponent;
 
+  @ViewChild(AccViewComponent, {static: false})
+  private accViewComponent : AccViewComponent;
+
   private tempSetrService: TempSetrService;
   private http: HttpClient;
 
   constructor(authService: AuthService,
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent) {
+              loginComponent: LoginComponent,
+              accViewComponent: AccViewComponent) {
     this.loginComponent = loginComponent;
+    this.accViewComponent = accViewComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;

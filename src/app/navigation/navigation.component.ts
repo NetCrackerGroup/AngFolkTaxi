@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { UserService } from '../services/user.service';
 import {GroupsService} from '../services/groups.service';
 import {IGroup} from '../entities/igroup';
 import {IRoute} from '../entities/iroute';
@@ -20,6 +21,8 @@ export class NavigationComponent implements OnInit {
   listDriverRoutes: IRoute[] = null;
   url = 'http://localhost:1337';
 
+  logged = false;
+
   private routeService: RoutesService;
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;
@@ -27,12 +30,13 @@ export class NavigationComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false})
   private loginComponent: LoginComponent;
 
+
   private tempSetrService: TempSetrService;
   private http: HttpClient;
   private authService: AuthService;
 
 
-  constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
+  constructor(private userService : UserService, private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
               tempSetrService: TempSetrService, http: HttpClient,
               loginComponent: LoginComponent) {
     this.loginComponent = loginComponent;
@@ -43,7 +47,8 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+
+  ngOnInit() {/*
     if (this.isReg()) {
       // Нужно переделать под конкретный id пользователя
       this.groupService.getUserGroups('alex@alex.com').subscribe(
@@ -63,7 +68,7 @@ export class NavigationComponent implements OnInit {
            alert(`Error , ${err}`);
         }
       );
-    }
+    }*/
 
   }
   getUs() {
@@ -84,7 +89,7 @@ export class NavigationComponent implements OnInit {
     });
   }
 
-  isReg(): boolean {
+  isReg() : boolean {
     return true;
   }
 
