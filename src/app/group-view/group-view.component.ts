@@ -3,7 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 
-import { GroupsService } from "../services/groups.service";
+import { GroupsService } from '../services/groups.service';
 import { IGroup } from '../entities/igroup';
 import { IUser } from '../entities/iuser'
 import { UserService } from '../services/user.service';
@@ -14,8 +14,8 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-import {ApiService} from "../shared/api.service";
-import{AppChatComponent} from "../app-chat/app-chat.component";
+import {ApiService} from '../shared/api.service';
+import {AppChatComponent} from '../app-chat/app-chat.component';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class GroupViewComponent implements OnInit {
 
 
   @ViewChild(AccViewComponent, {static: false})
-   private accViewComponent: AccViewComponent;
+  accViewComponent: AccViewComponent;
 
   loginCheck : boolean;
   entryGroup : boolean;

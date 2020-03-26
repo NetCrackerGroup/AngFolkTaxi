@@ -11,7 +11,7 @@
         <div class="form-group">
           <label for="newPhoneNumber">Введите новый телефонный номер</label>
           <input type="text" ngModel maxlength="20" class="form-control" name="newPhoneNumber" id="newPhoneNumber"
-                 (input)="onInput($event.target.value)" (keydown.emit.backspace)="onKeydown($event)" [(ngModel)]="newPhoneNumber"
+                 (input)="onInput()" (keydown.emit.backspace)="onKeydown()" [(ngModel)]="newPhoneNumber"
 
           >
           <label> Количество доступных символов: {{this.numLock}} </label>

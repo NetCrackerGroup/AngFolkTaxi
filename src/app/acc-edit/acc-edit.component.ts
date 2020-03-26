@@ -25,22 +25,22 @@ import { AccChangeEmailComponent } from '../acc-change-email/acc-change-email.co
 export class AccEditComponent implements OnInit {
 
   @ViewChild(AccChangePassComponent, {static: false})
-  private accChangePassComponent: AccChangePassComponent;
+   accChangePassComponent: AccChangePassComponent;
 
   @ViewChild(AccChangeNameComponent, {static: false})
-  private accChangeNameComponent: AccChangeNameComponent;
+   accChangeNameComponent: AccChangeNameComponent;
 
   @ViewChild(AccChangeCityComponent, {static: false})
-  private accChangeCityComponent: AccChangeCityComponent;
+   accChangeCityComponent: AccChangeCityComponent;
 
   @ViewChild(AccChangePhoneNumberComponent, {static: false})
-  private accChangePhoneNumberComponent: AccChangePhoneNumberComponent;
+   accChangePhoneNumberComponent: AccChangePhoneNumberComponent;
 
   @ViewChild(AccChangeInfoComponent, {static: false})
-  private accChangeInfoComponent: AccChangeInfoComponent;
+   accChangeInfoComponent: AccChangeInfoComponent;
 
   @ViewChild(AccChangeEmailComponent, {static: false})
-  private accChangeEmailComponent: AccChangeEmailComponent;
+   accChangeEmailComponent: AccChangeEmailComponent;
 
   selectedFile: File = null;
 

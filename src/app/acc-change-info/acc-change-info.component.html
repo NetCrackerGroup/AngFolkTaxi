@@ -11,7 +11,7 @@
         <div class="form-group">
           <label for="newInfo">Введите дополнительную информацию</label>
           <textarea type="text" ngModel maxlength="100" class="form-control" name="newInfo" id="newInfo" rows="4"
-                    (input)="onInput($event.target.value)" (keydown.emit.backspace)="onKeydown($event)" [(ngModel)]="newInfo"
+                    (input)="onInput()" (keydown.emit.backspace)="onKeydown()" [(ngModel)]="newInfo"
                     style="resize: none">
           </textarea>
           <label> Количество доступных символов: {{this.numLock}} </label>

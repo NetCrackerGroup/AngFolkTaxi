@@ -10,8 +10,8 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="newName">Введите новое имя</label>
-          <input type="text" ngModel maxlength="50" class="form-control" name="newName" id="newName" placeholder="{{name}}"
-                 (input)="onInput($event.target.value)" (keydown.emit.backspace)="onKeydown($event)" [(ngModel)]="newName">
+          <input type="text" ngModel maxlength="50" class="form-control" name="newName" id="newName" placeholder="Введите имя"
+                 (input)="onInput()" (keydown.emit.backspace)="onKeydown()" [(ngModel)]="newName">
           <label> Количество доступных символов: {{this.numLock}} </label>
         </div>
       </div>

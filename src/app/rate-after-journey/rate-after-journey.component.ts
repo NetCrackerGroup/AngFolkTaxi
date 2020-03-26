@@ -19,10 +19,10 @@ import { AccViewComponent } from '../acc-view/acc-view.component';
 export class RateAfterJourneyComponent implements OnInit {
 
   @ViewChild(ReportComponent, {static: false})
-  private reportComponent: ReportComponent;
+   reportComponent: ReportComponent;
 
   @ViewChild(AccViewComponent, {static: false})
-  private accViewComponent: AccViewComponent;
+   accViewComponent: AccViewComponent;
 
   accView : boolean;
 
