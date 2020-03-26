@@ -52,7 +52,7 @@ export class AppChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.getAllMessagesPage(this.chatId);
   }
 
@@ -61,7 +61,7 @@ export class AppChatComponent implements OnInit {
     this.getAllMessagesPage(this.chatId);
      const newThis = this;
     if(newThis.chatId!=null)
-      
+
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
         newThis.messages= data['content'];
         newThis.pages = new Array(data['totalPages'])
@@ -75,7 +75,7 @@ export class AppChatComponent implements OnInit {
     }
   }
 
-  
+
   public getAllMessages(ChatId: number ) {
 
     this.apiService.getAllMessages(ChatId).subscribe(
@@ -156,6 +156,14 @@ export class AppChatComponent implements OnInit {
   }
 
 */
+  MessageClick(event) {
+    this.messages.forEach(mes => {
+      if (+mes.messageId === +event.target.id && mes.user.fio  === 'Система') {
+        //открывается попапс возможностью проголосовать
+        console.log('Открылся попап');
+      }
+    });
+  }
 }
 export interface Message {
   messageId: number;

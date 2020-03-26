@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,15 @@ export class LoginComponent implements OnInit {
   visibility = false;
 
   constructor(private authService: AuthService,
-              private tempService: TempSetrService) {
+              private tempService: TempSetrService,
+              private router: Router) {
 
   }
   Submited(form: NgForm) {
     console.log('you are logging in');
     this.authService.login(this.email, this.password);
     this.visibility = false;
+    this.router.navigate(['']);
   }
   ngOnInit() {
     this.tempService.change2.subscribe((tempUser) => {
