@@ -7,6 +7,7 @@ import {YandexMultirouteComponent} from 'angular8-yandex-maps/lib/components/yan
 import {group} from '@angular/animations';
 import {IRoute} from '../entities/iroute';
 import {YamapComponent} from '../yamap/yamap.component';
+import {AccViewComponent} from '../acc-view/acc-view.component';
 declare var ymaps: any;
 
 @Component({
@@ -20,6 +21,9 @@ export class ViewRouteComponent implements OnInit {
 
   @ViewChild('component', {static: false})
   component: YamapComponent;
+
+  @ViewChild('component2', {static: false})
+  accViewComponent: AccViewComponent;
 
   @ViewChild('element', {static: false})
   private element: HTMLElement;

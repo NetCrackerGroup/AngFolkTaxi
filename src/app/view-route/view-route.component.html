@@ -60,7 +60,7 @@
     </div>
     <h3>Расписание маршута:</h3>
     <ul  *ngIf="isManyDays" class="menu-top">
-      <li  class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
+      <div  class="information-block-2" *ngFor="let item of userDays">{{item}}</div>
     </ul>
     <h3 *ngIf="!isManyDays">Маршрут назначен на один день в заданное время</h3>
     <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в группу</button>
@@ -84,5 +84,6 @@
       </div>
     </div>
   </div>
+
 
 </div>

@@ -28,7 +28,8 @@ export class RouteComponent implements OnInit, OnChanges {
   };
   schedule = {
     timeOfJourney: undefined,
-    scheduleDay: undefined
+    scheduleDay: undefined,
+    startDate: undefined
   };
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;

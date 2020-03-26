@@ -5,6 +5,7 @@ import {ViewRouteComponent} from '../view-route/view-route.component';
 import {HttpClient} from '@angular/common/http';
 import {YamapComponent} from '../yamap/yamap.component';
 import {ApiService} from "../shared/api.service";
+import {AccViewComponent} from '../acc-view/acc-view.component';
 declare var ymaps: any;
 
 @Component({
@@ -14,6 +15,9 @@ declare var ymaps: any;
   providers: [YamapComponent]
 })
 export class UserRouteComponent implements OnInit, OnChanges {
+
+  @ViewChild('component2', {static: false})
+  accViewComponent: AccViewComponent;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService:ApiService) {
     this.apiService.getChatByRoute(this.id).subscribe(
@@ -55,7 +59,7 @@ export class UserRouteComponent implements OnInit, OnChanges {
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
         routeEnd, startDate, price, userRouteDto: {fio, driverRating}, countOfPlaces, timeOfDriving}) => {
-        console.log(res);
+        console.log( res);
 
         this.price = res.price;
         this.countOfPlaces = res.countOfPlaces;
@@ -66,11 +70,14 @@ export class UserRouteComponent implements OnInit, OnChanges {
         this.toEnabled = res.routeEnd;
         this.component.create(this.fromEnabled, this.toEnabled);
         this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
-          console.log(res2);
+          console.log('res2', res2);
           // @ts-ignore
           this.timeOfDriving = res2.timeOfJourney;
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);
+          const date = new Date(res2.startDate);
+          console.log('res.startDate', res.startDate);
+          console.log('new Date(res.startDate).toLocaleDateString()', new Date(res.startDate).toLocaleDateString());
           this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
           console.log(scheduleString);
           this.userDays = [];

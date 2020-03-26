@@ -40,7 +40,7 @@
 <!--          </div>-->
           <h3>Участники маршрута</h3>
           <ul class="menu-top">
-            <li class="information-block-2" [id]="item.id" *ngFor="let item of users">{{item.fio}}</li>
+            <li class="information-block-2" [id]="item.id" *ngFor="let item of users"  (click)="this.accViewComponent.OpenPopup(item.userId)" >{{item.fio}}</li>
           </ul>
         </div>
       </div>
@@ -77,3 +77,4 @@
     <li class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
   </ul>
 </div>
+<app-acc-view #component2></app-acc-view>
