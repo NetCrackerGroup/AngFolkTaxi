@@ -14,7 +14,6 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-import { FormControl } from '@angular/forms';
 import {ApiService} from "../shared/api.service";
 import{AppChatComponent} from "../app-chat/app-chat.component";
 
