@@ -25,10 +25,7 @@ img {
     text-align: center;
 }
 
-li {
-    list-style-type: none; /* Убираем маркеры */
-    padding: 4px;
-}
+
 
 ul {
     height: 230px;
@@ -42,6 +39,49 @@ ul {
   }
 
 
+.userFromGroup{
+    color:blue;
+}
+
+.community li {
+  list-style-type: none; /* Убираем маркеры */
+  cursor: pointer;
+  position: relative;
+  left: -50px;
+  background-color : aliceblue;
+  margin: .5em;
+  height: 2.5em;
+  width: 30ch;
+  border-radius: 5px;
+}
+
+.community li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.community li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+
+.community li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+.community .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  background-color:#405061;
+  line-height: 3em;
+  position: relative;
+  left: 0px;
+  height: 3em;
+  border-radius: 4px 0 0 4px;
+}
+
+
 .card {
     margin-top : 1em;
 }
+

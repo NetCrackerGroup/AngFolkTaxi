@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+
+        <label style="font-size:30px" >Ваш профиль </label>
+
+        <!-- Avatar -->
+        <div *ngIf="imageSwitch" class="modal-footer" >
+        </div>
+        <div *ngIf="imageSwitch" class="userImage">
+          <div class="col-md-12">
+            <div>
+              <img [src]="user.image">
+            </div>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <div class = "userName">
+          <label > Имя: </label>
+          <label *ngIf="changeName" style="font-style: italic"> Редактировать </label>
+          <li (mouseover)="changeName=true" (mouseout)="changeName=false" (click)="this.accChangeNameComponent.OpenPopup(user.fio)" >
+            <label > {{user.fio}} </label>
+          </li>
+        </div>
+
+        <!-- City Name -->
+        <div class="modal-footer">
+        </div>
+        <div class = "userCity">
+          <label > Город: </label>
+          <label *ngIf="changeCity" style="font-style: italic"> Редактировать </label>
+          <li (mouseover)="changeCity=true" (mouseout)="changeCity=false"  (click)="this.accChangeCityComponent.OpenPopup(user.cityName)" >
+            <label > {{user.cityName}} </label >
+          </li>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="modal-footer">
+        </div>
+        <div class = "userPhoneNumber">
+          <label > Номер телефона: </label>
+          <label *ngIf="changePhoneNumber" style="font-style: italic"> Редактировать </label>
+          <li (mouseover)="changePhoneNumber=true" (mouseout)="changePhoneNumber=false"  (click)="this.accChangePhoneNumberComponent.OpenPopup(user.phoneNumber)" >
+            <label > {{user.phoneNumber}} </label>
+          </li>
+        </div>
+
+        <!-- Passenger Rating -->
+        <div *ngIf="passengerRatingSwitch" class="modal-footer">
+        </div>
+        <label *ngIf="passengerRatingSwitch" > Рейтинг пассажира: </label>
+        <div *ngIf="passengerRatingSwitch" class = "userPassengerRating">
+          <ngb-rating [(rate)]="user.passengerRating">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
+          <label> {{user.passengerRating}} </label>
+        </div>
+
+        <!-- Driver Rating -->
+        <div *ngIf="driverRatingSwitch" class="modal-footer">
+        </div>
+        <label *ngIf="driverRatingSwitch" > Рейтинг водителя: </label>
+        <div *ngIf="driverRatingSwitch" class = "userDriverRating">
+          <ngb-rating [(rate)]="user.driverRating">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
+          <label> {{user.driverRating}} </label>
+        </div>
+
+        <!-- Info -->
+        <div class="modal-footer">
+        </div>
+        <div class = "userInfo">
+          <label > Инфо-поле: </label>
+          <label *ngIf="changeInfo" style="font-style: italic"> Редактировать </label>
+          <li (mouseover)="changeInfo=true" (mouseout)="changeInfo=false"  (click)="this.accChangeInfoComponent.OpenPopup(user.info)" >
+            <label *ngIf="infoIsNotNull" > {{user.info}} </label>
+            <label *ngIf="!infoIsNotNull" style="font-weight: lighter; font-style: italic"> Напишите о себе </label>
+          </li>
+        </div>
+
+        <!-- Edit -->
+        <!-- EditPassword -->
+        <div ng-init="tooltip=false" class="modal-footer">
+          <input style="display: none" type="file" accept="image/*" (change)=onFileSelected($event) #fileInput>
+          <button type="button" class="btn btn-success" (click)="fileInput.click()"> Загрузить изображение</button>
+          <button type="button" class="btn btn-success" (click)="this.accChangePassComponent.OpenPopup()"> Изменить пароль</button>
+          <button type="button" class="btn btn-success" (click)="this.accChangeEmailComponent.OpenPopup()"> Изменить электронную почту</button>
+          <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>
+        </div>
+
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>
+
+<app-acc-change-pass></app-acc-change-pass>
+<app-acc-change-name></app-acc-change-name>
+<app-acc-change-city></app-acc-change-city>
+<app-acc-change-phone-number></app-acc-change-phone-number>
+<app-acc-change-info></app-acc-change-info>
+<app-acc-change-email></app-acc-change-email>
+

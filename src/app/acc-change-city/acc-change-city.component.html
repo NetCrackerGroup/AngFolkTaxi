@@ -1,0 +1,26 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Изменить ваш город</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="newCity">Выберите свой город</label>
+          <select class="form-control" name="newCity" id="newCity"  [(ngModel)]="newCity">
+            <option value="Voronezh">Voronezh</option>
+            <option value="Moscow">Moscow</option>
+            <option value="Lipetsk">Lipetsk</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <button type="button" class="btn btn-success" (click) = "toggle()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</form>

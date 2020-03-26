@@ -1,0 +1,30 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Изменить вашу электронную почту</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="newEmail"> Введите новую электронную почту </label>
+          <input type="text" class="form-control" name="newEmail" id="newEmail"  [(ngModel)]="newEmail" placeholder="" >
+          <!--div [hidden]="!pass.pristine" class="alert alert-danger">Pass is required</div-->
+        </div>
+        <div class="form-group">
+          <label for="currPass">Введите текущий пароль</label>
+          <input type="password" class="form-control" name="currPass" id="currPass"   [(ngModel)]="currPassword" placeholder="" >
+          <!--div [hidden]="!oldPass.pristine" class="alert alert-danger">oldPass is required</div-->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" >Сохранить изменения</button>
+        <button type="button" class="btn btn-success" (click) = "toggle()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
