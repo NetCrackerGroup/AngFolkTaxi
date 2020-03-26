@@ -131,13 +131,12 @@ export class UserService {
     this.http.post(url, body).subscribe();
   }
 
-}
 
   getGroups(administrator : boolean) : Observable<any>{
 
     let url = `${environment.devUrl}/users/`
     if ( administrator ) {
-      return 
+      return
     }
 
     else {

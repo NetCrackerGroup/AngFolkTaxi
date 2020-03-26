@@ -9,7 +9,6 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
-import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -31,16 +30,9 @@ export class NavigationComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false})
    loginComponent: LoginComponent;
 
-
-
-
-  constructor(private userService : UserService, private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
-
-  tempSetrService: TempSetrService;
-  http: HttpClient;
   authService: AuthService;
-  userService: UserService;
-
+  tempSetrService: TempSetrService;
+   http: HttpClient;
 
   userCheck : Boolean;
 
@@ -49,7 +41,7 @@ export class NavigationComponent implements OnInit {
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent, userService: UserService) {
+              loginComponent: LoginComponent, private userService: UserService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
@@ -88,7 +80,7 @@ export class NavigationComponent implements OnInit {
           console.log(`Error , ${err}`);
         }
       );
-    }*/
+    }
 
   }
 
