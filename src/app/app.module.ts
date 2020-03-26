@@ -35,7 +35,6 @@ const appRoutes: Routes = [
   },
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
-    { path: 'groups' , component : GroupsComponent},
     { path: 'profile', component : AccEditComponent},
     { path: 'create-route', component : RouteComponent},
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
@@ -76,6 +75,7 @@ import {ViewRouteComponent} from "./view-route/view-route.component";
 
 import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
+import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-to-group.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +107,8 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     YamapComponent,
     AppEntrygroupComponent,
     AppUserGroupsComponent,
-    AppPublicGroupComponent
+    AppPublicGroupComponent,
+    InviteUserToGroupComponent
   ],
   imports: [
     BrowserModule,

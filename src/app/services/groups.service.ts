@@ -12,7 +12,7 @@ export class GroupsService {
   constructor(private http: HttpClient) { }
 
   getGroup( id: number ) {
-    
+
 
     const url = `${environment.devUrl}/group/${id}`;
     console.log(url);
@@ -21,7 +21,7 @@ export class GroupsService {
   }
 
   checkUserInGroup( groupId : number ) {
-    
+
     const headers = new Headers({'Content-Type': 'application/json'});
     const url = `${environment.devUrl}/group/useringroup`;
 
@@ -43,7 +43,7 @@ export class GroupsService {
 
   getAllGroups() {
     const url = `${environment.devUrl}/group`;
-
+    console.log(`Get request ${url}`);
     return this.http.get<IGroup[]>(url);
   }
 

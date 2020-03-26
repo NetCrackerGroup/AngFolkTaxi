@@ -44,8 +44,8 @@ export class GroupViewComponent implements OnInit {
   };
   chatId:number;
 
+  id: number;
   private subscription: Subscription;
-
   private subscriptionChat : Subscription;
   private routeSubscription: Subscription;
 
@@ -60,14 +60,19 @@ export class GroupViewComponent implements OnInit {
                 private router : Router,
                 private apiService:ApiService ) {
 
-    this.subscription = groupsService.getGroup(route.snapshot.params['id']).subscribe(
-        res => {
-          this.loadgroup(res);
-        },
-        err => {
-          alert("Группа не найдена!")
-        }
-      );
+    this.routeSubscription = route.params.subscribe(params=>
+      {
+        this.id=params['id'];
+        groupsService.getGroup(this.id).subscribe(
+          res => {
+
+            this.loadgroup(res);
+          },
+          err => {
+            alert("Группа не найдена!");
+          }
+        );
+    });
   }
 
 
@@ -78,7 +83,7 @@ export class GroupViewComponent implements OnInit {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);
     }
-    this.checkUserInGroup();
+      this.checkUserInGroup();
   }
 
 
@@ -114,6 +119,7 @@ export class GroupViewComponent implements OnInit {
     if ( this.loginCheck ) {
       this.checkUserInGroup();
     }
+     console.log(` ID : ${this.id} `);
   }
 
   repost(){
@@ -158,7 +164,7 @@ export class GroupViewComponent implements OnInit {
     console.log(res["groupId"]);
     this.group.groupId = res["groupId"];
     this.group.groupName = res["groupName"];
-    this.group.groupLink = `${environment.devUrl}/entrypoint/${res["cityLink"]}`;
+    this.group.groupLink = `${environment.devUrlFront}/entrypoint/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
     let count = 0;
     this. apiService.getChatByGroup(res["groupId"]).subscribe(
@@ -174,7 +180,7 @@ export class GroupViewComponent implements OnInit {
       this.checkUserInGroup();
     }
 
-    this.subscription = this.route.params.subscribe(params=> {
+    this.subscriptionChat = this.route.params.subscribe(params=> {
       this.groupsService.getGroup(params['id']).subscribe(
         res => {
 
