@@ -13,7 +13,7 @@ import { AccViewComponent } from './acc-view/acc-view.component';
 import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import { AccEditComponent } from './acc-edit/acc-edit.component';
 import {ParamInterceptor} from './param-interceptor';
-
+import { RouteFilterPipe } from './shared/route-filter.pipe';
 
 
 
@@ -39,14 +39,13 @@ const appRoutes: Routes = [
     { path: 'create-route', component : RouteComponent},
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
     { path: 'find-route' , component: FindRouteComponent},
-    { path: '' , component : CityMapComponent},
-    { path: 'find-route/show-routes' , component: RoutesListComponent},
+    { path: 'show-routes' , component: RoutesListComponent},
     {path: 'start', component : CityMapComponent},
     {path: 'addRoute', component: RouteComponent},
     {path: 'viewRoute/:id', component: ViewRouteComponent},
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
-    { path: '' , component : CityMapComponent},
+    { path: '' , component : FindRouteComponent},
     { path: 'user/groups', component : AppUserGroupsComponent }
 ];
 
@@ -108,7 +107,8 @@ import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-t
     AppEntrygroupComponent,
     AppUserGroupsComponent,
     AppPublicGroupComponent,
-    InviteUserToGroupComponent
+    InviteUserToGroupComponent,
+    RouteFilterPipe
   ],
   imports: [
     BrowserModule,
