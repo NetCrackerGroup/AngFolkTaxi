@@ -69,16 +69,13 @@ export class UserRouteComponent implements OnInit, OnChanges {
         this.fromEnabled = res.routeBegin;
         this.toEnabled = res.routeEnd;
         this.component.create(this.fromEnabled, this.toEnabled);
-        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
+        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2:{timeOfJourney, scheduleDay, startDate}) => {
           console.log('res2', res2);
           // @ts-ignore
           this.timeOfDriving = res2.timeOfJourney;
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);
-          const date = new Date(res2.startDate);
-          console.log('res.startDate', res.startDate);
-          console.log('new Date(res.startDate).toLocaleDateString()', new Date(res.startDate).toLocaleDateString());
-          this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
+          this.dateOfJourney = new Date(res2.startDate).toLocaleDateString();
           console.log(scheduleString);
           this.userDays = [];
           if (scheduleString.length !== 7) {
@@ -114,6 +111,10 @@ export class UserRouteComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+  }
+
+  openJourneyInfo() {
+
   }
 
 }

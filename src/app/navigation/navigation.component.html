@@ -14,11 +14,11 @@
       </li>
       <li class="nav-item active">
 
-        <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
+        <div *ngIf="isReg()" class="dropdown" >
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn" (click)="getUserRoutes()">
             Мои маршруты
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
             <a *ngFor="let route of listDriverRoutes; let i = index" [id]="route" class="dropdown-item" [routerLink]="['myRoute', route]" href="#">Маршрут {{ i + 1}}</a>
             <a class="dropdown-item" routerLink="addRoute"> Создать маршрут </a>
           </div>

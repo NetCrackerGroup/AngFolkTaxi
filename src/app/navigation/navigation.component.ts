@@ -68,18 +68,6 @@ export class NavigationComponent implements OnInit {
       //     // alert(`Error , ${err}`);
       //   }
       // );
-
-      this.routeService.getDriverRoutes().subscribe(
-        res => {
-          console.log(res);
-          this.listDriverRoutes = res;
-        },
-        err => {
-           // alert(`Error , ${err}`);
-           alert(`Error , ${err}`);
-          console.log(`Error , ${err}`);
-        }
-      );
     }
 
   }
@@ -89,4 +77,18 @@ export class NavigationComponent implements OnInit {
 
   }
 
+  getUserRoutes() {
+    console.log('получил');
+    this.routeService.getDriverRoutes().subscribe(
+      res => {
+        console.log(res);
+        this.listDriverRoutes = res;
+      },
+      err => {
+        // alert(`Error , ${err}`);
+        alert(`Error , ${err}`);
+        console.log(`Error , ${err}`);
+      }
+    );
+  }
 }

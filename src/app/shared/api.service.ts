@@ -17,6 +17,7 @@ export class ApiService {
   private GET_PAGES_URL = "http://localhost:1337/Messages/messages/";
   private Get_CHAT_BY_GROUP_URL="http://localhost:1337/Chat/findchat/"
   private GET_CHAT_BY_ROUTE_URL = "http://localhost:1337/Chat/findRouteChat/"
+  private GET_JOURNEY_BY_ROUTE_URL = "http://localhost:1337/journeys/findJourney/"
 
   constructor(private http:HttpClient) {
 
@@ -48,6 +49,13 @@ export class ApiService {
   getChatByRoute(routeId:String): Observable<Chat> {
 
     return this.http.get<Chat>(this.GET_CHAT_BY_ROUTE_URL + routeId);
+  }
+
+  getJourneyByRouteMessage(chatId: number, messageDate: Date) {
+    const body = new HttpParams()
+      .set('chatId', JSON.stringify(chatId))
+      .set('messageDate', JSON.stringify(messageDate));
+    return this.http.get(this.GET_JOURNEY_BY_ROUTE_URL + chatId + '/' + messageDate);
   }
 
   getChat(chatId:String):Observable<Chat> {
