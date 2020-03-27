@@ -6,4 +6,5 @@ export interface IRoute {
   routeEnd: number[];
   price: number;
   userRouteDto: IUserRoute;
+  distance: number;
 }

@@ -3,3 +3,11 @@ h3 {
   margin-top: 15px;
   margin-bottom: 30px;
 }
+
+p{
+  margin-bottom: 12px;
+}
+
+.chooselink {
+  cursor: pointer;
+}

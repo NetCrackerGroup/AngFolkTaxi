@@ -1,13 +1,25 @@
 <div *ngIf="listRoutes.length > 0" class="list-group">
   <h3>Найденные маршруты</h3>
 
-  <a *ngFor="let route of listRoutes" class="list-group-item" >
+  <div class="dropdown">
+    <button class="btn dropdown-toggle nav-link" data-toggle="dropdown">
+      Сортировать маршруты
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item chooselink" (click)="setFilter(0)">Расстояние по возраст.</a>
+      <a class="dropdown-item chooselink" (click)="setFilter(1)">Расстояние по убыв.</a>
+      <a class="dropdown-item chooselink" (click)="setFilter(2)">Цена по возраст.</a>
+      <a class="dropdown-item chooselink" (click)="setFilter(3)">Цена по убыв.</a>
+    </div>
+  </div>
+
+  <a *ngFor="let route of listRoutes | routeFilter:filt" class="list-group-item" [id]="route" >
     <h4 class="list-group-item-heading">{{route.userRouteDto.fio}}</h4>
+    <p class="list-group-item-text">Расстояние до начала: {{route.distance}}м</p>
     <p class="list-group-item-text">Цена: {{route.price}}</p>
-    <button type="button" class="btn btn-success" routerLink="show-routes" (click)="submit()">Подробнее</button>
+    <button type="button" class="btn btn-success" [routerLink]="['/viewRoute', route.routeId]" (click)="submit()">Подробнее</button>
   </a>
 </div>
-
 
 <div *ngIf="listRoutes == null">
   <h3>Идёт поиск</h3>
