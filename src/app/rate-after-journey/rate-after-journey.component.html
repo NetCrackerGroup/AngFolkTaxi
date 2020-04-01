@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+
+      <label style="font-size:30px" >Отзыв </label>
+
+
+      <!-- Avatar -->
+      <!--div *ngIf="imageSwitch" class="modal-footer" >
+      </div>
+      <div *ngIf="imageSwitch" class="userImage">
+        <div class="col-md-12">
+          <div>
+            <img [src]="user.image">
+          </div>
+        </div>
+      </div-->
+
+      <!-- Driver Name -->
+      <div class = "driverName">
+        <label > Имя водителя: </label>
+        <label *ngIf="accView" style="font-style: italic"> Просмотр профиля </label>
+        <li (mouseover)="accView=true" (mouseout)="accView=false" (click)="this.accViewComponent.OpenPopup(journey.driverId)" >
+          <label > {{journey.driverName}} </label>
+        </li>
+      </div>
+      <!-- Driver Rating -->
+      <div class="modal-footer">
+      </div>
+      <label> Рейтинг водителя: </label>
+      <div class = "DriverRating">
+        <ngb-rating [(rate)]="driverRating">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+        <button type="button" class="btn btn-success" (click)="RateDriver()" style ="position: relative; left: 5%"> Потвердить оценивание</button>
+      </div>
+      <div ng-init="tooltip=false" >
+
+      </div>
+
+      <div ng-init="tooltip=false" class="modal-footer" style ="position: relative; top: 10%">
+        <button type="button" class="btn btn-success" (click)="this.reportComponent.OpenPopup(journey.driverId)" style = "color: red"> Пожаловаться</button>
+        <button type="button" class="btn btn-success" (click)="ToCurrentRoute()"> На страницу маршрута</button>
+<!--        <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>-->
+      </div>
+
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>
+<app-acc-view></app-acc-view>
+<app-report></app-report>

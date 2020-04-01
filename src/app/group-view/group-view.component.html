@@ -1,6 +1,11 @@
 <div class="container">
     <div class="card">
 
+
+<div class="community">
+    <div class="head">
+        <img src="assets/images/community.png" alt="fsd"> Участники
+
         <div class="card-header">
             <h5 class="card-title"> <span class="name"> {{group.groupName}} </span></h5>
           </div>
@@ -15,11 +20,11 @@
                 <div class="head">
                     <img src="assets/images/community.png" alt="fsd"> Участники 
                 </div>
-                <ul>
-                    <li *ngFor="let user of group.users">
-                        <a routerLink="">{{user.fio}}</a>
+                   <ul>
+                    <li *ngFor="let user of group.users" (click)="this.accViewComponent.OpenPopup(user.userId)" >
+                      <span class="badge" ><img src="assets/images/community.png" alt="fsd"></span> {{user.fio}}
                     </li>
-                </ul>
+                  </ul>
             </div>
 
             <div class="input-group">
@@ -31,14 +36,8 @@
             </div>
     </div>
 
-</div>
-<div>
 
-    <ul>
-        <li *ngFor="let user of group.users">
-            <a routerLink="">{{user.fio}}</a>
-        </li>
-    </ul>
+
   <ul>
     <li class="nav-item active">
       <a  class="nav-link" [routerLink]="['/Chats' , this.chatId]"> Chats</a>
@@ -49,4 +48,6 @@
   <a>{{this.chatId}}</a>
 
 </div>
+
+<app-acc-view></app-acc-view>
 

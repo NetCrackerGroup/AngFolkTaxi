@@ -1,0 +1,73 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h2>Профиль пользователя</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Avatar -->
+        <div *ngIf="imageSwitch" class="userImage">
+          <div class="col-md-12">
+            <div>
+              <img [src]="user.image">
+            </div>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <label > Имя: <br /> {{user.fio}} </label>
+
+        <!-- City Name -->
+        <div class="modal-footer">
+        </div>
+        <label> Город: <br /> {{user.cityName}} </label>
+
+        <!-- Phone Number -->
+        <div class="modal-footer">
+        </div>
+        <label> Номер телефона: <br /> {{user.phoneNumber}} </label>
+
+        <!-- Passenger Rating -->
+        <div *ngIf="passengerRatingSwitch" class="modal-footer">
+        </div>
+        <label *ngIf="passengerRatingSwitch"> Рейтинг пассажира: </label>
+        <div *ngIf="passengerRatingSwitch" class = "userPassengerRating">
+          <ngb-rating [(rate)]="user.passengerRating">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
+          <label> {{user.passengerRating}} </label>
+        </div>
+
+        <!-- Driver Rating -->
+        <div *ngIf="driverRatingSwitch" class="modal-footer">
+        </div>
+        <label *ngIf="driverRatingSwitch"> Рейтинг водителя: </label>
+        <div *ngIf="driverRatingSwitch" class = "userDriverRating">
+          <ngb-rating [(rate)]="user.driverRating">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
+          <label> {{user.driverRating}} </label>
+        </div>
+
+        <!-- Info -->
+        <div  *ngIf="infoSwitch" class="modal-footer">
+        </div>
+        <label *ngIf="infoSwitch" > Дополнительная информация: <br /> {{user.info}} </label>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" > Пригласить в маршрут </button>
+          <button type="button" class="btn btn-success" > Пригласить в группу </button>
+          <button type="button" class="btn btn-success" (click) = "toggle()"> Закрыть </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

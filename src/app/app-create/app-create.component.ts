@@ -21,7 +21,9 @@ export class AppCreateComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    
     this.groupExists = false;
+
   }
 
 

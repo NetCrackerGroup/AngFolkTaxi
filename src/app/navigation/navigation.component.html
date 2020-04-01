@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="find-route" >Поиск маршрута</a>  <!-- should be linked to route search component -->
       </li>
       <li class="nav-item active">
-        
+
         <div *ngIf="isReg()" class="dropdown">
           <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
@@ -32,7 +32,7 @@
         <div *ngIf="isReg()" class="dropdown">
           <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои группы
-          </button> 
+          </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a *ngFor="let group of listGroups" class="dropdown-item" href="#">{{group.groupName}}</a>
             <app-group></app-group>
@@ -51,7 +51,7 @@
 
   <div class="navbar-rigth">
     <a *ngIf="!isReg()" class="nav-link" routerLink="/reg"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
-    <a *ngIf="isReg()" class="nav-link" routerLink="/accview"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
+    <a *ngIf="isReg()" class="nav-link" routerLink="/profile"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
   </div>
 </nav>
 <app-modal-popup></app-modal-popup>

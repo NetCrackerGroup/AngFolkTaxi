@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import{ViewChild} from "@angular/core";
 
-import { GroupsService } from "../services/groups.service";
+import { GroupsService } from '../services/groups.service';
 import { IGroup } from '../entities/igroup';
 import { IUser } from '../entities/iuser'
 import { UserService } from '../services/user.service';
+
+import { AccViewComponent } from '../acc-view/acc-view.component';
+
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-import { FormControl } from '@angular/forms';
-import { ApiService } from "../shared/api.service";
-import{ AppChatComponent } from "../app-chat/app-chat.component";
+import {ApiService} from '../shared/api.service';
+import {AppChatComponent} from '../app-chat/app-chat.component';
+
 
 @Component({
   selector: 'app-group-view',
@@ -23,9 +26,13 @@ import{ AppChatComponent } from "../app-chat/app-chat.component";
 })
 export class GroupViewComponent implements OnInit {
 
+
+  @ViewChild(AccViewComponent, {static: false})
+  accViewComponent: AccViewComponent;
+
   loginCheck : boolean;
   entryGroup : boolean;
-  
+
 
   group : IGroup = {
     groupId : 0,
@@ -44,15 +51,16 @@ export class GroupViewComponent implements OnInit {
   getChatId():number{
     return this.chatId
   }
-  
-  constructor(private groupsService : GroupsService, 
+
+  constructor(private groupsService : GroupsService,
                 private route: ActivatedRoute,
                 private userService : UserService,
                 private  authService : AuthService,
                 private router : Router,
-                private apiService:ApiService ) { 
-    this.routeSubscription = route.params.subscribe(params=> 
-      { 
+                private apiService:ApiService ) {
+
+    this.routeSubscription = route.params.subscribe(params=>
+      {
         this.id=params['id'];
         groupsService.getGroup(this.id).subscribe(
           res => {
@@ -66,18 +74,18 @@ export class GroupViewComponent implements OnInit {
     });
   }
 
-  
-  
 
-  handleResponse(res) {  
+
+
+  handleResponse(res) {
     if( res["group"]!= null ) {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);
     }
-    this.checkUserInGroup();
+      this.checkUserInGroup();
   }
 
-  
+
   actgroup ( event : any ) {
     if (event.target.name == "connect") {
       console.log("connect");
@@ -90,7 +98,7 @@ export class GroupViewComponent implements OnInit {
         }
       );
     }
-    
+
     else if ( event.target.name == "leave") {
       console.log("leave");
       this.groupsService.act(this.group.groupId, "leave").subscribe(
@@ -104,12 +112,13 @@ export class GroupViewComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
     this.loginCheck = this.authService.logIn;
     if ( this.loginCheck ) {
       this.checkUserInGroup();
     }
-    console.log(` ID : ${this.id} `);
+     console.log(` ID : ${this.id} `);
   }
 
   repost(){
@@ -192,6 +201,10 @@ export class GroupViewComponent implements OnInit {
     )
   }
 
+
+
+
+
   public getChatbyGroup() {
     this.apiService.getChatByGroup(this.group.groupId.toString()).subscribe(
       res => {
@@ -202,4 +215,6 @@ export class GroupViewComponent implements OnInit {
       }
     );
   }
+
 }
+

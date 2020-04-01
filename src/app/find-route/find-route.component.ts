@@ -5,6 +5,7 @@ import {IRoute} from '../entities/iroute';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
 import {any} from 'codelyzer/util/function';
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-find-root',
@@ -25,7 +26,7 @@ export class FindRouteComponent implements OnInit, OnChanges{
   private endPoint = null;
   private listRoutes: IRoute[] = null;
 
-  constructor(private  routeService: RoutesService) { }
+  constructor(private  routeService: RoutesService, private router: Router) { }
 
   ngOnInit() {
   }

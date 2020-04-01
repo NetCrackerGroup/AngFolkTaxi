@@ -1,0 +1,25 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Изменить ваше имя</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="newName">Введите новое имя</label>
+          <input type="text" ngModel maxlength="50" class="form-control" name="newName" id="newName" placeholder="Введите имя"
+                 (input)="onInput()" (keydown.emit.backspace)="onKeydown()" [(ngModel)]="newName">
+          <label> Количество доступных символов: {{this.numLock}} </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <button type="button" class="btn btn-success" (click) = "toggle()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</form>
+

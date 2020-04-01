@@ -1,0 +1,29 @@
+<form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Написать жалобу</h2>
+        <button type="button" class="close" (click)="toggle()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="reportReason">Причина жалобы</label>
+          <input type="text" ngModel maxlength="50" class="form-control" name="reportReason" id="reportReason" placeholder="{{reportReason}}" [(ngModel)]="reportReason">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="reportText">Введите дополнительную информацию</label>
+          <textarea type="text" ngModel maxlength="250" class="form-control" name="reportText" id="reportText" [(ngModel)]="reportText">
+          </textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" >Отправить жалобу</button>
+        <button type="button" class="btn btn-success" (click) = "toggle()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</form>

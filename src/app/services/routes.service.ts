@@ -13,17 +13,21 @@ export class RoutesService {
   private listRoutes: Observable<IRoute[]> = null;
   private listDrivers: Observable<String[]> = null;
 
-
   constructor(private http: HttpClient) { }
 
   getDriverRoutes(): Observable<IRoute[]> {
+    console.log('getDriverRoutes()');
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routes`);
   }
 
   getClosestRoutes(startPoint: string, endPoint: string, stRadius: number, enRadius: number, departure: string): void {
     this.listRoutes = this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/closestRoutes/
       ${startPoint}/${endPoint}/${stRadius}/${enRadius}/${departure}`);
+
+    //  this.startPoint[0] = parseInt(startPoint.split(",")[0], 10);
+    //  this.startPoint[1] = parseInt(startPoint.split(",")[1], 10);
   }
+
 
 /*
   setListRoutes(newListRoutes: IRoute[]): void {
