@@ -16,14 +16,7 @@ declare var ymaps: any;
 export class UserRouteComponent implements OnInit, OnChanges {
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService:ApiService) {
-    this.apiService.getChatByRoute(this.id).subscribe(
-      res => {
-        this.chatId = res["chatId"];
-      },
-      err => {
-        alert("An error has occured;")
-      }
-    );;
+   
   }
 
   @ViewChild('component', {static: false})

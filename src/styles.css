@@ -1,4 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('~bootstrap/dist/css/bootstrap.min.css');
+
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.messages-box,
+.chat-box {
+  height: 510px;
+  width: 510px;
+
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  color: #999;
+  width: 510px;
+
+}

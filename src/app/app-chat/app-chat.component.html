@@ -1,4 +1,4 @@
-<div class="container py-5 px-4">
+<div class="container py-5 px-200">
   <!-- For demo purpose-->
   <header class="text-center">
     <h1 class="display-4 text-white">Bootstrap Chat</h1>
@@ -12,13 +12,13 @@
   <div class="row rounded-lg overflow-hidden shadow">
 
     <!-- Chat Box-->
-    <div class="col-7 px-0">
-      <div class="px-4 py-5 chat-box bg-white">
+    <div class="col-7 px-1000">
+      <div class="px-1000 py-1000 chat-box bg-white">
         <!-- Sender Message-->
 
         <div *ngFor = "let message of messages" class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
           <div class="media-body ml-3">
-            <div class="bg-light rounded py-2 px-3 mb-2">
+            <div class="bg-light rounded py-4 px-5 mb-2">
               <p  class="text-small mb-0 text-muted">{{message.text}}</p>
             </div>
             <p  class="small text-muted">{{(message.user.fio)}}</p>
@@ -46,6 +46,7 @@
                     type="submit"
                     (click)="sendMessage(this.chatId)"
                     class="btn btn-link">
+
               <i class="fa fa-paper-plane"></i>
             </button>
           </div>

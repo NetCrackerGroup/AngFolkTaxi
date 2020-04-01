@@ -52,16 +52,20 @@ export class AppChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    //console.log(this.chatId);
+   // this.chatId = this.GroupViewComponent.chatId
+
     
-    this.getAllMessagesPage(this.chatId);
+    //this.getAllMessagesPage(this.chatId);
   }
 
   ngOnChanges(){
     console.log(this.chatId);
-    this.getAllMessagesPage(this.chatId);
-     const newThis = this;
-    if(newThis.chatId!=null)
-      
+    if(this.chatId!=null){
+    this.getAllMessagesPage(this.chatId);}
+    const newThis = this;
+     if(newThis.chatId!=null)
+
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
         newThis.messages= data['content'];
         newThis.pages = new Array(data['totalPages'])
@@ -74,8 +78,6 @@ export class AppChatComponent implements OnInit {
       clearInterval(this.interval);
     }
   }
-
-  
   public getAllMessages(ChatId: number ) {
 
     this.apiService.getAllMessages(ChatId).subscribe(
@@ -134,7 +136,8 @@ export class AppChatComponent implements OnInit {
           user: res['user']
         };
 
-        this.messages.push(Newmes)
+        this.messages.push(Newmes);
+       this.model.text='';
       },
       err => {
         alert("An error has occured;")

@@ -1,10 +1,6 @@
+
 <div class="container">
     <div class="card">
-
-
-<div class="community">
-    <div class="head">
-        <img src="assets/images/community.png" alt="fsd"> Участники
 
         <div class="card-header">
             <h5 class="card-title"> <span class="name"> {{group.groupName}} </span></h5>
@@ -20,11 +16,22 @@
                 <div class="head">
                     <img src="assets/images/community.png" alt="fsd"> Участники 
                 </div>
-                   <ul>
-                    <li *ngFor="let user of group.users" (click)="this.accViewComponent.OpenPopup(user.userId)" >
-                      <span class="badge" ><img src="assets/images/community.png" alt="fsd"></span> {{user.fio}}
+                <ul>
+                    <li *ngFor="let user of group.users">
+                        <a routerLink="">{{user.fio}}</a>
+                      <div *ngIf="this.isModerator">
+                        <div class="mybut">
+                          <button id="button-addon2"
+                              type="submit"
+                              (click)="deleteUser(user)"
+                              class="btn btn-link">
+
+                            <i class="fas fa-times-circle"></i>
+                          </button>
+                        </div>
+                      </div>
                     </li>
-                  </ul>
+                </ul>
             </div>
 
             <div class="input-group">
@@ -36,18 +43,17 @@
             </div>
     </div>
 
+</div>
+<div>
 
-
-  <ul>
-    <li class="nav-item active">
-      <a  class="nav-link" [routerLink]="['/Chats' , this.chatId]"> Chats</a>
-    </li>
-  </ul>
+    <ul>
+        <li *ngFor="let user of group.users">
+            <a routerLink="">{{user.fio}}</a>
+        </li>
+    </ul>
   <app-app-chat [chatId] = "chatId">
   </app-app-chat>
   <a>{{this.chatId}}</a>
 
 </div>
-
-<app-acc-view></app-acc-view>
 
