@@ -7,4 +7,5 @@ export interface IRoute {
   price: number;
   userRouteDto: IUserRoute;
   distance: number;
+  optimality: number;
 }
