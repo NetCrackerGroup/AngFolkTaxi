@@ -11,7 +11,6 @@ import { AccChangeNameComponent } from '../acc-change-name/acc-change-name.compo
 import { AccChangeCityComponent } from '../acc-change-city/acc-change-city.component';
 import { AccChangePhoneNumberComponent } from '../acc-change-phone-number/acc-change-phone-number.component';
 import { AccChangeInfoComponent } from '../acc-change-info/acc-change-info.component';
-import { AccChangeEmailComponent } from '../acc-change-email/acc-change-email.component';
 
 
 
@@ -39,8 +38,6 @@ export class AccEditComponent implements OnInit {
   @ViewChild(AccChangeInfoComponent, {static: false})
    accChangeInfoComponent: AccChangeInfoComponent;
 
-  @ViewChild(AccChangeEmailComponent, {static: false})
-   accChangeEmailComponent: AccChangeEmailComponent;
 
   selectedFile: File = null;
 

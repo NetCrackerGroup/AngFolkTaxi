@@ -64,6 +64,10 @@ export class RateAfterJourneyComponent implements OnInit {
   ngOnInit() {
   }
 
+  Exit(){
+    this.router.navigate(['/']);
+  }
+
   RateDriver(){
     console.log(this.driverRating);
     if (this.driverRating == null){
@@ -76,7 +80,8 @@ export class RateAfterJourneyComponent implements OnInit {
 
 
   ToCurrentRoute(){
-    this.router.navigate(['/']);
+    string str = "viewRoute/";
+    this.router.navigate(str.concat(this.journey.routeId.toString()));
   }
 
 }

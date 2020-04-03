@@ -2,21 +2,25 @@
   font-size: 1.5rem;
   color: #b0c4de;
 }
+
+.filled {
+  color: #1e90ff;
+}
+
+.bad {
+  color: #deb0b0;
+}
+
+.filled.bad {
+  color: #ff1e1e;
+}
+
 img {
     height: 250px;
     width: 250px;
     position: center;
     border-radius: 50px;
     margin-right: 100px;
-}
-.filled {
-  color: #1e90ff;
-}
-.bad {
-  color: #deb0b0;
-}
-.filled.bad {
-  color: #ff1e1e;
 }
 
 .userName li {
