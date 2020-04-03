@@ -20,14 +20,7 @@ export class UserRouteComponent implements OnInit, OnChanges {
   accViewComponent: AccViewComponent;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService:ApiService) {
-    this.apiService.getChatByRoute(this.id).subscribe(
-      res => {
-        this.chatId = res["chatId"];
-      },
-      err => {
-        alert("An error has occured;")
-      }
-    );;
+   
   }
 
   @ViewChild('component', {static: false})

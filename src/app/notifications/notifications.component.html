@@ -1,0 +1,12 @@
+<div class="container">
+    <h3 class="margin30">Уведомления</h3>
+    <div *ngFor="let notification of notifications" class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{notification.subject}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " + notification.date.toLocaleDateString()}}</h6>
+          <p class="card-text">
+            {{notification.text}}
+          </p>
+        </div>
+      </div>
+</div>

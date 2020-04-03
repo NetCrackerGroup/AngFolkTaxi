@@ -61,5 +61,21 @@ export class GroupsService {
 
     return this.http.post(url, params);
   }
+  deleteUser(groupId:number,userId:number){
+    const url = `${environment.devUrl}/group/deleteUser`;
+    let params: HttpParams = new HttpParams().set('groupId', groupId.toString()).set('userId', userId.toString());
+    return this.http.put(url,params);
+    
+  }
+  checkUserIsModeratorGroup( groupId : number ) {
+
+    const url = `${environment.devUrl}/group/userismoderator`;
+
+    const params: HttpParams = new HttpParams().set('group_id', groupId.toString());
+    console.log(params);
+
+    return this.http.post(url, params);
+  }
+
 
 }

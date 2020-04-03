@@ -63,8 +63,9 @@ export class AppChatComponent implements OnInit {
 
   ngOnChanges(){
     console.log(this.chatId);
-    this.getAllMessagesPage(this.chatId);
-     const newThis = this;
+    if(this.chatId!=null){
+      this.getAllMessagesPage(this.chatId);}
+    const newThis = this;
     if(newThis.chatId!=null)
 
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
@@ -139,7 +140,8 @@ export class AppChatComponent implements OnInit {
           user: res['user']
         };
 
-        this.messages.push(Newmes)
+        this.messages.push(Newmes);
+       this.model.text='';
       },
       err => {
         alert("An error has occured;")

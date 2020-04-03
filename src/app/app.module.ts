@@ -46,7 +46,8 @@ const appRoutes: Routes = [
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : FindRouteComponent},
-    { path: 'user/groups', component : AppUserGroupsComponent }
+    { path: 'user/groups', component : AppUserGroupsComponent },
+    { path : 'notifications' , component : NotificationsComponent}
 ];
 
 
@@ -75,6 +76,7 @@ import {ViewRouteComponent} from "./view-route/view-route.component";
 import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-to-group.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +110,8 @@ import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-t
     AppUserGroupsComponent,
     AppPublicGroupComponent,
     InviteUserToGroupComponent,
-    RouteFilterPipe
+    RouteFilterPipe,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
