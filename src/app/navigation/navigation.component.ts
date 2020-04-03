@@ -9,6 +9,8 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
+import { NotificationService } from '../services/notification.service'; 
+import { NotificationApp } from '../entities/notification';
 
 @Component({
   selector: 'app-navigation',
@@ -16,6 +18,13 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+
+
+  testAPO : string;
+  notifications : Array<NotificationApp>;
+  //notification : AppNotification
+
+  countNotifications: number;
 
   listGroups: IGroup[] = null;
   listDriverRoutes: IRoute[] = null;
@@ -41,13 +50,13 @@ export class NavigationComponent implements OnInit {
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent, private userService: UserService) {
+              loginComponent: LoginComponent, userService: UserService, 
+              private notificationService : NotificationService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
-    this.userService = userService;
   }
 
 
@@ -72,7 +81,7 @@ export class NavigationComponent implements OnInit {
       this.routeService.getDriverRoutes().subscribe(
         res => {
           console.log(res);
-          this.listDriverRoutes = res;
+          this.listDriverRoutes = res['count'];
         },
         err => {
            // alert(`Error , ${err}`);
@@ -80,8 +89,44 @@ export class NavigationComponent implements OnInit {
           console.log(`Error , ${err}`);
         }
       );
-    }
 
+      this.notificationService.getCountTopicNotification().subscribe(
+        (res) => {
+          console.log(res);
+          this.countNotifications = res['count'];
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
+      setInterval( 
+        () => {
+          this.notificationService.getCountTopicNotification().subscribe(
+            (res) => {
+              console.log(res);
+              this.countNotifications = res['count'];
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        },
+          3000
+        );
+    }
+  }
+
+  currentlyNotificains() : void {
+    this.notificationService.getCurrentlyNotifactions().subscribe(
+      res => {
+        console.log(res);
+        this.notifications = res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   isReg(): boolean {
