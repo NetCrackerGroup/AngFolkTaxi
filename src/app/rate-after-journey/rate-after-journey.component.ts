@@ -80,8 +80,10 @@ export class RateAfterJourneyComponent implements OnInit {
 
 
   ToCurrentRoute(){
-    string str = "viewRoute/";
+    /*
+    let str = "viewRoute/";
     this.router.navigate(str.concat(this.journey.routeId.toString()));
+    */
   }
 
 }
