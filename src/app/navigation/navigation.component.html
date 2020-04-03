@@ -49,10 +49,40 @@
     </ul>
   </div>
 
+  <li *ngIf='isReg()' class="nav-item active">
+    <div class="btn-group dropleft">
+      <button type="button" class="btn" (click)="currentlyNotificains()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class = "row">
+          <img src="assets/images/notification.png" alt="notification">
+          <div class="count">{{countNotifications}}</div> 
+        </div>
+      </button>
+      <div class="dropdown-menu">
+        <div class="prokrutka">
+            <div *ngFor="let notification of notifications" class="card">
+              <div class="card-body">
+                <h4 class="card-title">{{notification.subject}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " + notification.date.toLocaleDateString()}}</h6>
+                <p class="card-text">
+                  {{notification.text}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-link">
+            <a routerLink="/notifications" class="nav-link">полный список</a>
+          </div>
+      </div>
+    </div>
+  </li>
+
   <div class="navbar-rigth">
     <a *ngIf="!isReg()" class="nav-link" routerLink="/reg"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
     <a *ngIf="isReg()" class="nav-link" routerLink="/accview"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
   </div>
+
+
+
 </nav>
 <app-modal-popup></app-modal-popup>
 <app-login></app-login>

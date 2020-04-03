@@ -40,7 +40,8 @@ const appRoutes: Routes = [
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : CityMapComponent},
-    { path: 'user/groups', component : AppUserGroupsComponent }
+    { path: 'user/groups', component : AppUserGroupsComponent },
+    { path : 'notifications' , component : NotificationsComponent}
 ];
 
 
@@ -60,6 +61,7 @@ import {ViewRouteComponent} from "./view-route/view-route.component";
 
 import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +82,8 @@ import { RoutesListComponent } from './routes-list/routes-list.component';
     YamapComponent,
     AppEntrygroupComponent,
     AppUserGroupsComponent,
-    AppPublicGroupComponent
+    AppPublicGroupComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
