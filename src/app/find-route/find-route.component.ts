@@ -20,6 +20,7 @@ export class FindRouteComponent implements OnInit, OnChanges{
   dateDepart : Date = new Date('2020-03-18');
   //dateDepart = element(by.binding('dateDepart | date: "yyyy-MM-dd"'));
   dep = '';
+  time = '';
 
   private coords = [];
   private startPoint = null;
@@ -44,7 +45,7 @@ export class FindRouteComponent implements OnInit, OnChanges{
     //  this.dep = this.dateDepart.toLocaleString().split(",")[0];
 
       this.routeService.getClosestRoutes(this.startPoint.__zone_symbol__value.geometry._coordinates,
-        this.endPoint.__zone_symbol__value.geometry._coordinates, this.stRadius, this.enRadius, this.dep);
+        this.endPoint.__zone_symbol__value.geometry._coordinates, this.stRadius, this.enRadius, this.dep, this.time);
     }
   }
 

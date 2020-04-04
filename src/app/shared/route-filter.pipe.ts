@@ -45,6 +45,15 @@ export class RouteFilterPipe implements PipeTransform {
         return -1;
       }
     }
+    ,
+    function byOptimality(r1: IRoute, r2: IRoute){
+      if(r1.optimality < r2.optimality){
+        return -1;
+      }
+      else{
+        return 1;
+      }
+    }
   ]
 
 

@@ -91,7 +91,6 @@
           <input style="display: none" type="file" accept="image/*" (change)=onFileSelected($event) #fileInput>
           <button type="button" class="btn btn-success" (click)="fileInput.click()"> Загрузить изображение</button>
           <button type="button" class="btn btn-success" (click)="this.accChangePassComponent.OpenPopup()"> Изменить пароль</button>
-          <button type="button" class="btn btn-success" (click)="this.accChangeEmailComponent.OpenPopup()"> Изменить электронную почту</button>
           <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>
         </div>
 
@@ -105,5 +104,4 @@
 <app-acc-change-city></app-acc-change-city>
 <app-acc-change-phone-number></app-acc-change-phone-number>
 <app-acc-change-info></app-acc-change-info>
-<app-acc-change-email></app-acc-change-email>
 
