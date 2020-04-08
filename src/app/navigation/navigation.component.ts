@@ -47,7 +47,7 @@ export class NavigationComponent implements OnInit {
   userCheck : Boolean;
 
   private userEmail: string = null;
-
+  private userService;
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
