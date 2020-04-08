@@ -8,6 +8,7 @@ import {group} from '@angular/animations';
 import {IRoute} from '../entities/iroute';
 import {YamapComponent} from '../yamap/yamap.component';
 import {AccViewComponent} from '../acc-view/acc-view.component';
+import {environment} from '../../environments/environment';
 declare var ymaps: any;
 
 @Component({
@@ -28,7 +29,7 @@ export class ViewRouteComponent implements OnInit {
   @ViewChild('element', {static: false})
   private element: HTMLElement;
   id: number;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   private http: HttpClient;
   driverName: string;
   timeOfDriving;

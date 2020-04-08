@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {YamapComponent} from '../yamap/yamap.component';
 import {ApiService} from "../shared/api.service";
 import {AccViewComponent} from '../acc-view/acc-view.component';
+import {environment} from '../../environments/environment';
 declare var ymaps: any;
 
 @Component({
@@ -26,7 +27,7 @@ export class UserRouteComponent implements OnInit, OnChanges {
   @ViewChild('component', {static: false})
   component: YamapComponent;
 
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   fromEnabled = 1;
   toEnabled = 1;

@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 import { NotificationApp } from '../entities/notification';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -28,20 +29,20 @@ export class NavigationComponent implements OnInit {
 
   listGroups: IGroup[] = null;
   listDriverRoutes: IRoute[] = null;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   logged = false;
 
   private routeService: RoutesService;
   @ViewChild(ModalPopupComponent, {static: false})
-  modalPopupComponent: ModalPopupComponent;
+   modalPopupComponent: ModalPopupComponent;
 
   @ViewChild(LoginComponent, {static: false})
-  loginComponent: LoginComponent;
+   loginComponent: LoginComponent;
 
   authService: AuthService;
   tempSetrService: TempSetrService;
-  http: HttpClient;
+   http: HttpClient;
 
   userCheck : Boolean;
 
@@ -57,6 +58,7 @@ export class NavigationComponent implements OnInit {
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
+    this.userService = userService;
   }
 
 

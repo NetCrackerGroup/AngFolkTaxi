@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment.prod';
 declare var ymaps: any;
 
 @Component({
@@ -23,7 +24,7 @@ export class YamapComponent implements OnInit, OnChanges {
       to: '',
     }
   };
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   @Input() fromEnabled = 1;
   @Input() toEnabled = 1;
   private http;
