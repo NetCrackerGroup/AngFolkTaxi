@@ -6,6 +6,7 @@ import {RouterOutlet} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import { AccViewComponent } from './acc-view/acc-view.component'
+import {environment} from '../environments/environment';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { AccViewComponent } from './acc-view/acc-view.component'
 export class AppComponent implements OnInit {
   title = 'AngFolkTaxi';
   authService: AuthService;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   @ViewChild(ModalPopupComponent, {static: false})
   private modalPopupComponent: ModalPopupComponent;

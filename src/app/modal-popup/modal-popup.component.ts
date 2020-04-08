@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
 import {AuthService} from '../services/auth.service';
 import {TempSetrService} from '../tempServices/temp-setr.service';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class ModalPopupComponent implements OnInit {
 
   }
 
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   visibility = false;
 
   ngOnInit() {

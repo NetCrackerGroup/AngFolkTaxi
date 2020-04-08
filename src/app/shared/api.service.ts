@@ -10,14 +10,14 @@ import {environment} from "../../environments/environment";
 })
 export class ApiService {
 
-  private ALL_CHATS_URL = "http://localhost:1337/Chats/all";
-  private GET_CHATS_URL = "http://localhost:1337/Chat/";
-  private ALL_MESSAGES_URL = "http://localhost:1337/Messages/chat/";
-  private SEND_MESAGE_URL = "http://localhost:1337/Messages/send/";
-  private GET_PAGES_URL = "http://localhost:1337/Messages/messages/";
-  private Get_CHAT_BY_GROUP_URL="http://localhost:1337/Chat/findchat/"
-  private GET_CHAT_BY_ROUTE_URL = "http://localhost:1337/Chat/findRouteChat/"
-  private GET_JOURNEY_BY_ROUTE_URL = "http://localhost:1337/journeys/findJourney/"
+  private ALL_CHATS_URL = environment.devUrl + "/Chats/all";
+  private GET_CHATS_URL = environment.devUrl + "/Chat/";
+  private ALL_MESSAGES_URL = environment.devUrl + "/Messages/chat/";
+  private SEND_MESAGE_URL = environment.devUrl + "/Messages/send/";
+  private GET_PAGES_URL =  environment.devUrl + "/Messages/messages/";
+  private Get_CHAT_BY_GROUP_URL= environment.devUrl + "/Chat/findchat/"
+  private GET_CHAT_BY_ROUTE_URL = environment.devUrl + "/Chat/findRouteChat/"
+  private GET_JOURNEY_BY_ROUTE_URL = environment.devUrl + "/journeys/findJourney/"
 
   constructor(private http:HttpClient) {
 

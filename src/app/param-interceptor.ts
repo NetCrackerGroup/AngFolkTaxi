@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {catchError, filter, finalize, switchMap, take} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs-compat/observable/ErrorObservable';
 import {AuthService} from './services/auth.service';
+import {environment} from '../environments/environment';
 
 @Injectable()
 export class ParamInterceptor implements HttpInterceptor {
@@ -23,8 +24,8 @@ export class ParamInterceptor implements HttpInterceptor {
       });
       return next.handle(req);
     } else {
-      if (req.url.includes('localhost:1337')) {
-        console.log('interseptor http://localhost:1337');
+      if (req.url.includes(environment.devUrl)) {
+        console.log('interseptor ' + environment.devUrl);
         const paramReq = req.clone({
           headers: req.headers.set(
             'Authorization', 'bearer ' + localStorage.getItem('auth_token')

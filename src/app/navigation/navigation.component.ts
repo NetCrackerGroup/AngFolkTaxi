@@ -9,6 +9,7 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -19,7 +20,7 @@ export class NavigationComponent implements OnInit {
 
   listGroups: IGroup[] = null;
   listDriverRoutes: IRoute[] = null;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   logged = false;
 

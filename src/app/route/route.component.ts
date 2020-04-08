@@ -4,6 +4,7 @@ import {any} from 'codelyzer/util/function';
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RouteComponent implements OnInit, OnChanges {
   private coords = [];
   private startPoint;
   private endPoint;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   postUser = {
     routeBegin: undefined,
     routeEnd: undefined,
