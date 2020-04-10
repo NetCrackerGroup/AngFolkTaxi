@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./acc-change-city.component.css']
 })
 export class AccChangeCityComponent implements OnInit {
+
+  @Output() newCityEvent = new EventEmitter<string>();
 
   visibility = false;
   newCity : string = "";
@@ -25,6 +27,7 @@ export class AccChangeCityComponent implements OnInit {
   Submited(form: NgForm) {
    this.userService.updateUserCity(this.newCity);
    this.visibility = false;
+   this.newCityEvent.emit(this.newCity);
    this.router.navigate(['/profile']);
   }
 

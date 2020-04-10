@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { UserService } from '../services/user.service';
 })
 export class AccChangeNameComponent implements OnInit {
 
+
+  @Output() newNameEvent = new EventEmitter<string>();
 
   visibility = false;
   newName : string = '';
@@ -34,6 +36,7 @@ export class AccChangeNameComponent implements OnInit {
       this.userService.updateUserFio(this.newName);
       this.visibility = false;
       this.numLock = 50;
+      this.newNameEvent.emit(this.newName);
       this.router.navigate(['/profile']);
     }
   }

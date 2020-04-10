@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Directive, HostListener } from '@angular/core';
 import { NgControl, ReactiveFormsModule, FormsModule, } from '@angular/forms';
 import { Subscription} from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -13,6 +13,8 @@ import { UserService } from '../services/user.service';
 })
 
 export class AccChangePhoneNumberComponent implements OnInit {
+
+  @Output() newPhoneNumberEvent = new EventEmitter<string>();
 
   visibility = false;
   newPhoneNumber : string = "";
@@ -37,6 +39,8 @@ export class AccChangePhoneNumberComponent implements OnInit {
     else {
       this.userService.updateUserPhoneNumber(this.newPhoneNumber);
       this.visibility = false;
+      this.newPhoneNumberEvent.emit(this.newPhoneNumber);
+      this.router.navigate(['/profile']);
     }
   }
 

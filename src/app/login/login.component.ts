@@ -10,6 +10,7 @@ import {NgForm} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+
   email = '';
   password = '';
   visibility = false;
