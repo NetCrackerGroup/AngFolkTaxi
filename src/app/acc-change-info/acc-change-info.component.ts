@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./acc-change-info.component.css']
 })
 export class AccChangeInfoComponent implements OnInit {
+
+  @Output() newInfoEvent = new EventEmitter<string>();
 
   visibility = false;
   newInfo : string = "";
@@ -30,6 +32,7 @@ export class AccChangeInfoComponent implements OnInit {
     this.userService.updateUserInfo(this.newInfo);
     this.visibility = false;
     this.numLock = 100;
+    this.newInfoEvent.emit(this.newInfo);
     this.router.navigate(['/profile']);
   }
 

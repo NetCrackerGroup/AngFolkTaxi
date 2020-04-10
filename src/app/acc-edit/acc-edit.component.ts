@@ -107,4 +107,17 @@ export class AccEditComponent implements OnInit {
     }
   }
 
+  receiveNewName($event) {
+    this.user.fio = $event;
+  }
+  receiveNewCity($event) {
+    this.user.cityName = $event;
+  }
+  receiveNewPhoneNumber($event) {
+    this.user.phoneNumber = $event;
+  }
+  receiveNewInfo($event) {
+    this.user.info = $event;
+  }
+
 }
