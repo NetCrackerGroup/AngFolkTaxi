@@ -9,8 +9,9 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
-import { NotificationService } from '../services/notification.service'; 
+import { NotificationService } from '../services/notification.service';
 import { NotificationApp } from '../entities/notification';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -28,7 +29,7 @@ export class NavigationComponent implements OnInit {
 
   listGroups: IGroup[] = null;
   listDriverRoutes: IRoute[] = null;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   logged = false;
 
@@ -46,17 +47,18 @@ export class NavigationComponent implements OnInit {
   userCheck : Boolean;
 
   private userEmail: string = null;
-
+  private userService;
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent, userService: UserService, 
+              loginComponent: LoginComponent, userService: UserService,
               private notificationService : NotificationService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
+    this.userService = userService;
   }
 
 
@@ -84,8 +86,8 @@ export class NavigationComponent implements OnInit {
           this.listDriverRoutes = res['count'];
         },
         err => {
-           // alert(`Error , ${err}`);
-           alert(`Error , ${err}`);
+          // alert(`Error , ${err}`);
+          alert(`Error , ${err}`);
           console.log(`Error , ${err}`);
         }
       );
@@ -100,7 +102,7 @@ export class NavigationComponent implements OnInit {
         }
       );
 
-      setInterval( 
+      setInterval(
         () => {
           this.notificationService.getCountTopicNotification().subscribe(
             (res) => {
@@ -112,8 +114,8 @@ export class NavigationComponent implements OnInit {
             }
           );
         },
-          3000
-        );
+        3000
+      );
     }
   }
 
@@ -132,6 +134,20 @@ export class NavigationComponent implements OnInit {
   isReg(): boolean {
     return this.authService.logIn;
 
+  }
+  getUserRoutes() {
+    console.log('получил');
+    this.routeService.getDriverRoutes().subscribe(
+      res => {
+        console.log(res);
+        this.listDriverRoutes = res;
+      },
+      err => {
+        // alert(`Error , ${err}`);
+        alert(`Error , ${err}`);
+        console.log(`Error , ${err}`);
+      }
+    );
   }
 
 }
