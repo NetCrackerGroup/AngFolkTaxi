@@ -1,0 +1,5 @@
+language: javascript
+
+cache:
+  directories:
+    - "$HOME/.m2"
