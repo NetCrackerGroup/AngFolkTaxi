@@ -1,9 +1,15 @@
-language: javascript
-
+language: node_js
+node_js:
+  - "9"
+dist: trusty
+sudo: false
 cache:
   directories:
-    - "$HOME/.m2"
+    - node_modules
 tags: true
+
+install:
+  - npm install -g yarn
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
