@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {CommonModule} from "@angular/common";
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 
 import { InjectionToken } from '@angular/core';
@@ -114,13 +113,12 @@ import { NotificationsComponent } from './notifications/notifications.component'
     NotificationsComponent
   ],
   imports: [
-    BrowserModule,
     HttpClientModule,
+    BrowserModule,
     NgbModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule,
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
   ],
   providers: [
