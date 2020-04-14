@@ -15,7 +15,8 @@ addons:
 before_deploy:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
   - ng build --base-href=/angular/
-  - gem install mime-types -v 2.6.2
+  - gem install mime-types -v 2.6.
+  -
 after_success:
 #  - bash <(curl -s https://codecov.io/bash)
   - eval "$(ssh-agent -s)"
