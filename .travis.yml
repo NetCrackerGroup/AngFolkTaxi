@@ -1,6 +1,6 @@
 language: javascript
 node_js:
-- '9'
+- '12'
 dist: trusty
 sudo: false
 cache:
