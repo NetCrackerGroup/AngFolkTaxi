@@ -1,38 +1,34 @@
 language: node_js
 node_js:
-  - "9"
+- '9'
 dist: trusty
 sudo: false
 cache:
   directories:
-    - node_modules
+  - node_modules
 tags: true
-
 install:
-  - npm install -g yarn
+- npm install -g yarn
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
-  - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
-  - ng build --base-href=/angular/
-  - gem install mime-types -v 2.6.
-  -
+- echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
+- ng build --base-href=/angular/
+- gem install mime-types -v 2.6.
+- 
 after_success:
-#  - bash <(curl -s https://codecov.io/bash)
-  - eval "$(ssh-agent -s)"
-  - chmod 600 $TRAVIS_BUILD_DIR/authorized_keys
-  - ssh-add $TRAVIS_BUILD_DIR/authorized_keys
-  - bundle exec rake publish
+- eval "$(ssh-agent -s)"
+- chmod 600 $TRAVIS_BUILD_DIR/authorized_keys
+- ssh-add $TRAVIS_BUILD_DIR/authorized_keys
+- bundle exec rake publish
 env:
   global:
-#    - CODECOV_TOKEN="433e8117-a7da-47a3-b437-58e2084e91d4"
-    - REMOTEAPPDIR=/var/deployAng/
-    - REMOTEUSER=root
-    - REMOTEHOST=142.93.130.144
-    - secure: fh8MAw6WC/tAws3IEw41CnHqPxfH4rggyw3yrwEx7slduhxMkWZPIE+eMwWK/XTQ8yjwy6rXar12vbFcZnI+am8R/8Eq+rZ59rh/Zq2ukPLQO39eaiSDAcpss4yuqepcVseMVOzA+HWGS1229liAkCwjbdI0QCw6a9giklymhK7aws0KNzVo2UhIKtgtqKaJhp/9V+NNRtK3Ty2RfOu576R1uONUeArhw14sN9JgviV0Gw/UpfOCAE2I3kjH7IZALNcHPZ44QBbvJPoVAYW4r2lvdb1dNpa4zDnTy5mw2Z+V8h546s55s8Jy1dDAbDnG95kAnQ8jEerW/frwpo6hXncgg6sk1XBOAQo3IVnb5CU4Pd6rJuEyAOs8J1a1TAv8XseMtQUqi3MzsaGW9MdUspcPse9uReXKmwlRoXNOiViICtEUbtFuDNvfqrTnMkQOKjcLV7ApG3wLYgOeJMzvf1t5YZUEd6uu5KKDGKJ5CTCQCJ6ql+9rJt4NWqwM5eG72eIPVr1DI+mMsiGU73m2AWEPfG6QPZXOQ5wMorSO00m/ASfDhvBze+2+udb6hh6gfIGNYutuDHpzB6jOFCrkcmUak+4Ugmp3EnOXAZ21WQ8ZE7RtJyw/YpxNA7j61BbCmTBme0PiJEaTn6045x5YUrk2mgHjEmsyGtPG2KG4WfM=
-    - secure: VPQFEqJl5qC6RpRw2X94prkwSrsIFMKopxN8dDlkqBxXMYeZwT5lornExMhcQAu+z7l480dPQn/A6X5XfevTwMDQCcsFzg7RWWic5dtBr8avGIdOZiEfSA48tQ56U4cxgA0lo/UAFmYeQ5TxCO9kZqaOgZcIJHVtyCQXImMlfKl/3nQewMWYLZEU2avJ+R3Fx6fX9oKjEbY4npvbfNVNFDlV37fYf1Vc7HX28SN5HJR1qEsX5X6eL4rX8WCE4aCya1KASQPQ78E0uomIj/sWsofb+Bl00Oek8ZcqKCdYz2UMI5YI+zGzgmu1yRFHdqUqYrrbC9okph+I0hB1KnpkWyyhKbpGQJ0sHmMLpLjZ3VpZWCCFm16ikds+TO11PAEZv9KQuO5Jf5u20PRzFfeuTTeRS9vrl8GKY5/1M2iplub7NpAFuGnDmr0dPDZ5K4RUVWfz4ABF0sKVX1T3CD3bnSAmSzJkbpjBioY6qImVfoTu4OhBT6Gm78AMBMsmPLkpiqcF/SksI0wEkgihvxeMRDXEirq4Zu1PPU2uNc9/rzFGUX0pHBS2/fOVUK4jbCnhs0I1NH7Wo6LTmyUnpLjXhrfd7B2tnlvfUIzNCdQoyRwxT0qruH/ppOt0J1REfwoJXQCACq+yLksLTz/iU7PRuFG+s5mRjRASRmZYSkNuYKo=
-    - secure: rHft3Ezgq+JcSYIvgQmrXxwwjDfKn0gTckNeTmvKHz5Fe35LKoJjBbVAjkqB8SsK/EKXw6b8PAfzCxRXEo4GIhrtYEFsZzEFQ/rdjaWkcf4v0XOtXs+5DnJf8Y+brD7ULOcNRQsazqxKcp0NdsZ9oAFX+pt46wiEqDRZrMywfwo2F+0I1i9y4s6bU2J62coqFRqifrF9NwoSHsIN4Ipbw6G8iGjRjaFME9RqMz98on3QX19zkEdGlx/nbfAmb2R82xVi9HTt0oBEfV53fugG0iIUcRbAIxII+wXQ9o4/DzW50VpLL1ZNPQYTK4HVg6zcl3lAI4zcoL+dT3fcueZEONZFf4sLM/rN5LGF4T5DAJJZ4iLbY5GQqRhYNMTYE4h7snq3c78gVcj2KcsQLnIH0dde+5bx2YOADAeitu4nwAwp0YcZVB6R/dVr3JjFZ5oWGr6yQr7OKEWT7CIEr21EVXb7epWg/y1v20RqO+0aSy4xqZjIL8csm8dDry6JwWTCE4ma5EOaYHrBw4+LVOcFghUnK+230aZQ3cZEonS2/K2YVtdrcn36ie5+9Nj64ha9JqA3klevDe7bcclObrz16YZT6XyT2LoVvQGqWvwYd4/jS85/N+pa76ZUTbvGCgD+vQUOzde6FAzSk9iK4XCT0pm7s+Y+mfNqE9IAUL507eI=
-
+  - REMOTEAPPDIR=/var/deployAng/
+  - REMOTEUSER=root
+  - REMOTEHOST=142.93.130.144
+  - secure: ItG/X1Ex8D5b5MhSbt6CIJhKrVYbfMNcgsRxnIP2KNS9dD3ArESo9usjh8mLLdYNWRRA7I9fyE2k3VgaY7AJmjKE6ZkP8olQm/dgljXuMEHlQdZsOqt59tEKma+eYV2FdIKoWHJ426v71sFbUYeumUJOoDthnTm9Z1g+YvpLV6ewbR2fq1YiuZKbTnF33QT/pqyc3vfNDpUdhRkrNIyC2hfC1qQnnQTd60wj64SKEpkjxuafCh7Cya55OklubZk/5y4ohbQLdnsWRIEBBGNCZfNpBQXHlXHGuw8mxhRwxjdiPD0jEEJ57pLeMWiWlU3+fDs2wfvZDs58gjcZqGLPfuIW243kKXX/Ymb03HHTRGWI9pndcsuK0Xz8sAPP8eXZw5MWMwNRmZENTiXAjR9WL41hOJiV1TjpCe1XFeMn77IYm+oTFMRvtIF9t7V3V47B97IeAizZFJOnPUGVQa7LG9MXMv8ScIfWMiOxw6CeamCAhVqhiFS7Fi6HWGjigf1mj2dUqHQySJdrZv91fEEMLCo2kXb+OtbAZJAKUuaMqm/+jZv1CYac4cUgYA6nH0mg6hxtjsJ6BcxdYFo6G+BOS3xGqjH8aakhEsxOZj7WLR5lR83pXhy+NqDzsO2sIVpvyXq3a+4mYCmJs9aj6PKkvAS4x3PKhmzZCcsUBr8adRg=
+  - secure: mjLcDrb6MbZWX1MPUcW2tLNbKi+OR/goSYqA5Z6h74kft/2ltge905DHdA+mnt1AH/mxferSMnFlM2aDcB3LRtG5HE61ou/YO07avSAZP9E8sZl+dDBp7yNdi69Yp9EYnm3GNaZInhSM3/MyOHmQaNHKDBJ45wdi0zgg/xo5LjHs2QybdBCzcbFnT53aYWhQZ8f04mqAX5FOlJrtnTNfufq12RBrssqgyi6h6mWbHNsupkjxX+yYwM6SFxApfDLSYp95+hCMRNq6zUPnvadXbuNBiN4wMuDSYjvVtQr1z6g0KEZ6ow1zYIspyNVniz/gpZ/fHnxRB2nDyAwCNX2GtdJDOom6bkcegf5uyqAgOLlDpjN1LXQpnjkDX4Zrx9C4KEA45Io/jjPFtRDaTIPNrLZoTCCGyVzR7XUM5iBDVU8FDxzjfUwMdfkFq7Q+UKq0pBF3HK/Y+M7W39oqXkSeiz9Blm0EaAhbxtT3HtJ2WsQkztgdKK4AQmXmr2TDL/SwVzOMDF6hF7MSFwOm2Axao12uybIAjkCWlXLxE776kpOCc2LvIHQSO7QKb40FMYhFriFhbZI8cu/QuqJGkRB53DmHTGMiWNElMqRaxl9P58fv44Ku9DolXBUCo23r5WtdQ9U2M/2gY+IOCEtFsyQi+uFXRh+/roxlTofL3BjyUyo=
+  - secure: N6LsImovWSb7MqUX6XGUl5OuClIcCio6JbalD3apRxTj2eN48ioA9h42ks7q9lNnjSqhIUzUw8ZwzxTBgYVQstWzJALn0Z4w5CamTE/dP6zp7uRmrw1L7kO88frDAfJU8ywDDbB4DvPx5Q4l/5esQJYkVR5cPSQE2VMMZPck/UrrebZvwRDNoDS0VZZkX12zrWLqUCcybwxVgW+cxSM/aYj4t/unSuSr2qi81ZMVs1eNYKB6wmbrCsh1hpxoDrysDFMUS5hd87ZxIGIGSZXUQ49rCoiBXVVL2Fcl3Aha/xP5w2Ere27RWGO7O9D0+wgSYFKvtqKbvbMMWyMNf73sgT1ovSFPHK0K37ANPC74p5iuhDTcIRcR7e3gYOrzfg7v55TqtKrfSY4g/oyE+7BRg4hwNnaY5VWervk46FWa+PAViusA0693BDW6b+pa0x6L2uNas/M5Xc81e34hzrcfqYWXRh/TTmIY19nsu3JibH34cld8pWnLlAkksQBsfAtkt9M0UXRLwGZzaQVmqW9I5/LPwlAsIzmnrEJrHPoyTziRaqfNda6RgJ+LuBc/bhGcZfAG1QlHMKKIwI+of2zLKl+KrxCTQMOuVBBv4UEUezBKksdFMp8aAAJagertiRaKPGzdn3i8T9gZHESEUAgGwYA76OsVya0t+0fUXPz0HBo=
 deploy:
   provider: script
   skip_cleanup: true
