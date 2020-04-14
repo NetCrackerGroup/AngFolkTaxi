@@ -3,3 +3,29 @@ language: javascript
 cache:
   directories:
     - "$HOME/.m2"
+tags: true
+addons:
+  ssh_known_hosts: 142.93.130.144
+before_deploy:
+  - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
+  - gem install mime-types -v 2.6.2
+after_success:
+#  - bash <(curl -s https://codecov.io/bash)
+  - eval "$(ssh-agent -s)"
+  - chmod 600 $TRAVIS_BUILD_DIR/authorized_keys
+  - ssh-add $TRAVIS_BUILD_DIR/authorized_keys
+  - bundle exec rake publish
+env:
+  global:
+#    - CODECOV_TOKEN="433e8117-a7da-47a3-b437-58e2084e91d4"
+    - REMOTEAPPDIR=/var/deployAng/
+    - REMOTEUSER=root
+    - REMOTEHOST=142.93.130.144
+    - secure: fh8MAw6WC/tAws3IEw41CnHqPxfH4rggyw3yrwEx7slduhxMkWZPIE+eMwWK/XTQ8yjwy6rXar12vbFcZnI+am8R/8Eq+rZ59rh/Zq2ukPLQO39eaiSDAcpss4yuqepcVseMVOzA+HWGS1229liAkCwjbdI0QCw6a9giklymhK7aws0KNzVo2UhIKtgtqKaJhp/9V+NNRtK3Ty2RfOu576R1uONUeArhw14sN9JgviV0Gw/UpfOCAE2I3kjH7IZALNcHPZ44QBbvJPoVAYW4r2lvdb1dNpa4zDnTy5mw2Z+V8h546s55s8Jy1dDAbDnG95kAnQ8jEerW/frwpo6hXncgg6sk1XBOAQo3IVnb5CU4Pd6rJuEyAOs8J1a1TAv8XseMtQUqi3MzsaGW9MdUspcPse9uReXKmwlRoXNOiViICtEUbtFuDNvfqrTnMkQOKjcLV7ApG3wLYgOeJMzvf1t5YZUEd6uu5KKDGKJ5CTCQCJ6ql+9rJt4NWqwM5eG72eIPVr1DI+mMsiGU73m2AWEPfG6QPZXOQ5wMorSO00m/ASfDhvBze+2+udb6hh6gfIGNYutuDHpzB6jOFCrkcmUak+4Ugmp3EnOXAZ21WQ8ZE7RtJyw/YpxNA7j61BbCmTBme0PiJEaTn6045x5YUrk2mgHjEmsyGtPG2KG4WfM=
+    - secure: VPQFEqJl5qC6RpRw2X94prkwSrsIFMKopxN8dDlkqBxXMYeZwT5lornExMhcQAu+z7l480dPQn/A6X5XfevTwMDQCcsFzg7RWWic5dtBr8avGIdOZiEfSA48tQ56U4cxgA0lo/UAFmYeQ5TxCO9kZqaOgZcIJHVtyCQXImMlfKl/3nQewMWYLZEU2avJ+R3Fx6fX9oKjEbY4npvbfNVNFDlV37fYf1Vc7HX28SN5HJR1qEsX5X6eL4rX8WCE4aCya1KASQPQ78E0uomIj/sWsofb+Bl00Oek8ZcqKCdYz2UMI5YI+zGzgmu1yRFHdqUqYrrbC9okph+I0hB1KnpkWyyhKbpGQJ0sHmMLpLjZ3VpZWCCFm16ikds+TO11PAEZv9KQuO5Jf5u20PRzFfeuTTeRS9vrl8GKY5/1M2iplub7NpAFuGnDmr0dPDZ5K4RUVWfz4ABF0sKVX1T3CD3bnSAmSzJkbpjBioY6qImVfoTu4OhBT6Gm78AMBMsmPLkpiqcF/SksI0wEkgihvxeMRDXEirq4Zu1PPU2uNc9/rzFGUX0pHBS2/fOVUK4jbCnhs0I1NH7Wo6LTmyUnpLjXhrfd7B2tnlvfUIzNCdQoyRwxT0qruH/ppOt0J1REfwoJXQCACq+yLksLTz/iU7PRuFG+s5mRjRASRmZYSkNuYKo=
+    - secure: rHft3Ezgq+JcSYIvgQmrXxwwjDfKn0gTckNeTmvKHz5Fe35LKoJjBbVAjkqB8SsK/EKXw6b8PAfzCxRXEo4GIhrtYEFsZzEFQ/rdjaWkcf4v0XOtXs+5DnJf8Y+brD7ULOcNRQsazqxKcp0NdsZ9oAFX+pt46wiEqDRZrMywfwo2F+0I1i9y4s6bU2J62coqFRqifrF9NwoSHsIN4Ipbw6G8iGjRjaFME9RqMz98on3QX19zkEdGlx/nbfAmb2R82xVi9HTt0oBEfV53fugG0iIUcRbAIxII+wXQ9o4/DzW50VpLL1ZNPQYTK4HVg6zcl3lAI4zcoL+dT3fcueZEONZFf4sLM/rN5LGF4T5DAJJZ4iLbY5GQqRhYNMTYE4h7snq3c78gVcj2KcsQLnIH0dde+5bx2YOADAeitu4nwAwp0YcZVB6R/dVr3JjFZ5oWGr6yQr7OKEWT7CIEr21EVXb7epWg/y1v20RqO+0aSy4xqZjIL8csm8dDry6JwWTCE4ma5EOaYHrBw4+LVOcFghUnK+230aZQ3cZEonS2/K2YVtdrcn36ie5+9Nj64ha9JqA3klevDe7bcclObrz16YZT6XyT2LoVvQGqWvwYd4/jS85/N+pa76ZUTbvGCgD+vQUOzde6FAzSk9iK4XCT0pm7s+Y+mfNqE9IAUL507eI=
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --quiet --delete-after * $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_DIRECTORY
