@@ -7,8 +7,9 @@ cache:
   directories:
   - node_modules
 tags: true
-#install:
-#- npm install -g yarn
+#попробовать убрать коменты
+install:
+- npm install -g yarn
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
