@@ -11,6 +11,7 @@ tags: true
 install:
 - npm install -g yarn
 script:
+  - ng build --prod --aot
     - yarn lint
     - yarn build --base-href /my-awesome-project/
     - mv dist/my-awesome-project/index.html dist/my-awesome-project/404.html
