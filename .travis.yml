@@ -11,13 +11,12 @@ tags: true
 install:
 - npm install –g angular-cli
 script:
-    - yarn lint
 #    - ng build --base-href=/angular/
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
-#  - ng build --base-href=/angular/
+  - ng build --base-href=/angular/
   - gem install mime-types -v 2.6.
 after_success:
   - eval "$(ssh-agent -s)"
