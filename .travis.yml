@@ -10,6 +10,7 @@ tags: true
 #попробовать убрать коменты
 install:
 - npm install -g yarn
+- npm install –g angular-cli
 script:
   - ng build --prod --aot
     - yarn lint
