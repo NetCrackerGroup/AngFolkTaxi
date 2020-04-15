@@ -9,13 +9,10 @@ cache:
 tags: true
 #попробовать убрать коменты
 install:
-- npm install -g yarn
 - npm install –g angular-cli
 script:
-  - ng build --prod --aot
     - yarn lint
-    - yarn build --base-href /my-awesome-project/
-    - mv dist/my-awesome-project/index.html dist/my-awesome-project/404.html
+    - ng build --base-href=/angular/
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
