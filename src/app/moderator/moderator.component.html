@@ -1,0 +1,21 @@
+
+<a *ngFor="let user of listUsers " class="list-group-item"  >
+  <h4 class="list-group-item-heading">{{user.fio}}</h4>
+  <p class="list-group-item-text">Email: {{user.email}}</p>
+  <p class="list-group-item-text">Количество жалоб: {{user.numberOfComplaints}}</p>
+  <p class="list-group-item-text">Статус: {{user.isBan}}</p>
+      <div class="mybut">
+        <button id="button-addon2"
+                type="submit"
+                (click)="setBan(user)"
+                class="btn btn-link">
+
+          <i class="fas fa-pause"></i>
+        </button>
+      </div>
+  <div class="viewcomplain">
+    <a [routerLink]="['/viewComplain' , user.userId]" class="card-link">Просмотр</a>
+  </div>
+
+  <p class="list-group-item-text"></p>
+</a>

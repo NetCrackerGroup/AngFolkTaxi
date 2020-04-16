@@ -14,11 +14,11 @@
       </li>
       <li class="nav-item active">
 
-        <div *ngIf="isReg()" class="dropdown" >
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn" (click)="getUserRoutes()">
+        <div *ngIf="isReg()" class="dropdown">
+          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a *ngFor="let route of listDriverRoutes; let i = index" [id]="route" class="dropdown-item" [routerLink]="['myRoute', route]" href="#">Маршрут {{ i + 1}}</a>
             <a class="dropdown-item" routerLink="addRoute"> Создать маршрут </a>
           </div>
@@ -39,16 +39,21 @@
           </div>
         </div>
       </li>
-      <li *ngIf='!isReg()'>
+      <li class="nav-item active">
+        <div *ngIf="isRegAdmin()" class="dropdown">
+          <a routerLink="moderator" class="nav-link">Модератор</a>
+        </div>
+      </li>
+
+      <li >
         <a class="nav-link" href="#" (click)="this.modalPopupComponent.OpenPopup()">Зарегестрироваться</a>
       </li>
-      <li *ngIf='!isReg()'>
-        <a class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">Войти</a>
+      <li >
+        <a class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">Залогиниться</a>
       </li>
-      <li><a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Выйти </a>  </li>
+      <li><a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li>
     </ul>
   </div>
-
   <li *ngIf='isReg()' class="nav-item active">
     <div class="btn-group dropleft">
       <button type="button" class="btn" (click)="currentlyNotificains()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,30 +64,28 @@
       </button>
       <div class="dropdown-menu">
         <div class="prokrutka">
-            <div *ngFor="let notification of notifications" class="card">
-              <div class="card-body">
-                <h4 class="card-title">{{notification.subject}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " + notification.date.toLocaleDateString()}}</h6>
-                <p class="card-text">
-                  {{notification.text}}
-                </p>
-              </div>
+          <div *ngFor="let notification of notifications" class="card">
+            <div class="card-body">
+              <h4 class="card-title">{{notification.subject}}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " + notification.date.toLocaleDateString()}}</h6>
+              <p class="card-text">
+                {{notification.text}}
+              </p>
             </div>
           </div>
-          <div class="footer-link">
-            <a routerLink="/notifications" class="nav-link">полный список</a>
-          </div>
+        </div>
+        <div class="footer-link">
+          <a routerLink="/notifications" class="nav-link">полный список</a>
+        </div>
       </div>
     </div>
   </li>
+
 
   <div class="navbar-rigth">
     <a *ngIf="!isReg()" class="nav-link" routerLink="/reg"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
     <a *ngIf="isReg()" class="nav-link" routerLink="/profile"><i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i></a>
   </div>
-
-
-
 </nav>
 <app-modal-popup></app-modal-popup>
 <app-login></app-login>

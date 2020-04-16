@@ -14,6 +14,7 @@ import {ModalPopupComponent} from './modal-popup/modal-popup.component';
 import { AccEditComponent } from './acc-edit/acc-edit.component';
 import {ParamInterceptor} from './param-interceptor';
 import { RouteFilterPipe } from './shared/route-filter.pipe';
+import {ModeratorComponent } from './moderator/moderator.component'
 
 
 
@@ -47,7 +48,11 @@ const appRoutes: Routes = [
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : FindRouteComponent},
     { path: 'user/groups', component : AppUserGroupsComponent },
-    { path : 'notifications' , component : NotificationsComponent}
+  {path: 'moderator', component : ModeratorComponent},
+  {path: 'viewComplain/:userId', component: ViewComplainComponent},
+  {path: 'complain/:adresatId', component: ComplainComponent},
+  { path : 'notifications' , component : NotificationsComponent}
+
 ];
 
 
@@ -76,7 +81,10 @@ import {ViewRouteComponent} from "./view-route/view-route.component";
 import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-to-group.component';
+import { ComplainComponent } from './complain/complain.component';
+import { ViewComplainComponent } from './view-complain/view-complain.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,7 +119,11 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AppPublicGroupComponent,
     InviteUserToGroupComponent,
     RouteFilterPipe,
+    ModeratorComponent,
+    ComplainComponent,
+    ViewComplainComponent,
     NotificationsComponent
+
   ],
   imports: [
     BrowserModule,

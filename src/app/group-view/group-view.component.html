@@ -20,6 +20,7 @@
                     <li *ngFor="let user of group.users">
                         <a routerLink="">{{user.fio}}</a>
                       <div *ngIf="this.isModerator">
+                        <div *ngIf="user.userId!=this.loggedUser">
                         <div class="mybut">
                           <button id="button-addon2"
                               type="submit"
@@ -28,6 +29,12 @@
 
                             <i class="fas fa-times-circle"></i>
                           </button>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="complain">
+                        <div *ngIf="user.userId!=this.loggedUser">
+                      <a [routerLink]="['/complain' , user.userId]" class="card-link"><i class="fas fa-angry"></i></a>
                         </div>
                       </div>
                     </li>

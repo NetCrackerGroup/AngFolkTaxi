@@ -7,6 +7,7 @@ import { IUserAcc } from '../entities/iuseracc';
 
 import { Observable } from 'rxjs';
 import { IGroup } from '../entities/igroup';
+import {IUser_moderator} from '../entities/iuser_moderator';
 
 
 @Injectable({
@@ -150,6 +151,55 @@ export class UserService {
     console.log(`Email get request on ${url}`);
 
     return this.http.get<IUser>(url);
+  }
+  CheckUserIsAdmin() {
+    const url = `${environment.devUrl}/users/isAdmin`;
+    return this.http.get(url);
+    
+  }
+  getAllUsers(){
+    const url = `${environment.devUrl}/users/getAllUsers`;
+    return this.http.get<IUser_moderator[]>(url);
+
+  }
+
+  getAllUserswithComplain(){
+    const url = `${environment.devUrl}/users/getAllUsersWithComplains`;
+    return this.http.get<IUser_moderator[]>(url);
+
+  }
+  complain(userId:number){
+    const url = `${environment.devUrl}/users/complain`;
+    const params: HttpParams = new HttpParams().set('userId', userId.toString());
+    console.log(params);
+    return this.http.post(url, params);
+    
+  }
+  deleteUser(userId:number){
+    const url = `${environment.devUrl}/users/deleteUser`;
+    return this.http.delete(url,{
+      params: new HttpParams().set(`userId`, userId.toString())
+    });
+
+  }
+
+  isBan(userId:number){
+    const url = `${environment.devUrl}/users/isban`;
+    return this.http.get(url);
+
+  }
+  Ban(userId : number){
+    const url = `${environment.devUrl}/users/ban`;
+    const params: HttpParams = new HttpParams().set('userId', userId.toString());
+
+    return this.http.put(url,params);
+
+
+  }
+  getLoggedUser(){
+    const url = `${environment.devUrl}/users/getLogged`;
+    return this.http.get(url);
+
   }
 }
 
