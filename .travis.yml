@@ -13,6 +13,7 @@ install:
 script:
   - ng set --global warnings.packageDeprecation=false
   - ng build --base-href=/angular/
+
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
