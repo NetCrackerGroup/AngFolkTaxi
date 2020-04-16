@@ -9,7 +9,7 @@ cache:
 tags: true
 #попробовать убрать коменты
 install:
-  - npm install –g angular-cli
+#  - npm install –g angular-cli
 script:
   - ng set --global warnings.packageDeprecation=false
 
