@@ -103,6 +103,7 @@ export class AccEditComponent implements OnInit {
   onFileSelected(event){
     if(event.target.files && event.target.files.length > 0){
       this.selectedFile = <File>event.target.files[0];
+      //this.selectedFile = event.target.files;
       this.userService.updateUserImage(this.selectedFile);
     }
   }
@@ -119,5 +120,7 @@ export class AccEditComponent implements OnInit {
   receiveNewInfo($event) {
     this.user.info = $event;
   }
-
+  receiveInfoIsNotNull($event) {
+    this.infoIsNotNull = $event;
+  }
 }

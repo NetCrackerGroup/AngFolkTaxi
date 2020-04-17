@@ -10,7 +10,7 @@ export class JourneyService {
 
   constructor(private http: HttpClient) { }
 
-  getJourneyById(JourneyID: number) {
+  getJourneyByIdForRate(JourneyID: number) {
     const url = `${environment.devUrl}/journeys/${JourneyID}`;
     console.log(`Get request on ${url}`);
 

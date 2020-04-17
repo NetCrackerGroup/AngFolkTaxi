@@ -109,8 +109,8 @@ export class UserService {
   updateUserImage(img : File) {
     const url = `${environment.devUrl}/users/update-user-image`;
     console.log(`Update info on ${url}`);
-    const image = new FormData();
-    image.append('img', img, img.name);
+    const image: FormData = new FormData();
+    image.append('file', img);
     this.http.post(url, image).subscribe();
   }
 
@@ -119,6 +119,14 @@ export class UserService {
       .set('userId', driverId.toString())
       .set('driverRating', rate);
     const url = `${environment.devUrl}/users/rate/driver-rating`;
+    this.http.post(url, body).subscribe();
+  }
+
+  ratePassenger( passengerId : number, rate : string){
+    const body = new HttpParams()
+      .set('userId', passengerId.toString())
+      .set('passengerRating', rate);
+    const url = `${environment.devUrl}/users/rate/passenger-rating`;
     this.http.post(url, body).subscribe();
   }
 

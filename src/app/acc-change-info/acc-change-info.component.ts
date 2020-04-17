@@ -13,9 +13,11 @@ import { UserService } from '../services/user.service';
 export class AccChangeInfoComponent implements OnInit {
 
   @Output() newInfoEvent = new EventEmitter<string>();
+  @Output() infoIsNotNullEvent = new EventEmitter<boolean>();
 
   visibility = false;
   newInfo : string = "";
+  infoIsNotNull : boolean = true;
   form : NgForm;
   numLock : number = 100;
 
@@ -29,10 +31,12 @@ export class AccChangeInfoComponent implements OnInit {
     console.log('you are changing your info ');
     if ( this.newInfo.match( /^(\s+)/g ) != null )
       this.newInfo = " ";
+      this.infoIsNotNull = false;
     this.userService.updateUserInfo(this.newInfo);
     this.visibility = false;
     this.numLock = 100;
     this.newInfoEvent.emit(this.newInfo);
+    this.infoIsNotNullEvent.emit(this.infoIsNotNull);
     this.router.navigate(['/profile']);
   }
 

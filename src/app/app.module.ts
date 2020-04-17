@@ -33,21 +33,25 @@ const appRoutes: Routes = [
     path: 'Chats/:chatId',
     component: AppChatComponent
   },
+    //{ path: 'reg', component: LoginComponent},
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'profile', component : AccEditComponent},
     { path: 'create-route', component : RouteComponent},
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
+    { path: 'rate-driver/:id', component : RateUserComponent},
+    { path: 'rate-passenger/:id', component : RatePassengerComponent},
     { path: 'find-route' , component: FindRouteComponent},
     { path: 'show-routes' , component: RoutesListComponent},
-    {path: 'start', component : CityMapComponent},
-    {path: 'addRoute', component: RouteComponent},
-    {path: 'viewRoute/:id', component: ViewRouteComponent},
-    {path: 'myRoute/:id', component: UserRouteComponent},
+    { path: 'start', component : CityMapComponent},
+    { path: 'addRoute', component: RouteComponent},
+    { path: 'viewRoute/:id', component: ViewRouteComponent},
+    { path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : FindRouteComponent},
     { path: 'user/groups', component : AppUserGroupsComponent },
-    { path : 'notifications' , component : NotificationsComponent}
+    { path : 'notifications' , component : NotificationsComponent},
+    { path : 'reg' , component : ModalPopupComponent},
 ];
 
 
@@ -73,10 +77,12 @@ import {AppChatComponent} from "./app-chat/app-chat.component";
 import {ViewRouteComponent} from "./view-route/view-route.component";
 
 
-import {FindRouteComponent} from './find-route/find-route.component';
+import { FindRouteComponent } from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-to-group.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { RateUserComponent } from './rate-user/rate-user.component';
+import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +95,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
     RouteComponent,
     FindRouteComponent,
     LoginComponent,
-    ModalPopupComponent,
     AccEditComponent,
     AccViewComponent,
     AccChangeNameComponent,
@@ -111,7 +116,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AppPublicGroupComponent,
     InviteUserToGroupComponent,
     RouteFilterPipe,
-    NotificationsComponent
+    NotificationsComponent,
+    RateUserComponent,
+    RatePassengerComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +131,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
   ],
   providers: [
-    ModalPopupComponent,
     LoginComponent,
     AccViewComponent,
     AccChangeNameComponent,

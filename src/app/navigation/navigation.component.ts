@@ -4,12 +4,12 @@ import {GroupsService} from '../services/groups.service';
 import {IGroup} from '../entities/igroup';
 import {IRoute} from '../entities/iroute';
 import {RoutesService} from '../services/routes.service';
-import {ModalPopupComponent} from '../modal-popup/modal-popup.component';
+//import {ModalPopupComponent} from '../modal-popup/modal-popup.component';
 import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
-import { NotificationService } from '../services/notification.service'; 
+import { NotificationService } from '../services/notification.service';
 import { NotificationApp } from '../entities/notification';
 
 @Component({
@@ -30,33 +30,34 @@ export class NavigationComponent implements OnInit {
   listDriverRoutes: IRoute[] = null;
   url = 'http://localhost:1337';
 
-  logged = false;
-
+  private userService: UserService;
   private routeService: RoutesService;
-  @ViewChild(ModalPopupComponent, {static: false})
-   modalPopupComponent: ModalPopupComponent;
+  //@ViewChild(ModalPopupComponent, {static: false})
+  //modalPopupComponent: ModalPopupComponent;
 
   @ViewChild(LoginComponent, {static: false})
    loginComponent: LoginComponent;
 
   authService: AuthService;
   tempSetrService: TempSetrService;
-   http: HttpClient;
+  http: HttpClient;
 
-  userCheck : Boolean;
+  image: string = "";
+  imageSwitch: boolean = true;
 
   private userEmail: string = null;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent, userService: UserService, 
+              loginComponent: LoginComponent, userService: UserService,
               private notificationService : NotificationService) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
+    this.userService = userService;
   }
 
 
@@ -77,6 +78,17 @@ export class NavigationComponent implements OnInit {
       //     // alert(`Error , ${err}`);
       //   }
       // );
+
+      this.userService.getUserImageForNav().subscribe(
+      res => {
+        if(res["image"] == null)
+          this.imageSwitch = false;
+        else
+          this.image = 'data:image/jpeg;base64,' + res["image"];
+      },
+      err => {
+        alert("Изображение не найдено!");
+      });
 
       this.routeService.getDriverRoutes().subscribe(
         res => {
@@ -100,7 +112,7 @@ export class NavigationComponent implements OnInit {
         }
       );
 
-      setInterval( 
+      setInterval(
         () => {
           this.notificationService.getCountTopicNotification().subscribe(
             (res) => {

@@ -26,12 +26,13 @@ export class RateAfterJourneyComponent implements OnInit {
 
   accView : boolean;
 
-  driverRating : string = "";
+  rating : string = "";
   journey: IJourney = {
     journeyId : 0,
     routeId : 0,
     driverId : 0,
-    driverName : ""
+    driverName : "",
+    passengers : []
   };
 
   private subscription: Subscription;
@@ -45,20 +46,40 @@ export class RateAfterJourneyComponent implements OnInit {
      config.readonly = false;
      this.accView = false;
      this.subscription = route.params.subscribe(params=>{
-     journeyService.getJourneyById(params['id']).subscribe(
+     journeyService.getJourneyByIdForRate(params['id']).subscribe(
        res => {
          console.log(res["journeyId"]);
          this.journey.journeyId = res["journeyId"];
          this.journey.routeId = res["routeId"];
          this.journey.driverId = res["driverId"];
          this.journey.driverName = res["driverName"];
+          if( res["journey"]!= null ) {
+            this.journey.passengers = [];
+            this.journey.passengers = res["journey"]["passengers"];
+          }
          console.log(this.journey.driverId);
        },
        err => {
-         alert("Поездка не найдена!");
+         alert("Поездка не найдена!!!");
        });
       });
   }
+
+  /*loadUsers(usersId) {
+    let count = 0;
+    usersId.forEach(element => {
+      console.log(element);
+      this.userService.getUserById(element).subscribe(
+        res => {
+            this.journey.passengers[count] = res;
+            count+=1;
+        },
+        err => {
+          console.log("Данные участников не удалось загруить!");
+        }
+      );
+    });
+  }*/
 
 
   ngOnInit() {
@@ -68,7 +89,7 @@ export class RateAfterJourneyComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  RateDriver(){
+  /*RateDriver(){
     console.log(this.driverRating);
     if (this.driverRating == null){
       alert("Заполните поле \"driverRating\" ");
@@ -76,7 +97,7 @@ export class RateAfterJourneyComponent implements OnInit {
     else {
       this.userService.rateDriver(this.journey.driverId, this.driverRating);
     }
-  }
+  }*/
 
 
   ToCurrentRoute(){
