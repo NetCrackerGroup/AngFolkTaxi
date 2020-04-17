@@ -1,14 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Chat} from "./model/chat";
 import {ApiService} from "../shared/api.service";
 import {GroupsService} from "../services/groups.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from "rxjs";
 import {IUser} from "../entities/iuser";
 import {IRoute} from "../entities/iroute";
 import {IGroup} from "../entities/igroup";
 import{GroupViewComponent} from "../group-view/group-view.component";
+import {AccViewComponent} from '../acc-view/acc-view.component';
 
 @Component({
   selector: 'app-app-chat',
@@ -16,6 +17,10 @@ import{GroupViewComponent} from "../group-view/group-view.component";
   styleUrls: ['./app-chat.component.css']
 })
 export class AppChatComponent implements OnInit {
+
+  @ViewChild('component2', {static: false})
+  accViewComponent: AccViewComponent;
+
   model: Message = {
     messageId: null,
     text: '',
@@ -38,7 +43,7 @@ export class AppChatComponent implements OnInit {
   private subscription: Subscription;
   private interval;
 
-  constructor(private apiService: ApiService,private route: ActivatedRoute) {
+  constructor(private apiService: ApiService,private route: ActivatedRoute, private router: Router) {
     //this.getAllMessagesPage(this.chatId);
 
 
@@ -52,19 +57,16 @@ export class AppChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.chatId);
-   // this.chatId = this.GroupViewComponent.chatId
 
-    
-    //this.getAllMessagesPage(this.chatId);
+    this.getAllMessagesPage(this.chatId);
   }
 
   ngOnChanges(){
     console.log(this.chatId);
     if(this.chatId!=null){
-    this.getAllMessagesPage(this.chatId);}
+      this.getAllMessagesPage(this.chatId);}
     const newThis = this;
-     if(newThis.chatId!=null)
+    if(newThis.chatId!=null)
 
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
         newThis.messages= data['content'];
@@ -78,6 +80,8 @@ export class AppChatComponent implements OnInit {
       clearInterval(this.interval);
     }
   }
+
+
   public getAllMessages(ChatId: number ) {
 
     this.apiService.getAllMessages(ChatId).subscribe(
@@ -159,6 +163,19 @@ export class AppChatComponent implements OnInit {
   }
 
 */
+  MessageClick(event) {
+    this.messages.forEach(mes => {
+      if (+mes.messageId === +event.target.id && mes.user.fio  === 'Система' && mes.text === 'Маршрут закончен' ) {
+        //открывается попапс возможностью проголосовать
+        console.log('Открылся попап');
+        // @ts-ignore
+        this.apiService.getJourneyByRouteMessage(mes.chat.chatId, mes.dateOfSending).subscribe( res => {
+          console.log(res);
+          this.router.navigate(['feedback', res]);
+        });
+      }
+    });
+  }
 }
 export interface Message {
   messageId: number;

@@ -9,8 +9,10 @@ import {LoginComponent} from '../login/login.component';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
+import {ModeratorComponent} from '../moderator/moderator.component'
 import { NotificationService } from '../services/notification.service';
 import { NotificationApp } from '../entities/notification';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +20,6 @@ import { NotificationApp } from '../entities/notification';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
 
   testAPO : string;
   notifications : Array<NotificationApp>;
@@ -28,7 +29,7 @@ export class NavigationComponent implements OnInit {
 
   listGroups: IGroup[] = null;
   listDriverRoutes: IRoute[] = null;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
 
   private userService: UserService;
   private routeService: RoutesService;
@@ -44,20 +45,27 @@ export class NavigationComponent implements OnInit {
 
   image: string = "";
   imageSwitch: boolean = true;
+  userCheck : Boolean;
+  admin : Boolean;
+  result: Boolean;
+
 
   private userEmail: string = null;
+  private userService;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
               tempSetrService: TempSetrService, http: HttpClient,
-              loginComponent: LoginComponent, userService: UserService,
-              private notificationService : NotificationService) {
+              loginComponent: LoginComponent,  userService: UserService,
+              private notificationService : NotificationService
+              ) {
     this.loginComponent = loginComponent;
     this.authService = authService;
     this.tempSetrService = tempSetrService;
     this.http = http;
     this.routeService = routeService;
     this.userService = userService;
+    this.isAdmin();
   }
 
 
@@ -93,7 +101,7 @@ export class NavigationComponent implements OnInit {
       this.routeService.getDriverRoutes().subscribe(
         res => {
           console.log(res);
-          this.listDriverRoutes = res['count'];
+          this.listDriverRoutes = res;
         },
         err => {
            // alert(`Error , ${err}`);
@@ -101,7 +109,6 @@ export class NavigationComponent implements OnInit {
           console.log(`Error , ${err}`);
         }
       );
-
       this.notificationService.getCountTopicNotification().subscribe(
         (res) => {
           console.log(res);
@@ -124,11 +131,12 @@ export class NavigationComponent implements OnInit {
             }
           );
         },
-          3000
-        );
-    }
-  }
+        3000
+      );
 
+    }
+
+  }
   currentlyNotificains() : void {
     this.notificationService.getCurrentlyNotifactions().subscribe(
       res => {
@@ -145,5 +153,45 @@ export class NavigationComponent implements OnInit {
     return this.authService.logIn;
 
   }
+
+
+  isRegAdmin(): boolean{
+
+    this.result  = false;
+    if(this.isReg){
+      if(this.admin)
+        this.result = true;
+    }
+
+    console.log(this.result);
+    return this.result.valueOf();
+  }
+  public isAdmin(){
+    this.userService.CheckUserIsAdmin().subscribe((res) => {
+        console.log(res);
+        this.admin = res["isAdmin"];
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getUserRoutes() {
+    console.log('получил');
+    this.routeService.getDriverRoutes().subscribe(
+      res => {
+        console.log(res);
+        this.listDriverRoutes = res;
+      },
+      err => {
+        // alert(`Error , ${err}`);
+        alert(`Error , ${err}`);
+        console.log(`Error , ${err}`);
+      }
+    );
+  }
+
+
 
 }

@@ -45,16 +45,21 @@
       </li>
       <li *ngIf='!isReg()'>
         <a class="nav-link" routerLink="/reg" >Зарегистрироваться</a>
+      <li class="nav-item active">
+        <div *ngIf="isRegAdmin()" class="dropdown">
+          <a routerLink="moderator" class="nav-link">Модератор</a>
+        </div>
       </li>
-      <li *ngIf='!isReg()'>
-        <a class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">Войти</a>
+
+      </li>
+      <li >
+        <a class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">Залогиниться</a>
       </li>
       <li>
         <a class="nav-link" (click)="authService.logout()" href="#" *ngIf="authService.logIn">Выйти</a>
       </li>
     </ul>
   </div>
-
   <li *ngIf='isReg()' class="nav-item active">
     <div class="btn-group dropleft">
       <button type="button" class="btn" (click)="currentlyNotificains()" data-toggle="dropdown" aria-haspopup="true"
@@ -69,9 +74,7 @@
           <div *ngFor="let notification of notifications" class="card">
             <div class="card-body">
               <h4 class="card-title">{{notification.subject}}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " +
-                notification.date.toLocaleDateString()}}
-              </h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{notification.date.toLocaleTimeString() + " " + notification.date.toLocaleDateString()}}</h6>
               <p class="card-text">
                 {{notification.text}}
               </p>
@@ -84,6 +87,7 @@
       </div>
     </div>
   </li>
+
 
   <div class="nav-item active">
     <a *ngIf="!isReg()" class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">

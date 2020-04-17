@@ -3,6 +3,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
+import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class RouteComponent implements OnInit, OnChanges {
   private coords = [];
   private startPoint;
   private endPoint;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   postUser = {
     routeBegin: undefined,
     routeEnd: undefined,
@@ -27,12 +29,13 @@ export class RouteComponent implements OnInit, OnChanges {
   };
   schedule = {
     timeOfJourney: undefined,
-    scheduleDay: undefined
+    scheduleDay: undefined,
+    startDate: undefined
   };
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.http = http;
   }
 
@@ -73,6 +76,7 @@ export class RouteComponent implements OnInit, OnChanges {
     console.log(body);
     this.http.post(this.url + '/routes/add',  body).subscribe((resp) => {
       console.log(resp);
+      this.router.navigate(['']);
     });
 
   }

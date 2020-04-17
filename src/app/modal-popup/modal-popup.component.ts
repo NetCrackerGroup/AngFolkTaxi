@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
 import {AuthService} from '../services/auth.service';
 import {TempSetrService} from '../tempServices/temp-setr.service';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -35,8 +36,8 @@ export class ModalPopupComponent implements OnInit {
 
   }
 
-  url = 'http://localhost:1337';
   //visibility = false;
+  url = environment.devUrl;
 
   ngOnInit() {
   }
@@ -46,6 +47,7 @@ export class ModalPopupComponent implements OnInit {
     this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
       this.authServ.login(this.postUser.email, this.postUser.password);
       //this.visibility = false;
+      this.router.navigate(['']);
     });
 
   }

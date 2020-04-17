@@ -1,0 +1,14 @@
+
+
+
+<a *ngFor="let complain of complains " class="list-group-item"  >
+  <h4 class="list-group-item-heading">Отправитель:{{complain.user.fio}}</h4>
+  <p class="list-group-item-text">Email: {{complain.user.email}}</p>
+  <p class="list-group-item-text">Жалоба: {{complain.text}}</p>
+
+  <p class="list-group-item-text"></p>
+</a>
+
+<div class="back">
+  <a [routerLink]="['/moderator' ]" class="card-link">Back</a>
+</div>

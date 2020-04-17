@@ -7,6 +7,8 @@ import {YandexMultirouteComponent} from 'angular8-yandex-maps/lib/components/yan
 import {group} from '@angular/animations';
 import {IRoute} from '../entities/iroute';
 import {YamapComponent} from '../yamap/yamap.component';
+import {AccViewComponent} from '../acc-view/acc-view.component';
+import {environment} from '../../environments/environment';
 declare var ymaps: any;
 
 @Component({
@@ -21,10 +23,13 @@ export class ViewRouteComponent implements OnInit {
   @ViewChild('component', {static: false})
   component: YamapComponent;
 
+  @ViewChild('component2', {static: false})
+  accViewComponent: AccViewComponent;
+
   @ViewChild('element', {static: false})
   private element: HTMLElement;
   id: number;
-  url = 'http://localhost:1337';
+  url = environment.devUrl;
   private http: HttpClient;
   driverName: string;
   timeOfDriving;
@@ -80,8 +85,10 @@ export class ViewRouteComponent implements OnInit {
         const htmlElement = this.element.nativeElement as HTMLElement;
         htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
         this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
-        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe(res2 => {
+        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2: {timeOfJourney, scheduleDay, startDate}) => {
           // @ts-ignore
+          const date = new Date(res2.startDate);
+          this.dateOfJourney = new Date(res2.startDate).toLocaleDateString();
           this.timeOfDriving = res2.timeOfJourney;
           // @ts-ignore
           let scheduleString = (+res2.scheduleDay).toString(2);

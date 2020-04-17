@@ -75,13 +75,17 @@
   text-align: center;
   border: #63AA9C solid 2px;
   border-radius: 7px;
-  transition: 0.5s;
+  transition: 0.5s all;
 }
 .information-block-2:hover {
   text-align: center;
-  border: #63AA9C solid 2px;
+  border: #aa2336 solid 2px;
   border-radius: 20px;
 
+}
+.information-block__text-2 {
+  margin: auto;
+  width: 60%;
 }
 .join-button {
   margin: auto;
@@ -151,7 +155,9 @@
   position: relative;
   overflow: hidden;
 }
-
+.user-item:hover {
+  cursor: pointer;
+}
 
 /*списки*/
 ul.menu-top > li {
@@ -181,5 +187,6 @@ h3 {
   height: 510px;
   width: 510px;
 }
+
 
 

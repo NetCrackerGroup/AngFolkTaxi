@@ -37,6 +37,7 @@ export class GroupViewComponent implements OnInit {
   };
   chatId:number;
   selectedUser: IUser;
+  loggedUser: number;
 
   id: number;
   private subscription: Subscription;
@@ -66,12 +67,22 @@ export class GroupViewComponent implements OnInit {
           }
         );
     });
+    userService.getLoggedUser().subscribe(
+      res =>{
+        this.loggedUser = res['isLogged']
+
+    },
+      err => {
+        alert("Error has occured")
+      }
+    )
+
   }
 
   
   
 
-  handleResponse(res) {  
+   handleResponse(res) {
     if( res["group"]!= null ) {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);
@@ -232,5 +243,8 @@ export class GroupViewComponent implements OnInit {
    
     
     
+  }
+  public complain(user: IUser){
+    this.userService.complain(user.userId).subscribe();
   }
 }

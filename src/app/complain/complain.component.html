@@ -1,0 +1,50 @@
+<p>Оформление жалобы</p>
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form name="form" #f="ngForm" (ngSubmit)=" sendComplain() "   novalidate class="feedback-form">
+
+        <!— Email —>
+        <div class="form-group">
+          <label for="adresat">Адресат</label>
+          <input type="text"
+                 id="adresat"
+                 class="form-control"
+                 name="adresat"
+                 placeholder="Adresat name"
+                 [(ngModel)]="complain.adresat.fio"
+                 #name="ngModel"
+
+          />
+
+
+        </div>
+
+        <!— Feedback —>
+        <div class="form-group">
+          <label for="feedback">Жалоба</label>
+          <textarea
+            id="feedback"
+            class="form-control"
+            name="feedback"
+            placeholder="Your feedback"
+            rows="10"
+            [(ngModel)]="complain.text"
+            #feedback="ngModel"
+            >
+</textarea>
+          <!— input validation group —>
+
+        </div>
+
+        <button type="submit" class="btn btn-info pull-right">
+          <i class="fa fa-envelope-o"></i>
+          <span> Отправить жалобу</span>
+
+        </button>
+      </form>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>
