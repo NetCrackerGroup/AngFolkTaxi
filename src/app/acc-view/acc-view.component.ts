@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { IUserAcc } from '../entities/iuseracc'
+import { IUserAcc } from '../entities/iuseracc';
 import { UserService } from '../services/user.service';
 
 @Component({

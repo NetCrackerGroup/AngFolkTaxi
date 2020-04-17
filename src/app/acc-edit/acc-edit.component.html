@@ -94,6 +94,8 @@
           <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>
         </div>
 
+
+
     </div>
     <div class="offset-3"></div>
   </div>
@@ -103,5 +105,5 @@
 <app-acc-change-name (newNameEvent)="receiveNewName($event)"></app-acc-change-name>
 <app-acc-change-city (newCityEvent)="receiveNewCity($event)"></app-acc-change-city>
 <app-acc-change-phone-number (newPhoneNumberEvent)="receiveNewPhoneNumber($event)"></app-acc-change-phone-number>
-<app-acc-change-info (newInfoEvent)="receiveNewInfo($event)"></app-acc-change-info>
+<app-acc-change-info (newInfoEvent)="receiveNewInfo($event)" (infoIsNotNullEvent)="receiveInfoIsNotNull($event)"></app-acc-change-info>
 

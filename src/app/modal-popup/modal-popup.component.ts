@@ -23,21 +23,21 @@ export class ModalPopupComponent implements OnInit {
     cityId: undefined,
     name: undefined
     };
-  form: NgForm;
+  //form: NgForm;
 
 
   constructor(private http: HttpClient,
-              form: NgForm,
-              private router: Router,
-              private loginComponent: LoginComponent,
+              //form: NgForm,
+              //private router: Router,
+              //private loginComponent: LoginComponent,
               private authServ: AuthService,
               private tempSetrService: TempSetrService) {
-    this.form = form;
+    //this.form = form;
 
   }
 
+  //visibility = false;
   url = environment.devUrl;
-  visibility = false;
 
   ngOnInit() {
   }
@@ -46,18 +46,18 @@ export class ModalPopupComponent implements OnInit {
     console.log(this.postUser);
     this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
       this.authServ.login(this.postUser.email, this.postUser.password);
-      this.visibility = false;
+      //this.visibility = false;
       this.router.navigate(['']);
     });
 
   }
 
 
-  OpenPopup() {
+ /*OpenPopup() {
     this.visibility = true;
   }
 
   toggle() {
     this.visibility = false;
-  }
+  }*/
 }

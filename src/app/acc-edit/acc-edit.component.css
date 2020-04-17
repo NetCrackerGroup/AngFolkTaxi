@@ -20,7 +20,7 @@ img {
     width: 250px;
     position: center;
     border-radius: 50px;
-    margin-right: 100px;
+    margin-right: 400px;
 }
 
 .userName li {
@@ -114,5 +114,7 @@ img {
   background-color: #BBD8DC;
   color: white;
 }
+
+
 
 
