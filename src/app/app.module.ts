@@ -124,13 +124,12 @@ import { RatePassengerComponent } from './rate-passenger/rate-passenger.componen
     AppPublicGroupComponent,
     InviteUserToGroupComponent,
     RouteFilterPipe,
-    AuthLoginWith
     RateUserComponent,
-    RatePassengerComponent
+    RatePassengerComponent,
     ModeratorComponent,
     ComplainComponent,
     ViewComplainComponent,
-    NotificationsComponent
+    NotificationsComponent,
 
   ],
   imports: [

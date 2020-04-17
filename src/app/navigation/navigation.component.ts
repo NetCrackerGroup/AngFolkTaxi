@@ -51,7 +51,6 @@ export class NavigationComponent implements OnInit {
 
 
   private userEmail: string = null;
-  private userService;
 
   constructor(private  groupService: GroupsService, routeService: RoutesService, authService: AuthService,
 
