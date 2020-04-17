@@ -21,7 +21,6 @@ before_deploy:
   - ng build --prod --base-href=/angular/
 #  - gem install mime-types -v 2.6.
 after_success:
-
   - eval "$(ssh-agent -s)"
   - chmod 600 $TRAVIS_BUILD_DIR/authorized_keys
   - ssh-add $TRAVIS_BUILD_DIR/authorized_keys
