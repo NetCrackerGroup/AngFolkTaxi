@@ -37,6 +37,6 @@ env:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --quiet --delete-after * $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_DIRECTORY
+  script: bash deploy_production.sh
   on:
     branch: deployTravisBranch
