@@ -7,6 +7,10 @@ import {YamapComponent} from '../yamap/yamap.component';
 import {ApiService} from '../shared/api.service';
 import {AccViewComponent} from '../acc-view/acc-view.component';
 import {environment} from '../../environments/environment';
+import {IUserAcc} from '../entities/iuseracc';
+import {UserService} from '../services/user.service';
+import {log} from 'util';
+import {RoutesService} from '../services/routes.service';
 declare var ymaps: any;
 
 @Component({
@@ -19,11 +23,22 @@ export class UserRouteComponent implements OnInit {
 
   @ViewChild('component2', {static: false})
   accViewComponent: AccViewComponent;
+  private routeService: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService) {
-
+  constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService,
+              private userService: UserService, routeService: RoutesService) {
+  this.routeService = routeService;
   }
-
+  imageSwitch = true;
+  user: IUserAcc = {
+    fio : '',
+    phoneNumber : '',
+    cityName : '',
+    passengerRating : '',
+    driverRating : '',
+    info : '',
+    image : ''
+  };
   @ViewChild('component', {static: false})
   component: YamapComponent;
 
@@ -44,6 +59,7 @@ export class UserRouteComponent implements OnInit {
   public daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
   public userDays = [];
   chatId: number;
+
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -102,7 +118,18 @@ export class UserRouteComponent implements OnInit {
         alert('An error has occured;');
       }
     );
+    this.routeService.getRouteDriver(this.id).subscribe(
 
+      (res) => {
+        if (res == null) {
+          this.imageSwitch = false;
+        } else {
+          this.user.image = 'data:image/jpeg;base64,' + res;
+        }
+      },
+      err => {
+        console.log('Пользоваель не найден! err', err);
+      });
 
   }
 

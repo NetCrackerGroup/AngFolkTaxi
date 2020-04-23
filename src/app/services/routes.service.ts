@@ -27,7 +27,9 @@ export class RoutesService {
     //  this.startPoint[0] = parseInt(startPoint.split(",")[0], 10);
     //  this.startPoint[1] = parseInt(startPoint.split(",")[1], 10);
   }
-
+  getRouteDriver(routeId) {
+    return this.http.get(`${this.urlForRoutes}/routes/driver/${routeId}`,  {responseType: 'text'});
+  }
 
 /*
   setListRoutes(newListRoutes: IRoute[]): void {
