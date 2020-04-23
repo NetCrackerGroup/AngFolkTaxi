@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  devUrl : 'http://localhost:1337',
-  devUrlFront : 'http://localhost:4200'
+  devUrl : 'http://142.93.130.144:1337',
+  devUrlFront : 'http://142.93.130.144:4200'
 };
