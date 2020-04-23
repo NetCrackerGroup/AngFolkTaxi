@@ -9,15 +9,17 @@ cache:
 tags: true
 #попробовать убрать коменты
 install:
-- npm install –g angular-cli
+#  - npm install –g angular-cli
 script:
-#    - ng build --base-href=/angular/
+  - ng set --global warnings.packageDeprecation=false
+
+
 addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
-  - ng build --base-href=/angular/
-  - gem install mime-types -v 2.6.
+  - ng build --prod --base-href=/angular/
+#  - gem install mime-types -v 2.6.
 after_success:
   - eval "$(ssh-agent -s)"
   - chmod 600 $TRAVIS_BUILD_DIR/authorized_keys
@@ -35,4 +37,6 @@ env:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --quiet --delete-after * $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_DIRECTORY
+  script: bash deploy_production.sh
+  on:
+    branch: master
