@@ -1,42 +1,45 @@
 <!--form (ngSubmit)="Submited(Form)"  class="modal" [ngClass]="{invisibled: visibility}" #Form = "ngForm"-->
-<div class="container">
-  <div class="row">
-    <div class="offset-3"></div>
-        <h2>Введите свои данные для регистрации</h2>
-        <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button-->
+<form (ngSubmit)="Submited(Form)" #Form = "ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="offset-3"></div>
+      <h2>Введите свои данные для регистрации</h2>
+      <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button-->
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="email">Введите email</label>
+        <input type="text" #nameText class="form-control" name="email" id="email" placeholder="" [(ngModel)]="postUser.email">
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="email">Введите email</label>
-          <input type="text" #nameText class="form-control" name="email" id="email" placeholder="" [(ngModel)]="postUser.email">
-        </div>
-        <div class="form-group">
-          <label for="password">Введите пароль</label>
-          <input type="password" class="form-control" name="password" id="password" placeholder="" [(ngModel)]="postUser.password">
-        </div>
-        <div class="form-group">
-          <label for="phoneNumber">Введите номер телефона</label>
-          <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="" [(ngModel)]="postUser.phoneNumber">
-        </div>
-        <div class="form-group">
-          <label for="exampleSelect1">Выберите город</label>
-          <select class="form-control" name="cityId" id="exampleSelect1" [(ngModel)]="postUser.cityId">
-            <option value="1">Воронеж</option>
-            <option value="2">Ещё один Воронеж</option>
-            <option value="3">Москва</option>
-            <option value="4">Опять Воронеж</option>
-            <option value="5">Наконец Воронеж</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="name">Введите имя</label>
-          <input type="text" class="form-control" name="name" id="name" placeholder="" [(ngModel)]="postUser.name">
-        </div>
+      <div class="form-group">
+        <label for="password">Введите пароль</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="" [(ngModel)]="postUser.password">
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" click = "Registrate()">Зарегистрироваться</button>
+      <div class="form-group">
+        <label for="phoneNumber">Введите номер телефона</label>
+        <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="" [(ngModel)]="postUser.phoneNumber">
       </div>
-    </div><!-- /.модальное окно-Содержание -->
+      <div class="form-group">
+        <label for="exampleSelect1">Выберите город</label>
+        <select class="form-control" name="cityId" id="exampleSelect1" [(ngModel)]="postUser.cityId">
+          <option value="1">Воронеж</option>
+          <option value="2">Ещё один Воронеж</option>
+          <option value="3">Москва</option>
+          <option value="4">Опять Воронеж</option>
+          <option value="5">Наконец Воронеж</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="name">Введите имя</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="" [(ngModel)]="postUser.name">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </div>
+  </div><!-- /.модальное окно-Содержание -->
+</form>
+
 <!--/form--><!-- /.модальное окно -->

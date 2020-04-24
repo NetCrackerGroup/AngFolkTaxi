@@ -17,7 +17,7 @@
 
       <li class="nav-item active">
         <div *ngIf="isReg()" class="dropdown">
-          <button class="btn dropdown-toggle nav-link" data-toggle="dropdown" *ngIf="authService.logIn">
+          <button class="btn dropdown-toggle nav-link" (click)="getUserRoutes()" data-toggle="dropdown" *ngIf="authService.logIn">
             Мои маршруты
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -110,5 +110,5 @@
 
 
 </nav>
-
+<app-modal-popup></app-modal-popup>
 <app-login></app-login>
