@@ -42,7 +42,7 @@ export class NavigationComponent implements OnInit {
 
   authService: AuthService;
   tempSetrService: TempSetrService;
-   http: HttpClient;
+  http: HttpClient;
 
   userCheck : Boolean;
 
@@ -64,6 +64,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     console.log('navigationOnInit');
+
     // this.change2.subscribe((tempUser) => {
     //   this.visibility = true;
     //   this.email = tempUser.email;
@@ -79,6 +80,8 @@ export class NavigationComponent implements OnInit {
       //     // alert(`Error , ${err}`);
       //   }
       // );
+      this.countNotifications = 0;
+      this.getCurrentCountNitifications();
 
       this.routeService.getDriverRoutes().subscribe(
         res => {
@@ -92,31 +95,27 @@ export class NavigationComponent implements OnInit {
         }
       );
 
-      this.notificationService.getCountTopicNotification().subscribe(
-        (res) => {
-          console.log(res);
-          this.countNotifications = res['count'];
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-
       setInterval(
         () => {
-          this.notificationService.getCountTopicNotification().subscribe(
-            (res) => {
-              console.log(res);
-              this.countNotifications = res['count'];
-            },
-            (err) => {
-              console.log(err);
-            }
-          );
+          if (this.isReg()) {
+            this.getCurrentCountNitifications();
+          }
         },
         3000
       );
     }
+  }
+
+  getCurrentCountNitifications() {
+    this.notificationService.getCountTopicNotification().subscribe(
+      (res) => {
+        console.log(res);
+        this.countNotifications = res['count'];
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   currentlyNotificains() : void {
@@ -133,8 +132,8 @@ export class NavigationComponent implements OnInit {
 
   isReg(): boolean {
     return this.authService.logIn;
-
   }
+
   getUserRoutes() {
     console.log('получил');
     this.routeService.getDriverRoutes().subscribe(

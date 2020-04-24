@@ -54,7 +54,7 @@
       <button type="button" class="btn" (click)="currentlyNotificains()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class = "row">
           <img src="assets/images/notification.png" alt="notification">
-          <div class="count">{{countNotifications}}</div> 
+          <div *ngIf="countNotifications != 0" class="count">{{countNotifications}}</div> 
         </div>
       </button>
       <div class="dropdown-menu">
