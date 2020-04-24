@@ -51,3 +51,7 @@ input::placeholder {
 
 }
 
+.verdanaFont {
+  cursor: pointer;
+  color: #009933;
+}
