@@ -55,7 +55,8 @@ const appRoutes: Routes = [
   {path: 'viewComplain/:userId', component: ViewComplainComponent},
   {path: 'complain/:adresatId', component: ComplainComponent},
   { path : 'notifications' , component : NotificationsComponent},
-  {path : 'blockederror', component : BlockedErrorComponent}
+  {path : 'blockederror', component : BlockedErrorComponent},
+  {path : 'reg', component : ModalPopupComponent}
 
 
 ];
