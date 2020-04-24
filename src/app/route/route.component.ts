@@ -5,7 +5,8 @@ import {AngularYandexMapsModule} from 'angular8-yandex-maps';
 import {YandexMapComponent} from 'angular8-yandex-maps/lib/components/yandex-map-component/yandex-map.component';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
-
+import {UserService} from '../services/user.service';
+import {IGroup} from '../entities/igroup';
 
 @Component({
   selector: 'app-route',
@@ -19,13 +20,19 @@ export class RouteComponent implements OnInit, OnChanges {
   private coords = [];
   private startPoint;
   private endPoint;
+
   url = environment.devUrl;
+  indexOfGroup = -1;
+  groupLabel = 'Без привязки к группе';
+  listGroups: IGroup[] = null;
+
   postUser = {
     routeBegin: undefined,
     routeEnd: undefined,
     price: undefined,
     countOfPlaces: undefined,
-    startDate: Date
+    startDate: Date,
+    groupId: undefined
   };
   schedule = {
     timeOfJourney: undefined,
@@ -35,16 +42,31 @@ export class RouteComponent implements OnInit, OnChanges {
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private userService: UserService, private router: Router) {
     this.http = http;
   }
 
 
   ngOnInit() {
-
+    this.userService.getUserGroups().subscribe(
+        res => {
+          console.log(res);
+          this.listGroups = res;
+        },
+        err => {
+          alert(`Error , ${err}`);
+          console.log(`Error , ${err}`);
+        }
+      );
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log('change');
+  }
+
+  chooseGroup(i: number, name: string) {
+    this.indexOfGroup = i;
+    this.groupLabel = name;
   }
 
   createNewRoute() {
@@ -58,6 +80,12 @@ export class RouteComponent implements OnInit, OnChanges {
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
+    if(this.indexOfGroup == -1){
+      this.postUser.groupId = 0;
+    }
+    else{
+      this.postUser.groupId = this.listGroups[this.indexOfGroup].groupId;
+    }
     this.schedule.scheduleDay =  res;
     console.log(this.postUser.startDate);
     let body;
