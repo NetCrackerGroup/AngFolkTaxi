@@ -34,6 +34,7 @@ const appRoutes: Routes = [
     path: 'Chats/:chatId',
     component: AppChatComponent
   },
+    { path: 'reg', component: ModalPopupComponent},
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'profile', component : AccEditComponent},
@@ -148,7 +149,6 @@ import { RatePassengerComponent } from './rate-passenger/rate-passenger.componen
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
   ],
   providers: [
-    ModalPopupComponent,
     LoginComponent,
     AccViewComponent,
     AccChangeNameComponent,

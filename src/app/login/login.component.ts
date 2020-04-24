@@ -3,7 +3,6 @@ import {AuthService} from '../services/auth.service';
 import {TempSetrService} from '../tempServices/temp-setr.service';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {ModalPopupComponent} from "../modal-popup/modal-popup.component";
 import {BlockedErrorComponent} from "../blocked-error/blocked-error.component";
 
 @Component({
