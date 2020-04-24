@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
-import {ModalPopupComponent} from "../modal-popup/modal-popup.component";
 import {BlockedErrorComponent} from "../blocked-error/blocked-error.component";
 
 @Injectable({
