@@ -43,7 +43,7 @@ export class AccEditComponent implements OnInit {
 
   passengerRatingSwitch = true;
   driverRatingSwitch = true;
-  infoIsNotNull = true;
+  infoIsNotNull : boolean;
   imageSwitch = true;
 
   changeName : boolean;
@@ -79,12 +79,14 @@ export class AccEditComponent implements OnInit {
       this.user.passengerRating = res["passengerRating"];
       this.user.driverRating = res["driverRating"];
       this.user.info = res["info"];
-      if(this.user.passengerRating == null)
+      if(this.user.passengerRating == null || this.user.passengerRating == '0')
        this.passengerRatingSwitch = false;
-      if(this.user.driverRating == null)
+      if(this.user.driverRating == null || this.user.driverRating == '0')
        this.driverRatingSwitch = false;
-      if(this.user.info == null)
+      if(this.user.info == null || this.user.info == "" || this.user.info == '')
        this.infoIsNotNull = false;
+      else
+       this.infoIsNotNull = true;
       if(res["image"] == null)
         this.imageSwitch = false;
       else

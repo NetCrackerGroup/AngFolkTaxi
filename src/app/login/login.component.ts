@@ -40,4 +40,7 @@ export class LoginComponent implements OnInit {
   OpenPopup() {
     this.visibility = true;
   }
+  loginWithGoogle(){
+    this.router.navigate(['/login/google']);
+  }
 }

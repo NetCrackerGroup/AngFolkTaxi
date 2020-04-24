@@ -52,6 +52,14 @@ export class ModalPopupComponent implements OnInit {
 
   }
 
+  Registrate(){
+      console.log(this.postUser);
+      this.http.post(this.url + '/users/sign-up', this.postUser).subscribe((resp) => {
+        this.authServ.login(this.postUser.email, this.postUser.password);
+        this.router.navigate(['/']);
+      });
+  }
+
 
  /*OpenPopup() {
     this.visibility = true;

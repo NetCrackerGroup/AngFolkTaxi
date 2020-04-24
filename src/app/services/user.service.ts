@@ -115,18 +115,20 @@ export class UserService {
     this.http.post(url, image).subscribe();
   }
 
-  rateDriver( driverId : number, rate : string){
+  rateDriver( driverId : number, rate : string, journeyId : number){
     const body = new HttpParams()
       .set('userId', driverId.toString())
-      .set('driverRating', rate);
+      .set('driverRating', rate)
+      .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/driver-rating`;
     this.http.post(url, body).subscribe();
   }
 
-  ratePassenger( passengerId : number, rate : string){
+  ratePassenger( passengerId : number, rate : string, journeyId : number){
     const body = new HttpParams()
       .set('userId', passengerId.toString())
-      .set('passengerRating', rate);
+      .set('passengerRating', rate)
+      .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/passenger-rating`;
     this.http.post(url, body).subscribe();
   }
@@ -163,7 +165,7 @@ export class UserService {
   CheckUserIsAdmin() {
     const url = `${environment.devUrl}/users/isAdmin`;
     return this.http.get(url);
-    
+
   }
   getAllUsers(){
     const url = `${environment.devUrl}/users/getAllUsers`;
@@ -181,7 +183,7 @@ export class UserService {
     const params: HttpParams = new HttpParams().set('userId', userId.toString());
     console.log(params);
     return this.http.post(url, params);
-    
+
   }
   deleteUser(userId:number){
     const url = `${environment.devUrl}/users/deleteUser`;

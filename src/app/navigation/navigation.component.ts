@@ -94,7 +94,7 @@ export class NavigationComponent implements OnInit {
           this.image = 'data:image/jpeg;base64,' + res["image"];
       },
       err => {
-        alert("Изображение не найдено!");
+        //alert("Изображение не найдено!");
       });
 
       this.routeService.getDriverRoutes().subscribe(
@@ -152,6 +152,7 @@ export class NavigationComponent implements OnInit {
     return this.authService.logIn;
 
   }
+
 
 
   isRegAdmin(): boolean{
