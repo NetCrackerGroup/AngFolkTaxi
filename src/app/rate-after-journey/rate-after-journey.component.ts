@@ -25,7 +25,7 @@ export class RateAfterJourneyComponent implements OnInit {
    accViewComponent: AccViewComponent;
 
   accView : boolean;
-
+  driverSwitch : boolean = false;
   rating : string = "";
   journey: IJourney = {
     journeyId : 0,
@@ -50,6 +50,8 @@ export class RateAfterJourneyComponent implements OnInit {
        res => {
          console.log(res["journeyId"]);
          this.journey.journeyId = res["journeyId"];
+         if (this.journey.journeyId == null || this.journey.journeyId == 0)
+          this.driverSwitch = true;
          this.journey.routeId = res["routeId"];
          this.journey.driverId = res["driverId"];
          this.journey.driverName = res["driverName"];
@@ -98,6 +100,14 @@ export class RateAfterJourneyComponent implements OnInit {
       this.userService.rateDriver(this.journey.driverId, this.driverRating);
     }
   }*/
+
+  ToRateDriver(){
+   this.router.navigate(['/rate-driver/{{journey.driverId}}']);
+   }
+
+  ToRatePassenger(){
+   this.router.navigate(['/rate-passenger/{{passenger.passengerId}}']);
+  }
 
 
   ToCurrentRoute(){

@@ -99,9 +99,9 @@
       <i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i>
     </a>
     <div  *ngIf="isReg()">
-      <button *ngIf="imageSwitch" type="button" class="btn" routerLink="/profile">
+      <a *ngIf="imageSwitch" class="nav-link" routerLink="/profile">
         <img [src]="image" alt="Avatar">
-      </button>
+      </a>
       <a *ngIf="!imageSwitch" class="nav-link" routerLink="/profile">
         <i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i>
       </a>

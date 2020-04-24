@@ -29,9 +29,13 @@ export class AccChangeInfoComponent implements OnInit {
 
   Submited(form: NgForm) {
     console.log('you are changing your info ');
-    if ( this.newInfo.match( /^(\s+)/g ) != null )
+    if ( this.newInfo.match( /^(\s+)/g ) != null ){
       this.newInfo = " ";
       this.infoIsNotNull = false;
+    }
+    else
+      this.infoIsNotNull = true;
+    //console.log("d" + this.newInfo + "d");
     this.userService.updateUserInfo(this.newInfo);
     this.visibility = false;
     this.numLock = 100;
