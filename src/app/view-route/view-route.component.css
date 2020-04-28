@@ -44,9 +44,10 @@
   padding-bottom: 30px;
 }
 .map-wrap {
-  width: 100%;
+  width: 90%;
   height: 40vh;
   text-align: center;
+  margin: auto;
 }
 .driver-info-wrap__img {
   flex-basis: 45%;
@@ -197,3 +198,4 @@ h3 {
   margin: auto;
   width: 60%;
 }
+
