@@ -9,9 +9,9 @@
           <div class="driver-info-wrap__img">
             <div class="information-block__text block-text">Водитель данного маршрута</div>
             <div class="img-wrap">
-              <a href=""><img src="" alt=""></a>
+              <img class="driver-img" [src]="image">
             </div>
-            <div class="information-block__text block-text-driver-name">{{this.driverName}}</div>
+            <div class="information-block__text-2 information-block-2 block-text-driver-name" (click)="this.accViewComponent.OpenPopup(driverId)">{{this.driverName}}</div>
           </div>
           <div class="driver-info-wrap__text">
             <div class="driver-info-text block-text-driver">
@@ -84,6 +84,6 @@
       </div>
     </div>
   </div>
-
+  <app-acc-view #component2></app-acc-view>
 
 </div>

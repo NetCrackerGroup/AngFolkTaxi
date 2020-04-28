@@ -49,6 +49,7 @@ export class AccViewComponent implements OnInit {
   }
 
   OpenPopup(id : number) {
+    console.log('OpenPopup', id);
     this.visibility = true;
     this.userService.getUserByIdForAcc(id).subscribe(
       res => {
