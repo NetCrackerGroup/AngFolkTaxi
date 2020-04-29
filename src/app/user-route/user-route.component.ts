@@ -24,6 +24,7 @@ export class UserRouteComponent implements OnInit {
   @ViewChild('component2', {static: false})
   accViewComponent: AccViewComponent;
   private routeService: any;
+  driverId: number;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService,
               private userService: UserService, routeService: RoutesService) {
@@ -37,7 +38,7 @@ export class UserRouteComponent implements OnInit {
     passengerRating : '',
     driverRating : '',
     info : '',
-    image : ''
+    image : 'https://img2.freepng.ru/20180511/htq/kisspng-the-law-office-of-steve-slough-business-medicine-m-5af52751a56ac3.3981210115260158256776.jpg'
   };
   @ViewChild('component', {static: false})
   component: YamapComponent;
@@ -121,8 +122,9 @@ export class UserRouteComponent implements OnInit {
     this.routeService.getRouteDriver(this.id).subscribe(
 
       (res) => {
-        if (res == null) {
+        if (res === '') {
           this.imageSwitch = false;
+
         } else {
           this.user.image = res;
         }
@@ -130,10 +132,14 @@ export class UserRouteComponent implements OnInit {
       err => {
         console.log('Пользоваель не найден! err', err);
       });
+    this.http.get(`${this.url}/routes/driverId/${this.id}`).subscribe( (id: number) => {
+      this.driverId = id;
+    });
 
   }
 
   openJourneyInfo() {
 
   }
+
 }

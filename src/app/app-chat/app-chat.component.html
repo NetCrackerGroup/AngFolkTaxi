@@ -1,6 +1,6 @@
-<div class="container py-5 px-200">
+<div class="container">
   <!-- For demo purpose-->
-  <header class="text-center">
+  <header class="text-center main-header">
     <h1 class="display-4 text-white">Bootstrap Chat</h1>
     <p class="text-white lead mb-0">An elegant chat widget compatible with Bootstrap 4</p>
     <p class="text-white lead mb-4">Snippet by
@@ -9,11 +9,11 @@
     </p>
   </header>
 
-  <div class="row rounded-lg overflow-hidden shadow">
+  <div class="row chat-all">
 
     <!-- Chat Box-->
-    <div class="col-7 px-1000">
-      <div class="px-1000 py-1000 chat-box bg-white">
+    <div class="col-12 chat-body">
+      <div class=" chat-box bg-white">
         <!-- Sender Message-->
 
         <div *ngFor = "let message of messages" class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
@@ -26,18 +26,18 @@
         </div>
 
 
-        <hr>
-        <ul class="nav nav-pills">
-          <li class="nav-item" *ngFor="let p of pages;let i = index">
-            <a class="nav-link" href=""(click)="setPage(i,$event)">{{i}}</a>
-          </li>
-        </ul>
-      </div>
 
+      </div>
+      <hr>
+      <ul class="nav nav-pills navig-block">
+        <li class="nav-item" *ngFor="let p of pages;let i = index">
+          <a class="nav-link" href=""(click)="setPage(i,$event)">{{i+1}}</a>
+        </li>
+      </ul>
 
 
       <!-- Typing area -->
-      <form action="#" class="bg-light">
+      <form action="#" class="bg-light navigat">
         <div class="input-group">
 
           <input  type="text" placeholder="Type a message"  [(ngModel)]="model.text"  [ngModelOptions]="{standalone: true}" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">

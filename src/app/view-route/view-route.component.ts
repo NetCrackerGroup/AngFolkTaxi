@@ -34,11 +34,14 @@ export class ViewRouteComponent implements OnInit {
   driverName: string;
   timeOfDriving;
   countOfPlaces;
+  // tslint:disable-next-line:max-line-length
+  image = 'https://img2.freepng.ru/20180511/htq/kisspng-the-law-office-of-steve-slough-business-medicine-m-5af52751a56ac3.3981210115260158256776.jpg';
   map: any;
   driverRaring: number;
   price;
   modalText = 'В маршруте нет мест';
   dateOfJourney;
+  driverId;
   public isManyDays = false;
   public parameters = {
     options: {
@@ -111,6 +114,9 @@ export class ViewRouteComponent implements OnInit {
             this.isManyDays = false;
           }
 
+        });
+        this.http.get(`${this.url}/routes/driverId/${this.id}`).subscribe( (id: number) => {
+          this.driverId = id;
         });
       });
 

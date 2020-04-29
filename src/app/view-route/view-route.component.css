@@ -44,9 +44,10 @@
   padding-bottom: 30px;
 }
 .map-wrap {
-  width: 100%;
+  width: 90%;
   height: 40vh;
   text-align: center;
+  margin: auto;
 }
 .driver-info-wrap__img {
   flex-basis: 45%;
@@ -67,6 +68,7 @@
   text-align: center;
   border: #63AA9C solid 2px;
   border-radius: 20px;
+  cursor: pointer;
 
 }
 .join-button {
@@ -165,3 +167,35 @@ h3 {
   text-align: center;
   margin-bottom: 10px;
 }
+.driver-img {
+  margin: auto;
+  margin-bottom: 15px;
+  display: block;
+  height: 15vh;
+  width: 15vh;
+  border-radius: 15px;
+}
+
+.information-block__text-2 {
+  margin: auto;
+  width: 60%;
+}
+
+.information-block-2 {
+  padding: 5px;
+  text-align: center;
+  border: #63AA9C solid 2px;
+  border-radius: 7px;
+  transition: 0.5s all;
+}
+.information-block-2:hover {
+  text-align: center;
+  border: #aa2336 solid 2px;
+  border-radius: 20px;
+
+}
+.information-block__text-2 {
+  margin: auto;
+  width: 60%;
+}
+

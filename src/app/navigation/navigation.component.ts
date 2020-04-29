@@ -69,7 +69,7 @@ export class NavigationComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('navigationOnInit');
+
     // this.change2.subscribe((tempUser) => {
     //   this.visibility = true;
     //   this.email = tempUser.email;
@@ -166,7 +166,7 @@ export class NavigationComponent implements OnInit {
         this.result = true;
     }
 
-    console.log(this.result);
+
     return this.result.valueOf();
   }
   public isAdmin(){

@@ -167,6 +167,7 @@ export class UserService {
     return this.http.get(url);
 
   }
+  
   getAllUsers(){
     const url = `${environment.devUrl}/users/getAllUsers`;
     return this.http.get<IUser_moderator[]>(url);
@@ -192,6 +193,7 @@ export class UserService {
     });
 
   }
+  
 
   isBan(userId:number){
     const url = `${environment.devUrl}/users/isban`;

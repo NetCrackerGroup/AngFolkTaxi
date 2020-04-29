@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { IUserAcc } from '../entities/iuseracc';
 import { UserService } from '../services/user.service';
+import {RoutesService} from "../services/routes.service";
 
 @Component({
   selector: 'app-acc-view',
@@ -21,6 +22,10 @@ export class AccViewComponent implements OnInit {
   driverRatingSwitch = true;
   infoSwitch = true;
   imageSwitch = true;
+  routeId:number;
+  userId :number;
+  need = false;
+  isDriver : boolean;
 
   user : IUserAcc = {
     fio : "",
@@ -35,6 +40,8 @@ export class AccViewComponent implements OnInit {
   form : NgForm;
 
   constructor(private userService : UserService,
+              private routeService : RoutesService,
+              private router : Router,
                  config: NgbRatingConfig,
                  form: NgForm) {
          config.max = 5;
@@ -48,8 +55,13 @@ export class AccViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  OpenPopup(id : number) {
+  OpenPopup(id : number,idRoute : number) {
+    console.log('OpenPopup', id);
     this.visibility = true;
+    if(idRoute!=null) {
+      this.routeId = idRoute;
+    }
+    this.userId = id;
     this.userService.getUserByIdForAcc(id).subscribe(
       res => {
         this.user.fio = res["fio"];
@@ -74,10 +86,40 @@ export class AccViewComponent implements OnInit {
       err => {
         alert("Пользоваель не найден!");
       });
+    
+       if(idRoute!=null) {
+         this.routeService.checkUserIsDriver(idRoute).subscribe(
+           (res) => {
+             console.log(res);
+             this.isDriver = res["isDriver"];
+           },
+           (err) => {
+             console.log(err);
+           }
+         );
+       }
+    
   }
 
   toggle() {
     this.visibility = false;
+    if(this.need){
+      window.location.reload();
+      
+    }
   }
 
+  deleteUser() {
+    this.routeService.deleteUser(this.routeId,this.userId).subscribe(
+      res=>{
+        console.log(res["route"]["users"]);
+        this.need = true;
+        alert("Участник удален");
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+    
+  }
 }
