@@ -58,7 +58,8 @@ export class AppChatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAllMessagesPage(this.chatId);
+    if(this.chatId!=null)
+      this.getAllMessagesPage(this.chatId);
   }
 
   ngOnChanges(){
