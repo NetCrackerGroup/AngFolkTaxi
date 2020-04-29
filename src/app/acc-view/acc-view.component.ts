@@ -58,7 +58,9 @@ export class AccViewComponent implements OnInit {
   OpenPopup(id : number,idRoute : number) {
     console.log('OpenPopup', id);
     this.visibility = true;
-    this.routeId = idRoute;
+    if(idRoute!=null) {
+      this.routeId = idRoute;
+    }
     this.userId = id;
     this.userService.getUserByIdForAcc(id).subscribe(
       res => {
@@ -85,15 +87,17 @@ export class AccViewComponent implements OnInit {
         alert("Пользоваель не найден!");
       });
     
-      this.routeService.checkUserIsDriver(idRoute).subscribe(
-        (res) => {
-          console.log(res);
-          this.isDriver = res["isDriver"];
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+       if(idRoute!=null) {
+         this.routeService.checkUserIsDriver(idRoute).subscribe(
+           (res) => {
+             console.log(res);
+             this.isDriver = res["isDriver"];
+           },
+           (err) => {
+             console.log(err);
+           }
+         );
+       }
     
   }
 
