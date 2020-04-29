@@ -199,3 +199,11 @@ h3 {
   width: 60%;
 }
 
+.star {
+  font-size: 30px;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #1e90ff;
+}

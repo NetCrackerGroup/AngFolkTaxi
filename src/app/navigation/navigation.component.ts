@@ -122,7 +122,6 @@ export class NavigationComponent implements OnInit {
         () => {
           this.notificationService.getCountTopicNotification().subscribe(
             (res) => {
-              console.log(res);
               this.countNotifications = res['count'];
             },
             (err) => {
