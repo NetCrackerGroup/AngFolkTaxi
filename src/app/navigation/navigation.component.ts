@@ -88,10 +88,14 @@ export class NavigationComponent implements OnInit {
 
       this.userService.getUserImageForNav().subscribe(
       res => {
-        if(res["image"] == null)
+        if(res['userImageSource'] == null){
           this.imageSwitch = false;
-        else
-          this.image = 'data:image/jpeg;base64,' + res["image"];
+          console.log(res['userImageSource']);
+          }
+        else{
+          this.image = 'data:image/jpeg;base64,' + res['userImageSource'];
+          console.log("xxxxxxxxxx" + res['userImageSource']);
+          }
       },
       err => {
         //alert("Изображение не найдено!");
@@ -150,7 +154,6 @@ export class NavigationComponent implements OnInit {
 
   isReg(): boolean {
     return this.authService.logIn;
-
   }
 
 
