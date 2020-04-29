@@ -37,9 +37,11 @@
 <!--            <div class="information-block__text block-text-driver">Рейтинг водителя:</div>-->
 <!--            <div class="block-text-driver block-text-driver-2 driver-rating">{{this.driverRaring}}</div>-->
 <!--          </div>-->
+          <!--(click)="this.accViewComponent.OpenPopup(item.userId)"-->
           <h3>Участники маршрута</h3>
           <ul class="menu-top">
-            <li class="information-block-2 user-item" [id]="item.id" *ngFor="let item of users"  (click)="this.accViewComponent.OpenPopup(item.userId)" >{{item.fio}}</li>
+            <li class="information-block-2 user-item" [id]="item.id"  *ngFor="let item of users" (click)="this.accViewComponent.OpenPopup(item.userId,this.id)" >{{item.fio}}</li>
+
           </ul>
         </div>
       </div>
