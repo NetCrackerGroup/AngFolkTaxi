@@ -20,10 +20,13 @@
               Шкала доверия пользователя
             </div>
             <div class="driver-info-text">
-              <div class="container">
-                <div class="progressbar">
-                  <span style="width:0%" #element></span>
-                </div>
+              <div *ngIf="driverRatingSwitch" class = "userDriverRating">
+                <ngb-rating [(rate)]="this.driverRaring">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <label> {{this.driverRaring}} </label>
               </div>
             </div>
             <div class="driver-info-text">
