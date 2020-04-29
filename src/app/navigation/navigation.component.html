@@ -46,7 +46,7 @@
       </li>
 
       <li *ngIf='!isReg()'>
-        <a class="nav-link" routerLink="/reg" >Зарегистрироваться</a>
+        <a class="nav-link" routerLink="reg" >Зарегистрироваться</a>
       </li>
 
       <li class="nav-item active">
@@ -93,15 +93,16 @@
     </div>
   </li>
 
-
   <div class="nav-item active">
     <a *ngIf="!isReg()" class="nav-link" href="#" (click)="this.loginComponent.OpenPopup()">
       <i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i>
     </a>
     <div  *ngIf="isReg()">
-      <button *ngIf="imageSwitch" type="button" class="btn" routerLink="/profile">
+      <div *ngIf="imageSwitch" >
+      <a class="nav-link" routerLink="/profile">
         <img [src]="image" alt="Avatar">
-      </button>
+      </a>
+      </div>
       <a *ngIf="!imageSwitch" class="nav-link" routerLink="/profile">
         <i class="fa fa-user-circle fa-border bg-white fa-2x" aria-hidden="true"></i>
       </a>
@@ -110,5 +111,4 @@
 
 
 </nav>
-
 <app-login></app-login>

@@ -5,6 +5,21 @@
 .filled {
   color: #1e90ff;
 }
+li {
+    list-style-type: none; /* Убираем маркеры */
+    padding: 4px;
+}
+
+ul {
+    height: 230px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 0px;
+  }
 
 .driverName li {
   list-style-type: none; /* Убираем маркеры */

@@ -58,7 +58,8 @@ export class AppChatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAllMessagesPage(this.chatId);
+    if(this.chatId!=null)
+      this.getAllMessagesPage(this.chatId);
   }
 
   ngOnChanges(){
@@ -165,7 +166,7 @@ export class AppChatComponent implements OnInit {
 */
   MessageClick(event) {
     this.messages.forEach(mes => {
-      if (+mes.messageId === +event.target.id && mes.user.fio  === 'Система' && mes.text === 'Маршрут закончен' ) {
+      if (+mes.messageId === +event.target.id && mes.user.fio  === 'Система' && mes.text === 'Оцените Маршрут' ) {
         //открывается попапс возможностью проголосовать
         console.log('Открылся попап');
         // @ts-ignore
@@ -175,6 +176,11 @@ export class AppChatComponent implements OnInit {
         });
       }
     });
+  }
+
+  isPointer(text) {
+
+    return text === 'Оцените Маршрут';
   }
 }
 export interface Message {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {IRoute} from '../entities/iroute';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -29,7 +29,9 @@ export class RoutesService {
     //  this.startPoint[0] = parseInt(startPoint.split(",")[0], 10);
     //  this.startPoint[1] = parseInt(startPoint.split(",")[1], 10);
   }
-
+  getRouteDriver(routeId) {
+    return this.http.get(`${this.urlForRoutes}/routes/driver/${routeId}`,  {responseType: 'text'});
+  }
 
 /*
   setListRoutes(newListRoutes: IRoute[]): void {
@@ -38,5 +40,22 @@ export class RoutesService {
 
   getListRoutes(): Observable<IRoute[]> {
     return this.listRoutes;
+  }
+
+  deleteUser(routeId:number,userId:number){
+    const url = `${environment.devUrl}/routes/deletePassenger`;
+    let params: HttpParams = new HttpParams().set('routeId', routeId.toString()).set('userId', userId.toString());
+    return this.http.put(url,params);
+
+  }
+
+  checkUserIsDriver( routeId : number ) {
+
+    const url = `${environment.devUrl}/routes/userisdriverr`;
+
+    const params: HttpParams = new HttpParams().set('routeId', routeId.toString());
+    console.log(params);
+
+    return this.http.post(url, params);
   }
 }

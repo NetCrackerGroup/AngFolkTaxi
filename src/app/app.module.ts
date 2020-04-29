@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     path: 'Chats/:chatId',
     component: AppChatComponent
   },
-    //{ path: 'reg', component: LoginComponent},
+    { path: 'reg', component: ModalPopupComponent},
     { path: 'create-group', component: AppCreateComponent},
     { path: 'groups/:id' , component : GroupViewComponent},
     { path: 'profile', component : AccEditComponent},
@@ -44,18 +44,20 @@ const appRoutes: Routes = [
     { path: 'rate-passenger/:id', component : RatePassengerComponent},
     { path: 'find-route' , component: FindRouteComponent},
     { path: 'show-routes' , component: RoutesListComponent},
-    { path: 'start', component : CityMapComponent},
-    { path: 'addRoute', component: RouteComponent},
-    { path: 'viewRoute/:id', component: ViewRouteComponent},
-    { path: 'myRoute/:id', component: UserRouteComponent},
+    {path: 'start', component : CityMapComponent},
+    {path: 'addRoute', component: RouteComponent},
+    {path: 'viewRoute/:id', component: ViewRouteComponent},
+    {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
     { path: '' , component : FindRouteComponent},
     { path: 'user/groups', component : AppUserGroupsComponent },
-    { path : 'reg' , component : ModalPopupComponent},
   {path: 'moderator', component : ModeratorComponent},
   {path: 'viewComplain/:userId', component: ViewComplainComponent},
   {path: 'complain/:adresatId', component: ComplainComponent},
-  { path : 'notifications' , component : NotificationsComponent}
+  { path : 'notifications' , component : NotificationsComponent},
+  {path : 'blockederror', component : BlockedErrorComponent},
+  {path : 'reg', component : ModalPopupComponent}
+
 
 ];
 
@@ -82,12 +84,13 @@ import {AppChatComponent} from "./app-chat/app-chat.component";
 import {ViewRouteComponent} from "./view-route/view-route.component";
 
 
-import { FindRouteComponent } from './find-route/find-route.component';
+import {FindRouteComponent} from './find-route/find-route.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 import { InviteUserToGroupComponent } from './invite-user-to-group/invite-user-to-group.component';
 import { ComplainComponent } from './complain/complain.component';
 import { ViewComplainComponent } from './view-complain/view-complain.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { BlockedErrorComponent } from './blocked-error/blocked-error.component';
 import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 
@@ -103,6 +106,7 @@ import { RatePassengerComponent } from './rate-passenger/rate-passenger.componen
     RouteComponent,
     FindRouteComponent,
     LoginComponent,
+    ModalPopupComponent,
     AccEditComponent,
     AccViewComponent,
     AccChangeNameComponent,
@@ -130,6 +134,8 @@ import { RatePassengerComponent } from './rate-passenger/rate-passenger.componen
     ComplainComponent,
     ViewComplainComponent,
     NotificationsComponent,
+    NotificationsComponent,
+    BlockedErrorComponent
 
   ],
   imports: [

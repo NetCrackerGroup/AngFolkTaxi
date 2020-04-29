@@ -3,7 +3,8 @@
   <h4 class="list-group-item-heading">{{user.fio}}</h4>
   <p class="list-group-item-text">Email: {{user.email}}</p>
   <p class="list-group-item-text">Количество жалоб: {{user.numberOfComplaints}}</p>
-  <p class="list-group-item-text">Статус: {{user.isBan}}</p>
+  <p class="list-group-item-text" *ngIf="user.isBan==0">Статус: разблокирован</p>
+  <p class="list-group-item-text" *ngIf="user.isBan==1">Статус: заблокирован</p>
       <div class="mybut">
         <button id="button-addon2"
                 type="submit"

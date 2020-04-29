@@ -16,7 +16,6 @@ export class ParamInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     if (req.url.includes('/oauth/token') || req.url.includes('/users/sign-up')) {
-      console.log('interseptor /oauth/token');
       const paramReq = req.clone({
         headers: req.headers.set(
             'Authorization', 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
@@ -35,8 +34,6 @@ export class ParamInterceptor implements HttpInterceptor {
         return next.handle(req);
       }
     }
-    console.log('intercept');
-    console.log(localStorage.getItem('refresh_token'));
     return next.handle(this.addTokenHeader(req))
       .pipe(
         catchError(error => {
@@ -45,7 +42,6 @@ export class ParamInterceptor implements HttpInterceptor {
       );
   }
   private queueRequest(req: HttpRequest<any>, next: HttpHandler): any {
-    console.log('queueRequest');
     return this.tokenSubject$.pipe(
       filter(token => token != null),
       take(1),
@@ -54,7 +50,6 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   private handle401(req: HttpRequest<any>, next: HttpHandler, error: any) {
-    console.log('handle401');
     if (this.isAuthenticatedRequest(req)) {
       return (!this.isRefreshingToken) ? this.refreshToken(req, next) : this.queueRequest(req, next);
     } else {
@@ -63,13 +58,13 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   private handle400(req: HttpRequest<any>, error: any) {
-    console.log('handle400');
+
     return this.isAuthenticatedRequest(req) ? this.logout(error) : this.throwError(error);
   }
 
   private addTokenHeader(req: HttpRequest<any>): HttpRequest<any> {
 // tslint:disable-next-line:max-line-length
-    console.log(`addTokenHeader ${localStorage.getItem('auth_token')}`);
+
 // tslint:disable-next-line:max-line-length
     return this.isAuthenticatedRequest(req) ? req.clone({setHeaders: {Authorization: 'bearer ' + localStorage.getItem('auth_token')}}) : req;
   }
@@ -83,25 +78,25 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   private logout(error: any): Observable<any> {
-    console.log('logout');
+
     return this.throwError(error);
   }
   private logoutRefresh(error: any): Observable<any> {
-    console.log('logoutRefresh');
+
     this.authService.logout();
     return this.throwError(error);
   }
 // @ts-ignore
   private throwError(error: any): Observable<ErrorObservable> {
-    console.log('throwError');
+
     return Observable.throw(error);
   }
 
   private refreshToken(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    console.log('refreshToken');
+
     this.isRefreshingToken = true;
     this.tokenSubject$.next(null);
-    console.log('refreshToken');
+
     return this.authService.refreshToken()
       .pipe(
         switchMap((newToken: any) => {

@@ -1,16 +1,22 @@
-import {Injectable} from '@angular/core';
+import {Injectable, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {BlockedErrorComponent} from "../blocked-error/blocked-error.component";
 
 @Injectable({
   providedIn: 'root'
+
+
 })
 export class AuthService {
 
   url = environment.devUrl;
+
+  result ;
+
 
   constructor(private http: HttpClient, private router: Router ) {  }
 
@@ -36,7 +42,19 @@ export class AuthService {
         this.router.navigate(['start']);
       }, error1 => {
         console.log(error1);
+        console.log(error1.error.error_description);
+        if(error1.error.error_description=="User account is locked") {
+          console.log("truer");
+          this.router.navigate(['/blockederror'])
+         // this.blockedErrorComponent.OpenPopup();
+        }
+
+
       });
+    console.log("Результатттт",this.result);
+    //return this.result;
+
+
   }
 
   logout() {

@@ -69,7 +69,7 @@ export class NavigationComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('navigationOnInit');
+
     // this.change2.subscribe((tempUser) => {
     //   this.visibility = true;
     //   this.email = tempUser.email;
@@ -88,13 +88,17 @@ export class NavigationComponent implements OnInit {
 
       this.userService.getUserImageForNav().subscribe(
       res => {
-        if(res["image"] == null)
+        if(res['userImageSource'] == null){
           this.imageSwitch = false;
-        else
-          this.image = 'data:image/jpeg;base64,' + res["image"];
+          console.log(res['userImageSource']);
+          }
+        else{
+          this.image = 'data:image/jpeg;base64,' + res['userImageSource'];
+          console.log("xxxxxxxxxx" + res['userImageSource']);
+          }
       },
       err => {
-        alert("Изображение не найдено!");
+        //alert("Изображение не найдено!");
       });
 
       this.routeService.getDriverRoutes().subscribe(
@@ -150,8 +154,8 @@ export class NavigationComponent implements OnInit {
 
   isReg(): boolean {
     return this.authService.logIn;
-
   }
+
 
 
   isRegAdmin(): boolean{
@@ -162,7 +166,7 @@ export class NavigationComponent implements OnInit {
         this.result = true;
     }
 
-    console.log(this.result);
+
     return this.result.valueOf();
   }
   public isAdmin(){

@@ -1,27 +1,26 @@
 <div class="container route">
-  <h1 class="route-header">Мой роут</h1>
-  <div class="row">
+  <h1 class="route-header">Мой маршрут</h1>
+  <div class="row route-block">
     <div class="col-7">
       <app-yamap [fromEnabled] = fromEnabled [toEnabled] = toEnabled #component></app-yamap>
     </div>
-    <div class="col-5">
-      <app-app-chat [chatId] = "chatId">
+    <div class="col-5 ">
+      <app-app-chat class="chat_component" [chatId] = "chatId">
       </app-app-chat>
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container route2">
   <h2 class="cart-route-header">Информация о маршруте</h2>
   <div class="blockInput col-12">
     <div class="information-block">
       <div class="driver-info-wrap">
-        <div class="driver-info-wrap__img">
+        <div class="driver-info-wrap__img" >
           <div class="information-block__text block-text">Водитель данного маршрута</div>
-          <div class="img-wrap">
-            <a href=""><img src="" alt=""></a>
-
+          <div class="col-md-12" >
+            <img class="driver-img" [src]="user.image">
           </div>
-          <div class="information-block-2 information-block__text-2 block-text-driver-name" >{{this.driverName}}</div>
+          <div class="information-block-2 information-block__text-2 block-text-driver-name" (click)="this.accViewComponent.OpenPopup(driverId,null)">{{this.driverName}}</div>
         </div>
         <div class="driver-info-wrap__text">
 <!--          <div class="driver-info-text block-text-driver">-->
@@ -38,9 +37,11 @@
 <!--            <div class="information-block__text block-text-driver">Рейтинг водителя:</div>-->
 <!--            <div class="block-text-driver block-text-driver-2 driver-rating">{{this.driverRaring}}</div>-->
 <!--          </div>-->
+          <!--(click)="this.accViewComponent.OpenPopup(item.userId)"-->
           <h3>Участники маршрута</h3>
           <ul class="menu-top">
-            <li class="information-block-2 user-item" [id]="item.id" *ngFor="let item of users"  (click)="this.accViewComponent.OpenPopup(item.userId)" >{{item.fio}}</li>
+            <li class="information-block-2 user-item" [id]="item.id"  *ngFor="let item of users" (click)="this.accViewComponent.OpenPopup(item.userId,this.id)" >{{item.fio}}</li>
+
           </ul>
         </div>
       </div>
@@ -72,7 +73,7 @@
       </div>
     </div>
   </div>
-  <h3>Расписание маршут</h3>
+  <h3 class="header-route">Расписание маршута</h3>
   <ul class="menu-top">
     <li class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
   </ul>
