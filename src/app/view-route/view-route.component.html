@@ -3,7 +3,7 @@
   <div class="map-wrap">
     <app-yamap #component></app-yamap>
   </div>
-  <div class="container">
+  <div class="container text-center">
     <h2 class="cart-route-header">Информация о маршруте</h2>
     <div class="blockInput col-12">
       <div class="information-block">
@@ -26,7 +26,6 @@
                     <span class="star" [class.filled]="fill === 100" max = "5">&#9733;</span>
                   </ng-template>
                 </ngb-rating>
-                <label> {{this.driverRaring}} </label>
               </div>
             </div>
             <div class="driver-info-text">
@@ -64,11 +63,11 @@
       </div>
     </div>
     <h3>Расписание маршута:</h3>
-    <ul  *ngIf="isManyDays" class="menu-top">
+    <ul  *ngIf="isManyDays" class="menu-top text-center">
       <li  class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
     </ul>
     <h3 *ngIf="!isManyDays">Маршрут назначен на один день в заданное время</h3>
-    <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в маршрут</button>
+    <button class="join-button btn btn-primary " (click)="JoinTheRoute()">Вступить в маршрут</button>
 
     <div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">
       <div class="my-modal" [ngClass]="{mymodal2: visibility}" role="document">
