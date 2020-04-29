@@ -49,7 +49,10 @@
 
         <div class="col">
           <label>Время выхода из дома:</label>
-          <input type="time" [(ngModel)]="time" name="Time" class="form-control" id="time" placeholder="Время">
+          <input type="time" required [(ngModel)]="time" name="Time" #Time="ngModel" class="form-control" id="time" placeholder="Время">
+          <div [hidden]="Time.valid" class="alert alert-danger">
+            Заполните поле
+          </div>
         </div>
       </div>
 
