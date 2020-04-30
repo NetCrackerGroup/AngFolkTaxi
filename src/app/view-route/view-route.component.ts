@@ -11,6 +11,8 @@ import {AccViewComponent} from '../acc-view/acc-view.component';
 import {environment} from '../../environments/environment';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
+import {UserService} from '../services/user.service';
+import {RoutesService} from '../services/routes.service';
 declare var ymaps: any;
 
 @Component({
@@ -44,7 +46,7 @@ export class ViewRouteComponent implements OnInit {
   modalText = 'В маршруте нет мест';
   dateOfJourney;
   driverId;
-  groupName = null;
+  imageSwitch;
   public isManyDays = false;
   public parameters = {
     options: {
@@ -68,7 +70,7 @@ export class ViewRouteComponent implements OnInit {
   public toEnabled;
   driverRatingSwitch = true;
   constructor(private route: ActivatedRoute, http: HttpClient,
-              private router: Router, private config: NgbRatingConfig) {
+              private router: Router, private config: NgbRatingConfig, private routeService: RoutesService) {
     this.http = http;
     config.max = 5;
     config.readonly = true;
@@ -82,7 +84,6 @@ export class ViewRouteComponent implements OnInit {
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,
         routeEnd, startDate, price, userRouteDto: {fio, driverRating}, countOfPlaces, timeOfDriving}) => {
-        console.log('this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {routeBegin,', res);
         this.price = res.price;
         this.countOfPlaces = res.countOfPlaces;
         this.timeOfDriving = res.timeOfDriving;
@@ -99,7 +100,6 @@ export class ViewRouteComponent implements OnInit {
       this.driverId = id;
     });
     this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2: { timeOfJourney, scheduleDay, startDate }) => {
-      console.log('res2', res2);
       // @ts-ignore
       this.timeOfDriving = res2.timeOfJourney;
       // @ts-ignore
@@ -123,6 +123,19 @@ export class ViewRouteComponent implements OnInit {
       }
       console.log('this.userDays', this.userDays);
     });
+    this.routeService.getRouteDriver(this.id).subscribe(
+
+      (res) => {
+        if (res === '') {
+          this.imageSwitch = false;
+
+        } else {
+          this.image = 'data:image/jpeg;base64,' + res;
+        }
+      },
+      err => {
+        console.log('Пользоваель не найден! err', err);
+      });
     }
 
     JoinTheRoute() {
