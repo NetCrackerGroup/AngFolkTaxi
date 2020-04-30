@@ -1,3 +1,7 @@
+.marg {
+  margin-top: 30px;
+}
+
 .box {
   height: 20vh;
   width: 100%;
@@ -223,4 +227,3 @@ agm-map {
   }
 }
 /* Базовый контейнер табов */
-

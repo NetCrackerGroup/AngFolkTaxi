@@ -20,9 +20,11 @@ export class RoutesService {
     return this.http.get<IRoute[]>(`${this.urlForRoutes}/users/routes`);
   }
 
-  getClosestRoutes(startPoint: string, endPoint: string, stRadius: number, enRadius: number, departure: string, time: string): void {
+  getClosestRoutes(startPoint: string, endPoint: string, stRadius: number, enRadius: number,
+    departure: Date, time: Date, groupId: number): void {
+    //let formatted = '' + time.getHours() + ':' + time.getMinutes();
     this.listRoutes = this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/closestRoutes/
-      ${startPoint}/${endPoint}/${stRadius}/${enRadius}/${departure}/${time}`);
+      ${startPoint}/${endPoint}/${stRadius}/${enRadius}/${departure}/${time}/${groupId}`);
 
     //  this.startPoint[0] = parseInt(startPoint.split(",")[0], 10);
     //  this.startPoint[1] = parseInt(startPoint.split(",")[1], 10);

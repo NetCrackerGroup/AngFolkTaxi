@@ -42,6 +42,7 @@ export class ViewRouteComponent implements OnInit {
   modalText = 'В маршруте нет мест';
   dateOfJourney;
   driverId;
+  groupName = null;
   public isManyDays = false;
   public parameters = {
     options: {
