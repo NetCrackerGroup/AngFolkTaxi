@@ -63,8 +63,8 @@
         <label *ngIf="infoSwitch" > Дополнительная информация: <br /> {{user.info}} </label>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" > Пригласить в маршрут </button>
-          <button type="button" class="btn btn-success" > Пригласить в группу </button>
+          <!--button type="button" class="btn btn-success" > Пригласить в маршрут </button>
+          <button type="button" class="btn btn-success" > Пригласить в группу </button-->
           <button type="button" class="btn btn-success"  *ngIf="(this.routeId!=null)&&(this.isDriver)" (click) = "deleteUser()"> Удалить из маршрута </button>
           <button type="button" class="btn btn-success" (click) = "toggle()"> Закрыть </button>
         </div>
