@@ -41,6 +41,8 @@ export class RouteComponent implements OnInit, OnChanges {
   };
   selectedDays = [false, false, false, false, false, false, false];
   isSingleRoute = false;
+  visibility: boolean;
+  modalText: 'Введите все поля';
 
   constructor(private http: HttpClient, private userService: UserService, private router: Router) {
     this.http = http;
@@ -70,8 +72,10 @@ export class RouteComponent implements OnInit, OnChanges {
   }
 
   createNewRoute() {
-    if (this.startPoint == null || this.endPoint == null ) {
-      console.log('не всё');
+    if (this.startPoint == null || this.endPoint == null ||
+      this.postUser.price === undefined ||  this.postUser.countOfPlaces === undefined ) {
+      this.visibility = !this.visibility;
+      this.modalText = 'Введите все поля';
       return;
     }
     const res = [];
@@ -80,7 +84,7 @@ export class RouteComponent implements OnInit, OnChanges {
     }
     this.postUser.routeBegin = this.startPoint.__zone_symbol__value.geometry._coordinates;
     this.postUser.routeEnd = this.endPoint.__zone_symbol__value.geometry._coordinates;
-    if(this.indexOfGroup == -1){
+    if(this.indexOfGroup == -1) {
       this.postUser.groupId = 0;
     }
     else{
@@ -168,5 +172,8 @@ export class RouteComponent implements OnInit, OnChanges {
 
   singleRoute() {
     this.isSingleRoute = true;
+  }
+  toggle() {
+    this.visibility = !this.visibility;
   }
 }

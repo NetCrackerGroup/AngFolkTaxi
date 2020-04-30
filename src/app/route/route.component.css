@@ -141,6 +141,17 @@ agm-map {
   animation-name: fadeIn;
   height: 10vh;
 }
+.visiblemodon {
+  display: block;
+}
+.mymodal2 {
+  transform: translateY(100%);
+}
+.route-modal {
+  width: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 /* Описываем анимацию свойства opacity */
 
 @-webkit-keyframes fadeIn {
