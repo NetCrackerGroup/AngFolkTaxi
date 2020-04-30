@@ -62,7 +62,7 @@ export class RateAfterJourneyComponent implements OnInit {
          console.log(this.journey.driverId);
        },
        err => {
-         alert("Поездка не найдена!!!");
+         //alert("Поездка не найдена!!!");
        });
       });
   }
