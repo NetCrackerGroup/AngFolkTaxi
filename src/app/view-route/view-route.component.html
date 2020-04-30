@@ -68,6 +68,7 @@
       <li  class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
     </ul>
     <h3 *ngIf="!isManyDays">Маршрут назначен на один день в заданное время</h3>
+
     <button class="btn btn-primary join-button" (click)="JoinTheRoute()">Вступить в маршрут</button>
 
     <div class="modal" [ngClass]="{visiblemodon: visibility}" tabindex="-1" role="dialog">

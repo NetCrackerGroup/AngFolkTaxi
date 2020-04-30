@@ -7,40 +7,57 @@
         </angular-yandex-map>
       </div>
 
+      <label>Поиск в конкретной группе</label>
+      <div *ngIf="authService.logIn" class="dropdown">
+        <button class="btn dropdown-toggle btn-outline-success mr-2 choose chooselink" data-toggle="dropdown" *ngIf="authService.logIn">
+          {{groupLabel}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a (click)="chooseGroup(-1, 'Без поиска по группе')" class="dropdown-item chooselink" >Без поиска по группе</a>
+          <a *ngFor="let group of listGroups; let i = index" (click)="chooseGroup(i, group.groupName)" class="dropdown-item chooselink" >{{group.groupName}}</a>
+        </div>
+      </div>
+      <div *ngIf="!authService.logIn" class="marg-bot">
+        Для поиска по группе авторизируйтесь
+      </div>
+
       <label>Введите расстояние, которое вы готовы пройти</label>
       <div class="row">
         <div class="col">
           <label>к началу маршрута:</label>
-          <input type="number" [(ngModel)]="stRadius" name="NameGroup" class="form-control" id="stRadius" placeholder="Расстояние">
+          <input type="number" required [(ngModel)]="stRadius" name="Begin" #Begin="ngModel" class="form-control" id="stRadius" placeholder="Расстояние">
+          <div [hidden]="Begin.valid" class="alert alert-danger">
+            Заполните поле
+          </div>
         </div>
 
         <div class="col">
           <label>после конца маршрута:</label>
-          <input type="number" [(ngModel)]="enRadius" name="NameGroup" class="form-control" id="enRadius" placeholder="Расстояние">
-        </div>
-
-        <div class="col">
-          <label>Введите дату поездки:</label>
-          <input type="string" [(ngModel)]="dep" name="NameGroup" class="form-control" id="dep" placeholder="Дата">
-        </div>
-
-        <div class="col">
-          <label>Введите время поездки:</label>
-          <input type="string" [(ngModel)]="time" name="NameGroup" class="form-control" id="time" placeholder="Время">
-        </div>
-
-        <!--div class="col" id="content-tab2">
-          <label>Назначьте дату вашей поездки</label>
-          <div class="blockInput col-16">
-            <input class="week-day-date" type="date" value="2020-03-18" [(ngModel)] = "dateDepart"/>
+          <input type="number" required [(ngModel)]="enRadius" name="End" #End="ngModel" class="form-control" id="enRadius" placeholder="Расстояние">
+          <div [hidden]="End.valid" class="alert alert-danger">
+            Заполните поле
           </div>
-        </div-->
+        </div>
+
+        <div class="col">
+          <label>Дата поездки:</label>
+          <input type="date" required [(ngModel)]="dep" name="Date" #Date="ngModel" class="form-control" id="dep" placeholder="Дата">
+          <div [hidden]="Date.valid" class="alert alert-danger">
+            Заполните поле
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Время выхода из дома:</label>
+          <input type="time" required [(ngModel)]="time" name="Time" #Time="ngModel" class="form-control" id="time" placeholder="Время">
+          <div [hidden]="Time.valid" class="alert alert-danger">
+            Заполните поле
+          </div>
+        </div>
       </div>
-
-
 
     </div>
 
-    <button class="btn btn-success" routerLink="/show-routes" (click)="submit()">Поиск</button>
+    <button class="btn btn-success" [disabled]="!End.valid || !Begin.valid || !Date.valid" routerLink="/show-routes" (click)="submit()">Поиск</button>
   </form>
 </div>

@@ -27,6 +27,15 @@
       <label class="route-center" for="countOfPlaces">Места</label>
       <input type="text" class="route-center form-control" id="countOfPlaces" [(ngModel)]="postUser.countOfPlaces">
     </div>
+    <div class="dropdown marg">
+      <button class="btn dropdown-toggle btn-outline-success mr-2 choose chooselink" data-toggle="dropdown">
+        {{groupLabel}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a (click)="chooseGroup(-1, 'Без привязки к группе')" class="dropdown-item chooselink" >Без привязки к группе</a>
+        <a *ngFor="let group of listGroups; let i = index" (click)="chooseGroup(i, group.groupName)" class="dropdown-item chooselink" >{{group.groupName}}</a>
+      </div>
+    </div>
   </div>
   <div class="tabs ">
     <input id="tab1" type="radio" name="tabs" checked>
@@ -66,4 +75,3 @@
   </div>
 
 </div>
-

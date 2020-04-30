@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { IUserAcc } from '../entities/iuseracc';
 import { UserService } from '../services/user.service';
+import {AuthService} from '../services/auth.service';
 
 import { AccChangePassComponent } from '../acc-change-pass/acc-change-pass.component';
 import { AccChangeNameComponent } from '../acc-change-name/acc-change-name.component';
@@ -60,45 +61,57 @@ export class AccEditComponent implements OnInit {
       image : ""
   };
 
-  constructor(config: NgbRatingConfig,
+  constructor(private config: NgbRatingConfig,
+              private authService: AuthService,
               private userService : UserService,
               private router : Router) {
-     config.max = 5;
-     config.readonly = true;
-     this.changeName = false;
-     this.changeCity = false;
-     this.changePhoneNumber = false;
-     this.changeInfo = false;
-     userService.getUserForPro().subscribe(
-     res => {
-      this.user.fio = res["fio"];
-      this.user.phoneNumber = res["phoneNumber"];
-      this.user.cityName = res["cityName"];
-      this.user.passengerRating = res["passengerRating"];
-      this.user.driverRating = res["driverRating"];
-      this.user.passengerRating = res["passengerRating"];
-      this.user.driverRating = res["driverRating"];
-      this.user.info = res["info"];
-      if(this.user.passengerRating == null || this.user.passengerRating == '0')
-       this.passengerRatingSwitch = false;
-      if(this.user.driverRating == null || this.user.driverRating == '0')
-       this.driverRatingSwitch = false;
-      if(this.user.info == null || this.user.info == "" || this.user.info == '')
-       this.infoIsNotNull = false;
-      else
-       this.infoIsNotNull = true;
-      if(res["image"] == null)
-        this.imageSwitch = false;
-      else
-        this.user.image = 'data:image/jpeg;base64,' + res["image"];
-     },
-     err => {
-       alert("Пользоваель не найден!");
-     });
+
   }
 
   ngOnInit() {
+     if (!this.isReg()){
+       this.Exit();
+       }
+     else {
+       this.config.max = 5;
+       this.config.readonly = true;
+       this.changeName = false;
+       this.changeCity = false;
+       this.changePhoneNumber = false;
+       this.changeInfo = false;
+       this.userService.getUserForPro().subscribe(
+       res => {
+        this.user.fio = res["fio"];
+        this.user.phoneNumber = res["phoneNumber"];
+        this.user.cityName = res["cityName"];
+        this.user.passengerRating = res["passengerRating"];
+        this.user.driverRating = res["driverRating"];
+        this.user.passengerRating = res["passengerRating"];
+        this.user.driverRating = res["driverRating"];
+        this.user.info = res["info"];
+        if(this.user.passengerRating == null || this.user.passengerRating == '0')
+         this.passengerRatingSwitch = false;
+        if(this.user.driverRating == null || this.user.driverRating == '0')
+         this.driverRatingSwitch = false;
+        if(this.user.info == null || this.user.info == "" || this.user.info == '')
+         this.infoIsNotNull = false;
+        else
+         this.infoIsNotNull = true;
+        if(res["image"] == null)
+          this.imageSwitch = false;
+        else
+          this.user.image = 'data:image/jpeg;base64,' + res["image"];
+       },
+       err => {
+         //alert("Пользоваель не найден!");
+       });
+     }
   }
+
+  isReg(): boolean {
+    return this.authService.logIn;
+  }
+
   Exit(){
     this.router.navigate(['/']);
   }
