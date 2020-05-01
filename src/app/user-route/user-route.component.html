@@ -12,6 +12,7 @@
 </div>
 <div class="container route2">
   <h2 class="cart-route-header">Информация о маршруте</h2>
+
   <div class="blockInput col-12">
     <div class="information-block">
       <div class="driver-info-wrap">
@@ -21,6 +22,7 @@
             <img class="driver-img" [src]="user.image">
           </div>
           <div class="information-block-2 information-block__text-2 block-text-driver-name" (click)="this.accViewComponent.OpenPopup(driverId,null)">{{this.driverName}}</div>
+
         </div>
         <div class="driver-info-wrap__text">
 <!--          <div class="driver-info-text block-text-driver">-->
@@ -39,8 +41,8 @@
 <!--          </div>-->
           <!--(click)="this.accViewComponent.OpenPopup(item.userId)"-->
           <h3>Участники маршрута</h3>
-          <ul class="menu-top">
-            <li class="information-block-2 user-item" [id]="item.id"  *ngFor="let item of users" (click)="this.accViewComponent.OpenPopup(item.userId,this.id)" >{{item.fio}}</li>
+          <ul class="menu-top-frst">
+            <li class="user-item" [id]="item.id"  *ngFor="let item of users" (click)="this.accViewComponent.OpenPopup(item.userId,this.id)" >{{item.fio}}</li>
 
           </ul>
         </div>
@@ -77,5 +79,11 @@
   <ul class="menu-top">
     <li class="information-block-2" *ngFor="let item of userDays">{{item}}</li>
   </ul>
+  <h3  *ngIf="this.isDriver" class="header-route">Управление маршрутом</h3>
+  <div *ngIf="this.isDriver" class="button text-center button-wrap">
+    <button class="btn btn-success btn-frst" (click)="this.startRoute()">Начать</button>
+    <button class="btn btn-danger btn-scnd" (click)="this.endRoute()">Закончить</button>
+  </div>
 </div>
+
 <app-acc-view #component2></app-acc-view>
