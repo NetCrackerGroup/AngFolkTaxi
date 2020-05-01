@@ -81,8 +81,8 @@
   </ul>
   <h3  *ngIf="this.isDriver" class="header-route">Управление маршрутом</h3>
   <div *ngIf="this.isDriver" class="button text-center button-wrap">
-    <button class="btn btn-success btn-frst" (click)="this.startRoute()">Начать</button>
-    <button class="btn btn-danger btn-scnd" (click)="this.endRoute()">Закончить</button>
+    <button class="btn btn-success btn-frst" *ngIf="!isDriven" (click)="this.startRoute()">Начать</button>
+    <button class="btn btn-danger btn-scnd" *ngIf="isDriven" (click)="this.endRoute()">Закончить</button>
   </div>
 </div>
 
