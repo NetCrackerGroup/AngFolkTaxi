@@ -16,7 +16,7 @@ addons:
   ssh_known_hosts: 142.93.130.144
 before_deploy:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/authorized_keys
-  - ng build --prod --base-href=/angular/
+  - ng build --prod
 #  - gem install mime-types -v 2.6.
 after_success:
   - eval "$(ssh-agent -s)"
