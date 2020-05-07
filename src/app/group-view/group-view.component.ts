@@ -180,7 +180,7 @@ export class GroupViewComponent implements OnInit {
     console.log(res["groupId"]);
     this.group.groupId = res["groupId"];
     this.group.groupName = res["groupName"];
-    this.group.groupLink = `${environment.devUrlFront}/entrypoint/${res["cityLink"]}`;
+    this.group.groupLink = `${environment.devUrlFront}/entryGroup/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
     let count = 0;
     this. apiService.getChatByGroup(res["groupId"]).subscribe(

@@ -42,3 +42,8 @@ img {
 .footer-link {
   text-align: center;
 }
+
+
+.showNotifications {
+  visibility : hidden;
+} 

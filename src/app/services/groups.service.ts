@@ -78,4 +78,9 @@ export class GroupsService {
   }
 
 
+  addUserToGroupWithinLink(link :string) {
+    const url = `${environment.devUrl}/group/entergroup/${link}`;
+  
+    return this.http.get(url);
+  }
 }

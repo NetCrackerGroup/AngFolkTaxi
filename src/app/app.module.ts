@@ -42,6 +42,7 @@ const appRoutes: Routes = [
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
     { path: 'rate-driver/:id', component : RateUserComponent},
     { path: 'rate-passenger/:id', component : RatePassengerComponent},
+    { path: 'entryGroup/:link', component : EntrygroupComponent}, 
     { path: 'find-route' , component: FindRouteComponent},
     { path: 'show-routes' , component: RoutesListComponent},
     {path: 'start', component : CityMapComponent},
@@ -93,6 +94,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { BlockedErrorComponent } from './blocked-error/blocked-error.component';
 import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
+import { EntrygroupComponent } from './entrygroup/entrygroup.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +137,8 @@ import { RatePassengerComponent } from './rate-passenger/rate-passenger.componen
     ViewComplainComponent,
     NotificationsComponent,
     NotificationsComponent,
-    BlockedErrorComponent
+    BlockedErrorComponent,
+    EntrygroupComponent
 
   ],
   imports: [

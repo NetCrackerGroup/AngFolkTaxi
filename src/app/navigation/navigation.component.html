@@ -71,7 +71,7 @@
               aria-expanded="false">
         <div class="row">
           <img src="assets/images/notification.png" alt="notification">
-          <div class="count">{{countNotifications}}</div>
+          <div [ngClass]="{showNotifications:!isShowNotifications}" class="count">{{countNotifications}}</div>
         </div>
       </button>
       <div class="dropdown-menu">

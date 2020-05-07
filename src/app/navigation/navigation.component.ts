@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
   testAPO : string;
   notifications : Array<NotificationApp>;
   //notification : AppNotification
-
+  isShowNotifications : boolean = false;
   countNotifications: number;
 
   listGroups: IGroup[] = null;
@@ -75,7 +75,6 @@ export class NavigationComponent implements OnInit {
     //   this.email = tempUser.email;
     //   this.password = tempUser.password;
     // });
-    if (this.isReg()) {
       // Нужно переделать под конкретный id пользователя
       // this.groupService.getUserGroups('alex@alex.com').subscribe(
       //   res => {
@@ -85,7 +84,6 @@ export class NavigationComponent implements OnInit {
       //     // alert(`Error , ${err}`);
       //   }
       // );
-
       this.userService.getUserImageForNav().subscribe(
       res => {
         if(res['userImageSource'] == null){
@@ -124,29 +122,41 @@ export class NavigationComponent implements OnInit {
 
       setInterval(
         () => {
-          this.notificationService.getCountTopicNotification().subscribe(
-            (res) => {
-              this.countNotifications = res['count'];
-            },
-            (err) => {
-              console.log(err);
-            }
-          );
+          if (this.isReg()) {
+            this.getCurrentNumberNotifications();
+          }
         },
-        3000
+        2000
       );
-
-    }
-
   }
+
+
+  getCurrentNumberNotifications () {
+    this.notificationService.getCountTopicNotification().subscribe(
+      (res) => {
+        this.countNotifications = res['count'];
+        if (this.countNotifications != 0 && !this.isShowNotifications) {
+          this.isShowNotifications = true;
+        }
+        if (this.countNotifications == 0 && this.isShowNotifications) {
+          this.isShowNotifications = false;
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   currentlyNotificains() : void {
     this.notificationService.getCurrentlyNotifactions().subscribe(
       res => {
         console.log(res);
         this.notifications = res;
+        this.getCurrentNumberNotifications();
       },
       err => {
-        console.log(err);
+        console.log(err); 
       }
     )
   }
