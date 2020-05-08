@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
     this.visibility = false;
     //this.router.navigate(['']);
-    window.location.reload();
+    //window.location.reload();
 
   }
   ngOnInit() {
