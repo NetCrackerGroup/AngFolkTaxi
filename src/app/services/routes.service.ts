@@ -62,4 +62,18 @@ export class RoutesService {
 
     return this.http.post(url, params);
   }
+  startRouter( routeId: number ) {
+
+    const url = `${environment.devUrl}/routes/startJourney`;
+
+    const params: HttpParams = new HttpParams().set('routeId', routeId.toString());
+
+    return this.http.post(url, params);
+  }
+
+  endRouter( routeId: number ) {
+    const url = `${environment.devUrl}/routes/endJourney`;
+    const params: HttpParams = new HttpParams().set('routeId', routeId.toString());
+    return this.http.post(url, params);
+  }
 }

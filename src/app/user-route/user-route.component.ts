@@ -25,7 +25,8 @@ export class UserRouteComponent implements OnInit {
   accViewComponent: AccViewComponent;
   private routeService: any;
   driverId: number;
-
+  isDriver = false;
+  isDriven = false;
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService,
               private userService: UserService, routeService: RoutesService) {
   this.routeService = routeService;
@@ -135,11 +136,29 @@ export class UserRouteComponent implements OnInit {
     this.http.get(`${this.url}/routes/driverId/${this.id}`).subscribe( (id: number) => {
       this.driverId = id;
     });
-
+    this.routeService.checkUserIsDriver(this.id).subscribe( (res: boolean) => {
+      console.log('this.isDriver', res);
+      this.isDriver = res['isDriver'];
+    });
   }
 
   openJourneyInfo() {
 
   }
 
+  startRoute() {
+    this.routeService.startRouter(this.id).subscribe( (res: boolean) => {
+      if (!res) {
+        alert('вы уже ездили');
+      } else {
+        this.isDriven = true;
+      }
+    } );
+  }
+
+  endRoute() {
+    this.routeService.endRouter(this.id).subscribe(res => {
+      this.isDriven = false;
+    });
+  }
 }

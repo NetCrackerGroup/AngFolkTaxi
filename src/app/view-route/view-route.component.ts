@@ -9,13 +9,17 @@ import {IRoute} from '../entities/iroute';
 import {YamapComponent} from '../yamap/yamap.component';
 import {AccViewComponent} from '../acc-view/acc-view.component';
 import {environment} from '../../environments/environment';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgForm} from '@angular/forms';
+import {UserService} from '../services/user.service';
+import {RoutesService} from '../services/routes.service';
 declare var ymaps: any;
 
 @Component({
   selector: 'app-view-route',
   templateUrl: './view-route.component.html',
   styleUrls: ['./view-route.component.css'],
-  providers: [YamapComponent]
+  providers: [YamapComponent, NgbRatingConfig]
 })
 
 export class ViewRouteComponent implements OnInit {
@@ -42,7 +46,7 @@ export class ViewRouteComponent implements OnInit {
   modalText = 'В маршруте нет мест';
   dateOfJourney;
   driverId;
-  groupName = null;
+  imageSwitch;
   public isManyDays = false;
   public parameters = {
     options: {
@@ -64,9 +68,12 @@ export class ViewRouteComponent implements OnInit {
   visibility = false;
   public fromEnabled;
   public toEnabled;
+  driverRatingSwitch = true;
   constructor(private route: ActivatedRoute, http: HttpClient,
-              private router: Router) {
+              private router: Router, private config: NgbRatingConfig, private routeService: RoutesService) {
     this.http = http;
+    config.max = 5;
+    config.readonly = true;
 
   }
 
@@ -85,43 +92,50 @@ export class ViewRouteComponent implements OnInit {
         this.fromEnabled = res.routeBegin;
         this.toEnabled = res.routeEnd;
         this.component.create(res.routeBegin, res.routeEnd);
-        // @ts-ignore
-        const htmlElement = this.element.nativeElement as HTMLElement;
-        htmlElement.style.width = ( `${res.userRouteDto.driverRating * 20}%`).toString();
+
         this.dateOfJourney = new Date(res.startDate).toLocaleDateString();
-        this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2: {timeOfJourney, scheduleDay, startDate}) => {
-          // @ts-ignore
-          const date = new Date(res2.startDate);
-          this.dateOfJourney = new Date(res2.startDate).toLocaleDateString();
-          this.timeOfDriving = res2.timeOfJourney;
-          // @ts-ignore
-          let scheduleString = (+res2.scheduleDay).toString(2);
-          if (+scheduleString !== 0) {
-            this.userDays = [];
-            if (scheduleString.length !== 7) {
-              let resString = '';
-              for (let i = 0; i < 7 - scheduleString.length; i++) {
-                resString += '0';
-              }
-              scheduleString = resString + scheduleString;
-            }
-            for (let i = 0; i < scheduleString.length; i++) {
-              if (+scheduleString[i] === 1) {
-                this.userDays.push(this.daysOfWeek[i]);
-              }
-            }
-            this.isManyDays = true;
-          } else {
-            this.isManyDays = false;
-          }
-
-        });
-        this.http.get(`${this.url}/routes/driverId/${this.id}`).subscribe( (id: number) => {
-          this.driverId = id;
-        });
       });
-
     });
+    this.http.get(`${this.url}/routes/driverId/${this.id}`).subscribe( (id: number) => {
+      this.driverId = id;
+    });
+    this.http.get(`${this.url}/schedule/route/${this.id}`).subscribe((res2: { timeOfJourney, scheduleDay, startDate }) => {
+      // @ts-ignore
+      this.timeOfDriving = res2.timeOfJourney;
+      // @ts-ignore
+      let scheduleString = (+res2.scheduleDay).toString(2);
+      this.dateOfJourney = new Date(res2.startDate).toLocaleDateString();
+      console.log(scheduleString);
+      this.userDays = [];
+      if (scheduleString.length !== 7) {
+        let resString = '';
+        for (let i = 0; i < 7 - scheduleString.length; i++) {
+          resString += '0';
+        }
+        scheduleString = resString + scheduleString;
+      }
+      console.log('scheduleString', scheduleString);
+      for (let i = 0; i < scheduleString.length; i++) {
+        if (+scheduleString[i] === 1) {
+          this.isManyDays = true;
+          this.userDays.push(this.daysOfWeek[i]);
+        }
+      }
+      console.log('this.userDays', this.userDays);
+    });
+    this.routeService.getRouteDriver(this.id).subscribe(
+
+      (res) => {
+        if (res === '') {
+          this.imageSwitch = false;
+
+        } else {
+          this.image = 'data:image/jpeg;base64,' + res;
+        }
+      },
+      err => {
+        console.log('Пользоваель не найден! err', err);
+      });
     }
 
     JoinTheRoute() {
