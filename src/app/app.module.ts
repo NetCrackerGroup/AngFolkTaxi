@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     {path: 'viewRoute/:id', component: ViewRouteComponent},
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
-    { path: '' , component : FindRouteComponent},
+    { path: '' , component : CityMapComponent},
     { path: 'user/groups', component : AppUserGroupsComponent },
   {path: 'moderator', component : ModeratorComponent},
   {path: 'viewComplain/:userId', component: ViewComplainComponent},

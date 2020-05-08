@@ -49,6 +49,10 @@ export class RoutesService {
 
   }
 
+  getRandomRoutes(){
+    return this.http.get<IRoute[]>(`${this.urlForRoutes}/routes/randomRoutes`);
+  }
+
   checkUserIsDriver( routeId : number ) {
 
     const url = `${environment.devUrl}/routes/userisdriverr`;

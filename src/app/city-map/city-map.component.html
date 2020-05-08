@@ -1,3 +1,16 @@
-<div>
-
+<div *ngIf="listRoutes.length > 0" class="container">
+  <angular-yandex-map [center]="[51.67037342492434, 39.213419502278526]" [zoom]="12" >
+    <angular-yandex-multiroute
+      [referencePoints]="[[this.listRoutes[0].routeBegin[0], this.listRoutes[0].routeBegin[1]], [this.listRoutes[0].routeEnd[0], this.listRoutes[0].routeEnd[1]]]"
+      [options]="{routeActiveStrokeColor: 'ff0000'}"
+    ></angular-yandex-multiroute>
+    <angular-yandex-multiroute
+      [referencePoints]="[[this.listRoutes[1].routeBegin[0], this.listRoutes[1].routeBegin[1]], [this.listRoutes[1].routeEnd[0], this.listRoutes[1].routeEnd[1]]]"
+      [options]="{routeActiveStrokeColor: '00ff00'}"
+    ></angular-yandex-multiroute>
+    <angular-yandex-multiroute
+      [referencePoints]="[[this.listRoutes[2].routeBegin[0], this.listRoutes[2].routeBegin[1]], [this.listRoutes[2].routeEnd[0], this.listRoutes[2].routeEnd[1]]]"
+      [options]="{routeActiveStrokeColor: '0000ff'}"
+    ></angular-yandex-multiroute>
+  </angular-yandex-map>
 </div>

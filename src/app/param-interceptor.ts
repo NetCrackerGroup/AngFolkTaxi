@@ -15,7 +15,7 @@ export class ParamInterceptor implements HttpInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    if (req.url.includes('/oauth/token') || req.url.includes('/users/sign-up')) {
+    if (req.url.includes('/oauth/token') || req.url.includes('/users/sign-up') || req.url.includes('/routes/randomRoutes')) {
       const paramReq = req.clone({
         headers: req.headers.set(
             'Authorization', 'Basic ' + btoa(`spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234`),
@@ -124,5 +124,3 @@ export class ParamInterceptor implements HttpInterceptor {
       return this.throwError(error);
     }
   }}
-
-
