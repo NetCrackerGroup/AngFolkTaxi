@@ -47,15 +47,15 @@ export class GroupViewComponent implements OnInit {
   getChatId():number{
     return this.chatId
   }
-  
-  constructor(private groupsService : GroupsService, 
+
+  constructor(private groupsService : GroupsService,
                 private route: ActivatedRoute,
                 private userService : UserService,
-                private  authService : AuthService,
+                private authService : AuthService,
                 private router : Router,
-                private apiService:ApiService ) { 
-    this.routeSubscription = route.params.subscribe(params=> 
-      { 
+                private apiService:ApiService ) {
+    this.routeSubscription = route.params.subscribe(params=>
+      {
         this.id=params['id'];
         groupsService.getGroup(this.id).subscribe(
           res => {
@@ -78,8 +78,8 @@ export class GroupViewComponent implements OnInit {
 
   }
 
-  
-  
+
+
 
    handleResponse(res) {
     if( res["group"]!= null ) {
@@ -89,7 +89,7 @@ export class GroupViewComponent implements OnInit {
     this.checkUserInGroup();
   }
 
-  
+
   actgroup ( event : any ) {
     if (event.target.name == "connect") {
       console.log("connect");
@@ -102,7 +102,7 @@ export class GroupViewComponent implements OnInit {
         }
       );
     }
-    
+
     else if ( event.target.name == "leave") {
       console.log("leave");
       this.groupsService.act(this.group.groupId, "leave").subscribe(
@@ -123,7 +123,7 @@ export class GroupViewComponent implements OnInit {
 
     }
     console.log(` ID : ${this.id} `);
-    
+
   }
 
   repost(){
@@ -234,17 +234,17 @@ export class GroupViewComponent implements OnInit {
   public selectUser(user: IUser){
     this.selectedUser = user;
   }
-  
+
   public deleteUser(user: IUser){
     this.group.users=[];
     this.groupsService.deleteUser(this.group.groupId,user.userId).subscribe((res) => {
         this.handleResponse(res);
       },
-    
+
       err => {alert("An error has occured")});
-   
-    
-    
+
+
+
   }
   public complain(user: IUser){
     this.userService.complain(user.userId).subscribe();

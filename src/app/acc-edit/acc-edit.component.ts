@@ -120,6 +120,7 @@ export class AccEditComponent implements OnInit {
       this.selectedFile = <File>event.target.files[0];
       //this.selectedFile = event.target.files;
       this.userService.updateUserImage(this.selectedFile);
+      window.location.reload();
     }
   }
 
@@ -137,5 +138,7 @@ export class AccEditComponent implements OnInit {
   }
   receiveInfoIsNotNull($event) {
     this.infoIsNotNull = $event;
+    if(this.infoIsNotNull == false)
+      window.location.reload();
   }
 }

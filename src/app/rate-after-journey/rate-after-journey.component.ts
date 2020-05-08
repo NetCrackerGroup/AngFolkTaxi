@@ -55,9 +55,9 @@ export class RateAfterJourneyComponent implements OnInit {
          this.journey.routeId = res["routeId"];
          this.journey.driverId = res["driverId"];
          this.journey.driverName = res["driverName"];
-          if( res["journey"]!= null ) {
+         if( res["journey"]!= null ) {
             this.journey.passengers = [];
-            this.journey.passengers = res["journey"]["passengers"];
+            this.loadPassengers(res["group"]["users"]);
           }
          console.log(this.journey.driverId);
        },
@@ -67,21 +67,18 @@ export class RateAfterJourneyComponent implements OnInit {
       });
   }
 
-  /*loadUsers(usersId) {
+  loadPassengers(usersId) {
     let count = 0;
     usersId.forEach(element => {
       console.log(element);
-      this.userService.getUserById(element).subscribe(
+      this.userService.getPassengerByIdForRate(element).subscribe(
         res => {
             this.journey.passengers[count] = res;
             count+=1;
-        },
-        err => {
-          console.log("Данные участников не удалось загруить!");
         }
       );
     });
-  }*/
+  }
 
 
   ngOnInit() {
