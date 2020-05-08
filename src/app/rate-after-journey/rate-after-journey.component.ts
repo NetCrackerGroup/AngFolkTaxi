@@ -50,8 +50,6 @@ export class RateAfterJourneyComponent implements OnInit {
        res => {
          console.log(res["journeyId"]);
          this.journey.journeyId = res["journeyId"];
-         if (this.journey.journeyId == null || this.journey.journeyId == 0)
-          this.driverSwitch = false;
          this.journey.routeId = res["routeId"];
          this.journey.driverId = res["driverId"];
          this.journey.driverName = res["driverName"];
@@ -63,6 +61,8 @@ export class RateAfterJourneyComponent implements OnInit {
          //alert("Поездка не найдена!!!");
        });
       });
+     if (this.journey.journeyId == null || this.journey.journeyId == 0)
+      this.driverSwitch = false;
   }
 
   loadPassengers(usersId) {
