@@ -139,8 +139,8 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
     NotificationsComponent,
     BlockedErrorComponent,
     EntrygroupComponent
-
   ],
+  
   imports: [
     BrowserModule,
     HttpClientModule,
