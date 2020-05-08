@@ -3,4 +3,5 @@ export interface IUser {
     fio : String,
     email : String,
     phoneNumber : String,
+    image : string,
 }

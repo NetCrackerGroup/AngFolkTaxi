@@ -20,7 +20,7 @@ export class ViewComplainComponent implements OnInit {
     fio : '',
     email : '',
     phoneNumber : '',
-
+    image : '',
   }
   userId:number;
   private subscription: Subscription;
@@ -49,8 +49,8 @@ export class ViewComplainComponent implements OnInit {
   ngOnInit(): void {
     this.getComplains();
   }
-  
-  
+
+
   getComplains(){
     this.complainService.getComplainsByUser(this.user.userId).subscribe(
       res=>{
