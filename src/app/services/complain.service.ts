@@ -9,8 +9,8 @@ import {IComplain} from '../entities/icomplain';
 })
 export class ComplainService {
 
-  private SEND_COMPLAIN_URL = "http://localhost:1337/Complains/sendComplain/";
-  private GET_COMPLAINS_URL = "http://localhost:1337/Complains/getComplains/";
+  private SEND_COMPLAIN_URL = `${environment.devUrl}/Complains/sendComplain/`;
+  private GET_COMPLAINS_URL = `${environment.devUrl}/Complains/getComplains/`;
 
   constructor(private http: HttpClient) { }
 
