@@ -42,7 +42,7 @@ const appRoutes: Routes = [
     { path: 'feedback/:id', component : RateAfterJourneyComponent},
     { path: 'rate-driver/:id', component : RateUserComponent},
     { path: 'rate-passenger/:id', component : RatePassengerComponent},
-    { path: 'entryGroup/:link', component : EntrygroupComponent}, 
+    { path: 'entryGroup/:link', component : EntrygroupComponent},
     { path: 'find-route' , component: FindRouteComponent},
     { path: 'show-routes' , component: RoutesListComponent},
     {path: 'start', component : CityMapComponent},
