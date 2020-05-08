@@ -140,13 +140,13 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
     BlockedErrorComponent,
     EntrygroupComponent
   ],
-  
+
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     FormsModule,
     HttpClientModule,
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')
