@@ -26,7 +26,7 @@ export class GroupViewComponent implements OnInit {
   loginCheck : boolean;
   entryGroup : boolean;
   isModerator : boolean;
-
+  private : boolean = false;
 
   group : IGroup = {
     groupId : 0,
@@ -59,7 +59,6 @@ export class GroupViewComponent implements OnInit {
         this.id=params['id'];
         groupsService.getGroup(this.id).subscribe(
           res => {
-
             this.loadgroup(res);
           },
           err => {
@@ -180,8 +179,11 @@ export class GroupViewComponent implements OnInit {
     console.log(res["groupId"]);
     this.group.groupId = res["groupId"];
     this.group.groupName = res["groupName"];
-    this.group.groupLink = `${environment.devUrlFront}/entrypoint/${res["cityLink"]}`;
+    this.group.groupLink = `${environment.devUrlFront}/entryGroup/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
+    if ( this.group.typeGroup.nameType == "private" ) {
+      this.private = true;
+    }
     let count = 0;
     this. apiService.getChatByGroup(res["groupId"]).subscribe(
       res => {

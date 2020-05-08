@@ -72,6 +72,7 @@
 
 }
 .join-button {
+  text-align: center;
   margin: auto;
   margin-top: 20px;
 }
@@ -159,9 +160,8 @@ ul.menu-top > li {
   transition: 0.5s;
 
 }
-.menu-top {
-  margin: auto;
-  text-align: center;
+ul {
+  padding: 0;
 }
 h3 {
   text-align: center;
@@ -199,3 +199,11 @@ h3 {
   width: 60%;
 }
 
+.star {
+  font-size: 30px;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #1e90ff;
+}

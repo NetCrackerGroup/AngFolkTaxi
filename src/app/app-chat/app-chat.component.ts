@@ -73,7 +73,6 @@ export class AppChatComponent implements OnInit {
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
         newThis.messages= data['content'];
         newThis.pages = new Array(data['totalPages'])
-        console.log(newThis.messages);
       })}, 3000,newThis.chatId);
 
   }
@@ -172,8 +171,8 @@ export class AppChatComponent implements OnInit {
         console.log('Открылся попап');
         // @ts-ignore
         this.apiService.getJourneyByRouteMessage(mes.chat.chatId, mes.dateOfSending).subscribe( res => {
-          console.log(res);
-          this.router.navigate(['feedback', res]);
+          console.log('getJourneyByRouteMessage', res);
+          this.router.navigate(['feedback', +res]);
         });
       }
     });
