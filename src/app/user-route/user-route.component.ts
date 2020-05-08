@@ -126,7 +126,7 @@ export class UserRouteComponent implements OnInit {
           this.imageSwitch = false;
 
         } else {
-          this.user.image = res;
+          this.user.image = 'data:image/jpeg;base64,' + res;
         }
       },
       err => {

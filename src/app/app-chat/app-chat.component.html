@@ -1,3 +1,4 @@
+
 <div class="container">
   <!-- For demo purpose-->
   <header class="text-center main-header">
@@ -16,7 +17,9 @@
       <div class=" chat-box bg-white">
         <!-- Sender Message-->
 
-        <div *ngFor = "let message of messages" class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+        <div *ngFor = "let message of messages" class="media w-50 mb-3">
+          <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+          <!--img   [src]="" alt="user" width="50" class="rounded-circle"-->
           <div class="media-body ml-3" [ngClass]="{verdanaFont: message.text === 'Оцените Маршрут'}" (click)="MessageClick($event)">
             <div class="bg-light rounded py-4 px-5 mb-2">
               <p [ngClass]="{verdanaFont: message.text === 'Оцените Маршрут'}"  class="text-small mb-0 text-muted"id="  {{message.messageId}}">{{message.text}}</p>

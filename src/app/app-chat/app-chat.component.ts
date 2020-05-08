@@ -33,6 +33,7 @@ export class AppChatComponent implements OnInit {
 
   };
 
+  imageSwitch : boolean = true;
   messages: Message[] = [];
   public pages:Array<any>;
   chats: Chat[] = [];
