@@ -4,11 +4,11 @@
       [referencePoints]="[[this.listRoutes[0].routeBegin[0], this.listRoutes[0].routeBegin[1]], [this.listRoutes[0].routeEnd[0], this.listRoutes[0].routeEnd[1]]]"
       [options]="{routeActiveStrokeColor: 'ff0000'}"
     ></angular-yandex-multiroute>
-    <angular-yandex-multiroute
+    <angular-yandex-multiroute *ngIf="listRoutes.length > 1"
       [referencePoints]="[[this.listRoutes[1].routeBegin[0], this.listRoutes[1].routeBegin[1]], [this.listRoutes[1].routeEnd[0], this.listRoutes[1].routeEnd[1]]]"
       [options]="{routeActiveStrokeColor: '00ff00'}"
     ></angular-yandex-multiroute>
-    <angular-yandex-multiroute
+    <angular-yandex-multiroute *ngIf="listRoutes.length > 2"
       [referencePoints]="[[this.listRoutes[2].routeBegin[0], this.listRoutes[2].routeBegin[1]], [this.listRoutes[2].routeEnd[0], this.listRoutes[2].routeEnd[1]]]"
       [options]="{routeActiveStrokeColor: '0000ff'}"
     ></angular-yandex-multiroute>
