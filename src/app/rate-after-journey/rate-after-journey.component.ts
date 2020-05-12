@@ -25,7 +25,7 @@ export class RateAfterJourneyComponent implements OnInit {
    accViewComponent: AccViewComponent;
 
   accView : boolean;
-  driverSwitch : boolean = false;
+  driverSwitch : boolean = true;
   rating : string = "";
   journey: IJourney = {
     journeyId : 0,
@@ -50,38 +50,33 @@ export class RateAfterJourneyComponent implements OnInit {
        res => {
          console.log(res["journeyId"]);
          this.journey.journeyId = res["journeyId"];
-         if (this.journey.journeyId == null || this.journey.journeyId == 0)
-          this.driverSwitch = true;
          this.journey.routeId = res["routeId"];
          this.journey.driverId = res["driverId"];
          this.journey.driverName = res["driverName"];
-          if( res["journey"]!= null ) {
-            this.journey.passengers = [];
-            this.journey.passengers = res["journey"]["passengers"];
-          }
+         this.journey.passengers = [];
+         this.loadPassengers(res["group"]["users"]);
          console.log(this.journey.driverId);
        },
        err => {
          //alert("Поездка не найдена!!!");
        });
       });
+     if (this.journey.journeyId == null || this.journey.journeyId == 0)
+      this.driverSwitch = false;
   }
 
-  /*loadUsers(usersId) {
+  loadPassengers(usersId) {
     let count = 0;
     usersId.forEach(element => {
       console.log(element);
-      this.userService.getUserById(element).subscribe(
+      this.userService.getPassengerByIdForRate(element).subscribe(
         res => {
             this.journey.passengers[count] = res;
             count+=1;
-        },
-        err => {
-          console.log("Данные участников не удалось загруить!");
         }
       );
     });
-  }*/
+  }
 
 
   ngOnInit() {

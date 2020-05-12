@@ -3,7 +3,7 @@
     <div class="card">
 
         <div class="card-header">
-            <h5 class="card-title"> <span class="name"> {{group.groupName}} </span></h5>
+            <h5 class="card-title"> <span class="name"> {{group.groupName}} </span> <img *ngIf="private" class="lock" src="assets/images/lock.png"></h5>
           </div>
 
         <div *ngIf="loginCheck">
@@ -14,7 +14,7 @@
 
             <div class="community">
                 <div class="head">
-                    <img src="assets/images/community.png" alt="fsd"> Участники 
+                    <img src="assets/images/community.png" class="communityImg" alt="fsd"> Участники 
                 </div>
                 <ul>
                     <li *ngFor="let user of group.users">

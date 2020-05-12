@@ -61,6 +61,7 @@ export class GroupsService {
 
     return this.http.post(url, params);
   }
+  
   deleteUser(groupId:number,userId:number){
     const url = `${environment.devUrl}/group/deleteUser`;
     let params: HttpParams = new HttpParams().set('groupId', groupId.toString()).set('userId', userId.toString());

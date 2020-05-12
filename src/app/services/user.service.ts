@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IUser } from '../entities/iuser';
 
 import { IUserAcc } from '../entities/iuseracc';
+import { IPassenger } from '../entities/ipassenger';
 
 import { Observable } from 'rxjs';
 import { IGroup } from '../entities/igroup';
@@ -38,6 +39,13 @@ export class UserService {
     console.log(`Get request on ${url}`);
 
     return this.http.get<IUserAcc>(url);
+  }
+
+  getPassengerByIdForRate(userId: number) {
+    const url = `${environment.devUrl}/users/passenger/${userId}`;
+    console.log(`Get request on ${url}`);
+
+    return this.http.get<IPassenger>(url);
   }
 
   getUserImageForNav() {
@@ -167,7 +175,7 @@ export class UserService {
     return this.http.get(url);
 
   }
-  
+
   getAllUsers(){
     const url = `${environment.devUrl}/users/getAllUsers`;
     return this.http.get<IUser_moderator[]>(url);
@@ -193,7 +201,7 @@ export class UserService {
     });
 
   }
-  
+
 
   isBan(userId:number){
     const url = `${environment.devUrl}/users/isban`;
