@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { IUserAcc } from '../entities/iuseracc';
 import { UserService } from '../services/user.service';
 import {RoutesService} from "../services/routes.service";
+import {GroupsService} from "../services/groups.service";
+import {IUser} from "../entities/iuser";
 
 @Component({
   selector: 'app-acc-view',
@@ -26,6 +28,9 @@ export class AccViewComponent implements OnInit {
   userId :number;
   need = false;
   isDriver : boolean;
+  groupId : number;
+  loggedUser : number;
+  isModeratorGroup : boolean;
 
   user : IUserAcc = {
     fio : "",
@@ -42,11 +47,13 @@ export class AccViewComponent implements OnInit {
   constructor(private userService : UserService,
               private routeService : RoutesService,
               private router : Router,
+              private groupService : GroupsService,
                  config: NgbRatingConfig,
                  form: NgForm) {
          config.max = 5;
          config.readonly = true;
          this.form = form;
+
   }
 
   Submited(form: NgForm) {
@@ -55,11 +62,14 @@ export class AccViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  OpenPopup(id : number,idRoute : number) {
+  OpenPopup(id : number,idRoute : number, idGroup: number) {
     console.log('OpenPopup', id);
     this.visibility = true;
     if(idRoute!=null) {
       this.routeId = idRoute;
+    }
+    if(idGroup!=null){
+       this.groupId = idGroup;
     }
     this.userId = id;
     this.userService.getUserByIdForAcc(id).subscribe(
@@ -86,7 +96,16 @@ export class AccViewComponent implements OnInit {
       err => {
         alert("Пользоваель не найден!");
       });
-    
+
+    this.userService.getLoggedUser().subscribe(
+      res =>{
+        this.loggedUser = res['isLogged']
+
+      },
+      err => {
+        alert("Error has occured")
+      }
+    )
        if(idRoute!=null) {
          this.routeService.checkUserIsDriver(idRoute).subscribe(
            (res) => {
@@ -98,6 +117,20 @@ export class AccViewComponent implements OnInit {
            }
          );
        }
+       if(idGroup!=null){
+         this.groupService.checkUserIsModeratorGroup(idGroup).subscribe(
+           (res) => {
+             console.log(res);
+             this.isModeratorGroup = res["isModerator"];
+           },
+           (err) => {
+             console.log(err);
+           }
+         );
+       }
+
+
+
     
   }
 
@@ -121,5 +154,21 @@ export class AccViewComponent implements OnInit {
       }
     );
     
+  }
+  public deleteUserGroup(){
+    this.groupService.deleteUser(this.groupId,this.userId).subscribe((res) => {
+        console.log(res);
+        this.need = true;
+        alert("Участник удален")
+
+      },
+
+      err => {alert("An error has occured")});
+
+
+
+  }
+  public complain(){
+    this.router.navigate(['/complain' , this.userId])
   }
 }

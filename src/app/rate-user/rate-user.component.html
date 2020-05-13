@@ -21,7 +21,7 @@
       <div class = "driverName">
         <label > Имя : </label>
         <label *ngIf="accView" style="font-style: italic"> Просмотр профиля </label>
-        <li (mouseover)="accView=true" (mouseout)="accView=false" (click)="this.accViewComponent.OpenPopup(id,null)" >
+        <li (mouseover)="accView=true" (mouseout)="accView=false" (click)="this.accViewComponent.OpenPopup(id,null,null)" >
           <label > {{user.fio}} </label>
         </li>
       </div>
