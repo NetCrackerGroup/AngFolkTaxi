@@ -13,38 +13,17 @@
         <div class="card-body">
 
             <div class="community">
-                <div class="head">
-                    <img src="assets/images/community.png" class="communityImg" alt="fsd"> Участники 
-                </div>
-                <ul>
-                    <li *ngFor="let user of group.users">
-                        <a routerLink="">{{user.fio}}</a>
-
-                      <div class="complain">
-                        <div *ngIf="user.userId!=this.loggedUser">
-                      <a [routerLink]="['/complain' , user.userId]" class="card-link"><i class="fas fa-angry"></i></a>
-                        </div>
-                      </div>
-
-                      <div *ngIf="this.isModerator">
-                        <div *ngIf="user.userId!=this.loggedUser">
-                          <div class="mybut">
-                            <button id="button-addon2"
-                                    type="submit"
-                                    (click)="deleteUser(user)"
-                                    class="btn btn-link">
-
-                              <i class="fas fa-times-circle"></i>
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
-
+              <h3>Участники</h3>
+                <ul class="menu-top-first">
+                    <li class="user-item" [id]="user.userId "*ngFor="let user of group.users" (click)="this.accViewComponent.OpenPopup(user.userId,null,this.id)">
+                      {{user.fio}}
                     </li>
                 </ul>
             </div>
-
+          <div class="col-7">
+          <app-app-chat class="component_chat" [chatId] = "chatId">
+          </app-app-chat>
+          </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                   <button  class="btn btn-dark" type="button" (click)="copyGroupLink(linkedgroup)" id="btn">Не жадничай</button>
@@ -56,15 +35,5 @@
 
 </div>
 <div>
-
-    <ul>
-        <li *ngFor="let user of group.users">
-            <a routerLink="">{{user.fio}}</a>
-        </li>
-    </ul>
-  <app-app-chat [chatId] = "chatId">
-  </app-app-chat>
-  <a>{{this.chatId}}</a>
-
 </div>
-
+<app-acc-view #component2></app-acc-view>

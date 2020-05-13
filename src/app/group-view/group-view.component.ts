@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
 import { ApiService } from "../shared/api.service";
 import{ AppChatComponent } from "../app-chat/app-chat.component";
+import {AccViewComponent} from "../acc-view/acc-view.component";
 
 @Component({
   selector: 'app-group-view',
@@ -23,6 +24,8 @@ import{ AppChatComponent } from "../app-chat/app-chat.component";
 })
 export class GroupViewComponent implements OnInit {
 
+  @ViewChild('component2', {static:false})
+  accViewComponent: AccViewComponent;
   loginCheck : boolean;
   entryGroup : boolean;
   isModerator : boolean;

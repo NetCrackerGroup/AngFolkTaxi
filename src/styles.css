@@ -7,21 +7,4 @@
   font-size: 0.9rem;
 }
 
-.messages-box,
-.chat-box {
-  height: 510px;
-  width: 510px;
-  background-color: #fff;
 
-}
-
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-input::placeholder {
-  font-size: 0.9rem;
-  color: #999;
-  width: 510px;
-
-}

@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     {path: 'viewRoute/:id', component: ViewRouteComponent},
     {path: 'myRoute/:id', component: UserRouteComponent},
     { path: 'groups' , component : AppPublicGroupComponent},
-    { path: '' , component : FindRouteComponent},
+    { path: '' , component : CityMapComponent},
     { path: 'user/groups', component : AppUserGroupsComponent },
   {path: 'moderator', component : ModeratorComponent},
   {path: 'viewComplain/:userId', component: ViewComplainComponent},
@@ -146,7 +146,7 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     FormsModule,
     HttpClientModule,
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')

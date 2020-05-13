@@ -20,7 +20,6 @@ export class ViewComplainComponent implements OnInit {
     fio : '',
     email : '',
     phoneNumber : '',
-    image : '',
   }
   userId:number;
   private subscription: Subscription;
