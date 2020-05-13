@@ -51,10 +51,10 @@ export class RateUserComponent implements OnInit {
      config.readonly = false;
      this.accView = false;
      this.subscription = route.params.subscribe(params=>{
-     userService.getUserByIdForAcc(params['id']).subscribe(
+     userService.getUserByIdForAcc(params['driverId']).subscribe(
        res => {
          //console.log(res["journeyId"]);
-         this.id = params['id'];
+         this.id = params['driverId'];
          this.journeyId = params['journeyId'];
          this.user = res;
          if(res["image"] == null)
