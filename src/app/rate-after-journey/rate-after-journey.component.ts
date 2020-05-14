@@ -9,6 +9,7 @@ import { UserService } from '../services/user.service';
 
 import { ReportComponent } from '../report/report.component';
 import { AccViewComponent } from '../acc-view/acc-view.component';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-rate-after-journey',
@@ -24,58 +25,59 @@ export class RateAfterJourneyComponent implements OnInit {
   @ViewChild(AccViewComponent, {static: false})
    accViewComponent: AccViewComponent;
 
-  accView : boolean;
-  driverSwitch : boolean = true;
-  rating : string = "";
+  accView: boolean;
+  driverSwitch = true;
+  rating = '';
   journey: IJourney = {
     journeyId : 0,
     routeId : 0,
     driverId : 0,
-    driverName : "",
+    driverName : '',
     passengers : []
   };
 
   private subscription: Subscription;
+  private journeyService;
 
-  constructor(private journeyService : JourneyService,
+  constructor(journeyService: JourneyService,
               private route: ActivatedRoute,
-              private userService : UserService,
+              private userService: UserService,
               config: NgbRatingConfig,
-              private router : Router) {
+              private router: Router) {
      config.max = 5;
      config.readonly = false;
      this.accView = false;
-     this.subscription = route.params.subscribe(params=>{
-     journeyService.getJourneyByIdForRate(params['id']).subscribe(
-       res => {
-         console.log(res["journeyId"]);
-         this.journey.journeyId = res["journeyId"];
-         this.journey.routeId = res["routeId"];
-         this.journey.driverId = res["driverId"];
-         this.journey.driverName = res["driverName"];
-         this.journey.passengers = [];
-         this.loadPassengers(res["group"]["users"]);
-         console.log("driverId" + this.journey.journeyId);
-       },
-       err => {
-         //alert("Поездка не найдена!!!");
-       });
-      });
-     if (this.journey.journeyId == 0)
-        this.router.navigate(['/']);
-     console.log(this.journey);
-     if (this.journey.driverId == null || this.journey.driverId == 0)
-      this.driverSwitch = false;
+     this.journeyService = journeyService;
+
+
+
+     // this.subscription = route.params.subscribe(params => {
+     // journeyService.getJourneyByIdForRate(params.id).subscribe(
+     //   res => {
+     //     console.log(res.journeyId);
+     //     this.journey.journeyId = res.journeyId;
+     //     this.journey.routeId = res.routeId;
+     //     this.journey.driverId = res.driverId;
+     //     this.journey.driverName = res.driverName;
+     //     this.journey.passengers = [];
+     //     this.loadPassengers(res.group.users);
+     //     console.log('driverId' + this.journey.journeyId);
+     //   },
+     //   err => {
+     //     // alert("Поездка не найдена!!!");
+     //   });
+     //  });
+
   }
 
   loadPassengers(usersId) {
     let count = 0;
     usersId.forEach(element => {
       console.log(element);
-      this.userService.getPassengerByIdForRate(element).subscribe(
+      this.userService.getPassengerByIdForRate(element.userId).subscribe(
         res => {
             this.journey.passengers[count] = res;
-            count+=1;
+            count += 1;
         }
       );
     });
@@ -83,9 +85,43 @@ export class RateAfterJourneyComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.route.paramMap.pipe(
+      switchMap(params => params.getAll('journeyId'))
+    ).subscribe(data => {
+      console.log('Пришедший роут', data);
+      this.journeyService.getJourneyByIdForRate(+data).subscribe(
+        (res: {journeyId, routeId, driverId, driverName, group, passengers: []}) => {
+          console.log(res.journeyId);
+          console.log('Пришедший роут', res);
+          this.journey.journeyId = res.journeyId;
+          this.journey.routeId = res.routeId;
+          this.journey.driverId = res.driverId;
+          this.journey.driverName = res.driverName;
+          this.journey.passengers = [];
+          res.passengers.forEach(el => {
+            console.log(el);
+            // @ts-ignore
+            this.journey.passengers.push({passengerId: el.userId, passengerName: el.fio});
+          });
+          // this.loadPassengers(res.passengers);
+          console.log(this.journey.passengers);
+          console.log('driverId' + this.journey.journeyId);
+        },
+        err => {
+          // alert("Поездка не найдена!!!");
+        });
+      // if (this.journey.journeyId === 0) {
+      //   this.router.navigate(['/']);
+      // }
+      console.log(this.journey);
+      if (this.journey.driverId == null || this.journey.driverId === 0) {
+        this.driverSwitch = false;
+      }
+    });
   }
 
-  Exit(){
+  Exit() {
     this.router.navigate(['/']);
   }
 
@@ -99,16 +135,16 @@ export class RateAfterJourneyComponent implements OnInit {
     }
   }*/
 
-  ToRateDriver(){
+  ToRateDriver() {
    this.router.navigate(['/rate-driver/{{journey.driverId}}']);
    }
 
-  ToRatePassenger(){
+  ToRatePassenger() {
    this.router.navigate(['/rate-passenger/{{passenger.passengerId}}']);
   }
 
 
-  ToCurrentRoute(){
+  ToCurrentRoute() {
     /*
     let str = "viewRoute/";
     this.router.navigate(str.concat(this.journey.routeId.toString()));
