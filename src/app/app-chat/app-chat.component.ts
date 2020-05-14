@@ -29,7 +29,9 @@ export class AppChatComponent implements OnInit {
     user :{ userId : null,
              fio : '',
              email : '',
-             phoneNumber : ''}
+             phoneNumber : '',
+             //image : ''
+             }
 
   };
 
@@ -68,12 +70,13 @@ export class AppChatComponent implements OnInit {
     if(this.chatId!=null){
       this.getAllMessagesPage(this.chatId);}
     const newThis = this;
-    if(newThis.chatId!=null)
+    if(newThis.chatId!=null){
 
       setInterval(function(){newThis.apiService.getAllMessagesPage(newThis.chatId,newThis.page).subscribe(data=>{
         newThis.messages= data['content'];
         newThis.pages = new Array(data['totalPages'])
       })}, 3000,newThis.chatId);
+      }
 
   }
   ngOnDestroy(){
@@ -104,7 +107,7 @@ export class AppChatComponent implements OnInit {
 
     this.apiService.getAllMessagesPage(chatId,this.page).subscribe(
       data=>{
-        this.messages= data['content'];
+        this.messages = data['content'];
         this.pages = new Array(data['totalPages'])
         console.log(this.messages);
       },
@@ -113,6 +116,7 @@ export class AppChatComponent implements OnInit {
         alert("error")
 
       }
+
     );
 
   }
@@ -138,9 +142,12 @@ export class AppChatComponent implements OnInit {
             text: res['text'],
           dateOfSending: res['dateOfSending'],
           chatId: this.model.chatId,
-          user: res['user']
+          user: res['user'],
         };
 
+        //if(Newmes.user.image != null)
+          //Newmes.user.image = 'data:image/jpeg;base64,' + res['user']['image'];
+        //console.log(Newmes.user.image);
         this.messages.push(Newmes);
        this.model.text='';
       },
