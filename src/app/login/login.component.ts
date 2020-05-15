@@ -43,9 +43,11 @@ export class LoginComponent implements OnInit {
       //alert("Изображение не найдено!");
     });*/
 
-    this.visibility = false;
     //this.router.navigate(['']);
-    //window.location.reload();
+    setTimeout(() => {
+            this.visibility = false;
+            window.location.reload();
+        }, 100);
 
   }
   ngOnInit() {
@@ -60,6 +62,9 @@ export class LoginComponent implements OnInit {
   }
   OpenPopup() {
     this.visibility = true;
+  }
+  ToReg(){
+    this.visibility = false;
   }
   loginWithGoogle(){
     this.router.navigate(['/login/google']);

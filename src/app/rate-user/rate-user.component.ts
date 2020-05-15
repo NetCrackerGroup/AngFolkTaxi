@@ -26,9 +26,11 @@ export class RateUserComponent implements OnInit {
 
   accView : boolean;
 
-  journeyId :number = 0;
-  rating : string = "";
-  id : number = 0;
+  journeyId : number = 0;
+  rating : number = 0;
+  id : number =  0;
+  jId : string = "";
+  driverId : string;
   imageSwitch = true;
   user : IUserAcc = {
       fio : "",
@@ -55,7 +57,9 @@ export class RateUserComponent implements OnInit {
        res => {
          //console.log(res["journeyId"]);
          this.id = params['driverId'];
+         this.driverId = params['driverId'];
          this.journeyId = params['journeyId'];
+         this.jId = params['journeyId'];
          this.user = res;
          if(res["image"] == null)
            this.imageSwitch = false;
@@ -76,18 +80,28 @@ export class RateUserComponent implements OnInit {
 
   Exit(){
     this.router.navigate(['/']);
+    //s
   }
 
-  RateDriver(){
+  /*RateDriver(driverId : string, rating : string, jId : string){
        console.log(this.rating);
        if (this.rating == null){
          alert("Заполните поле \"rating\" ");
        }
        else {
-         this.userService.rateDriver(this.id, this.rating, this.journeyId);
+         this.userService.rateDriver(driverId, rating, jId);
        }
-     }
+     }*/
 
+  RateDriver() {
+   console.log(this.rating);
+   if (this.rating == null){
+     alert("Заполните поле \"rating\" ");
+   }
+   else {
+     this.userService.rateDriver(this.id, this.rating, this.journeyId);
+   }
+  }
 
 
   ToCurrentRoute(){

@@ -28,6 +28,7 @@ export class RateAfterJourneyComponent implements OnInit {
   accView: boolean;
   driverSwitch = true;
   rating = '';
+  dId : number;
   journey: IJourney = {
     journeyId : 0,
     routeId : 0,
@@ -97,6 +98,10 @@ export class RateAfterJourneyComponent implements OnInit {
           this.journey.journeyId = res.journeyId;
           this.journey.routeId = res.routeId;
           this.journey.driverId = res.driverId;
+          this.dId = res.driverId;
+          if (res.driverId == 0) {
+            this.driverSwitch = false;
+          }
           this.journey.driverName = res.driverName;
           this.journey.passengers = [];
           res.passengers.forEach(el => {
@@ -106,7 +111,7 @@ export class RateAfterJourneyComponent implements OnInit {
           });
           // this.loadPassengers(res.passengers);
           console.log(this.journey.passengers);
-          console.log('driverId' + this.journey.journeyId);
+          console.log(this.journey.driverId + " " + this.journey.journeyId);
         },
         err => {
           // alert("Поездка не найдена!!!");
@@ -115,10 +120,8 @@ export class RateAfterJourneyComponent implements OnInit {
       //   this.router.navigate(['/']);
       // }
       console.log(this.journey);
-      if (this.journey.driverId == null || this.journey.driverId === 0) {
-        this.driverSwitch = false;
-      }
     });
+
   }
 
   Exit() {

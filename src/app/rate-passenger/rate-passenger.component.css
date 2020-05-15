@@ -6,7 +6,7 @@
   color: #1e90ff;
 }
 
-.driverName li {
+.passengerName li {
   list-style-type: none; /* Убираем маркеры */
   cursor: pointer;
   position: relative;
@@ -15,16 +15,16 @@
   border-radius: 5px;
 }
 
-.driverName li:hover {
+.passengerName li:hover {
   color: #607D8B;
   background-color: #DDD;
 }
 
-.driverName li.selected {
+.passengerName li.selected {
   background-color: #CFD8DC;
   color: white;
 }
-.driverName li.selected:hover {
+.passengerName li.selected:hover {
   background-color: #BBD8DC;
   color: white;
 }
