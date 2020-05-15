@@ -7,7 +7,7 @@
 
 
       <!-- Avatar -->
-      <div *ngIf="imageSwitch" class="modal-footer" >
+      <!--div *ngIf="imageSwitch" class="modal-footer" >
       </div>
       <div *ngIf="imageSwitch" class="userImage">
         <div class="col-md-12">
@@ -15,7 +15,7 @@
             <img [src]="user.image">
           </div>
         </div>
-      </div>
+      </div-->
 
       <!-- Driver Name -->
       <div class = "driverName">
@@ -35,7 +35,7 @@
             <span class="star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>
         </ngb-rating>
-        <button type="button" class="btn btn-success" (click)="RateDriver()" style ="position: relative; left: 5%"> Потвердить оценивание</button>
+        <button type="button" class="btn btn-success" click)="RateDriver()" style ="position: relative; left: 5%"> Потвердить оценивание</button>
       </div>
       <div ng-init="tooltip=false" >
 

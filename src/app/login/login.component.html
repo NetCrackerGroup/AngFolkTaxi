@@ -17,7 +17,7 @@
           <input type="password" class="form-control" name="password" id="password2" placeholder="" [(ngModel)]="password">
         </div>
         <div>
-          <a class="nav-link" href="/reg">Ещё не зарегистрировались? Тогда вам сюда.</a>
+          <a class="nav-link" (click) = "ToReg()" href="/#/reg">Ещё не зарегистрировались? Тогда вам сюда.</a>
         </div>
       </div>
       <div class="modal-footer">
