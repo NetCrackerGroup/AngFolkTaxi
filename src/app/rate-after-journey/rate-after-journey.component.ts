@@ -25,7 +25,7 @@ export class RateAfterJourneyComponent implements OnInit {
   @ViewChild(AccViewComponent, {static: false})
    accViewComponent: AccViewComponent;
 
-  accView: boolean;
+  rateDriver : boolean;
   driverSwitch = true;
   rating = '';
   dId : number;
@@ -47,7 +47,7 @@ export class RateAfterJourneyComponent implements OnInit {
               private router: Router) {
      config.max = 5;
      config.readonly = false;
-     this.accView = false;
+     this.rateDriver = false;
      this.journeyService = journeyService;
 
 
@@ -98,7 +98,7 @@ export class RateAfterJourneyComponent implements OnInit {
           this.journey.journeyId = res.journeyId;
           this.journey.routeId = res.routeId;
           this.journey.driverId = res.driverId;
-          this.dId = res.driverId;
+          //this.dId = res.driverId * 1;
           if (res.driverId == 0) {
             this.driverSwitch = false;
           }
@@ -139,7 +139,7 @@ export class RateAfterJourneyComponent implements OnInit {
   }*/
 
   ToRateDriver() {
-   this.router.navigate(['/rate-driver/{{journey.driverId}}']);
+   this.router.navigate(['/rate-driver/{{journey.journeyId}}/{{dId}}']);
    }
 
   ToRatePassenger() {

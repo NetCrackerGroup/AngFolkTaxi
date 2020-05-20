@@ -29,9 +29,9 @@ export class RateUserComponent implements OnInit {
   journeyId : number = 0;
   rating : number = 0;
   id : number =  0;
-  jId : string = "";
-  driverId : string;
   imageSwitch = true;
+  fio : string = "";
+  image : string = "";
   user : IUserAcc = {
       fio : "",
       phoneNumber : "",
@@ -55,18 +55,10 @@ export class RateUserComponent implements OnInit {
      this.subscription = route.params.subscribe(params=>{
      userService.getUserByIdForAcc(params['driverId']).subscribe(
        res => {
-         //console.log(res["journeyId"]);
+         console.log(params['journeyId'] + params['driverId']);
          this.id = params['driverId'];
-         this.driverId = params['driverId'];
          this.journeyId = params['journeyId'];
-         this.jId = params['journeyId'];
          this.user = res;
-         if(res["image"] == null)
-           this.imageSwitch = false;
-         else
-           this.user.image = 'data:image/jpeg;base64,' + res["image"];
-                  //console.log(this.journey.Id);
-         //console.log(this.journey.Id);
        },
        err => {
          alert("Поездка не найдена!");
