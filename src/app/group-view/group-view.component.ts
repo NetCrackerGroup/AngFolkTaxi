@@ -78,12 +78,8 @@ export class GroupViewComponent implements OnInit {
         alert("Error has occured")
       }
     )
-
   }
-
-
-
-
+  
    handleResponse(res) {
     if( res["group"]!= null ) {
       this.group.users = [];
@@ -245,9 +241,6 @@ export class GroupViewComponent implements OnInit {
       },
 
       err => {alert("An error has occured")});
-
-
-
   }
   public complain(user: IUser){
     this.userService.complain(user.userId).subscribe();

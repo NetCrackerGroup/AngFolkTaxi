@@ -24,6 +24,7 @@ export class UserRouteComponent implements OnInit {
   @ViewChild('component2', {static: false})
   accViewComponent: AccViewComponent;
   private routeService: any;
+  routeID : number;
   driverId: number;
   isDriver = false;
   isDriven = false;
@@ -67,6 +68,7 @@ export class UserRouteComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     ).subscribe(data => {
+      this.routeID = data as unknown as number;
       console.log(data);
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {

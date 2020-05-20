@@ -57,9 +57,8 @@ const appRoutes: Routes = [
   {path: 'complain/:adresatId', component: ComplainComponent},
   { path : 'notifications' , component : NotificationsComponent},
   {path : 'blockederror', component : BlockedErrorComponent},
-  {path : 'reg', component : ModalPopupComponent}
-
-
+  {path : 'reg', component : ModalPopupComponent},
+  {path : 'purse', component : YandexMoneyComponent}
 ];
 
 
@@ -95,6 +94,7 @@ import { BlockedErrorComponent } from './blocked-error/blocked-error.component';
 import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 import { EntrygroupComponent } from './entrygroup/entrygroup.component';
+import { YandexMoneyComponent } from './yandex-money/yandex-money.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +138,8 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
     NotificationsComponent,
     NotificationsComponent,
     BlockedErrorComponent,
-    EntrygroupComponent
+    EntrygroupComponent,
+    YandexMoneyComponent
   ],
 
   imports: [
