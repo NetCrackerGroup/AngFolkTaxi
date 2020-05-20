@@ -123,19 +123,19 @@ export class UserService {
     this.http.post(url, image).subscribe();
   }
 
-  rateDriver( driverId : number, rate : string, journeyId : number){
+  rateDriver( driverId : number, rate : number, journeyId : number){
     const body = new HttpParams()
       .set('userId', driverId.toString())
-      .set('driverRating', rate)
+      .set('driverRating', rate.toString())
       .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/driver-rating`;
     this.http.post(url, body).subscribe();
   }
 
-  ratePassenger( passengerId : number, rate : string, journeyId : number){
+  ratePassenger( passengerId : number, rate : number, journeyId : number){
     const body = new HttpParams()
       .set('userId', passengerId.toString())
-      .set('passengerRating', rate)
+      .set('passengerRating', rate.toString())
       .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/passenger-rating`;
     this.http.post(url, body).subscribe();
@@ -147,7 +147,7 @@ export class UserService {
       .set('reportReason', reportReason)
       .set('reportText', reportText);
     const url = `${environment.devUrl}/reports/create-report`;
-    this.http.post(url, body).subscribe();
+    this.http.post(url, body);
   }
 
 

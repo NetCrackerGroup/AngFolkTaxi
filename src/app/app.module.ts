@@ -147,7 +147,7 @@ import { YandexMoneyComponent } from './yandex-money/yandex-money.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
     AngularYandexMapsModule.forRoot('c84cd246-c002-4cee-8ac2-9ad5c1539388')

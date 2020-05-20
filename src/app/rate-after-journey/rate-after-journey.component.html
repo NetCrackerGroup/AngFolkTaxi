@@ -3,13 +3,19 @@
     <div class="offset-3"></div>
     <div class="col-md-6">
 
+      <!--div *ngIf="driverSwitch"  class="driverName" >
+        <label > Имя водителя: </label>
+        <label *ngIf="rateDriver" style="font-style: italic"> Оценить </label>
+        <li (mouseover)="rateDriver=true" (mouseout)="rateDriver=false" routerLink="/rate-driver/{{journey.journeyId}}/{{journey.driverId}}" >
+          <label > {{journey.driverName}} </label>
+        </li>
+      </div-->
+
       <div *ngIf="driverSwitch"  class="community" >
         <div class="head">
           Водитель
         </div>
-          <li>
-            <a routerLink="/rate-driver/{{journey.journeyId}}/{{journey.driverId}}">{{journey.driverName}}</a>
-          </li>
+        <a routerLink="/rate-driver/{{journey.journeyId}}/{{journey.driverId}}">{{journey.driverName}}</a>
       </div>
 
       <div class="community">

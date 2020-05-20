@@ -150,7 +150,7 @@ export class ViewRouteComponent implements OnInit {
             this.countOfPlaces = this.countOfPlaces - 1;
             this.router.navigate(['myRoute', this.id]);
           } else {
-            this.modalText = 'ВЫ уже состоите в этом маршруте';
+            this.modalText = 'ВЫ не можете вступить в этот маршрут';
             this.toggle();
           }
         });

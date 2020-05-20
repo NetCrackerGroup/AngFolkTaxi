@@ -26,11 +26,13 @@ export class RatePassengerComponent implements OnInit {
 
   accView : boolean;
 
-  journeyId :number = 0;
-  rating : string = "";
-  id : number = 0;
+  journeyId : number = 0;
+  rating : number = 0;
+  id : number =  0;
   imageSwitch = true;
-  user : IUserAcc = {
+  fio : string = "";
+  image : string = "";
+  /*user : IUserAcc = {
       fio : "",
       phoneNumber : "",
       cityName : "",
@@ -38,7 +40,7 @@ export class RatePassengerComponent implements OnInit {
       driverRating : "",
       info : "",
       image : ""
-    };
+    };*/
 
   private subscription: Subscription;
 
@@ -55,16 +57,20 @@ export class RatePassengerComponent implements OnInit {
        res => {
          //console.log(res["journeyId"]);
          this.id = params['passengerId'];
+         //this.driverId = params['passengerId'];
          this.journeyId = params['journeyId'];
-         this.user = res;
+         this.fio = res["fio"];
+         //this.jId = params['journeyId'];
+         //this.user = res;
          if(res["image"] == null)
           this.imageSwitch = false;
          else
-          this.user.image = 'data:image/jpeg;base64,' + res["image"];
+          this.image = 'data:image/jpeg;base64,' + res["image"];
+          //this.user.image = 'data:image/jpeg;base64,' + res["image"];
          //console.log(this.journey.Id);
        },
        err => {
-         alert("Поездка не найдена!");
+         //alert("Поездка не найдена!");
        });
       });
   }
@@ -77,14 +83,14 @@ export class RatePassengerComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-   RatePassenger(){
-     console.log(this.rating);
-     if (this.rating == null){
-       alert("Заполните поле \"rating\" ");
-     }
-     else {
-       this.userService.ratePassenger(this.id, this.rating, this.journeyId);
-     }
+   RatePassenger() {
+    console.log(this.rating);
+    if (this.rating == null){
+      alert("Заполните поле \"rating\" ");
+    }
+    else {
+      this.userService.ratePassenger(this.id, this.rating, this.journeyId);
+    }
    }
 
 

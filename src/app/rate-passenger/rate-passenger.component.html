@@ -7,7 +7,7 @@
 
 
       <!-- Avatar -->
-      <div *ngIf="imageSwitch" class="modal-footer" >
+      <!--div *ngIf="imageSwitch" class="modal-footer" >
       </div>
       <div *ngIf="imageSwitch" class="userImage">
         <div class="col-md-12">
@@ -15,20 +15,20 @@
             <img [src]="user.image">
           </div>
         </div>
-      </div>
+      </div-->
 
-      <!-- Driver Name -->
-      <div class = "driverName">
+      <!-- Passenger Name -->
+      <div class = "passengerName">
         <label > Имя : </label>
         <label *ngIf="accView" style="font-style: italic"> Просмотр профиля </label>
         <li (mouseover)="accView=true" (mouseout)="accView=false" (click)="this.accViewComponent.OpenPopup(id,null,null)" >
-          <label > {{user.fio}} </label>
+          <label > {{fio}} </label>
         </li>
       </div>
-      <!-- Driver Rating -->
+      <!-- Passenger Rating -->
       <div class="modal-footer">
       </div>
-      <label> Рейтинг водителя: </label>
+      <label> Оценить попутчика: </label>
       <div class = "rating">
         <ngb-rating [(rate)]="rating">
           <ng-template let-fill="fill" let-index="index">

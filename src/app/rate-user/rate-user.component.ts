@@ -26,10 +26,12 @@ export class RateUserComponent implements OnInit {
 
   accView : boolean;
 
-  journeyId :number = 0;
-  rating : string = "";
-  id : number = 0;
+  journeyId : number = 0;
+  rating : number = 0;
+  id : number =  0;
   imageSwitch = true;
+  fio : string = "";
+  image : string = "";
   user : IUserAcc = {
       fio : "",
       phoneNumber : "",
@@ -53,16 +55,10 @@ export class RateUserComponent implements OnInit {
      this.subscription = route.params.subscribe(params=>{
      userService.getUserByIdForAcc(params['driverId']).subscribe(
        res => {
-         //console.log(res["journeyId"]);
+         console.log(params['journeyId'] + params['driverId']);
          this.id = params['driverId'];
          this.journeyId = params['journeyId'];
          this.user = res;
-         if(res["image"] == null)
-           this.imageSwitch = false;
-         else
-           this.user.image = 'data:image/jpeg;base64,' + res["image"];
-                  //console.log(this.journey.Id);
-         //console.log(this.journey.Id);
        },
        err => {
          alert("Поездка не найдена!");
@@ -76,18 +72,28 @@ export class RateUserComponent implements OnInit {
 
   Exit(){
     this.router.navigate(['/']);
+    //s
   }
 
-  RateDriver(){
+  /*RateDriver(driverId : string, rating : string, jId : string){
        console.log(this.rating);
        if (this.rating == null){
          alert("Заполните поле \"rating\" ");
        }
        else {
-         this.userService.rateDriver(this.id, this.rating, this.journeyId);
+         this.userService.rateDriver(driverId, rating, jId);
        }
-     }
+     }*/
 
+  RateDriver() {
+   console.log(this.rating);
+   if (this.rating == null){
+     alert("Заполните поле \"rating\" ");
+   }
+   else {
+     this.userService.rateDriver(this.id, this.rating, this.journeyId);
+   }
+  }
 
 
   ToCurrentRoute(){
