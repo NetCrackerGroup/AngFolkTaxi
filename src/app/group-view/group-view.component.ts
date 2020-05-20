@@ -29,6 +29,7 @@ export class GroupViewComponent implements OnInit {
   loginCheck : boolean;
   entryGroup : boolean;
   isModerator : boolean;
+  block : boolean;
   private : boolean = false;
 
   group : IGroup = {
@@ -88,6 +89,11 @@ export class GroupViewComponent implements OnInit {
     if( res["group"]!= null ) {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);
+      if(this.block){
+        alert("Вы не можете вступить в эту группу")
+      }
+
+
     }
     this.checkUserInGroup();
   }
@@ -99,11 +105,21 @@ export class GroupViewComponent implements OnInit {
       this.groupsService.act(this.group.groupId, "connect").subscribe(
         (res) => {
             this.handleResponse(res);
+            res["group"]["users"].forEach(elem=>{
+              if(this.loggedUser== elem)
+              {
+                this.block = false
+              }else this.block = true
+            })
+          if(this.block){
+            alert(" ВЫ не можете вступить в эту группу")
+          }
         },
         (err) => {
           console.log(err);
         }
       );
+
     }
 
     else if ( event.target.name == "leave") {
@@ -174,6 +190,7 @@ export class GroupViewComponent implements OnInit {
           console.log("Данные участников не удалось загруить!");
         }
       );
+
     });
   }
 
