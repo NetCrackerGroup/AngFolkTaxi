@@ -29,10 +29,10 @@ export class RatePassengerComponent implements OnInit {
   journeyId : number = 0;
   rating : number = 0;
   id : number =  0;
-  jId : string = "";
-  driverId : string;
   imageSwitch = true;
-  user : IUserAcc = {
+  fio : string = "";
+  image : string = "";
+  /*user : IUserAcc = {
       fio : "",
       phoneNumber : "",
       cityName : "",
@@ -40,7 +40,7 @@ export class RatePassengerComponent implements OnInit {
       driverRating : "",
       info : "",
       image : ""
-    };
+    };*/
 
   private subscription: Subscription;
 
@@ -57,18 +57,20 @@ export class RatePassengerComponent implements OnInit {
        res => {
          //console.log(res["journeyId"]);
          this.id = params['passengerId'];
-         this.driverId = params['passengerId'];
+         //this.driverId = params['passengerId'];
          this.journeyId = params['journeyId'];
-         this.jId = params['journeyId'];
-         this.user = res;
+         this.fio = res["fio"];
+         //this.jId = params['journeyId'];
+         //this.user = res;
          if(res["image"] == null)
           this.imageSwitch = false;
          else
-          this.user.image = 'data:image/jpeg;base64,' + res["image"];
+          this.image = 'data:image/jpeg;base64,' + res["image"];
+          //this.user.image = 'data:image/jpeg;base64,' + res["image"];
          //console.log(this.journey.Id);
        },
        err => {
-         alert("Поездка не найдена!");
+         //alert("Поездка не найдена!");
        });
       });
   }
