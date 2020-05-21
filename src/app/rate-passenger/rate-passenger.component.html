@@ -12,7 +12,7 @@
       <div *ngIf="imageSwitch" class="userImage">
         <div class="col-md-12">
           <div>
-            <img [src]="user.image">
+            <img [src]="image">
           </div>
         </div>
       </div-->
@@ -43,7 +43,7 @@
 
       <div ng-init="tooltip=false" class="modal-footer" style ="position: relative; top: 10%">
         <button type="button" class="btn btn-success" routerLink="/complain/{{id}}" style = "background-color: red; color: black"> Пожаловаться</button>
-        <button type="button" class="btn btn-success" (click)="ToCurrentRoute()"> На страницу маршрута</button>
+        <button type="button" class="btn btn-success" (click)="ToCurrentFeedback()"> Оценить остальных попутчиков </button>
         <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>
       </div>
 

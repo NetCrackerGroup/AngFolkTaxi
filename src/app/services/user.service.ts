@@ -129,7 +129,7 @@ export class UserService {
       .set('driverRating', rate.toString())
       .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/driver-rating`;
-    this.http.post(url, body).subscribe();
+    return this.http.post(url, body).subscribe();
   }
 
   ratePassenger( passengerId : number, rate : number, journeyId : number){
@@ -138,7 +138,8 @@ export class UserService {
       .set('passengerRating', rate.toString())
       .set('journeyId', journeyId.toString());
     const url = `${environment.devUrl}/users/rate/passenger-rating`;
-    this.http.post(url, body).subscribe();
+    console.log(passengerId + " " + rate + " " + journeyId);
+    return this.http.post(url, body).subscribe();
   }
 
   createNewReport( driverId : number, reportReason : string, reportText : string){

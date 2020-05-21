@@ -83,7 +83,12 @@ export class AccEditComponent implements OnInit {
        res => {
         this.user.fio = res["fio"];
         this.user.phoneNumber = res["phoneNumber"];
-        this.user.cityName = res["cityName"];
+        if (res["cityName"] == "Voronezh")
+          this.user.cityName = "Воронеж";
+        else if (res["cityName"] == "Moscow")
+          this.user.cityName = "Москва";
+        else if (res["cityName"] == "Lipetsk")
+          this.user.cityName = "Липецк";
         this.user.passengerRating = res["passengerRating"];
         this.user.driverRating = res["driverRating"];
         this.user.passengerRating = res["passengerRating"];

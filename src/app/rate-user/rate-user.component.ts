@@ -58,10 +58,10 @@ export class RateUserComponent implements OnInit {
          console.log(params['journeyId'] + params['driverId']);
          this.id = params['driverId'];
          this.journeyId = params['journeyId'];
-         this.user = res;
+         this.fio = res["fio"];
        },
        err => {
-         alert("Поездка не найдена!");
+         //alert("Поездка не найдена!");
        });
       });
   }
@@ -96,11 +96,12 @@ export class RateUserComponent implements OnInit {
   }
 
 
-  ToCurrentRoute(){
+  ToCurrentFeedback(){
    /*
     let str = "viewRoute/";
     this.router.navigate(str + this.journey.routeId.toString());
     */
+    this.router.navigate(['/feedback/' + this.journeyId]);
   }
 
 }
