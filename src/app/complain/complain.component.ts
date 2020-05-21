@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import { ComplainService } from '../services/complain.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-complain',
@@ -13,6 +14,9 @@ import { ComplainService } from '../services/complain.service';
   styleUrls: ['./complain.component.css']
 })
 export class ComplainComponent implements OnInit {
+  previousUrl: string;
+  fromFeedback: boolean = false;
+
   complain: IComplain = {
     complainId : null,
     user :  {
@@ -37,8 +41,13 @@ export class ComplainComponent implements OnInit {
   }
 
   private subscription: Subscription;
-  
-  constructor(private userService: UserService,private route: ActivatedRoute, private complainService: ComplainService, private router: Router) {
+
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private complainService: ComplainService,
+              private router: Router,
+              private location: Location) {
+
     userService.getUserForPro().subscribe(
       res => {
         this.complain.user.fio = res["fio"];
@@ -56,39 +65,41 @@ export class ComplainComponent implements OnInit {
           this.complain.adresat.fio = res['fio'];
           this.complain.adresat.email = res['email'];
           this.complain.adresat.phoneNumber = res['phoneNumber'];
-          
+
         },
         err=>{
           alert("Адресат не найден")
-          
+
         }
       )
     });
-    
-    
+
+
   }
 
   ngOnInit(): void {
   }
-  
+
   sendComplain(){
     this.complainService.postComplain(this.complain.adresat.userId,this.complain).subscribe(
       res=> {
         console.log(res['complainId']);
         this.complain.text = '';
-        
+
       },
         err=>{
           alert("Жалоба не отправлена")
-        
+
         });
-   
+
       console.log( this.route.parent);
       this.router.navigate(['']);
 
 
-    
-  }
-  
 
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

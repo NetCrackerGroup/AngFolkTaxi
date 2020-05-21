@@ -22,7 +22,7 @@
         <label > Имя : </label>
         <label *ngIf="accView" style="font-style: italic"> Просмотр профиля </label>
         <li (mouseover)="accView=true" (mouseout)="accView=false" (click)="this.accViewComponent.OpenPopup(id,null,null)" >
-          <label > {{user.fio}} </label>
+          <label > {{fio}} </label>
         </li>
       </div>
       <!-- Driver Rating -->
@@ -43,7 +43,7 @@
 
       <div ng-init="tooltip=false" class="modal-footer" style ="position: relative; top: 10%">
         <button type="button" class="btn btn-success" routerLink="/complain/{{id}}" style = "background-color: red; color: black"> Пожаловаться</button>
-        <button type="button" class="btn btn-success" (click)="ToCurrentRoute()"> На страницу маршрута</button>
+        <button type="button" class="btn btn-success" (click)="ToCurrentFeedback()"> Оценить остальных попутчиков </button>
         <button type="button" class="btn btn-success" (click)="Exit()"> На главную страницу </button>
       </div>
 

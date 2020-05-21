@@ -124,8 +124,8 @@ export class RateAfterJourneyComponent implements OnInit {
 
   }
 
-  Exit() {
-    this.router.navigate(['/']);
+  toRoute() {
+    this.router.navigate(['/myRoute/' + this.journey.routeId]);
   }
 
   /*RateDriver(){
