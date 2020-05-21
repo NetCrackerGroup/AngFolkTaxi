@@ -27,7 +27,7 @@ export class RatePassengerComponent implements OnInit {
   accView : boolean;
 
   journeyId : number = 0;
-  rating : string = "";
+  rating : number = 0;
   id : number =  0;
   imageSwitch = true;
   fio : string = "";
