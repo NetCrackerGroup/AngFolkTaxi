@@ -76,4 +76,12 @@ export class RoutesService {
     const params: HttpParams = new HttpParams().set('routeId', routeId.toString());
     return this.http.post(url, params);
   }
+
+  getAllMembers(routeId : number) : Observable<any>{
+    let url = `${environment.devUrl}/routes/members?routeId=${routeId}`;
+
+    console.log("Members");
+
+    return this.http.get(url)
+  }
 }

@@ -58,7 +58,8 @@ const appRoutes: Routes = [
   { path : 'notifications' , component : NotificationsComponent},
   {path : 'blockederror', component : BlockedErrorComponent},
   {path : 'reg', component : ModalPopupComponent},
-  {path : 'purse', component : YandexMoneyComponent}
+  {path : 'purse', component : YandexMoneyComponent},
+  { path : 'callback/yandex', component : YandexCallbackComponent}
 ];
 
 
@@ -95,6 +96,8 @@ import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 import { EntrygroupComponent } from './entrygroup/entrygroup.component';
 import { YandexMoneyComponent } from './yandex-money/yandex-money.component';
+import { YandexCallbackComponent } from './yandex-callback/yandex-callback.component';
+import { PayRouteComponent } from './pay-route/pay-route.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +142,9 @@ import { YandexMoneyComponent } from './yandex-money/yandex-money.component';
     NotificationsComponent,
     BlockedErrorComponent,
     EntrygroupComponent,
-    YandexMoneyComponent
+    YandexMoneyComponent,
+    YandexCallbackComponent,
+    PayRouteComponent
   ],
 
   imports: [

@@ -18,35 +18,24 @@ export class YandexMoneyComponent implements OnInit {
 
   authParametrs : authYandex;
   url : string;
-  //@Input() routeId;
+  @Input() routeId;
+  @Input() type;
 
   constructor(
     private yandexService : YandexService,
     private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(window.location.hash);
-    this.url = `${environment.devUrl}/yandex/driver`;
-    console.log(this.activateRoute.url);
-    console.log(this.activateRoute.params);
-    this.activateRoute.queryParams.subscribe(
-      (data) => {
-        console.log(data);
-        console.log(data["code"]);
-      }
-    )
-    console.log("Init yandex money");
     this.authYandex();
   }
 
-
   authYandex() {
-    this.yandexService.getParametr().subscribe(
+    this.yandexService.getParametr(this.type).subscribe(
       (res) => {
         console.log(res["clientId"]);
         this.authParametrs = {
           clientId : res["clientId"] ,
-          scope : "account-info",
+          scope : res["scope"],
           redirect : res["redirect"]
         };
       },

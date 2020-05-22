@@ -28,6 +28,7 @@ export class UserRouteComponent implements OnInit {
   driverId: number;
   isDriver = false;
   isDriven = false;
+  loadStatusDriver : boolean;
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService,
               private userService: UserService, routeService: RoutesService) {
   this.routeService = routeService;
@@ -62,7 +63,6 @@ export class UserRouteComponent implements OnInit {
   public daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
   public userDays = [];
   chatId: number;
-
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -141,6 +141,7 @@ export class UserRouteComponent implements OnInit {
     this.routeService.checkUserIsDriver(this.id).subscribe( (res: boolean) => {
       console.log('this.isDriver', res);
       this.isDriver = res['isDriver'];
+      this.loadStatusDriver = true;
     });
   }
 
