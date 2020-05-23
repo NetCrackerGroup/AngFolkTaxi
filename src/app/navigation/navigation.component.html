@@ -29,7 +29,7 @@
         </div>
       </li>
 
-      <li class="nav-item">
+      <li *ngIf="isReg()" class="nav-item">
         <a routerLink="groups" class="nav-link">Группы</a>
       </li>
 

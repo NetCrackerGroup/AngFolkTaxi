@@ -15,6 +15,9 @@ import { FormControl } from '@angular/forms';
 import { ApiService } from "../shared/api.service";
 import{ AppChatComponent } from "../app-chat/app-chat.component";
 import {AccViewComponent} from "../acc-view/acc-view.component";
+import {NgbdModalConfirmationComponent } from '../ngbd-modal-confirmation/ngbd-modal-confirmation.component';
+
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-group-view',
@@ -30,7 +33,8 @@ export class GroupViewComponent implements OnInit {
   entryGroup : boolean;
   isModerator : boolean;
   block : boolean;
-  private : boolean = false;
+  private : boolean;
+  nullGroup : boolean;
 
   group : IGroup = {
     groupId : 0,
@@ -57,33 +61,38 @@ export class GroupViewComponent implements OnInit {
                 private userService : UserService,
                 private authService : AuthService,
                 private router : Router,
-                private apiService:ApiService ) {
-    this.routeSubscription = route.params.subscribe(params=>
-      {
+                private apiService:ApiService,
+                private modalService : NgbModal ) 
+  {
+    this.routeSubscription = route.params.subscribe
+    (
+      params=> {
         this.id=params['id'];
         groupsService.getGroup(this.id).subscribe(
           res => {
-            this.loadgroup(res);
+            if (res == null) 
+              this.nullGroup = true;
+            else 
+            { 
+              this.nullGroup = false; 
+              this.loadgroup(res);
+            }
           },
           err => {
             alert("Группа не найдена!");
           }
         );
-    });
+      }
+    );
     userService.getLoggedUser().subscribe(
       res =>{
-        this.loggedUser = res['isLogged']
-
-    },
+        this.loggedUser = res['isLogged'];
+      },
       err => {
         alert("Error has occured")
       }
-    )
-
+    );
   }
-
-
-
 
    handleResponse(res) {
     if( res["group"]!= null ) {
@@ -92,15 +101,13 @@ export class GroupViewComponent implements OnInit {
       if(this.block){
         alert("Вы не можете вступить в эту группу")
       }
-
-
     }
     this.checkUserInGroup();
   }
 
-
   actgroup ( event : any ) {
-    if (event.target.name == "connect") {
+    if (event.target.name == "connect") 
+    {
       console.log("connect");
       this.groupsService.act(this.group.groupId, "connect").subscribe(
         (res) => {
@@ -119,30 +126,38 @@ export class GroupViewComponent implements OnInit {
           console.log(err);
         }
       );
-
     }
-
     else if ( event.target.name == "leave") {
       console.log("leave");
-      this.groupsService.act(this.group.groupId, "leave").subscribe(
-        (res) => {
-          this.handleResponse(res);
-        },
-        (err) => {
-          console.log(err);
-        }
-      )
+      if (this.private)
+        this.modalService.open(NgbdModalConfirmationComponent).result.then(
+          result => {
+            if (result == "LeaveGroup") 
+              this.leaveCloseGroup();
+          }
+        );
+      else {
+        this.leaveCloseGroup();
+      }
     }
   }
 
+  leaveCloseGroup() {
+    this.groupsService.act(this.group.groupId, "leave").subscribe(
+      (res) => {
+        this.handleResponse(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   ngOnInit() {
+    console.log(this.private);
+    console.log(this.entryGroup);
     this.loginCheck = this.authService.logIn;
-    if ( this.loginCheck ) {
-      this.checkUserInGroup();
-
-    }
     console.log(` ID : ${this.id} `);
-
   }
 
   repost(){
@@ -153,6 +168,7 @@ export class GroupViewComponent implements OnInit {
       (res) => {
         console.log(res);
         this.entryGroup = res["isInvolved"];
+        console.log(this.entryGroup);
       },
       (err) => {
         console.log(err);
@@ -190,7 +206,6 @@ export class GroupViewComponent implements OnInit {
           console.log("Данные участников не удалось загруить!");
         }
       );
-
     });
   }
 
@@ -201,10 +216,10 @@ export class GroupViewComponent implements OnInit {
     this.group.groupName = res["groupName"];
     this.group.groupLink = `${environment.devUrlFront}/entryGroup/${res["cityLink"]}`;
     this.group.typeGroup = res["typeGroup"];
-    if ( this.group.typeGroup.nameType == "private" ) {
+    if ( this.group.typeGroup.nameType == "private" )
       this.private = true;
-    }
-    let count = 0;
+    if (this.group.typeGroup.nameType == "public") 
+      this.private = false;
     this. apiService.getChatByGroup(res["groupId"]).subscribe(
       res => {
         this.chatId = res["chatId"];
@@ -222,7 +237,6 @@ export class GroupViewComponent implements OnInit {
     this.subscriptionChat = this.route.params.subscribe(params=> {
       this.groupsService.getGroup(params['id']).subscribe(
         res => {
-
           this.apiService.getChatByGroup(res["groupId"]).subscribe(
             res => {
               this.chatId = res["chatId"];
@@ -230,15 +244,12 @@ export class GroupViewComponent implements OnInit {
             },
             err => {
               alert("An error has occured;")
-            }
-          );
-        ;
+            } 
+            );
+          }
+        );
       }
-
-
-        )
-  }
-    )
+    );
   }
 
   public getChatbyGroup() {
@@ -262,9 +273,6 @@ export class GroupViewComponent implements OnInit {
       },
 
       err => {alert("An error has occured")});
-
-
-
   }
   public complain(user: IUser){
     this.userService.complain(user.userId).subscribe();

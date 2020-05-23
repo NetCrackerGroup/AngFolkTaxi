@@ -95,6 +95,7 @@ import { BlockedErrorComponent } from './blocked-error/blocked-error.component';
 import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 import { EntrygroupComponent } from './entrygroup/entrygroup.component';
+import { NgbdModalConfirmationComponent } from './ngbd-modal-confirmation/ngbd-modal-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +139,8 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
     NotificationsComponent,
     NotificationsComponent,
     BlockedErrorComponent,
-    EntrygroupComponent
+    EntrygroupComponent,
+    NgbdModalConfirmationComponent
   ],
 
   imports: [
@@ -168,6 +170,9 @@ import { EntrygroupComponent } from './entrygroup/entrygroup.component';
       useClass: ParamInterceptor,
       multi: true
     }], // что это такое
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents : [
+    NgbdModalConfirmationComponent
+  ]
 })
 export class AppModule { }

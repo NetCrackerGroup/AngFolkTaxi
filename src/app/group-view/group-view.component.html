@@ -1,18 +1,24 @@
 
 <div class="container">
-    <div class="card">
 
-        <div class="card-header">
-            <h5 class="card-title"> <span class="name"> {{group.groupName}} </span> <img *ngIf="private" class="lock" src="assets/images/lock.png"></h5>
-          </div>
 
+  <div *ngIf="nullGroup" class="alert alert-danger" role="alert">
+    <strong>Ошибка!</strong> Такая группа не найдена.
+  </div>
+
+  <div *ngIf="nullGroup != undefined && !nullGroup" class="card">
+    <div class="card-header">
+      <h5 class="card-title"> <span class="name"> Группа &laquo; {{group.groupName}}&raquo; </span> <img *ngIf="private" class="lock" src="assets/images/lock.png"></h5>
+    </div>
+    <div *ngIf='private != undefined && entryGroup != undefined'>
+      <div *ngIf='(private && entryGroup) || !private'>
         <div *ngIf="loginCheck">
             <button *ngIf="!entryGroup" name="connect" class="btn btn-outline-success btn-lg btn-block" (click)="actgroup($event)">Вступить</button>
             <button *ngIf="entryGroup" name="leave" class="btn btn-outline-success btn-lg btn-block" (click)="actgroup($event)">Покинуть</button>
         </div>
         <div class="card-body">
-
-            <div class="community">
+          <div class="row">
+            <div class="col-lg-4 col-md-5 community">
               <h3>Участники</h3>
                 <ul class="menu-top-first">
                     <li class="user-item" [id]="user.userId "*ngFor="let user of group.users" (click)="this.accViewComponent.OpenPopup(user.userId,null,this.id)">
@@ -20,20 +26,27 @@
                     </li>
                 </ul>
             </div>
-          <div class="col-7">
-          <app-app-chat class="component_chat" [chatId] = "chatId">
-          </app-app-chat>
-          </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <button  class="btn btn-dark" type="button" (click)="copyGroupLink(linkedgroup)" id="btn">Не жадничай</button>
-                </div>
-                    <input type="text" class="form-control" [value]="group.groupLink" #linkedgroup>
-                </div>
+            <div class="col-lg-7 col-md-6">
+              <app-app-chat class="component_chat" [chatId] = "chatId">
+              </app-app-chat>
             </div>
+          </div>     
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button  class="btn btn-dark" type="button" (click)="copyGroupLink(linkedgroup)" id="btn">Не жадничай</button>
+            </div>    
+            <input type="text" class="form-control" [value]="group.groupLink" id="linkedgroup" #linkedgroup>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="private && !entryGroup">
+        <div class="card-body">
+          <p>
+            Это закрытая группа, попасть в нее можно только по приглашению!
+          </p>
+        </div>
+      </div>
     </div>
-
-</div>
-<div>
-</div>
+  </div>
+</div>  
 <app-acc-view #component2></app-acc-view>
