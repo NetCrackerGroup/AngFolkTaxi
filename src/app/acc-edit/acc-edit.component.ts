@@ -12,7 +12,6 @@ import { AccChangeNameComponent } from '../acc-change-name/acc-change-name.compo
 import { AccChangeCityComponent } from '../acc-change-city/acc-change-city.component';
 import { AccChangePhoneNumberComponent } from '../acc-change-phone-number/acc-change-phone-number.component';
 import { AccChangeInfoComponent } from '../acc-change-info/acc-change-info.component';
-import { YandexService } from '../services/yandex.service'; 
 
 
 
@@ -64,8 +63,7 @@ export class AccEditComponent implements OnInit {
   constructor(private config: NgbRatingConfig,
               private authService: AuthService,
               private userService : UserService,
-              private router : Router,
-              private  yandexSerivce : YandexService) {
+              private router : Router) {
 
   }
 

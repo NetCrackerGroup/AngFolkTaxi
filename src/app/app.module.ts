@@ -16,8 +16,6 @@ import {ParamInterceptor} from './param-interceptor';
 import { RouteFilterPipe } from './shared/route-filter.pipe';
 import {ModeratorComponent } from './moderator/moderator.component'
 
-
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CityMapComponent } from './city-map/city-map.component';

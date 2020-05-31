@@ -31,7 +31,9 @@ export class YandexThanksPassegerComponent implements OnInit {
     private yandexService : YandexService) { }
 
   ngOnInit(): void {
+    console.log("yandex_thanks");
     this.handleQueryParams();
+    console.log("end ngOnInit");
   }
 
   handleQueryParams() {
