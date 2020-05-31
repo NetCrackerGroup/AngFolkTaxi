@@ -1,0 +1,9 @@
+<form *ngIf="authParametrs" ngNoForm action="http://money.yandex.ru/oauth/authorize" method="POST" id="money" #formMoney>
+    <input type="hidden" name="client_id" [ngModel]="authParametrs.clientId">
+    <input type="hidden" name="scope"  [ngModel]="authParametrs.scope"/>
+    <input type="hidden" name="redirect_uri" [ngModel]="authParametrs.redirect + '?target=purse'">
+    <input type="hidden" name="response_type" value="code">
+    <button class="yandex-btn" from="money">
+        Подключить яндекс кошелек
+    </button>
+</form>

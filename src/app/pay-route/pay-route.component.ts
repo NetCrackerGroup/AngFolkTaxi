@@ -46,7 +46,7 @@ export class PayRouteComponent implements OnInit {
       err => {
         console.log(err);
       }
-    )
+    );
    }
 
    checkPayOnline() {

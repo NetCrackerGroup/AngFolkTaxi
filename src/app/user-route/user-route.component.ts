@@ -146,7 +146,6 @@ export class UserRouteComponent implements OnInit {
   }
 
   openJourneyInfo() {
-
   }
 
   startRoute() {

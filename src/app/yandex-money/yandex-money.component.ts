@@ -3,7 +3,7 @@ import { YandexService } from '../services/yandex.service';
 import { ActivatedRoute} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-interface authYandex{
+export interface authYandex{
   clientId : string,
   scope : string,
   redirect : string
@@ -44,5 +44,4 @@ export class YandexMoneyComponent implements OnInit {
       }
     );
   }
-
 }

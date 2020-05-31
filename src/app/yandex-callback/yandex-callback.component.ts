@@ -12,6 +12,8 @@ import {Router} from '@angular/router';
 export class YandexCallbackComponent implements OnInit {
 
   message : string;
+  successInfo : string;
+  failureInfo : string; 
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -21,17 +23,45 @@ export class YandexCallbackComponent implements OnInit {
     ) {
     activateRoute.queryParams.subscribe(
       param => {
-        if ( authService.logIn ) { 
+
+        if (param['code'] != undefined && param["userID"] && param["journeyID"] != undefined && param["price"] != undefined ) 
+        {
           console.log(param);
-            if (param['code'] != undefined && param["who"] != undefined) {
-              console.log(param['code']);
-              if (param["who"] == "driver") {
-                this.connectCashRoute(param['code'], param['routeId'] as number)
+          let code = param['code'];
+          let userID = param['userID'] as number;
+          let journeyID = param['journeyID'] as number;
+          let price = param['price'] as number;
+          this.yandexService.thankForJourney(userID, journeyID, price, code).subscribe(
+            res => {
+              console.log(res);
+              if (res["status"] == 'success') {
+                this.successInfo = "Операция выполнена";
               }
-              if (param["who"]  == "passenger") {
-                this.passagerPayRoute(param['code'], param['routeId'] as number);
+              if (res["status"] == 'failure') {
+                this.failureInfo = "Ошибка";
               }
-          }  
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        }
+
+        else if ( authService.logIn ) { 
+          console.log(param);
+          if (param['code'] != undefined && param["who"] != undefined) {
+            console.log(param['code']);
+            if (param["who"] == "driver") {
+              this.connectCashRoute(param['code'], param['routeId'] as number)
+            }
+            if (param["who"]  == "passenger") {
+              this.passagerPayRoute(param['code'], param['routeId'] as number);
+            }
+          } 
+          else if (param['code'] != undefined && param["target"] != undefined) {
+            this.connectYandexPurse(param['code']);
+            console.log(param["target"]);
+          } 
           else {
             this.message = "Кажется что-то пошло не так!"
           }
@@ -76,4 +106,14 @@ export class YandexCallbackComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  connectYandexPurse(code : string) {
+    this.yandexService.connectYandexPurse(code).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

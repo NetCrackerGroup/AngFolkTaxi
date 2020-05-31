@@ -52,4 +52,25 @@ export class YandexService {
     return this.http.post(url, {});
   }
 
+  connectYandexPurse(code : string ) {
+    let url = `${environment.devUrl}/yandex/purse?code=${code}`;
+
+    return this.http.put(url, {});
+  }
+
+  thankForJourney(userID : number, journeyID : number, price : number, code : string) : Observable<any> {
+    let url = `${environment.devUrl}/yandex/thank/driver`;
+
+    let body = {userID : userID, journeyID : journeyID, price : price, code : code};
+
+    return this.http.post(url, body);
+  }
+
+
+  checkValidPurse() : Observable<any> {
+    let url = `${environment.devUrl}/yandex/check/connect/purse`
+
+    return this.http.get(url);
+  }
+
 }
