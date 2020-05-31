@@ -91,10 +91,11 @@ export class GroupViewComponent implements OnInit {
       err => {
         alert("Error has occured")
       }
+
     );
   }
 
-   handleResponse(res) {
+  handleResponse(res) {
     if( res["group"]!= null ) {
       this.group.users = [];
       this.loadUsers(res["group"]["users"]);

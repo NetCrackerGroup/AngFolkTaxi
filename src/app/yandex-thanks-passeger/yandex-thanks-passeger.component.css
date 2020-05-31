@@ -1,0 +1,30 @@
+.form-thanks {
+    margin: 32px;
+    background-color: #191970;
+    border-radius: 20px;
+}
+
+.form-thanks h4 {
+    color : #C1CACA;
+}
+
+.form-thanks p {
+    color: #C1CACA;
+}
+
+.form-thanks label {
+    color : #C1CACA;
+    position: relative;
+    top : 5px;
+}
+
+.marg20 {
+    margin: 20px;
+}
+
+
+@media (max-width : 576px) {
+    .form-thanks {
+        margin: 0 20px;
+    }
+}

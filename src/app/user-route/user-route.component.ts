@@ -24,9 +24,11 @@ export class UserRouteComponent implements OnInit {
   @ViewChild('component2', {static: false})
   accViewComponent: AccViewComponent;
   private routeService: any;
+  routeID : number;
   driverId: number;
   isDriver = false;
   isDriven = false;
+  loadStatusDriver : boolean;
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService,
               private userService: UserService, routeService: RoutesService) {
   this.routeService = routeService;
@@ -62,11 +64,11 @@ export class UserRouteComponent implements OnInit {
   public userDays = [];
   chatId: number;
 
-
   ngOnInit(): void {
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     ).subscribe(data => {
+      this.routeID = data as unknown as number;
       console.log(data);
       this.id = +data;
       this.http.get(`${this.url}/routes/${this.id}`).subscribe((res: {
@@ -139,11 +141,11 @@ export class UserRouteComponent implements OnInit {
     this.routeService.checkUserIsDriver(this.id).subscribe( (res: boolean) => {
       console.log('this.isDriver', res);
       this.isDriver = res['isDriver'];
+      this.loadStatusDriver = true;
     });
   }
 
   openJourneyInfo() {
-
   }
 
   startRoute() {

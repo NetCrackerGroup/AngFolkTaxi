@@ -57,9 +57,10 @@ const appRoutes: Routes = [
   {path: 'complain/:adresatId', component: ComplainComponent},
   { path : 'notifications' , component : NotificationsComponent},
   {path : 'blockederror', component : BlockedErrorComponent},
-  {path : 'reg', component : ModalPopupComponent}
-
-
+  {path : 'reg', component : ModalPopupComponent},
+  {path : 'purse', component : YandexMoneyComponent},
+  { path : 'callback/yandex', component : YandexCallbackComponent},
+  { path : 'thanks', component : YandexThanksPassegerComponent}
 ];
 
 
@@ -96,6 +97,12 @@ import { RateUserComponent } from './rate-user/rate-user.component';
 import { RatePassengerComponent } from './rate-passenger/rate-passenger.component';
 import { EntrygroupComponent } from './entrygroup/entrygroup.component';
 import { NgbdModalConfirmationComponent } from './ngbd-modal-confirmation/ngbd-modal-confirmation.component';
+import { YandexMoneyComponent } from './yandex-money/yandex-money.component';
+import { YandexCallbackComponent } from './yandex-callback/yandex-callback.component';
+import { PayRouteComponent } from './pay-route/pay-route.component';
+import { ConnectYandexComponent } from './connect-yandex/connect-yandex.component';
+import { YandexThanksPassegerComponent } from './yandex-thanks-passeger/yandex-thanks-passeger.component';
+
 
 @NgModule({
   declarations: [
@@ -140,7 +147,12 @@ import { NgbdModalConfirmationComponent } from './ngbd-modal-confirmation/ngbd-m
     NotificationsComponent,
     BlockedErrorComponent,
     EntrygroupComponent,
-    NgbdModalConfirmationComponent
+    NgbdModalConfirmationComponent,
+    YandexMoneyComponent,
+    YandexCallbackComponent,
+    PayRouteComponent,
+    ConnectYandexComponent,
+    YandexThanksPassegerComponent
   ],
 
   imports: [

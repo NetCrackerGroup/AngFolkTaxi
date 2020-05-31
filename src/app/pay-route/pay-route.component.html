@@ -1,0 +1,15 @@
+<div *ngIf='driver'>
+    <app-yandex-money 
+        *ngIf='connectCash'
+        [routeId]='routeId'
+        [type] = '"driver"'
+        >
+    </app-yandex-money>
+</div>
+
+<div *ngIf='payOnline'>
+    <app-yandex-money 
+    [routeId]='routeId'
+    [type] = '"passenger"'>
+    </app-yandex-money>
+</div>

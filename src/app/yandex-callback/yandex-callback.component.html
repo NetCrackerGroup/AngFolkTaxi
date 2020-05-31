@@ -1,0 +1,8 @@
+<div class="container">
+    <div *ngIf='message' class="alert alert-danger" role="alert">
+        <strong>Что-то не так!</strong> {{message}}
+    </div>
+    <div *ngIf='successInfo' class="alert success" role="alert">
+        <strong>Завершено!</strong> {{message}}
+    </div>
+</div>
