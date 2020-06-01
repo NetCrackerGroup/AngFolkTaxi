@@ -16,7 +16,7 @@ import {environment} from '../environments/environment';
   providers: [RouterOutlet]
 })
 export class AppComponent implements OnInit {
-  title = 'AngFolkTaxi';
+  title = 'FolkTaxi';
   authService: AuthService;
   url = environment.devUrl;
 

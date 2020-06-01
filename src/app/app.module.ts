@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {AngularYandexMapsModule} from 'angular8-yandex-maps';
@@ -177,6 +177,7 @@ import { YandexThanksPassegerComponent } from './yandex-thanks-passeger/yandex-t
     NgForm,
     GroupsService,
     ReportComponent,
+    Title,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ParamInterceptor,

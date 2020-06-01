@@ -15,7 +15,9 @@
         <div class="head">
           Водитель
         </div>
+        <li class="information-block-2 user-item">
         <a routerLink="/rate-driver/{{journey.journeyId}}/{{journey.driverId}}">{{journey.driverName}}</a>
+        </li>
       </div>
 
       <div class="community">
@@ -23,7 +25,7 @@
           Попутчики
         </div>
         <ul>
-          <li *ngFor="let passenger of journey.passengers">
+          <li class="information-block-2 user-item" *ngFor="let passenger of journey.passengers">
             <a routerLink="/rate-passenger/{{journey.journeyId}}/{{passenger.passengerId}}">{{passenger.passengerName}}</a>
           </li>
         </ul>
