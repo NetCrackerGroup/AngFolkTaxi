@@ -44,3 +44,61 @@ ul {
   color: white;
 }
 
+ul.menu-top > li {
+  display: inline;	/* Располагаем элементы по горизонтали */
+  list-style: none;	/* Убираем маркеры списка */
+  padding: 5px;		/* Поля вокруг текста */
+  background-color: #fffff0;
+  margin-right: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+  border: #63AA9C solid 2px;
+  border-radius: 7px;
+  transition: 0.5s;
+
+}
+
+ul.menu-top-frst > li {
+  display: block;	/* Располагаем элементы по горизонтали */
+  list-style: none;	/* Убираем маркеры списка */
+  padding: 5px;		/* Поля вокруг текста */
+  background-color: #fffff0;
+  font-size: 1.3rem;
+  text-align: center;
+  border: #63AA9C solid 2px;
+  border-radius: 7px;
+  transition: 0.5s;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 7px;
+}
+.user-item:hover {
+  cursor: pointer;
+  display: block;
+}
+.menu-top {
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.information-block-2 {
+  padding: 5px;
+  text-align: center;
+  border: #63AA9C solid 2px;
+  border-radius: 7px;
+  transition: 0.5s all;
+}
+.information-block-2:hover {
+  text-align: center;
+  border: #aa2336 solid 2px;
+  border-radius: 20px;
+
+}
+.information-block__text-2 {
+  margin: auto;
+  width: 60%;
+}
+.information-block__text-2:hover {
+  cursor: pointer;
+}
+

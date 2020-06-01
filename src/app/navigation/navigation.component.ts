@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { UserService } from '../services/user.service';
 import {GroupsService} from '../services/groups.service';
 import {IGroup} from '../entities/igroup';
@@ -56,7 +57,8 @@ export class NavigationComponent implements OnInit {
 
               tempSetrService: TempSetrService, http: HttpClient,
               loginComponent: LoginComponent,  userService: UserService,
-              private notificationService : NotificationService
+              private notificationService : NotificationService,
+              private titleService: Title
               ) {
     this.loginComponent = loginComponent;
     this.authService = authService;
@@ -65,6 +67,7 @@ export class NavigationComponent implements OnInit {
     this.routeService = routeService;
     this.userService = userService;
     this.isAdmin();
+    this.titleService.setTitle( 'FolkTaxi' );
   }
 
 
@@ -156,7 +159,7 @@ export class NavigationComponent implements OnInit {
         this.getCurrentNumberNotifications();
       },
       err => {
-        console.log(err); 
+        console.log(err);
       }
     )
   }
